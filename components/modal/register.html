@@ -1,0 +1,24 @@
+<button class="close-window pull-right" ng-click="close()" >X</button>
+<div role="document" class="modal-dialog modal-md">
+    <div class="modal-content">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="butRegLogWrap">
+                    <button id="toLogin" class="logRegBut" data-modal="auth">войти</button>
+                    <button class="logRegBut active" data-modal="register">регистрация</button>
+                </div>
+                <div class="inputRegLogWrap">
+                    <input placeholder="Имя" ng-model="user.firstname"/>
+                    <input placeholder="Фамилия" ng-model="user.lastname"/>
+                    <input placeholder="Эл. почта" ng-model="user.email"/>
+                    <input placeholder="Моб. номер" ng-model="user.phone"/>
+                    <input placeholder="Пароль" ng-model="user.password"/>
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-show="error">
+                        <p class="text-center">{{error}}</p>
+                    </div>
+                    <button class="btn-drul dark" ng-click="register()">Зарегистрироваться</button>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>

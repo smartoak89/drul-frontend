@@ -1,0 +1,112 @@
+<!--Show user info-->
+<table class="table" ng-if="!$ctrl.userEditor.editmode">
+    <tbody>
+    <tr>
+        <td>Страна</td>
+        <td> Украина </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Имя</td>
+        <td>{{$ctrl.User.active.firstname}}</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Фамилия</td>
+        <td>{{$ctrl.User.active.lastname}}</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Моб. номер</td>
+        <td>{{$ctrl.User.active.phone}}</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Эл. почта</td>
+        <td>{{$ctrl.User.active.email}}</td>
+        <td></td>
+    </tr>
+    <tr>
+        <td></td>
+        <td>
+            <button type="button" class="btn btn-drul dark" ng-click="$ctrl.userEditor.editmode = true">Редактировать</button>
+        </td>
+    </tr>
+    </tbody>
+</table>
+
+<!--Edit user info-->
+<table class="table" ng-if="$ctrl.userEditor.editmode">
+    <tbody ng-init="$ctrl.userEditor.copy()">
+    <tr>
+        <td>Страна</td>
+        <td>
+            <div class="checkbo">
+                <input type="radio" id="111" name="option" value="a" ng-model="$ctrl.user.country"/>
+                <label for="111"></label><span>Украина</span>
+                <input type="radio" id="11" name="option" value="a" ng-model="$ctrl.user.country"/>
+                <label for="11"></label><span>Россия</span>
+            </div>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Имя</td>
+        <td>
+            <div class="form-group">
+                <input class="form-control" placeholder="Имя" value="{{$ctrl.User.active.firstname}}" ng-model="$ctrl.user.firstname">
+            </div>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Фамилия</td>
+        <td>
+            <div class="form-group">
+                <input class="form-control" placeholder="Фамилия" value="{{$ctrl.User.active.lastname}}" ng-model="$ctrl.user.lastname">
+            </div>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Моб. номер</td>
+        <td>
+            <div class="form-group">
+                <input data-mask="phone_us" class="form-control" placeholder="Моб. номер" value="{{$ctrl.User.active.phone}}" ng-model="$ctrl.user.phone">
+            </div>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Эл. почта</td>
+        <td>
+            <div class="form-group">
+                <input class="form-control" placeholder="Эл. почта" value="{{$ctrl.User.active.email}}" ng-model="$ctrl.user.email">
+            </div>
+        </td>
+        <td></td>
+    </tr>
+    <tr>
+        <td>Пароль</td>
+        <td>
+            <div class="form-group">
+                <input type="password" class="form-control" placeholder="Пароль" ng-model="$ctrl.user.password">
+            </div>
+        </td>
+        <td></td>
+    </tr>
+    <tr ng-show="$ctrl.error">
+        <td>
+            {{$ctrl.error}}
+        </td>
+    </tr>
+    <tr>
+        <td>
+            <button type="button" class="btn btn-drul dark" ng-click="$ctrl.userEditor.save()">Сохранить</button>
+        </td>
+        <td>
+            <button type="button" class="btn btn-drul dark" ng-click="$ctrl.userEditor.editmode = false">Отмена</button>
+        </td>
+    </tr>
+    </tbody>
+</table>

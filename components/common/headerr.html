@@ -1,0 +1,40 @@
+<div class="prevs">
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul class="cutTime">
+                <!--Currency-->
+                <li id="currency" class="current">
+                    <currency_choose></currency_choose>
+                </li>
+                <li class="icon">
+                    <div class="s-4"></div>
+                </li>
+                <li class="time">
+                    <p>09:00 - 17:00</p>
+                </li>
+                <li id="clock" class="placeTime">
+                    <p>Киев 00:39</p>
+                </li>
+                <li class="singIn pull-right">
+                    <button type="button" class="btn btn-drul dark" data-modal="auth" ng-hide="$ctrl.User.active">войти</button>
+                    <button type="button" class="btn btn-drul dark" ng-click="$ctrl.logout()" ng-show="$ctrl.User.active">выйти</button>
+                </li>
+                <li class="singUp pull-right">
+                    <a ui-sref="index.privat-office">
+                        {{$ctrl.User.active.firstname + ' ' + $ctrl.user.User.active.lastname}}
+                    </a>
+                    <button type="button" class="btn btn-drul" data-modal="register" ng-hide="$ctrl.User.active">регистрация</button>
+                </li>
+                <li class="icon iconRig pull-right">
+                    <div class="s-3"></div>
+                </li>
+                <li class="icon iconRig pull-right">
+                    <div class="s-2"></div>
+                </li>
+                <li class="icon iconRig pull-right">
+                    <div class="s-1"></div>
+                </li>
+            </ul>
+        </div>
+    </div>
+</div>
