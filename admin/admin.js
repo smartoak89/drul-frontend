@@ -2,7 +2,8 @@
 
 angular.module('admin', [
     'treeGrid',
-    'ngResource'
+    'ngResource',
+    'ngPatternRestrict'
 ])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
