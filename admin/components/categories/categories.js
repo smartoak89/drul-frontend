@@ -3,7 +3,11 @@ angular.module('admin')
         templateUrl: "admin/components/categories/categories.html",
         controller: ['Categories', function(Categories) {
             var self = this;
-            self.categories = Categories.categories = Categories.list();
+            this.$onInit = function(){
+                Categories.list();
+            };
+            self.categ = Categories;
+            self.my_tree = {};
             self.expanding_property = {
                 /*template: "<td>OK All</td>",*/
                 field: 'name',
