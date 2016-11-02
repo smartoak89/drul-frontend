@@ -1,0 +1,22 @@
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="setSiteWrap">
+            <div ng-repeat="field in $ctrl.fields">
+                <div class="nameSet">{{field.name}}</div>
+                <ul ng-repeat="fl in field.props">
+                    <li>{{fl.prop}}</li>
+                    <li ng-switch="fl.type">
+                        <input ng-switch-when='inp' type="number" class="form-control">
+                        <select ng-switch-when='sel' class="form-control">
+                            <option ng-repeat="opt in fl.opt">{{opt}}</option>
+                        </select>
+                        <div ng-switch-when='check' class="checkbo">
+                            <input type="checkbox" id="111" name="option" value="a"/>
+                            <label for="111"></label>
+                        </div>
+                    </li>
+                </ul>
+            </div>
+        </div>
+    </div>
+</div>

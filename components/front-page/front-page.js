@@ -5,6 +5,8 @@ angular.module('app')
             var self = this;
             this.$onInit = function () {
                 self.products = Product.getList();
+                console.log(self.products);
             };
+
         }]
     });

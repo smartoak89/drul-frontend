@@ -19,7 +19,7 @@ angular.module('app')
             };
             $(window).scroll(function () {
                 var scrollh = $(this).scrollTop();
-                if (scrollh > 60) {
+                if (scrollh > 310) {
                     $(".navv").addClass('fixed');
                     if ($rootScope.url[$rootScope.url.length - 1] == '') {
                         $(".navv").addClass('compact');

@@ -6,5 +6,6 @@ angular.module('admin')
 
             }
             this.products = Goods.list();
+            console.log(this.products)
         }]
     });

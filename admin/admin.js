@@ -48,11 +48,11 @@ angular.module('admin', [
                 'content': {template: "<stocks></stocks>"}
             }
         });
-        $stateProvider.state('admin.currencyAdmin', {
-            url: "/currency",
+        $stateProvider.state('admin.settingsAdmin', {
+            url: "/settings",
             views: {
                 '': {template: "<template-admin></template-admin>"},
-                'content': {template: "<currency></currency>"}
+                'content': {template: "<settings></settings>"}
             }
         });
         $stateProvider.state('admin.deliveryAdmin', {
