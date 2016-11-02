@@ -16,4 +16,5 @@ angular.module('admin')
                 $scope.category.link = $scope.category.name.replace(' ', '-').toLowerCase();
                 console.log($scope.category)
             }
+
     }])

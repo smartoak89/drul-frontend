@@ -1,0 +1,19 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modalBasicLabel">Basic Modal</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="name">Название акции</label>
+            <input class="form-control" id="name" autocomplete="off" ng-model="stock.name">
+        </div>
+        <div class="form-group">
+            <label for="sale">Процент скидки</label>
+            <input class="form-control" id="sale" autocomplete="off" ng-model="stock.article">
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" ng-click="$dismiss()" class="btn btn-default" data-dismiss="modal">Отменить</button>
+        <button type="button" ng-disabled="!category.name&&!category.link&&!category.article" ng-click="addSale()" class="btn btn-primary">Добавить</button>
+    </div>
+</div>
