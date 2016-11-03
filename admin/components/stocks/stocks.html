@@ -19,13 +19,13 @@
                 </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="stocks in $ctrl.Stocks.stocksList">
+                <tr ng-repeat="stocks in $ctrl.stocksList">
                     <td>{{stocks.name}}</td>
                     <td>{{stocks.percent }}</td>
                     <td>{{stocks.created | date: 'shortDate'}}</td>
                     <td>{{stocks.expires | date: 'shortDate'}}</td>
                     <td><button class="btn btn-default btn-sm">Применить к товарам</button></td>
-                    <td><button class="btn btn-default btn-sm">Изменить/удалить</button></td>
+                    <td><button class="btn btn-default btn-sm" modal-admin="removeStocks">Удалить</button></td>
                 </tr>
             </tbody>
         </table>

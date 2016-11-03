@@ -45,15 +45,36 @@ angular.module('admin')
     // Stocks
     .factory('Stocks', ['HttpResource', function (HttpResource) {
         return {
-            stocksList: [],
+            stocksList: null,
             dateExpires: null,
-            create: function (stocks, error) {
+            create: function (stocks, callback) {
                 var self = this;
                 stocks.expires = self.dateExpires;
                 HttpResource.save({params1: 'stocks'}, stocks, function (res) {
-                    console.log('res', res);
                     self.stocksList.push(res);
-                }, error)
+                    callback();
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            list: function () {
+                var self = this;
+                if (self.stocksList == null) {
+                    return HttpResource.query({params1: 'stocks'}, function (res) {
+                        self.stocksList = res;
+                    })
+                }
+                return self.stocksList;
+            },
+            remove: function (id, callback) {
+                var self = this;
+                HttpResource.delete({params1: 'stocks', params2: id}, function (res) {
+                    _.remove(self.stocksList, {uuid: id});
+                    console.log(res);
+                    callback();
+                }, function (err) {
+                    callback(err);
+                })
             }
         }
     }]);
