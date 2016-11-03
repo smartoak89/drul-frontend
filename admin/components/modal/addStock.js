@@ -1,18 +1,23 @@
 angular.module('admin')
-    .controller('addStock',['$uibModalInstance', '$scope',
-        function ($uibModalInstance, $scope){
-            $scope.stock = {};
+    .controller('addStock',['$scope', 'Stocks',
+        function ($scope, Stocks){
+            $scope.stocks = {};
             $scope.error = null;
 
-            $scope.addSale = function () {
-                if (!isValid() === true) {
-
+            $scope.createStocks = function () {
+                console.log($scope.stocks);
+                if (isValid() === true) {
+                    Stocks.create($scope.stocks, function (err) {
+                        console.log(err);
+                        $scope.error = err;
+                    });
                 }
             };
 
             function isValid () {
-                if (!$scope.stock.name) return $scope.error = 'Введите название акции';
-                if (!$scope.stock.percent) return $scope.error = 'Введите процент скидки';
+                if (!$scope.stocks.name) return $scope.error = 'Введите название акции';
+                if (!$scope.stocks.percent) return $scope.error = 'Введите процент скидки';
+                if (!Stocks.dateExpires) return $scope.error = 'Выберите дату истечения акции';
                 $scope.error = null;
                 return true;
             }

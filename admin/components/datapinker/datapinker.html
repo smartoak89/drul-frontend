@@ -1,0 +1,12 @@
+<div ng-controller="DatepickerPopupCtrl">
+    <div class="row">
+        <div class="col-md-6">
+            <p class="input-group">
+                <input ng-change="changeDateExpires()" ng-init="changeDateExpires()" type="text" class="form-control" uib-datepicker-popup ng-model="dt" is-open="popup2.opened" datepicker-options="dateOptions" ng-required="true" close-text="Close" />
+                <span class="input-group-btn">
+            <button type="button" class="btn btn-default" ng-click="open()"><i class="glyphicon glyphicon-calendar"></i></button>
+          </span>
+            </p>
+        </div>
+    </div>
+</div>

@@ -38,3 +38,18 @@ angular.module('admin')
             }
         }
     }])
+    // Stocks
+    .factory('Stocks', ['HttpResource', function (HttpResource) {
+        return {
+            stocksList: [],
+            dateExpires: null,
+            create: function (stocks, error) {
+                var self = this;
+                stocks.expires = self.dateExpires;
+                HttpResource.save({params1: 'stocks'}, stocks, function (res) {
+                    console.log('res', res);
+                    self.stocksList.push(res);
+                }, error)
+            }
+        }
+    }]);
