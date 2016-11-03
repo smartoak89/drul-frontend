@@ -17,6 +17,7 @@ angular.module('admin')
 
             $scope.addCategory = function(){
                 HttpResource.save({params1:'category'}, $scope.category, function(resp){
+                    $scope.category.uuid = resp.uuid;
                     Categories.categories.push($scope.category);
                     $uibModalInstance.dismiss('cancel');
                 }, function(err){

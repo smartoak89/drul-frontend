@@ -7,6 +7,10 @@ angular.module('admin')
                 Categories.list();
             };
             self.categ = Categories;
+            //self.dalCategory = function(obj, index){
+            //    self.categ.curCategory = obj;
+            //    self.categ.cutIndex = index;
+            //}
             self.my_tree = {};
             self.expanding_property = {
                 /*template: "<td>OK All</td>",*/
@@ -36,22 +40,28 @@ angular.module('admin')
                         }}
                 }, {
                     displayName:  'Remove',
-                    cellTemplate: '<button ng-click="cellTemplateScope.delete(tree_rows, row.branch)" class="btn btn-default btn-sm">Remove</button>',
+                    cellTemplate: '<button ng-click="cellTemplateScope.delete(row.branch)" modal-admin="delCategory" class="btn btn-default btn-sm">Remove</button>',
                     cellTemplateScope: {
-                        delete: function(data, row) {
-                            console.log(data)
-                            if(!row.parent_uid){
-                                console.log('+')
-                                data.splice(_.findIndex(data, {branch: {Name: row.Name}}), 1)
-                            }else{
-                                var parent = _.find(data, {branch: {uid: row.parent_uid}});
-                                var parentId = _.findIndex(data, {branch: {uid: row.parent_uid}});
-                                //console.log(parent.branch.children)
-                                //console.log(data[0].branch);
-                                data[parentId].branch.children.splice(_.findIndex(parent.branch.children, {Name: row.Name}), 1);
-                            }
+                        delete: function(obj){
+                            self.categ.curCategory = obj;
+                            self.categ.curIndex = _.findIndex(self.categ.categories, {uuid: obj.uuid});
+                        }
 
-                        }}
+                        //    function(data, row) {
+                        //    console.log(data)
+                        //    if(!row.parent_uid){
+                        //        console.log('+')
+                        //        data.splice(_.findIndex(data, {branch: {Name: row.Name}}), 1)
+                        //    }else{
+                        //        var parent = _.find(data, {branch: {uid: row.parent_uid}});
+                        //        var parentId = _.findIndex(data, {branch: {uid: row.parent_uid}});
+                        //        //console.log(parent.branch.children)
+                        //        //console.log(data[0].branch);
+                        //        data[parentId].branch.children.splice(_.findIndex(parent.branch.children, {Name: row.Name}), 1);
+                        //    }
+                        //
+                        //}
+                    }
                 }];
 
         }]

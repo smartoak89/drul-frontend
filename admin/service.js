@@ -35,6 +35,8 @@ angular.module('admin')
                     })
                 }
                 return self.categories;
-            }
+            },
+            curCategory: null,
+            curIndex: null
         }
     }])
