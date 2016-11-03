@@ -25,4 +25,5 @@ angular.module('admin')
                     $scope.error = err;
                 })
             }
-    }]);
+    }])
+

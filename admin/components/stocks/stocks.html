@@ -1,1 +1,33 @@
-<p>Stocks</p>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="butWrapp pull-right">
+            <button modal-admin="addStock" class="btn btn-default">Новая акция</button>
+        </div>
+    </div>
+</div>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <table class="table table-grid">
+            <thead>
+                <tr>
+                    <th>Название</th>
+                    <th>Процент скидки</th>
+                    <th>Дата создания</th>
+                    <th>Дата истечения</th>
+                    <th>Товары</th>
+                    <th>Настройки</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr ng-repeat="stocks in $ctrl.Stocks.stocksList">
+                    <td>{{stocks.name}}</td>
+                    <td>{{stocks.percent }}</td>
+                    <td>{{stocks.created | date: 'shortDate'}}</td>
+                    <td>{{stocks.expires | date: 'shortDate'}}</td>
+                    <td><button class="btn btn-default btn-sm">Применить к товарам</button></td>
+                    <td><button class="btn btn-default btn-sm">Изменить/удалить</button></td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+</div>
