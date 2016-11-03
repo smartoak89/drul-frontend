@@ -1,6 +1,6 @@
 angular.module('admin')
-    .controller('addStock',['$scope', 'Stocks',
-        function ($scope, Stocks){
+    .controller('addStock',['$scope', '$uibModalInstance', 'Stocks',
+        function ($scope, $uibModalInstance, Stocks){
             $scope.stocks = {};
             $scope.error = null;
 
@@ -8,8 +8,8 @@ angular.module('admin')
                 console.log($scope.stocks);
                 if (isValid() === true) {
                     Stocks.create($scope.stocks, function (err) {
-                        console.log(err);
-                        $scope.error = err;
+                        if (err) return $scope.error = err;
+                        $uibModalInstance.dismiss();
                     });
                 }
             };
