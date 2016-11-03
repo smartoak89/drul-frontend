@@ -14,16 +14,29 @@ angular.module('admin')
                     text = text.replace(' ', '-');
                     $scope.category.link = text;
                 };
-
+            $scope.parent = Categories.curCategory;
+            console.log($scope.parent);
             $scope.addCategory = function(){
-                HttpResource.save({params1:'category'}, $scope.category, function(resp){
-                    $scope.category.uuid = resp.uuid;
-                    Categories.categories.push($scope.category);
-                    $uibModalInstance.dismiss('cancel');
-                }, function(err){
-                    console.log(err);
-                    $scope.error = err;
-                })
+                if(!$scope.parent) {
+                    HttpResource.save({params1: 'category'}, $scope.category, function (resp) {
+                        $scope.category.uuid = resp.uuid;
+                        Categories.categories.push($scope.category);
+                        $uibModalInstance.dismiss('cancel');
+                    }, function (err) {
+                        console.log(err);
+                        $scope.error = err;
+                    })
+                }else{
+                    HttpResource.save({params1:'category', params2:$scope.parent.uuid}, $scope.category, function (resp) {
+                        $scope.parent.children.push($scope.category);
+                        $uibModalInstance.dismiss('cancel');
+                        Categories.curCategory = null;
+                        Categories.curIndex = null;
+                    }, function (err) {
+                        console.log(err);
+                        $scope.error = err;
+                    })
+                }
             }
     }])
 

@@ -4,15 +4,30 @@ angular.module('admin')
             $scope.name = Categories.curCategory.name;
             $scope.error = null;
             $scope.delete = function(){
-                console.log(Categories.curCategory.uuid);
-                HttpResource.delete({params1:'category', params2:Categories.curCategory.uuid}, function(resp){
-                    console.log(resp);
-                    Categories.categories.splice(Categories.curIndex, 1);
-                    $uibModalInstance.dismiss('cancel');
-                    Categories.curCategory = null;
-                    Categories.curIndex = null;
-                }, function(err){
-                    $scope.error = err;
-                })
+                if(!Categories.curParent){
+                    HttpResource.delete({params1:'category', params2:Categories.curCategory.uuid}, function(resp){
+                        console.log(resp);
+                        Categories.categories.splice(Categories.curIndex, 1);
+                        $uibModalInstance.dismiss('cancel');
+                        Categories.curCategory = null;
+                        Categories.curIndex = null;
+                    }, function(err){
+                        $scope.error = err;
+                    })
+                }else{
+                    console.log('+')
+                    HttpResource.delete({params1:'category', params2:Categories.curParent.uuid, params3:Categories.curIndex}, function(resp){
+                        console.log(resp);
+                        Categories.categories[Categories.curParentIndex].children.splice(Categories.curIndex, 1);
+                        $uibModalInstance.dismiss('cancel');
+                        Categories.curCategory = null;
+                        Categories.curIndex = null;
+                        Categories.curParent = null;
+                        Categories.curParentIndex = null;
+                    }, function(err){
+                        $scope.error = err;
+                    })
+                }
+
             }
         }]);

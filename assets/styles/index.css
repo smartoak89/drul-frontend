@@ -1386,6 +1386,13 @@ input::-webkit-inner-spin-button {
 .modalAdmin .modal-footer {
     border-top: 1px solid transparent;
 }
+.modalAdmin input{
+    border-radius: 0;
+}
+.modalAdmin input:focus,
+.modalAdmin input:active{
+    border-color: #48CFAD;
+}
 .modalAdmin .btn-default {
     color: rgba(22,24,27,.87);
     background-color: #E6E9ED;
@@ -1412,4 +1419,14 @@ input::-webkit-inner-spin-button {
     color: rgba(22,24,27,.87);
     background-color: #2fb593;
     border-color: transparent;
+}
+
+.tree-grid-animate-enter,
+.tree-grid-row.ng-enter,
+.tree-grid-animate-leave,
+.tree-grid-row.ng-leave{
+    transition: none!important;
+    -moz-transition: none!important;
+    -webkit-transition: none!important;
+    -o-transition: none!important;
 }

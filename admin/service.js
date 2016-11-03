@@ -1,7 +1,7 @@
 angular.module('admin')
     // Httpquery
     .service('HttpResource', ['$resource', function ($resource) {
-        return $resource('/api/:params1/:params2', {}, {
+        return $resource('/api/:params1/:params2/:params3', {}, {
             put: {
                 method: "PUT"
             }
@@ -37,7 +37,9 @@ angular.module('admin')
                 return self.categories;
             },
             curCategory: null,
-            curIndex: null
+            curIndex: null,
+            curParent: null,
+            curParentIndex: null
         }
     }])
     // Stocks

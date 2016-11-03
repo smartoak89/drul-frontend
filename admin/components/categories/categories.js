@@ -25,26 +25,27 @@ angular.module('admin')
                     displayName: 'Link'
                 },  {
                     displayName:  'Function',
-                    cellTemplate: '<button ng-if="!row.branch.parent_uid" ng-click="cellTemplateScope.add(tree_rows, row.branch)" class="btn btn-default btn-sm">Added Controller!</button>',
+                    cellTemplate: '<button ng-if="!row.branch.parent_uid" modal-admin="addCategory" ng-click="cellTemplateScope.add(row.branch)" class="btn btn-default btn-sm">Добавать подкатегорию</button>',
                     cellTemplateScope: {
-                        add: function(data, row) {
-                            data[_.findIndex(data, {branch: {Name: row.Name}})].branch.children.push({
-                                "DemographicId": 8,
-                                "ParentId": 1,
-                                "Name": "New York",
-                                "Description": "The largest diverse city",
-                                "Area": 141300,
-                                "Population": 19651127,
-                                "TimeZone": "Eastern Time Zone"
-                            })
+                        add: function(obj) {
+                            self.categ.curCategory = obj;
+                            self.categ.curIndex = _.findIndex(self.categ.categories, {uuid: obj.uuid});
                         }}
                 }, {
                     displayName:  'Remove',
-                    cellTemplate: '<button ng-click="cellTemplateScope.delete(row.branch)" modal-admin="delCategory" class="btn btn-default btn-sm">Remove</button>',
+                    cellTemplate: '<button ng-click="cellTemplateScope.delete(row.branch, tree_rows)" modal-admin="delCategory" class="btn btn-default btn-sm">Удалить</button>',
                     cellTemplateScope: {
-                        delete: function(obj){
-                            self.categ.curCategory = obj;
-                            self.categ.curIndex = _.findIndex(self.categ.categories, {uuid: obj.uuid});
+                        delete: function(obj, tree){
+                            console.log(obj)
+                            if(!obj.parent_uid){
+                                self.categ.curCategory = obj;
+                                self.categ.curIndex = _.findIndex(self.categ.categories, {uuid: obj.uuid});
+                            }else{
+                                self.categ.curCategory = obj;
+                                self.categ.curParent = tree[_.findIndex(tree, {branch: {uid: obj.parent_uid}})].branch;
+                                self.categ.curParentIndex = _.findIndex(self.categ.categories, {uuid: self.categ.curParent.uuid});
+                                self.categ.curIndex = _.findIndex(self.categ.curParent.children, {uid: obj.uid});
+                            }
                         }
 
                         //    function(data, row) {
