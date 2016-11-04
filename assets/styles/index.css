@@ -1430,3 +1430,6 @@ input::-webkit-inner-spin-button {
     -webkit-transition: none!important;
     -o-transition: none!important;
 }
+goods .table>tbody>tr>td{
+    vertical-align: middle;
+}

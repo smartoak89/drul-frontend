@@ -15,7 +15,6 @@ angular.module('admin')
                         $scope.error = err;
                     })
                 }else{
-                    console.log('+')
                     HttpResource.delete({params1:'category', params2:Categories.curParent.uuid, params3:Categories.curIndex}, function(resp){
                         console.log(resp);
                         Categories.categories[Categories.curParentIndex].children.splice(Categories.curIndex, 1);
@@ -28,6 +27,5 @@ angular.module('admin')
                         $scope.error = err;
                     })
                 }
-
             }
         }]);
