@@ -60,6 +60,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         views: {
             '': {template: "<template-common></template-common>"},
             'content': {template: "<privat-office></privat-office>"}
+        },
+        resolve: {
+            checkUserPermission: ['$location', 'User', function($location, User){
+                if(!User.checkUser()){
+                    $location.path('/');
+                }
+            }]
         }
     });
 

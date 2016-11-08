@@ -77,4 +77,19 @@ angular.module('admin')
                 })
             }
         }
+    }])
+    // Users
+    .factory('Users',['HttpResource', function (HttpResource) {
+        return {
+            listUsers: null,
+            list: function () {
+                var self = this;
+                if (self.listUsers == null) {
+                    return HttpResource.query({params1: 'users'}, function (res) {
+                        self.listUsers = res;
+                    })
+                }
+                return self.listUsers;
+            }
+        }
     }]);

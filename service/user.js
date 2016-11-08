@@ -2,20 +2,34 @@ angular.module('app')
     .factory('User', ['Httpquery', '$cookies', function (Httpquery, $cookies) {
         function tryActivate () {
             try {
-                return JSON.parse($cookies.get('user'))
+                return JSON.parse($cookies.get('user'));
             } catch (ex){
                 return null;
             }
         }
         return {
-            active: tryActivate(),
+            active: (function () {
+                var self = this;
+                var user = tryActivate();
+                if (!user) return null;
+                return Httpquery.get({params1: 'user', params2: user}, function (res) {
+                    return res;
+                }, function (err) {
+                    return null;
+                })
+            })(),
             set: function (user) {
                 this.active = user;
-                $cookies.put('user', JSON.stringify(user));
+                $cookies.put('user', JSON.stringify(user.uuid));
             },
             deactive: function () {
                 this.active = null;
                 $cookies.remove('user');
+            },
+            checkUser: function () {
+              var self = this;
+              if(!self.active) return false;
+              return true;
             },
             validate: function (user, callback) {
                 var reg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
