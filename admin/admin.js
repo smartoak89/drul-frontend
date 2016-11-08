@@ -3,7 +3,8 @@
 angular.module('admin', [
     'treeGrid',
     'ngResource',
-    'ngPatternRestrict'
+    'ngPatternRestrict',
+    'ngScrollbars'
 ])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
