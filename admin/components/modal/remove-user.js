@@ -1,11 +1,10 @@
 angular.module('admin')
-    .controller('remove-user',['$uibModalInstance', '$scope', 'User', 'HttpResource', 'modalData',
-        function($uibModalInstance, $scope, User, HttpResource, modalData){
+    .controller('remove-user',['$uibModalInstance', '$scope', 'Users', 'HttpResource', 'modalData',
+        function($uibModalInstance, $scope, Users, HttpResource, modalData){
             var id = modalData.user.uuid;
-            $scope.name = modalData.user.name;
-            console.log('User', modalData);
+            $scope.email = modalData.user.email;
             $scope.delete = function () {
-                Stocks.remove(id, function (err) {
+                Users.remove(id, function (err) {
                     if (err) return $scope.error = err;
                     $uibModalInstance.dismiss();
                 })
