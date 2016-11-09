@@ -956,6 +956,17 @@ input[type=radio]:checked + label:before {
     border: 0;
     box-shadow: none;
 }
+.state-register {
+    line-height: 43px;
+    background: #fff;
+    padding-left: 10px;
+    color: #fff;
+}
+.state-register span a{
+    color: #8a8a8a;
+    text-decoration: none;
+    cursor: pointer;
+}
 .modal {
     background: rgba(0, 0, 0, 0.61);
 }
