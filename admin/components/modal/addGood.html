@@ -10,37 +10,10 @@
                     <input class="form-control" id="name" autocomplete="off" ng-model="newProduct.name">
                 </div>
                 <div class="form-inline">
-                    <!--<label>Категория-->
-                        <!--<select ng-model="newProduct.category" ng-options="color.name for color in colors"></select>-->
-                    <!--</label>-->
-                    <!--<label>Подкатегория (не обязательно)-->
-                        <!--<select ng-model="newProduct.subCategory" ng-options="color.name for color in colors"></select>-->
-                    <!--</label>-->
-
-                    <div class="box-col">
-                        <h4>TreeView</h4>
-
-                        <div ng-if="categories" kendo-tree-view="tree"
-                             k-data-source="categories"
-                             k-on-change="selectedItem = dataItem">
-                <span k-template>
-                     {{dataItem.text}} <button class='k-button' ng-click='click(dataItem)'>Select</button>
-                 </span>
-                        </div>
-                    </div>
-                    <div class="box-col" ng-show="selectedItem">
-                        <h4>Selected: {{selectedItem.text}}</h4>
-                    </div>
-                    <!--<label class="select select-o">-->
-                    <!--<select ng-model="newProduct">-->
-                    <!--<option ng-repeat-start="categ in categories">{{categ.name}}-->
-                    <!--</option>-->
-                    <!--<option ng-repeat-end="child in categories[0].children">{{child}}</option>-->
-                    <!--</select>-->
-                    <!--<div ng-repeat="categ in categories">{{categ.name}}-->
-                    <!--<div ng-repeat="child in categ.children">{{child.name}}</div></div>-->
-
-                    <!--</label>-->
+                    <label>Категория</label>
+                    <treecontrol class="tree-light" tree-model="categories" on-selection="showSelected(node)">
+                        {{node.name}}
+                    </treecontrol>
                 </div>
                 <div class="form-group">
                     <label for="cost">Цена</label>

@@ -19,7 +19,9 @@ angular.module('admin')
                     })
                 }
                 return self.products;
-            }
+            },
+            product: null,
+            productIndex: null
         }
     }])
     // Categories

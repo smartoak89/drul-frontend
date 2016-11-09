@@ -5,7 +5,7 @@ angular.module('admin', [
     'ngResource',
     'ngPatternRestrict',
     'ngScrollbars',
-    'kendo.directives'
+    'treeControl'
 ])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 

@@ -2,10 +2,13 @@ angular.module('admin')
     .component('goods', {
         templateUrl: "admin/components/goods/goods.html",
         controller: ['Goods',function(Goods) {
-            this.$onInit = function () {
-
-            }
+            var self = this;
             this.products = Goods.list();
-            console.log(this.products)
+            self.prodService = Goods;
+
+            self.removeProd = function(obj, index){
+                self.prodService.product = obj;
+                self.prodService.productIndex = index;
+            }
         }]
     });

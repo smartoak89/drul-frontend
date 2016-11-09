@@ -3,7 +3,7 @@ angular.module('admin')
         function($uibModalInstance, $scope, Categories, HttpResource){
             $scope.category = {};
             $scope.error = null;
-            $scope.transliterate = function(text) {
+            $scope.transliterate = function(text, value) {
                 text = text.toLowerCase();
                 var
                 rus = "щ   ш  ч  ц  ю  я  ё  ж  ъ  ы  э  а б в г д е з и й к л м н о п р с т у ф х ь".split(/ +/g),
@@ -12,11 +12,13 @@ angular.module('admin')
                         text = text.split(rus[x]).join(eng[x]);
                     }
                     text = text.replace(' ', '-');
-                    $scope.category.link = text;
+                    $scope.category[value] = text;
                 };
             $scope.parent = Categories.curCategory;
             console.log($scope.parent);
             $scope.addCategory = function(){
+                $scope.transliterate($scope.category.name, 'slug');
+                console.log($scope.category);
                 if(!$scope.parent) {
                     HttpResource.save({params1: 'category'}, $scope.category, function (resp) {
                         $scope.category.uuid = resp.uuid;

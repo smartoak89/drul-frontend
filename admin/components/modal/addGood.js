@@ -19,12 +19,13 @@ angular.module('admin')
             };
 
             $scope.addProduct = function(){
-                console.log($scope.newProduct);
-                //HttpResource.save({params1:'product'}, $scope.newProduct, function(resp){
-                //
-                //}, function(err){
-                //    $scope.error = err;
-                //})
+                HttpResource.save({params1:'product'}, $scope.newProduct, function(resp){
+                    console.log(resp);
+                    Goods.products.push($scope.newProduct);
+                    $uibModalInstance.dismiss('cancel');
+                }, function(err){
+                    $scope.error = err;
+                })
             }
             $scope.view = function(){
                 console.log($scope.newProduct.image);
@@ -34,9 +35,9 @@ angular.module('admin')
                 console.log($scope.newProduct);
                 $scope.newfiled = false;
             }
-            $scope.treeData = new kendo.data.HierarchicalDataSource({ data: $scope.categories});
-            console.log($scope.treeData);
-            $scope.click = function(dataItem) {
-                alert(dataItem.text);
+
+            $scope.showSelected = function(sel) {
+                console.log(sel);
+                $scope.newProduct.category = sel.slug;
             };
         }]);
