@@ -6,6 +6,7 @@ angular.module('admin')
             restrict: 'A',
             link: function(scope, element, attrs) {
                 var type = attrs.modalAdmin;
+                var size = attrs.size;
 
                 element.on('click', (function() {
                     if (modalInstance) {
@@ -16,7 +17,7 @@ angular.module('admin')
                         animation: false,
                         templateUrl: 'admin/components/modal/' + type + '.html',
                         controller: type,
-                        size: type,
+                        size: size,
                         openedClass: 'modalAdmin',
                         resolve: {
                             modalData: function () {

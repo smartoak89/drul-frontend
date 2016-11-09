@@ -1433,3 +1433,9 @@ input::-webkit-inner-spin-button {
 goods .table>tbody>tr>td{
     vertical-align: middle;
 }
+.addFieldForm{
+    margin-top: 20px
+}
+.addFieldForm > .form-group{
+    width: 100%
+}

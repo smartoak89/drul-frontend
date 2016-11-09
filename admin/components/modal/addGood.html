@@ -3,65 +3,118 @@
         <h4 class="modal-title" id="modalBasicLabel">Добавление товара</h4>
     </div>
     <div class="modal-body" ng-scrollbars ng-scrollbars-config="config">
-        <div class="form-group">
-            <label for="name">Название товара</label>
-            <input class="form-control" id="name" autocomplete="off" ng-model="newProduct.name">
-        </div>
-        <div class="form-group">
-            <label>Категория (TO DO)</label>
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="name">Название товара</label>
+                    <input class="form-control" id="name" autocomplete="off" ng-model="newProduct.name">
+                </div>
+                <div class="form-inline">
+                    <!--<label>Категория-->
+                        <!--<select ng-model="newProduct.category" ng-options="color.name for color in colors"></select>-->
+                    <!--</label>-->
+                    <!--<label>Подкатегория (не обязательно)-->
+                        <!--<select ng-model="newProduct.subCategory" ng-options="color.name for color in colors"></select>-->
+                    <!--</label>-->
 
-            <!--<label class="select select-o">-->
-                <!--<select ng-model="newProduct">-->
+                    <div class="box-col">
+                        <h4>TreeView</h4>
+
+                        <div ng-if="categories" kendo-tree-view="tree"
+                             k-data-source="categories"
+                             k-on-change="selectedItem = dataItem">
+                <span k-template>
+                     {{dataItem.text}} <button class='k-button' ng-click='click(dataItem)'>Select</button>
+                 </span>
+                        </div>
+                    </div>
+                    <div class="box-col" ng-show="selectedItem">
+                        <h4>Selected: {{selectedItem.text}}</h4>
+                    </div>
+                    <!--<label class="select select-o">-->
+                    <!--<select ng-model="newProduct">-->
                     <!--<option ng-repeat-start="categ in categories">{{categ.name}}-->
                     <!--</option>-->
                     <!--<option ng-repeat-end="child in categories[0].children">{{child}}</option>-->
-                <!--</select>-->
-                <!--<div ng-repeat="categ in categories">{{categ.name}}-->
+                    <!--</select>-->
+                    <!--<div ng-repeat="categ in categories">{{categ.name}}-->
                     <!--<div ng-repeat="child in categ.children">{{child.name}}</div></div>-->
 
-            <!--</label>-->
+                    <!--</label>-->
+                </div>
+                <div class="form-group">
+                    <label for="cost">Цена</label>
+                    <input type="number" class="form-control" id="cost" autocomplete="off" ng-model="newProduct.cost">
+                </div>
+                <div class="form-group">
+                    <label for="inputMultiple">Размер</label>
+                    <select class="form-control" id="inputMultiple" multiple="multiple" ng-model="newProduct.size">
+                        <option ng-repeat="size in range">{{size}}</option>
+                    </select>
+                    <small>Для выбора нескольких пунктов зажмите кнопку "Ctrl"</small>
+                </div>
+                <div class="form-group">
+                    <label for="art">Артикль</label>
+                    <input class="form-control" id="art" autocomplete="off" ng-model="newProduct.article">
+                </div>
+                <div class="form-group">
+                    <label for="inputFile">Изображение</label>
+                    <input type="file" class="form-control" id="inputFile" autocomplete="off"
+                           fileread="newProduct.image">
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="form-group">
+                    <label for="about">Multiple</label>
+                    <textarea class="form-control" id="about" rows="7" ng-model="newProduct.about"></textarea>
+                </div>
+                <div class="form-group">
+                    <label>Дополнительные поля</label>
+                    <table class="table">
+                        <tbody>
+                        <tr ng-if="!newProduct.fields">
+                            <td>Данных нет</td>
+                        </tr>
+                        <tr ng-if="newProduct.fields" ng-repeat="field in newProduct.fields">
+                            <td>{{field.name}}</td>
+                            <td>{{field.prop}}</td>
+                        </tr>
+                        </tbody>
+                    </table>
+                    <div class="form-group" style="text-align: right">
+                        <button class="btn btn-default" ng-click="newfiled = !newfiled">Добавить новое поле</button>
+                    </div>
+                    <form ng-if="newfiled" class="form-group addFieldForm">
+                        <div class="form-group">
+                            <label for="about">Название поля</label>
+                            <input class="form-control" type="text" ng-model="fieldName">
+                        </div>
+                        <div class="form-group">
+                            <label for="about">Описание поля</label>
+                            <input class="form-control" type="text" ng-model="fieldProperty">
+                        </div>
+                        <div class="form-group">
+                            <button class="btn btn-default pull-right"
+                                    ng-click="addToProduct(fieldName, fieldProperty)">Добавить
+                            </button>
+                        </div>
+                    </form>
+                </div>
+                <div ng-if="error" class="callout callout-danger">
+                    <h4>{{error.statusText}}</h4>
+
+                    <p>{{error.data.message}}</p>
+                </div>
+            </div>
         </div>
-        <div class="form-group">
-            <label for="cost">Цена</label>
-            <input type="number" class="form-control" id="cost" autocomplete="off" fileread="newProduct.cost">
-        </div>
-        <div class="form-group">
-            <label for="inputMultiple">Размер</label>
-            <select class="form-control" id="inputMultiple" multiple="multiple" ng-model="newProduct.size">
-                <option ng-repeat="size in range">{{size}}</option>
-            </select>
-            <small>Для выбора нескольких пунктов зажмите кнопку "Ctrl"</small>
-        </div>
-        <div class="form-group">
-            <label for="about">Multiple</label>
-            <textarea class="form-control" id="about" rows="7" ng-model="newProduct.about"></textarea>
-        </div>
-        <div class="form-group">
-            <label for="art">Артикль</label>
-            <input class="form-control" id="art" autocomplete="off" ng-model="category.article">
-        </div>
-        <div class="form-group">
-            <label for="inputFile">Изображение</label>
-            <input type="file" class="form-control" id="inputFile" autocomplete="off" fileread="newProduct.image">
-        </div>
-        <div class="form-group">
-            <label>Дополнительные поля</label>
-            <table class="table">
-                <tbody>
-                    <tr>
-                        <td>Состав</td>
-                        <td>Шерсть - 56%, Вискоза - 44%</td>
-                    </tr>
-                </tbody>
-            </table>
-        </div>
-        <div ng-if="error" class="callout callout-danger">
-            <h4>{{error.statusText}}</h4>
-            <p>{{error.data.message}}</p>
-        </div>
+
+
     </div>
     <div class="modal-footer">
         <button type="button" ng-click="$dismiss()" class="btn btn-default" data-dismiss="modal">Отмена</button>
-        <button type="button" ng-disabled="!category.name||!category.link||!category.article" ng-click="addCategory()" class="btn btn-primary">Создать</button>
+        <button type="button"
+                ng-disabled="!newProduct.name||!newProduct.cost||!newProduct.size||!newProduct.article||!newProduct.about||!newProduct.image||!newProduct.fields"
+                ng-click="addProduct()" class="btn btn-primary">Создать
+        </button>
     </div>
 </div>

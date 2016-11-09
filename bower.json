@@ -16,6 +16,7 @@
     "angularjs-slider": "^5.7.0",
     "angular-bootstrap-grid-tree": "~0.4.0",
     "ng-pattern-restrict": "~0.2.2",
-    "ng-scrollbars": "~0.0.11"
+    "ng-scrollbars": "~0.0.11",
+    "angular-tree-control": "~0.2.28"
   }
 }

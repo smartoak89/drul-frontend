@@ -4,7 +4,8 @@ angular.module('admin', [
     'treeGrid',
     'ngResource',
     'ngPatternRestrict',
-    'ngScrollbars'
+    'ngScrollbars',
+    'kendo.directives'
 ])
     .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
