@@ -5,34 +5,34 @@
         </div>
         <table class="table table-grid">
             <thead>
-            <tr>
-                <th>Фото</th>
-                <th>Название</th>
-                <th>Категория</th>
-                <th>Артикул</th>
-                <th>Цена</th>
-                <th>Отметить</th>
-                <th>Удалить</th>
-            </tr>
+                <tr>
+                    <th>Фото</th>
+                    <th>Название</th>
+                    <th>Категория</th>
+                    <th>Артикул</th>
+                    <th>Цена</th>
+                    <th>Отметить</th>
+                    <th>Удалить</th>
+                </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="product in $ctrl.products">
+                <tr ng-repeat="product in $ctrl.products">
 
-                <td>
-                    <img class="product-photo" src="{{'/api/file/' + product.photo}}" alt="{{product.name}}" width="100" height="60">
-                </td>
-                <td>{{product.name}}</td>
-                <td>{{product.category}}</td>
-                <td>{{product.article}}</td>
-                <td>{{product.price}}</td>
-                <td>
-                    <div class="checkbo">
-                        <input type="checkbox" id="111" name="option" value="a"/>
-                        <label for="111"></label>
-                    </div>
-                </td>
-                <td><button class="btn btn-default btn-sm" ng-click="">Remove</button></td>
-            </tr>
+                    <td>
+                        <img class="product-photo" src="{{'/api/file/' + product.photo}}" alt="{{product.name}}" width="100" height="60">
+                    </td>
+                    <td>{{product.name}}</td>
+                    <td>{{product.category}}</td>
+                    <td>{{product.article}}</td>
+                    <td>{{product.price}}</td>
+                    <td>
+                        <div class="checkbo">
+                            <input type="checkbox" id="111" name="option" value="a"/>
+                            <label for="111"></label>
+                        </div>
+                    </td>
+                    <td><button class="btn btn-default btn-sm" ng-click="">Remove</button></td>
+                </tr>
             </tbody>
         </table>
     </div>
