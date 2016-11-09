@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('Cart', ['Httpquery', 'User', 'Currency', function (Httpquery, User, Currency) {
+    .service('Cart', ['Httpquery', 'User', 'Currency', '$log', function (Httpquery, User, Currency, $log) {
         var cart = [];
         return {
             cartList: null,
@@ -22,11 +22,10 @@ angular.module('app')
             },
             list: function () {
                 var self = this;
-                Currency.refresh();
                 if (User.checkUser()) {
                     if (self.cartList === null) {
                         return Httpquery.query({params1: 'cart', params2: User.active.uuid}, function (res) {
-                            console.log('res', res);
+                            $log.info('response cartList ', res);
                             return self.cartList = res;
 
                         })

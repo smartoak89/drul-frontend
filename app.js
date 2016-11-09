@@ -18,10 +18,8 @@ app.run(['$location', '$state', '$rootScope', function($location, $state, $rootS
         $rootScope.url = toUrl.split('/');
         console.log($rootScope.url[$rootScope.url.length - 1])
         if ($rootScope.url[$rootScope.url.length - 1] === '') {
-            console.log('-');
             $(".navv").removeClass('compact');
         }else{
-            console.log('+');
             $(".navv").addClass('compact');
         }
     });
