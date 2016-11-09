@@ -6,6 +6,11 @@ angular.module('app')
                 return $http.get(url).then(function (res) {
                     return res;
                 });
+            },
+            changePrice: function (product) {
+                var self = this;
+                var courses = this.getCurrentCourse();
+                console.log(courses);
             }
         }
     }]);

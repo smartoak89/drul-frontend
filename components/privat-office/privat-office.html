@@ -18,59 +18,59 @@
                     </uib-tab-heading>
                     <table class="table custom1">
                         <thead>
-                        <tr>
-                            <td>Товар</td>
-                            <td></td>
-                            <td>Количество</td>
-                            <td>Цена</td>
-                            <td></td>
-                        </tr>
+                            <tr>
+                                <td>Товар</td>
+                                <td></td>
+                                <td>Количество</td>
+                                <td>Цена</td>
+                                <td></td>
+                            </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <div class="marker red">sale</div>
-                                <img src="assets/images/11.png" class="img-responsive cover" alt=""></td>
-                            <td>
-                                <div class="namePrice">
-                                    <div>Артикул 30530101</div>
-                                    <p>пальто maria velada</p>
+                            <tr ng-repeat="product in $ctrl.cartList">
+                                <td>
+                                    <div class="marker red">sale</div>
+                                    <img src="assets/images/11.png" class="img-responsive cover" alt=""></td>
+                                <td>
+                                    <div class="namePrice">
+                                        <div>Артикул {{product.article}}</div>
+                                        <p>{{product.name}}</p>
 
-                                    <div class="params">
-                                        <div>Состав</div>
-                                        <div>Шерсть - 56%, Вискоза - 44%</div>
+                                        <div class="params">
+                                            <div>Состав</div>
+                                            <div>Шерсть - 56%, Вискоза - 44%</div>
+                                        </div>
+                                        <div class="params">
+                                            <div>Размер</div>
+                                            <div>42</div>
+                                        </div>
+                                        <div class="params">
+                                            <div>Цвет</div>
+                                            <div>Бежевый</div>
+                                        </div>
                                     </div>
-                                    <div class="params">
-                                        <div>Размер</div>
-                                        <div>42</div>
+                                </td>
+                                <td>
+                                    <div class="counter">
+                                        <button ng-click="$ctrl.countMinus()">‒ </button>
+                                        <input ng-model="$ctrl.counter" type="number"/>
+                                        <button ng-click="$ctrl.countPlus()">+</button>
                                     </div>
-                                    <div class="params">
-                                        <div>Цвет</div>
-                                        <div>Бежевый</div>
+                                </td>
+                                <td>
+                                    <div class="namePrice">
+                                        <span>{{product.price}} грн</span>
+                                        <strike>2700 грн</strike>
+                                        <div class="marCustom1">Цена указана без учета доставки</div>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="counter">
-                                    <button ng-click="$ctrl.countMinus()">‒ </button>
-                                    <input ng-model="$ctrl.counter" type="number"/>
-                                    <button ng-click="$ctrl.countPlus()">+</button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="namePrice">
-                                    <span>1300 грн</span>
-                                    <strike>2700 грн</strike>
-                                    <div class="marCustom1">Цена указана без учета доставки</div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="s-3"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                        </tr>
+                                </td>
+                                <td>
+                                    <div class="s-3"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </uib-tab>

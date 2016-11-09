@@ -1,7 +1,8 @@
 angular.module('app')
-    .service('Cart', ['Httpquery', 'User', function (Httpquery, User) {
+    .service('Cart', ['Httpquery', 'User', 'Currency', function (Httpquery, User, Currency) {
         var cart = [];
         return {
+            cartList: null,
             addToCart: function (product) {
                 if (!product.inCart) {
                     product.inCart = true;
@@ -17,6 +18,30 @@ angular.module('app')
                     console.log('Deferred res', res);
                 }, function (err) {
                     console.log('Deferred err', res);
+                })
+            },
+            list: function () {
+                var self = this;
+                Currency.changePrice();
+                if (User.checkUser()) {
+                    if (self.cartList === null) {
+                        return Httpquery.query({params1: 'cart', params2: User.active.uuid}, function (res) {
+                            console.log('res', res);
+                            return self.cartList = res;
+
+                        })
+                    }
+                    return self.cartList;
+                }
+                //TODO: user is not active
+            },
+            save: function (id) {
+                var userID = User.active.uuid;
+                console.log('UserActive', user);
+                Httpquery.save({params1: 'cart', params2: id}, {user: userID}, function (res) {
+                    console.log('successAddToCart', res);
+                }, function (err) {
+                    console.log('errAddToCart', err);
                 })
             }
         };
