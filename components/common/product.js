@@ -8,7 +8,6 @@ angular.module('app')
             this.product.currency = $cookies.get('currency');
             this.addToCart = function () {
                 var self = this;
-                console.log('addToCartFunc')
                 if (User.checkUser()) {
                     return Cart.save(self.product.uuid);
                 }

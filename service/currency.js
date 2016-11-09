@@ -7,10 +7,29 @@ angular.module('app')
                     return res;
                 });
             },
-            changePrice: function (product) {
+            refresh: function (products, currency) {
                 var self = this;
-                var courses = this.getCurrentCourse();
-                console.log(courses);
+                this.getCurrentCourse().then(function (cources) {
+                    //TODO: change currency
+                });
             }
+        };
+
+        function changePrice (curr) {
+            if (curr == undefined) {
+                return _.each(self.products, function (el, i) {
+                    el.price = prod[i].price;
+                    el.currency = 'UAH';
+                })
+            }
+            var currentPrice = curr.sale;
+
+            _.each(self.products, function (el, i) {
+                if (el.old_price) {
+                    el.old_price =  (prod[i].old_price / currentPrice).toFixed(2);
+                }
+                el.price = (prod[i].price / currentPrice).toFixed(2);
+                el.currency = curr.ccy;
+            })
         }
     }]);
