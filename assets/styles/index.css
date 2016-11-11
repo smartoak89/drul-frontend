@@ -1450,3 +1450,6 @@ goods .table>tbody>tr>td{
 .addFieldForm > .form-group{
     width: 100%
 }
+.add_goods .dz-preview {
+    /*display: none !important;*/
+}
