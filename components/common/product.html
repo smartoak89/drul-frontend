@@ -7,7 +7,7 @@
                 <p>{{$ctrl.product.name}}</p>
                 <hr class="line"/><span>{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
                 <strike ng-show="$ctrl.product.old_price">{{$ctrl.product.old_price + " " + $ctrl.product.currency}}</strike>
-                <button ng-click="$ctrl.addToCart(); $event.stopPropagation()">add to cart</button>
+                <button ng-click="$ctrl.addToCart(); $event.stopPropagation()" data-modal="done">add to cart</button>
             </div>
         </div>
     </div>
