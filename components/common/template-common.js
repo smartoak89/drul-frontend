@@ -4,7 +4,7 @@ angular.module('app')
         controller: [function() {
             $(window).scroll(function () {
                 var scrollh = $(this).scrollTop();
-                if (scrollh > 310) {
+                if (scrollh > 350) {
                     $("#content").addClass('padScroll');
                 } else {
                     $("#content").removeClass('padScroll');

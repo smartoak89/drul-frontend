@@ -155,18 +155,21 @@ button:focus{
     height: 250px;
     background: #000;
     position: relative;
-    /*transition: all .2s ease;*/
+    transition: transform .2s ease;
 }
 .fixed{
-    top: 0;
+    top: -100px;
     right: 0;
     left: 0;
     z-index: 1030;
     position:fixed;
+
 }
 .navv.compact{
     height: 100px;
+    transform: translateY(100px);
 }
+
 .list > li:first-child{
     display: none;
 }
@@ -1452,4 +1455,16 @@ goods .table>tbody>tr>td{
 }
 .add_goods .dz-preview {
     /*display: none !important;*/
+}
+uib-accordion .panel-body{
+    padding-top: 0;
+}
+uib-accordion .panel-body > a{
+    color: #afafaf;
+    padding: 10px 20px;
+    display: block;
+}
+uib-accordion .panel-body > a:hover{
+    color: #929191;
+    text-decoration: none;
 }
