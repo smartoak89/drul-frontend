@@ -2,7 +2,7 @@
     <div class="modal-header">
         <h4 class="modal-title" id="modalBasicLabel">Добавление товара</h4>
     </div>
-    <div class="modal-body" ng-scrollbars ng-scrollbars-config="config">
+    <div class="modal-body add_goods" ng-scrollbars ng-scrollbars-config="config">
         <div class="row">
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
                 <div class="form-group">
@@ -31,9 +31,9 @@
                     <input class="form-control" id="art" autocomplete="off" ng-model="newProduct.article">
                 </div>
                 <div class="form-group">
-                    <label for="inputFile">Изображение</label>
-                    <input type="file" class="form-control" id="inputFile" autocomplete="off"
-                           fileread="newProduct.image">
+                    <!--Upload images-->
+                    <span>Галерея</span>
+                    <div ng-include="'components/common/upload-template.html'" ng-controller="UploadCtrl"></div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
