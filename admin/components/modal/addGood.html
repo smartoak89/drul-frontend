@@ -33,7 +33,7 @@
                 <div class="form-group">
                     <!--Upload images-->
                     <span>Галерея</span>
-                    <div ng-include="'components/common/upload-template.html'" ng-controller="UploadCtrl"></div>
+                    <div ng-include="'components/common/upload-template.html'"></div>
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
@@ -86,8 +86,9 @@
     <div class="modal-footer">
         <button type="button" ng-click="$dismiss()" class="btn btn-default" data-dismiss="modal">Отмена</button>
         <button type="button"
-                ng-disabled="!newProduct.name||!newProduct.cost||!newProduct.size||!newProduct.article||!newProduct.about||!newProduct.image||!newProduct.fields"
+                ng-disabled="!newProduct.name||!newProduct.cost||!newProduct.size||!newProduct.article||!newProduct.about||!newProduct.fields||!newProduct.photos"
                 ng-click="addProduct()" class="btn btn-primary">Создать
         </button>
+        <button ng-click="click()">click</button>
     </div>
 </div>

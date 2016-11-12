@@ -635,6 +635,14 @@ input[type=checkbox],
 input[type=radio]{
     display: none;
 }
+
+strong.name_goods {
+    width: 92%;
+    display: block;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+}
 .checkbo{
     position: relative;
     padding: 10px;

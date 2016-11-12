@@ -1,6 +1,6 @@
 angular.module('admin')
-    .controller('addGood',['$uibModalInstance', '$scope', 'Goods', 'Categories', 'HttpResource',
-        function($uibModalInstance, $scope, Goods, Categories, HttpResource){
+    .controller('addGood',['$uibModalInstance', '$scope', 'Goods', 'Categories', 'HttpResource', 'FileUploader', 'Conf',
+        function($uibModalInstance, $scope, Goods, Categories, HttpResource, FileUploader, Conf){
             $scope.newProduct = {};
             $scope.newProduct.fields = [];
             $scope.error = null;
@@ -17,15 +17,16 @@ angular.module('admin')
                 scrollInertia: 0,
                 axis: 'y'
             };
-
+            var uuid = null;
             $scope.addProduct = function(){
-                HttpResource.save({params1:'product'}, $scope.newProduct, function(resp){
-                    console.log(resp);
-                    Goods.products.push($scope.newProduct);
-                    $uibModalInstance.dismiss('cancel');
-                }, function(err){
-                    $scope.error = err;
-                })
+                    HttpResource.save({params1: 'product'}, $scope.newProduct, function (resp) {
+                        console.log(resp);
+                        uploader.formData.product = resp.uuid;
+                        uploader.uploadAll();
+                        Goods.products.push($scope.newProduct);
+                    }, function (err) {
+                        $scope.error = err;
+                    })
             }
             $scope.view = function(){
                 console.log($scope.newProduct.image);
@@ -40,4 +41,24 @@ angular.module('admin')
                 console.log(sel);
                 $scope.newProduct.category = sel.slug;
             };
+
+            var uploader = $scope.uploader = new FileUploader({
+                url: Conf.api_path + '/file/' + uuid
+            });
+            uploader.onAfterAddingAll = function() {
+                $scope.newProduct.photos = true;
+            };
+            uploader.onCompleteAll = function() {
+                $uibModalInstance.dismiss('cancel');
+            };
+            $scope.main = function (index) {
+                angular.forEach(uploader.queue, function (i, ind) {
+                    i.formData.main = (ind === index) ? true : false;
+                });
+            };
+
+            $scope.click = function () {
+                console.log(uploader);
+            }
+
         }]);
