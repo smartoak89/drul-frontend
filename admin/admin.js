@@ -30,6 +30,21 @@ angular.module('admin', [
                 'content': {template: "<goods></goods>"}
             }
         });
+        $stateProvider.state('admin.goodsEditor', {
+            url: "/goods/:id",
+            views: {
+                '': {template: "<template-admin></template-admin>"},
+                'content': {template: "<goods-editor></goods-editor>"}
+            },
+            resolve: {
+                checkProductEditor: function (Goods, $location) {
+                    if (Goods.editprod == null) {
+                        Goods.get($location.url().split('/').pop());
+                        // $location.url('/admin/goods');
+                    }
+                }
+            }
+        });
         $stateProvider.state('admin.usersAdmin', {
             url: "/users",
             views: {
