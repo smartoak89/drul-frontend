@@ -155,18 +155,21 @@ button:focus{
     height: 250px;
     background: #000;
     position: relative;
-    /*transition: all .2s ease;*/
+    transition: transform .2s ease;
 }
 .fixed{
-    top: 0;
+    top: -100px;
     right: 0;
     left: 0;
     z-index: 1030;
     position:fixed;
+
 }
 .navv.compact{
     height: 100px;
+    transform: translateY(100px);
 }
+
 .list > li:first-child{
     display: none;
 }
@@ -988,6 +991,7 @@ input[type=radio]:checked + label:before {
     color: #4a4949;
     font-size: 16px;
     right: -60px;
+    top: -25px;
 }
 .close-window:active,
 .close-window:active {
@@ -1460,4 +1464,49 @@ goods .table>tbody>tr>td{
 }
 .add_goods .dz-preview {
     /*display: none !important;*/
+}
+uib-accordion .panel-body{
+    padding-top: 0;
+}
+uib-accordion .panel-body > a{
+    color: #afafaf;
+    padding: 10px 20px;
+    display: block;
+}
+uib-accordion .panel-body > a:hover{
+    color: #929191;
+    text-decoration: none;
+}
+.modal-content{
+    margin-top: 4em;
+}
+.modal-done{
+    margin-top: 10em;
+    text-align: center;
+}
+.modal-content{
+    border-radius: 0;
+}
+.doneWrap{
+    display: flex;
+    flex-direction:column;
+    justify-content: center;
+    text-align: center;
+    margin: 75px 0;
+}
+.doneWrap > .s-2{
+    margin: 0 auto;
+}
+.doneWrap > .doneTitle{
+    font-size: 28px;
+    font-weight: 300;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+}
+.doneWrap > .doneContext{
+    font-size: 15px;
+    font-weight: 300;
+    color: #bfbfbf;
+    width: 410px;
+    margin: 10px auto 0 auto;
 }
