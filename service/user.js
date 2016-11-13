@@ -11,6 +11,7 @@ angular.module('app')
             active: (function () {
                 var self = this;
                 var user = tryActivate();
+                console.log(user);
                 if (!user) return null;
                 return Httpquery.get({params1: 'user', params2: user}, function (res) {
                     return res;
@@ -43,8 +44,8 @@ angular.module('app')
                 if (user.password.length < 4) return callback('Пароль должен быть не менее 4 символов!');
 
                 return callback(null);
-
-            }
+            },
+            activeMenu: 0
 
         };
 

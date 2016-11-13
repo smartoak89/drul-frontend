@@ -1,8 +1,9 @@
 angular.module('app')
     .component('privatOffice', {
         templateUrl: "components/privat-office/privat-office.html",
-        controller: ['Cart', function(Cart) {
+        controller: ['Cart', 'User', function(Cart, User) {
             var self = this;
+            self.user = User;
             self.counter = 0;
             self.countPlus = function(){
                 self.counter++;
