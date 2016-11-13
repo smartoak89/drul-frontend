@@ -16,16 +16,16 @@ var app = angular.module('app', [
 app.constant('Conf', {
    api_path: 'http://95.46.99.177/api'
 });
-app.run(['$location', '$state', '$rootScope', function($location, $state, $rootScope){
+app.run(['$location', '$state', '$rootScope', '$anchorScroll', function($location, $state, $rootScope, $anchorScroll){
     var self = this;
-    $rootScope.$on('$locationChangeStart', function(event, toUrl) {
-        $rootScope.url = toUrl.split('/');
-        if ($rootScope.url[$rootScope.url.length - 1] === '') {
-            $(".navv").removeClass('compact');
-        }else{
-            $(".navv").addClass('compact');
-        }
+    $rootScope.$on('$locationChangeSuccess', function(event, toUrl) {
+        $rootScope.URL = $location.url().split('/').pop();
+        $anchorScroll(0);
     });
+    // $rootScope.$on('$locationChangeSuccess', function(event, toUrl) {
+    //
+    //     console.log('success')
+    // });
 }]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
