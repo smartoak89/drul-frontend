@@ -19,17 +19,20 @@
                     <button type="button" class="btn btn-drul dark" data-modal="auth" ng-hide="$ctrl.User.active">войти</button>
                     <button type="button" class="btn btn-drul dark" ng-click="$ctrl.logout()" ng-show="$ctrl.User.active">выйти</button>
                 </li>
-                <li class="singUp pull-right">
-                    <a ui-sref="index.privat-office">
+                <li class="singUp pull-right" ng-show="$ctrl.User.active">
+                    <a class="activeUser" ui-sref="index.privat-office"><i class="bi_user-alt"></i>
                         {{$ctrl.User.active.firstname + ' ' + $ctrl.user.User.active.lastname}}
                     </a>
-                    <button type="button" class="btn btn-drul" data-modal="register" ng-hide="$ctrl.User.active">регистрация</button>
+
+                </li>
+                <li class="singUp pull-right" ng-hide="$ctrl.User.active">
+                    <button type="button" class="btn btn-drul" data-modal="register">регистрация</button>
                 </li>
                 <li class="icon iconRig pull-right">
-                    <div class="s-3"></div>
+                    <div class="s-3" ui-sref="index.privat-office" ng-click="$ctrl.User.activeMenu = 1"></div>
                 </li>
                 <li class="icon iconRig pull-right">
-                    <div class="s-2"></div>
+                    <div class="s-2" ui-sref="index.privat-office" ng-click="$ctrl.User.activeMenu = 2"></div>
                 </li>
                 <li class="icon iconRig pull-right">
                     <div class="s-1"></div>
