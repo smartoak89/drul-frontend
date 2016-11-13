@@ -8,10 +8,12 @@ angular.module('admin')
         });
     }])
     // Product
-    .factory('Goods',['HttpResource', function (HttpResource) {
+    .factory('Goods',['HttpResource', '$location', function (HttpResource, $location) {
         return {
             products: null,
             editprod: null,
+            product: null,
+            productIndex: null,
             list: function () {
                 var self = this;
                 if (this.products == null) {
@@ -27,8 +29,11 @@ angular.module('admin')
                     self.editprod = res;
                 })
             },
-            product: null,
-            productIndex: null
+            editLocal: function (product) {
+                this.editprod = product;
+                $location.url('/admin/goods/' + product.uuid)
+            }
+
         }
     }])
     // Categories
