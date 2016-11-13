@@ -3,6 +3,8 @@ angular.module('app')
         templateUrl: "components/common/top-nav.html",
         controller: ['$rootScope', function ($rootScope) {
             var self = this;
+            console.log('rootScoep', $rootScope.URL);
+            this.URL = $rootScope.URL
             self.volume = 's-7';
             self.volumeSlider = {
                 value: 100,
