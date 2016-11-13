@@ -38,9 +38,10 @@ angular.module('app')
             },
             listDef: function () {
                 var self = this;
-                if (User.checkUser()) {
+                var user = User.checkUser()
+                if (user) {
                     if (self.defList === null) {
-                        return Httpquery.query({params1: 'deferred', params2: User.active.uuid}, function (res) {
+                        return Httpquery.query({params1: 'deferred', params2: user.uuid}, function (res) {
                             $log.info('response defList ', res);
                             return self.defList = res;
 

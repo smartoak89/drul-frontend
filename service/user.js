@@ -8,17 +8,17 @@ angular.module('app')
             }
         }
         return {
-            active: (function () {
+            active: null,
+            init: function (callback) {
                 var self = this;
-                var user = tryActivate();
-                console.log(user);
-                if (!user) return null;
-                return Httpquery.get({params1: 'user', params2: user}, function (res) {
-                    return res;
-                }, function (err) {
-                    return null;
-                })
-            })(),
+                var id = tryActivate();
+                if (!id) return self.active = null;
+                return Httpquery.get({params1: 'user', params2: id}, function (user) {
+                    self.active = user;
+                    console.log('User', self.active.uuid);
+                    callback();
+                });
+            },
             set: function (user) {
                 this.active = user;
                 $cookies.put('user', JSON.stringify(user.uuid));
@@ -28,9 +28,7 @@ angular.module('app')
                 $cookies.remove('user');
             },
             checkUser: function () {
-              var self = this;
-              if(!self.active) return false;
-              return self.active;
+                return this.active;
             },
             validate: function (user, callback) {
                 var reg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
