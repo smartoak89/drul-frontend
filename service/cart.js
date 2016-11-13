@@ -3,6 +3,7 @@ angular.module('app')
         var cart = [];
         return {
             cartList: null,
+            defList: null,
             addToCart: function (product) {
                 if (!product.inCart) {
                     product.inCart = true;
@@ -13,8 +14,10 @@ angular.module('app')
                 return cart;
             },
             addToDeferred: function (product) {
+                var self = this;
                 console.log('deferred prod', product);
-                Httpquery.save({params1: 'deferred', params2: product.uuid}, {user: User.uuid}, function (res) {
+                console.log('user', User.active.uuid);
+                Httpquery.save({params1: 'deferred', params2: product.uuid}, {user: User.active.uuid}, function (res) {
                     console.log('Deferred res', res);
                 }, function (err) {
                     console.log('Deferred err', res);
@@ -31,6 +34,20 @@ angular.module('app')
                         })
                     }
                     return self.cartList;
+                }
+                //TODO: user is not active
+            },
+            listDef: function () {
+                var self = this;
+                if (User.checkUser()) {
+                    if (self.defList === null) {
+                        return Httpquery.query({params1: 'deferred', params2: User.active.uuid}, function (res) {
+                            $log.info('response defList ', res);
+                            return self.defList = res;
+
+                        })
+                    }
+                    return self.defList;
                 }
                 //TODO: user is not active
             },

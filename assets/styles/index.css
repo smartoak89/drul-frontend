@@ -1534,14 +1534,16 @@ uib-accordion .panel-body > a:hover{
 .butWrappProd{
     display: flex;
     justify-content: flex-end;
+    align-items: center;
 }
 .butWrappProd > .btn-drul{
     color:#000;
     padding: 10px 15px;
     font-size: 12px;
-}
-.butWrappProd > .btn-drul:first-child{
     margin-right: 5px;
+}
+.butWrappProd > .btn-drul:last-child{
+    margin-right: 0;
 }
 .butWrappProd > .btn-drul:hover{
     color:#333;
@@ -1551,4 +1553,19 @@ uib-accordion .panel-body > a:hover{
 }
 .butWrappProd > .btn-drul.dark:hover{
     color: #bababa;
+}
+.butWrappProd > i{
+    margin-right: 5px;
+    font-size: 28px;
+    /*transition: color 0.5s linear;*/
+}
+.butWrappProd > i.fa-heart-o{
+    color: #000;
+}
+.butWrappProd > i.fa-heart{
+    color: #ec3654;
+}
+.butWrappProd > i:hover{
+    opacity: 0.75;
+    cursor: pointer;
 }

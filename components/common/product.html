@@ -9,6 +9,8 @@
                 <strike ng-show="$ctrl.product.old_price">{{$ctrl.product.old_price + " " + $ctrl.product.currency}}</strike>
                 <hr class="line"/>
                 <div class="butWrappProd">
+                    <i ng-hide="heart" ng-click="heart = !heart; $ctrl.cart.addToDeferred($ctrl.product)" class="fa fa-heart-o"></i>
+                    <i ng-show="heart" ng-click="heart = !heart"  class="fa fa-heart"></i>
                     <button type="button" class="btn btn-drul dark" ng-click="$ctrl.addToCart()" modal="done">добавить</button>
                     <button type="button" class="btn btn-drul" modal="product">подробнее</button>
                 </div>

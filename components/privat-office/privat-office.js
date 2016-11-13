@@ -4,6 +4,8 @@ angular.module('app')
         controller: ['Cart', 'User', function(Cart, User) {
             var self = this;
             self.user = User;
+            self.cart = Cart;
+            console.log(self.cart.defList)
             self.counter = 0;
             self.countPlus = function(){
                 self.counter++;
