@@ -11,6 +11,7 @@ angular.module('admin')
     .factory('Goods',['HttpResource', function (HttpResource) {
         return {
             products: null,
+            editprod: null,
             list: function () {
                 var self = this;
                 if (this.products == null) {
@@ -19,6 +20,12 @@ angular.module('admin')
                     })
                 }
                 return self.products;
+            },
+            get: function (id) {
+                var self = this;
+                HttpResource.query({params1: 'product', params2: id}, function (res) {
+                    self.editprod = res;
+                })
             },
             product: null,
             productIndex: null

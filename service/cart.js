@@ -36,7 +36,11 @@ angular.module('app')
             },
             save: function (id) {
                 var userID = User.active.uuid;
+<<<<<<< HEAD
                 //console.log('UserActive', user);
+=======
+                console.log('UserActive', User);
+>>>>>>> 1ff8dc06c20387c0595442d00a9984c130fc2b07
                 Httpquery.save({params1: 'cart', params2: id}, {user: userID}, function (res) {
                     console.log('successAddToCart', res);
                 }, function (err) {
