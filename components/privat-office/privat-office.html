@@ -65,7 +65,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="s-3"></div>
+                                    <div class="bi_editorial-trash-l"></div>
                                 </td>
                             </tr>
                             <tr>
@@ -88,14 +88,14 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr >
+                        <tr ng-repeat-start="defProd in $ctrl.cart.defList">
                             <td>
                                 <div class="marker red">sale</div>
-                                <img src="assets/images/11.png" class="img-responsive cover" alt=""></td>
+                                <img ng-src="{{'/api/file/' + defProd.gallery[0].uuid}}" class="img-responsive cover" alt=""></td>
                             <td>
                                 <div class="namePrice">
                                     <div>Артикул 30530101</div>
-                                    <p>пальто maria velada</p>
+                                    <p>{{defProd.name}}</p>
 
                                     <div class="params">
                                         <div>Состав</div>
@@ -121,10 +121,10 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="s-3"></div>
+                                <div class="bi_editorial-trash-l"></div>
                             </td>
                         </tr>
-                        <tr>
+                        <tr ng-repeat-end="defProd in $ctrl.cart.defList">
                             <td></td>
                         </tr>
                         </tbody>

@@ -23,6 +23,7 @@ angular.module('app')
             },
             list: function () {
                 var self = this;
+
                 var user = User.checkUser();
                 if (user) {
                     if (self.cartList === null) {
