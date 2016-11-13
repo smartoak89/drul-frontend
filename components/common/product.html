@@ -7,15 +7,12 @@
                 <p>{{$ctrl.product.name}}</p>
                 <hr class="line"/><span>{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
                 <strike ng-show="$ctrl.product.old_price">{{$ctrl.product.old_price + " " + $ctrl.product.currency}}</strike>
-<<<<<<< HEAD
                 <hr class="line"/>
                 <div class="butWrappProd">
                     <button type="button" class="btn btn-drul dark" ng-click="$ctrl.addToCart()" modal="done">добавить</button>
                     <button type="button" class="btn btn-drul" modal="product">подробнее</button>
                 </div>
-=======
-                <button ng-click="$ctrl.addToCart(); $event.stopPropagation();" modal="done">add to cart</button>
->>>>>>> 1ff8dc06c20387c0595442d00a9984c130fc2b07
+
             </div>
         </div>
     </div>
