@@ -17,19 +17,19 @@ angular.module('app')
                     }
                 }
             };
-            $(window).scroll(function () {
-                var scrollh = $(this).scrollTop();
-                if (scrollh > 350) {
-                    $(".navv").addClass('fixed');
-                    if ($rootScope.url[$rootScope.url.length - 1] == '') {
-                        $(".navv").addClass('compact');
-                    }
-                } else {
-                    $(".navv").removeClass('fixed');
-                    if ($rootScope.url[$rootScope.url.length - 1] == '') {
-                        $(".navv").removeClass('compact');
-                    }
-                }
-            });
+            //$(window).scroll(function () {
+            //    var scrollh = $(this).scrollTop();
+            //    if (scrollh > 350) {
+            //        $(".navv").addClass('fixed');
+            //        if ($rootScope.url[$rootScope.url.length - 1] == '') {
+            //            $(".navv").addClass('compact');
+            //        }
+            //    } else {
+            //        $(".navv").removeClass('fixed');
+            //        if ($rootScope.url[$rootScope.url.length - 1] == '') {
+            //            $(".navv").removeClass('compact');
+            //        }
+            //    }
+            //});
         }]
     });
