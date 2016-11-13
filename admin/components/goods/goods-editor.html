@@ -1,5 +1,9 @@
-<div>
-    <div class="card">
+<div ng-init="product = $ctrl.product" ng-switch="$ctrl.editMode">
+    <div class="btn_control">
+        <button ng-click="$ctrl.edit()">Edit</button>
+        <button ng-click="$ctrl.save()">Save</button>
+    </div>
+    <div class="card" ng-switch-when="false">
         <div class="row">
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                 <zoom mark-height="100" mark-width="100" src="assets/images/2.jpg" zoom-lvl="4"></zoom>
@@ -19,7 +23,7 @@
                         <p class="categCard">Женские пальто | Maria Veneda</p>
                         <div class="artNameCard">
                             <div>Артикул 30530101</div>
-                            <p id="goodNameCard">{{$ctrl.product.name}}</p>
+                            <p id="goodNameCard">{{product.name}}</p>
                         </div>
                         <div class="descriptionCard">
                             Очаровательное, изысканное и стильное женское пальто, которое непременно
@@ -64,6 +68,103 @@
                             <button type="button" class="btn btn-drul" ng-click="addToDeferred()">
                                 <div class="fa fa-heart-o"></div> отложить
                             </button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <ul role="tablist" class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#about" aria-controls="home" role="tab" data-toggle="tab">О товаре</a></li>
+                    <li role="presentation"><a href="#comm" aria-controls="profile" role="tab" data-toggle="tab">Отзывы</a></li>
+                </ul>
+                <div class="tab-content">
+                    <div id="about" role="tabpanel" class="tab-pane active">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <table class="table">
+                                    <tbody>
+                                    <tr>
+                                        <td>Состав</td>
+                                        <td>Шерсть - 56%, Вискоза - 44%</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Длина рукава</td>
+                                        <td>57 см</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Длина</td>
+                                        <td>105 см</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Размер модели на фото</td>
+                                        <td>42</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Рукав</td>
+                                        <td>длинный</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Цвет</td>
+                                        <td>бежевый</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Застежка</td>
+                                        <td>на пуговицах</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Сезон</td>
+                                        <td>Зима, Демисезон</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Коллекция</td>
+                                        <td>Осень-зима</td>
+                                    </tr>
+                                    <tr>
+                                        <td>Карманы</td>
+                                        <td>2</td>
+                                    </tr>
+                                    </tbody>
+                                </table>
+                            </div>
+                        </div>
+                    </div>
+                    <div id="comm" role="tabpanel" class="tab-pane">222</div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="card" ng-switch-when="true">
+        <div class="row">
+            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+                <div ng-include="'components/common/upload-template.html'" ng-init="uploader = $ctrl.uploader"></div>
+            </div>
+            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+                <div class="row">
+                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                        <p class="categCard">Женские пальто | Maria Veneda</p>
+                        <div class="artNameCard">
+                            <div><input type="text" placeholder="Артикул"></div>
+                            <p id="goodNameCard">
+                                <input type="text" placeholder="Название">
+                            </p>
+                        </div>
+                        <div class="descriptionCard">
+                            <textarea placeholder="Описание" rows="10" cols="45"></textarea>
+                        </div>
+                        <div class="priceCard">
+                            <span>
+                                <input type="text" placeholder="цена">
+                            </span>
+                        </div>
+                        <hr class="marCard"/>
+                        <div class="sizeCard">Размер
+                            <div class="sizeCardDis">
+                                <select class="form-control" id="inputMultiple" multiple="multiple" ng-model="newProduct.size">
+                                    <option ng-repeat="size in $ctrl.range">{{size}}</option>
+                                </select>
+                            </div>
                         </div>
                     </div>
                 </div>

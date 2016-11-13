@@ -6,8 +6,7 @@ angular.module('admin')
             $scope.addProduct = function(){
                 HttpResource.save({params1: 'product'}, $scope.newProduct, function (resp) {
                     console.log('added product', resp);
-                    Goods.editprod = resp;
-                    $location.url('/admin/goods/' + resp.uuid);
+                    Goods.editLocal(resp);
                     $uibModalInstance.dismiss('cancel');
                     Goods.products.push($scope.newProduct);
                 }, function (err) {
