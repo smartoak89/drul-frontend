@@ -7,7 +7,7 @@ angular.module('app')
                 self.products = Product.getList();
             };
             self.cart = Cart;
-            console.log(self.cart);
+            //console.log(self.cart);
             self.cart.list();
             self.cart.listDef();
         }]
