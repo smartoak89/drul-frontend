@@ -25,6 +25,7 @@ angular.module('app')
             },
             list: function () {
                 var self = this;
+                console.log(User.active);
                 if (User.checkUser()) {
                     if (self.cartList === null) {
                         return Httpquery.query({params1: 'cart', params2: User.active.uuid}, function (res) {

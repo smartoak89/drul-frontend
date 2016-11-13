@@ -16,12 +16,14 @@ var app = angular.module('app', [
 app.constant('Conf', {
    api_path: 'http://95.46.99.177/api'
 });
-app.run(['$location', '$state', '$rootScope', '$anchorScroll', function($location, $state, $rootScope, $anchorScroll){
+app.run(['$location', '$state', '$rootScope', '$anchorScroll', 'Cart', function($location, $state, $rootScope, $anchorScroll, Cart){
     var self = this;
     $rootScope.$on('$locationChangeSuccess', function(event, toUrl) {
         $rootScope.URL = $location.url().split('/').pop();
         $anchorScroll(0);
     });
+    //Cart.list();
+    //Cart.defList();
     // $rootScope.$on('$locationChangeSuccess', function(event, toUrl) {
     //
     //     console.log('success')
