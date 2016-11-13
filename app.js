@@ -19,15 +19,8 @@ app.constant('Conf', {
 app.run(['$location', '$state', '$rootScope', '$anchorScroll', function($location, $state, $rootScope, $anchorScroll){
     var self = this;
     $rootScope.$on('$locationChangeSuccess', function(event, toUrl) {
-        // var url = $location.url().split('/').pop();
         $rootScope.URL = $location.url().split('/').pop();
         $anchorScroll(0);
-        // $rootScope.url = toUrl.split('/');
-        // if ($rootScope.url[$rootScope.url.length - 1] === '') {
-        //     $(".navv").removeClass('compact');
-        // }else{
-        //     $(".navv").addClass('compact');
-        // }
     });
     // $rootScope.$on('$locationChangeSuccess', function(event, toUrl) {
     //

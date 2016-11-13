@@ -3,8 +3,7 @@ angular.module('app')
         templateUrl: "components/common/top-nav.html",
         controller: ['$rootScope', function ($rootScope) {
             var self = this;
-            console.log('rootScoep', $rootScope.URL);
-            this.URL = $rootScope.URL
+            this.rootScope = $rootScope;
             self.volume = 's-7';
             self.volumeSlider = {
                 value: 100,
@@ -23,12 +22,12 @@ angular.module('app')
                 var scrollh = $(this).scrollTop();
                 if (scrollh > 350) {
                     $(".navv").addClass('fixed');
-                    if ($rootScope.url[$rootScope.url.length - 1] == '') {
+                    if (self.rootScope.URL == '') {
                         $(".navv").addClass('compact');
                     }
                 } else {
                     $(".navv").removeClass('fixed');
-                    if ($rootScope.url[$rootScope.url.length - 1] == '') {
+                    if (self.rootScope.URL == '') {
                         $(".navv").removeClass('compact');
                     }
                 }
