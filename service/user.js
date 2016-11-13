@@ -30,7 +30,7 @@ angular.module('app')
             checkUser: function () {
               var self = this;
               if(!self.active) return false;
-              return true;
+              return self.active;
             },
             validate: function (user, callback) {
                 var reg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;

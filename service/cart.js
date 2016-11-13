@@ -15,8 +15,6 @@ angular.module('app')
             },
             addToDeferred: function (product) {
                 var self = this;
-                console.log('deferred prod', product);
-                console.log('user', User.active.uuid);
                 Httpquery.save({params1: 'deferred', params2: product.uuid}, {user: User.active.uuid}, function (res) {
                     console.log('Deferred res', res);
                 }, function (err) {
@@ -25,9 +23,10 @@ angular.module('app')
             },
             list: function () {
                 var self = this;
-                if (User.checkUser()) {
+                var user = User.checkUser();
+                if (user) {
                     if (self.cartList === null) {
-                        return Httpquery.query({params1: 'cart', params2: User.active.uuid}, function (res) {
+                        return Httpquery.query({params1: 'cart', params2: user.uuid}, function (res) {
                             $log.info('response cartList ', res);
                             return self.cartList = res;
 
