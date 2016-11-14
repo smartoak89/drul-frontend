@@ -30,10 +30,11 @@
                 </li>
                 <li class="icon iconRig pull-right">
                     <div class="s-3" ui-sref="index.privat-office" ng-click="$ctrl.User.activeMenu = 1"></div>
-                    <div class="countProd">{{$ctrl.Cart.defList.length}}</div>
+                    <div class="countProd" ng-if="$ctrl.Cart.cartList.length>0">{{$ctrl.Cart.cartList.length}}</div>
                 </li>
                 <li class="icon iconRig pull-right">
                     <div class="s-2" ui-sref="index.privat-office" ng-click="$ctrl.User.activeMenu = 2"></div>
+                    <div class="countProd" ng-if="$ctrl.Cart.defList.length>0">{{$ctrl.Cart.defList.length}}</div>
                 </li>
                 <li class="icon iconRig pull-right">
                     <div class="s-1"></div>

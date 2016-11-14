@@ -443,6 +443,9 @@ section {
     position: relative;
     margin-bottom: 30px;
 }
+.goodsBlock:before{
+
+}
 .goodsBlock > img{
     height: 280px;
     width: 100%
@@ -534,6 +537,47 @@ section {
     width: 21px;
     height: 23px;
 }
+
+.s-11, .s-12, .s-13, .s-14, .s-16, .s-15{
+    background: url(../images/sprites1.png) no-repeat;
+}
+
+.s-11{
+    background-position: 0 0;
+    width: 23px;
+    height: 21px;
+}
+
+.s-12{
+    background-position: 0 -21px ;
+    width: 18px;
+    height: 21px;
+}
+
+.s-13{
+    background-position: -23px 0;
+    width: 97px;
+    height: 97px;
+}
+
+.s-14{
+    background-position: -122px 0;
+    width: 97px;
+    height: 97px;
+}
+
+.s-16{
+    background-position: -222px 0;
+    width: 97px;
+    height: 97px;
+}
+
+.s-15{
+    background-position: 0 -42px ;
+    width: 15px;
+    height: 20px;
+}
+
 
 .logo{
     background-position: -145px 0;
@@ -1568,4 +1612,18 @@ uib-accordion .panel-body > a:hover{
 .butWrappProd > i:hover{
     opacity: 0.75;
     cursor: pointer;
+}
+.countProd{
+    display: flex;
+    position: relative;
+    background: #000;
+    color: #fff;
+    font-size: 11px;
+    width: 14px;
+    height: 14px;
+    text-align: center;
+    border-radius: 15px;
+    top: -12px;
+    left: 12px;
+    justify-content: center;
 }

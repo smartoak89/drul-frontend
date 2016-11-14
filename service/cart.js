@@ -17,6 +17,9 @@ angular.module('app')
                 var self = this;
                 Httpquery.save({params1: 'deferred', params2: product.uuid}, {user: User.active.uuid}, function (res) {
                     console.log('Deferred res', res);
+                    if (!res.message){
+                        self.defList.push(product);
+                    }
                 }, function (err) {
                     console.log('Deferred err', res);
                 })
@@ -54,10 +57,13 @@ angular.module('app')
                 //TODO: user is not active
             },
             save: function (id) {
+                var self = this;
                 var userID = User.active.uuid;
                 console.log('UserActive', User);
                 Httpquery.save({params1: 'cart', params2: id}, {user: userID}, function (res) {
                     console.log('successAddToCart', res);
+                        console.log(self.cartList);
+                        self.cartList.push(res);
                 }, function (err) {
                     console.log('errAddToCart', err);
                 })

@@ -30,7 +30,7 @@
                             <tr ng-repeat="product in $ctrl.cartList">
                                 <td>
                                     <div class="marker red">sale</div>
-                                    <img src="assets/images/11.png" class="img-responsive cover" alt=""></td>
+                                    <img ng-src="{{'/api/file/' + defProd.gallery[0].uuid}}" class="img-responsive cover" alt=""></td>
                                 <td>
                                     <div class="namePrice">
                                         <div>Артикул {{product.article}}</div>
@@ -65,7 +65,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="bi_editorial-trash-l"></div>
+                                    <div class="s-15"></div>
                                 </td>
                             </tr>
                             <tr>
@@ -121,7 +121,7 @@
                                 </div>
                             </td>
                             <td>
-                                <div class="bi_editorial-trash-l"></div>
+                                <div class="s-15"></div>
                             </td>
                         </tr>
                         <tr ng-repeat-end="defProd in $ctrl.cart.defList">

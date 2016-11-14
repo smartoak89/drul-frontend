@@ -5,6 +5,16 @@ angular.module('app')
             var self = this;
             this.$onInit = function () {
                 self.products = Product.getList();
+                self.def = Cart.listDef();
+                console.log(self.def[0])
+                _.forEach(self.products, function(elem){
+                    console.log("adfafd");
+                    console.log(_.find(self.def, {'uuid': elem.uuid}));
+                    //if (_.find(self.def['uuid', elem.uuid])){
+                    //    elem.def=true;
+                    //}
+                });
+
             };
 
         }]
