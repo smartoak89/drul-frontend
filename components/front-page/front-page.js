@@ -6,9 +6,6 @@ angular.module('app')
             this.$onInit = function () {
                 self.products = Product.getList();
             };
-            self.cart = Cart;
-            //console.log(self.cart);
-            self.cart.list();
-            self.cart.listDef();
+
         }]
     });
