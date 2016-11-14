@@ -4,7 +4,9 @@ angular.module('app')
         controller: ['Product', 'Cart', function(Product, Cart) {
             var self = this;
             this.$onInit = function () {
-                self.products = Product.getList();
+                Product.getList().then(function (res) {
+                    self.products = res;
+                });
             };
 
         }]
