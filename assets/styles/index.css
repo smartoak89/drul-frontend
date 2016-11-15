@@ -442,9 +442,41 @@ section {
 .goodsBlock{
     position: relative;
     margin-bottom: 30px;
+    border: 1px solid #afafaf;
 }
-.goodsBlock:before{
+.goodsBlockHover{
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    display: flex;
+    background: rgba(255,255,255,0.7);
+    justify-content: center;
+    opacity: 0;
+    transition: opacity 0.25s linear;
+}
+.goodsBlock:hover > .goodsBlockHover {
+    opacity: 1;
+}
+.butWrappProd > div{
+    margin-right: 15px;
+}
+.butWrappProd > .wrapB{
+     border: 1px solid #000;
+     display: flex;
+     padding: 5px;
+     min-width: 35px;
+     background-color: #fff;
+    justify-content: center;
+ }
 
+.butWrappProd > .wrapW{
+    border: 1px solid #000;
+    display: flex;
+    padding: 5px;
+    min-width: 35px;
+    background-color: #000;
+    cursor: pointer;
+    justify-content: center;
 }
 .goodsBlock > img{
     height: 280px;
@@ -1559,8 +1591,9 @@ uib-accordion .panel-body > a:hover{
     text-align: center;
     margin: 75px 0;
 }
-.doneWrap > .s-2{
+.doneWrap > .s-14{
     margin: 0 auto;
+    margin-bottom: 20px;
 }
 .doneWrap > .doneTitle{
     font-size: 28px;

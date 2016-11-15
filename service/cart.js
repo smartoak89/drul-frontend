@@ -24,6 +24,11 @@ angular.module('app')
                     console.log('Deferred err', res);
                 })
             },
+            delFromDeferred: function(product) {
+                var self = this;
+                //Httpquery.delete({params1:'deferred', params2: product.uuid})
+               self.defList.splice(_.findIndex(self.defList, {uuid: product.uuid}),1);
+            },
             list: function () {
                 var self = this;
                 var deffer = $q.defer();
@@ -78,9 +83,11 @@ angular.module('app')
             anyFunc: function(){
                 var self = this;
                 $q.all([self.listDef(), self.list(), Product.getList()]).then(function(){
-                    console.log(self.cartList);
-                    console.log(self.defList);
-                    console.log(Product.products)
+                    _.forEach(Product.products, function(elem){
+                        if(_.find(self.defList, {uuid: elem.uuid})){
+                            elem.def = true;
+                        }
+                    });
                 })
             }
         };
