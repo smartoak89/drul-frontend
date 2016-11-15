@@ -9,6 +9,12 @@
                     <label for="name">Название товара</label>
                     <input class="form-control" id="name" autocomplete="off" ng-model="newProduct.name">
                 </div>
+                <div class="form-inline">
+                    <label>Категория</label>
+                    <treecontrol class="tree-light" tree-model="categories" on-selection="showSelected(node)">
+                        {{node.name}}
+                    </treecontrol>
+                </div>
             </div>
         </div>
         <div ng-if="error" class="callout callout-danger">

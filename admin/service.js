@@ -128,4 +128,18 @@ angular.module('admin')
 
             }
         }
-    }]);
+    }])
+    // File
+    .factory('File',['HttpResource', function (HttpResource) {
+        return {
+            remove: function (id, callback) {
+                console.info(id);
+                HttpResource.delete({params1: 'file', params2: id}, function (res) {
+                    callback(null, res);
+                }, function (err) {
+                    callback(err);
+                })
+            }
+        }
+    }])
+

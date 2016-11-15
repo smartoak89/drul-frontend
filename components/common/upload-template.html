@@ -1,30 +1,26 @@
 <div nv-file-drop="" uploader="uploader">
-
     <div class="row">
         <div class="col-md-12">
-            <input type="file" nv-file-select="" uploader="uploader" multiple /><br/>
+            <input type="file" nv-file-select="" value="" uploader="uploader" multiple /><br/>
         </div>
     </div>
     <div class="row" ng-show="uploader.queue.length > 0">
         <div class="col-md-12" style="margin-bottom: 40px">
-
-            <p>Queue length: {{ uploader.queue.length }}</p>
-
             <table class="table">
                 <thead>
-                <tr>
-                    <th width="50%">Имя</th>
-                    <!--<th ng-show="uploader.isHTML5">Progress</th>-->
-                    <!--<th>Статус</th>-->
-                    <th>Главная</th>
-                    <th>Actions</th>
-                </tr>
+                    <tr>
+                        <th width="50%">Имя</th>
+                        <!--<th ng-show="uploader.isHTML5">Progress</th>-->
+                        <!--<th>Статус</th>-->
+                        <th>Главная</th>
+                        <th>Actions</th>
+                    </tr>
                 </thead>
                 <tbody>
                 <tr ng-repeat="item in uploader.queue">
                     <td>
                         <strong class="name_goods">{{ item.file.name }}</strong>
-                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 100 }"></div>
+                        <div ng-show="uploader.isHTML5" ng-thumb="{ file: item._file, height: 80 }"></div>
                     </td>
                     <!--<td ng-show="uploader.isHTML5">-->
                         <!--<div class="progress" style="margin-bottom: 0;">-->
@@ -37,7 +33,7 @@
                         <!--<span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>-->
                     <!--</td>-->
                     <td nowrap class="text-center">
-                        <input type="radio" style="margin: 0 auto; display: block;" id="main" name="main" ng-click="$ctrl.chooseMain($index)"  ng-checked="$first"/>
+                        <input type="radio" style="margin: 0 auto; display: block;" id="main" name="main" ng-click="$ctrl.chooseMain($index)"  ng-checked="$ctrl.product.photo ? '' : $first"/>
                     </td>
                     <td nowrap>
                     <!--<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">-->
@@ -47,8 +43,7 @@
                     <!--<span class="glyphicon glyphicon-ban-circle"></span> Cancel-->
                     <!--</button>-->
                     <button type="button" class="btn btn-danger btn-xs" ng-click="item.remove()">
-                    <span class="glyphicon glyphicon-trash"></span> Remove
-                    </button>
+                    <span class="glyphicon glyphicon-trash"></span></button>
                     </td>
                 </tr>
                 </tbody>
@@ -75,5 +70,4 @@
         </div>
 
     </div>
-
 </div>

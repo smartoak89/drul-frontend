@@ -676,6 +676,26 @@ section {
     /*position: absolute;*/
     bottom: 3px;
 }
+.pos_rel {
+    position: relative;
+}
+.pos_abs {
+    position: absolute;
+}
+.card .edit_btn {
+    right: 5px;
+    top: 5px;
+    width: 40px;
+    color: #000;
+    font-size: 1.1em;
+    text-align: center;
+    cursor: pointer;
+    background: rgb(255, 255, 255);
+}
+.card .edit_btn:hover {
+    background: #000;
+    color: #fff;
+}
 .accordion-header-icon.accordion-header-icon-active{
     color: #000;
 }

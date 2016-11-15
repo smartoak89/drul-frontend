@@ -17,7 +17,8 @@ angular.module('admin')
     })
     .component('goodsEditor', {
         templateUrl: "admin/components/goods/goods-editor.html",
-        controller: ['Goods', 'FileUploader', 'Conf', function(Goods, FileUploader, Conf) {
+        controller: ['Goods', 'FileUploader', 'Conf', 'File', function(Goods, FileUploader, Conf, File) {
+            var self = this;
             this.editMode = false;
             this.product = Goods.editprod;
             this.preview = this.product.photo;
@@ -28,20 +29,35 @@ angular.module('admin')
             };
             this.save = function () {
                 this.editMode = false;
-            }
+            };
+
+            this.remove = function (file) {
+                File.remove(file.uuid, function (err, res) {
+                    if (err) return self.error = err;
+                    console.info('file was removed', res);
+                    _.remove(self.product.gallery, file);
+                })
+            };
 
             // Uploader
             var uploader = this.uploader = new FileUploader({
                 url: Conf.api_path + '/file/' + Goods.editprod.uuid
             });
+            // uploader.onAfterAddingAll = function() {
+            //     console.info('afterUploadAll')
+            //     self.addingGallery = true;
+            // };
             uploader.onAfterAddingAll = function() {
-                uploader.queue[0].alias = 'main'
+                self.addingGallery = true;
+                if (!self.product.photo) {
+                    console.info('product', self.product)
+                    uploader.queue[0].alias = 'main'
+                }
             };
             // uploader.onCompleteAll = function() {
             //     // $uibModalInstance.dismiss('cancel');
             // };
             this.chooseMain = function (index) {
-                console.log(index);
                 angular.forEach(uploader.queue, function (i, ind) {
                     i.alias = (ind === index) ? 'main' : 'gallery';
                 });
