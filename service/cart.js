@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('Cart', ['Httpquery', 'User', 'Currency', '$log', function (Httpquery, User, Currency, $log) {
+    .service('Cart', ['Httpquery', 'User', 'Currency', '$log', '$q', 'Product',function (Httpquery, User, Currency, $log, $q, Product) {
         var cart = [];
         return {
             cartList: null,
@@ -26,34 +26,41 @@ angular.module('app')
             },
             list: function () {
                 var self = this;
-
+                var deffer = $q.defer();
                 var user = User.checkUser();
                 if (user) {
                     if (self.cartList === null) {
                         //console.log(user.uuid);
-                        return Httpquery.query({params1: 'cart', params2: user.uuid}, function (res) {
-                            $log.info('response cartList ', res);
-                            return self.cartList = res;
-
+                        Httpquery.query({params1: 'cart', params2: user.uuid}, function (res) {
+                            //$log.info('response cartList ', res);
+                            deffer.resolve(res);
+                            self.cartList = res;
+                        }, function (err) {
+                            console.log(err);
+                            deffer.reject(err);
                         })
                     }
-                    return self.cartList;
                 }
+                return deffer.promise;
                 //TODO: user is not active
             },
             listDef: function () {
                 var self = this;
+                var deffer = $q.defer();
                 var user = User.checkUser()
                 if (user) {
                     if (self.defList === null) {
-                        return Httpquery.query({params1: 'deferred', params2: user.uuid}, function (res) {
-                            $log.info('response defList ', res);
-                            return self.defList = res;
-
+                        Httpquery.query({params1: 'deferred', params2: user.uuid}, function (res) {
+                            //$log.info('response defList ', res);
+                            deffer.resolve(res);
+                            self.defList = res;
+                        }, function (err) {
+                            console.log(err);
+                            deffer.reject(err);
                         })
                     }
-                    return self.defList;
                 }
+                return deffer.promise;
                 //TODO: user is not active
             },
             save: function (id) {
@@ -66,6 +73,14 @@ angular.module('app')
                         self.cartList.push(res);
                 }, function (err) {
                     console.log('errAddToCart', err);
+                })
+            },
+            anyFunc: function(){
+                var self = this;
+                $q.all([self.listDef(), self.list(), Product.getList()]).then(function(){
+                    console.log(self.cartList);
+                    console.log(self.defList);
+                    console.log(Product.products)
                 })
             }
         };

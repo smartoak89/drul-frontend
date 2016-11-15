@@ -1,5 +1,5 @@
 angular.module('app')
-    .factory('Product', ['Httpquery', '$http', '$cookies', function (Httpquery, $http, $cookies) {
+    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', function (Httpquery, $http, $cookies, $q) {
         function getCurrentCourse () {
             var url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
             return $http.get(url).then(function (res) {
@@ -10,16 +10,22 @@ angular.module('app')
             products: null,
             getList: function () {
                 var self = this;
+                var deffer = $q.defer();
                 if (this.products == null) {
-                    return Httpquery.query({params1: 'products'}, function (res) {
-                        var currency = $cookies.get('currency');
-                        if (currency != 'UAH') {
-                            self.changeCurrency(currency);
-                        }
-                        return self.products = res;
+                    Httpquery.query({params1: 'products'}, function (res) {
+                        // var currency = $cookies.get('currency');
+                        // if (currency != 'UAH') {
+                        //     self.changeCurrency(currency);
+                        // }
+                        deffer.resolve(res);
+                        self.products = res;
+                    }, function (err) {
+                        console.log(err);
+                        deffer.reject(err);
                     })
                 }
-                return self.products;
+                return deffer.promise;
+                // return self.products;
             },
             changeCurrency: function (newC) {
                 var self = this;

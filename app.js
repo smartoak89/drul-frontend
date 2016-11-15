@@ -17,10 +17,9 @@ app.constant('Conf', {
    api_path: 'http://95.46.99.177/api'
 });
 
-app.run(['$location', '$state', '$rootScope', '$anchorScroll', 'User', 'Cart', function($location, $state, $rootScope, $anchorScroll, User, Cart) {
+app.run(['$location', '$state', '$rootScope', '$anchorScroll', 'User', 'Cart', 'Product', function($location, $state, $rootScope, $anchorScroll, User, Cart, Product) {
     User.init(function () {
-        Cart.list();
-        Cart.listDef();
+
     });
     $rootScope.$on('$locationChangeSuccess', function(event, toUrl) {
         $rootScope.URL = $location.url().split('/').pop();

@@ -37,7 +37,7 @@
                         <!--<span ng-show="item.isError"><i class="glyphicon glyphicon-remove"></i></span>-->
                     <!--</td>-->
                     <td nowrap class="text-center">
-                        <input type="radio" style="margin: 0 auto; display: block;" id="main" name="main" ng-click="main($index)"/>
+                        <input type="radio" style="margin: 0 auto; display: block;" id="main" name="main" ng-click="$ctrl.chooseMain($index)"  ng-checked="$first"/>
                     </td>
                     <td nowrap>
                     <!--<button type="button" class="btn btn-success btn-xs" ng-click="item.upload()" ng-disabled="item.isReady || item.isUploading || item.isSuccess">-->
