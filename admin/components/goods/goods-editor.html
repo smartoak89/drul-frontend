@@ -20,54 +20,44 @@
             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <p class="categCard">Женские пальто | Maria Veneda</p>
+                        <p class="categCard">{{ product.category }}</p>
                         <div class="artNameCard">
-                            <div>Артикул 30530101</div>
-                            <p id="goodNameCard">{{product.name}}</p>
+                            <div>Артикул {{ product.article }}</div>
+                            <p id="goodNameCard">{{ product.name }}</p>
                         </div>
                         <div class="descriptionCard">
-                            Очаровательное, изысканное и стильное женское пальто, которое непременно
-                            займет достойное место в гардеробе ценительниц по-настоящему женственных
-                            и элегантных вещей. Безукоризненно простой фасон подходит к любой фигуре,
-                            а также обеспечивает универсальность и удобство.
+                            {{ product.description }}
                         </div>
-                        <div class="priceCard"><span>2700 грн</span>
+                        <div class="priceCard"><span>{{ product.price }} грн</span>
                             <strike>3100 грн</strike>
                         </div>
                         <hr class="marCard"/>
                         <div class="sizeCard">Размер
                             <div class="sizeCardDis">
-                                <div class="checkbo">
-                                    <input type="checkbox" id="144" name="option" value="a"/>
-                                    <label for="144"></label><span>44</span>
+                                <div class="checkbo" ng-repeat="(key, value) in product.size">
+                                    <span>{{value}}</span>
                                 </div>
-                                <div class="checkbo">
-                                    <input type="checkbox" id="146" name="option" value="a"/>
-                                    <label for="146"></label><span>46</span>
-                                </div>
-                                <div class="checkbo">
-                                    <input type="checkbox" id="148" name="option" value="a"/>
-                                    <label for="148"></label><span>48</span>
-                                </div>
-                                <div class="checkbo">
-                                    <input type="checkbox" id="150" name="option" value="a"/>
-                                    <label for="150"></label><span>50</span>
-                                </div>
-                                <div class="checkbo">
-                                    <input type="checkbox" id="152" name="option" value="a"/>
-                                    <label for="152"></label><span>52</span>
-                                </div>
-                                <div class="checkbo">
-                                    <input type="checkbox" id="154" name="option" value="a"/>
-                                    <label for="154"></label><span>54</span>
-                                </div>
+                                <!--<div class="checkbo">-->
+                                    <!--<input type="checkbox" id="146" name="option" value="a"/>-->
+                                    <!--<label for="146"></label><span>46</span>-->
+                                <!--</div>-->
+                                <!--<div class="checkbo">-->
+                                    <!--<input type="checkbox" id="148" name="option" value="a"/>-->
+                                    <!--<label for="148"></label><span>48</span>-->
+                                <!--</div>-->
+                                <!--<div class="checkbo">-->
+                                    <!--<input type="checkbox" id="150" name="option" value="a"/>-->
+                                    <!--<label for="150"></label><span>50</span>-->
+                                <!--</div>-->
+                                <!--<div class="checkbo">-->
+                                    <!--<input type="checkbox" id="152" name="option" value="a"/>-->
+                                    <!--<label for="152"></label><span>52</span>-->
+                                <!--</div>-->
+                                <!--<div class="checkbo">-->
+                                    <!--<input type="checkbox" id="154" name="option" value="a"/>-->
+                                    <!--<label for="154"></label><span>54</span>-->
+                                <!--</div>-->
                             </div>
-                        </div>
-                        <div class="buttonsCard">
-                            <button type="button" class="btn btn-drul dark">оформить заказ</button>
-                            <button type="button" class="btn btn-drul" ng-click="addToDeferred()">
-                                <div class="fa fa-heart-o"></div> отложить
-                            </button>
                         </div>
                     </div>
                 </div>
@@ -156,7 +146,7 @@
                     <thead>
                         <tr>
                             <th>Имя</th>
-                            <th>Главная</th>
+                            <th>Обложка</th>
                             <th>Удалить</th>
                         </tr>
                     </thead>
@@ -180,25 +170,30 @@
             <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <p class="categCard">Женские пальто | Maria Veneda</p>
+                        <p class="categCard">
+                            <label>Категория</label>
+                            <treecontrol class="tree-light" tree-model="$ctrl.categories" on-selection="$ctrl.addCategToProduct(node)">
+                                {{node.name}}
+                            </treecontrol>
+                        </p>
                         <div class="artNameCard">
-                            <div><input type="text" placeholder="Артикул"></div>
+                            <div><input ng-model="product.article"  type="text" placeholder="{{$ctrl.categArticle.article}}"></div>
                             <p id="goodNameCard">
-                                <input type="text" placeholder="Название">
+                                <input type="text" placeholder="Название" ng-model="product.name">
                             </p>
                         </div>
                         <div class="descriptionCard">
-                            <textarea placeholder="Описание" rows="10" cols="45"></textarea>
+                            <textarea placeholder="Описание" rows="10" cols="45" ng-model="product.description"></textarea>
                         </div>
                         <div class="priceCard">
                             <span>
-                                <input type="text" placeholder="цена">
+                                <input type="text" placeholder="цена" ng-model="product.price">
                             </span>
                         </div>
                         <hr class="marCard"/>
                         <div class="sizeCard">Размер
                             <div class="sizeCardDis">
-                                <select class="form-control" id="inputMultiple" multiple="multiple" ng-model="newProduct.size">
+                                <select class="form-control" id="inputMultiple" multiple="multiple" ng-model="product.size">
                                     <option ng-repeat="size in $ctrl.range">{{size}}</option>
                                 </select>
                             </div>

@@ -32,6 +32,13 @@ angular.module('admin')
             editLocal: function (product) {
                 this.editprod = product;
                 $location.url('/admin/goods/' + product.uuid)
+            },
+            update: function (product, callback) {
+                HttpResource.put({params1: 'product', params2: product.uuid}, product, function (res) {
+                    callback(null, res)
+                }, function (err) {
+                    callback(err);
+                })
             }
 
         }
