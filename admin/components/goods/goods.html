@@ -12,8 +12,8 @@
                     <th>Артикул</th>
                     <th>Цена</th>
                     <th>Отметить</th>
-                    <th>Редактировать</th>
-                    <th>Удалить</th>
+                    <!--<th>Редактировать</th>-->
+                    <th>Изменить/Удалить</th>
                 </tr>
             </thead>
             <tbody>
@@ -27,12 +27,14 @@
                     <td>{{product.price}}</td>
                     <td>
                         <div class="checkbo">
-                            <input type="checkbox" id="111" name="option" value="a"/>
-                            <label for="111"></label>
+                            <input type="checkbox" id="{{product.name}}" name="option" value="a"/>
+                            <label for="{{product.name}}"></label>
                         </div>
                     </td>
-                    <td><button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button></td>
-                    <td><button class="btn btn-default btn-sm" ng-click="$ctrl.removeProd(product, $index)" modal-admin="delGood">Remove</button></td>
+                    <!--<td><button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button></td>-->
+                    <td>
+                        <button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button>
+                        <button class="btn btn-default btn-sm" ng-click="$ctrl.removeProd(product, $index)" modal-admin="delGood">Remove</button></td>
                 </tr>
             </tbody>
         </table>
