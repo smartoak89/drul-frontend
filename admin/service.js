@@ -18,6 +18,11 @@ angular.module('admin')
                 var self = this;
                 if (this.products == null) {
                     return HttpResource.query({params1: 'products'}, function (res) {
+                        angular.forEach(res, function (product) {
+                           self.getGallery(product, function (err) {
+                               if (err) console.trace('error', err);
+                           })
+                        });
                         self.products = res;
                     })
                 }
@@ -36,6 +41,19 @@ angular.module('admin')
             update: function (product, callback) {
                 HttpResource.put({params1: 'product', params2: product.uuid}, product, function (res) {
                     callback(null, res)
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            getGallery: function (product, callback) {
+                var criteria = {
+                    params1: 'files',
+                    params2: product.uuid
+                };
+                HttpResource.query(criteria, function (res) {
+                    product.photo = _.find(res, {type: 'main'});
+                    product.gallery = res;
+                    callback()
                 }, function (err) {
                     callback(err);
                 })

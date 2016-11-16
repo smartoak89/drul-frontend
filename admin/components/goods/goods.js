@@ -1,7 +1,7 @@
 angular.module('admin')
     .component('goods', {
         templateUrl: "admin/components/goods/goods.html",
-        controller: ['Goods',function(Goods) {
+        controller: ['Goods', '$q',function(Goods, $q) {
             var self = this;
             this.products = Goods.list();
             console.log('Products', this.products);
@@ -22,20 +22,31 @@ angular.module('admin')
             this.categories = Categories.list();
             this.editMode = false;
             this.product = Goods.editprod;
-            this.preview = this.product.photo;
+            this.preview = this.product.photo || '';
             this.range = [35,36,37,38,39,40,41,42,43,44,45,46];
 
             this.$onInit = function () {
+                getGallery ();
                 if (self.product && !self.product.article) {
                     // self.categArticle = _.find(self.categories, {slug: self.product.category});
                     // self.product.article = categArticle + '.';
                 }
             };
 
+            function getGallery () {
+                Goods.getGallery(self.product, function (err) {
+                    if (err) console.trace('error', err);
+                });
+            }
+
             this.remove = function (file) {
                 File.remove(file.uuid, function (err, res) {
                     if (err) return self.error = err;
                     console.info('file was removed', res);
+                    if (file.type == 'main') {
+                        console.log('type, main');
+                        self.product.photo = null;
+                    }
                     _.remove(self.product.gallery, file);
                 })
             };
@@ -74,6 +85,7 @@ angular.module('admin')
 
             };
             uploader.onCompleteAll = function() {
+                getGallery();
                 self.editMode = false;
             };
             this.chooseMain = function (index) {
