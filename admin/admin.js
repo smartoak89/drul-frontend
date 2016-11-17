@@ -45,6 +45,13 @@ angular.module('admin', [
                 }
             }
         });
+        $stateProvider.state('admin.combination', {
+            url: "/goods",
+            views: {
+                '': {template: "<template-admin></template-admin>"},
+                'content': {template: "<combination></combination>"}
+            }
+        });
         $stateProvider.state('admin.usersAdmin', {
             url: "/users",
             views: {
