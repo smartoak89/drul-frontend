@@ -1,1 +1,27 @@
-<p>Combinations</p>
+
+<div class="combinations">
+    <table class="table table-grid">
+        <thead>
+        <tr>
+            <th>Название</th>
+            <th>Добавить значение</th>
+            <th>Изменить</th>
+            <th>Удалить</th>
+        </tr>
+        </thead>
+        <tbody ng-repeat="combination in $ctrl.combinations">
+            <tr ng-click="$ctrl.show(combination)">
+                <td>{{combination.name}}</td>
+                <td><button class="btn btn-default btn-sm">Новое значение</button></td>
+                <td><button class="btn btn-default btn-sm">Изменить</button></td>
+                <td><button class="btn btn-default btn-sm">Удалить</button></td>
+            </tr>
+            <tr ng-show="combination.show" ng-repeat="(key, value) in combination.value">
+                <td class="child">{{value}}</td>
+                <td></td>
+                <td></td>
+                <td><button class="btn btn-default btn-sm">Удалить</button></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
