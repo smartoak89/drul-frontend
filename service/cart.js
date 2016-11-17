@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('Cart', ['Httpquery', 'User', 'Currency', '$log', '$q', 'Product',function (Httpquery, User, Currency, $log, $q, Product) {
+    .service('Cart', ['Httpquery', 'User', 'Currency', '$log', '$q', 'Product', '$http',function (Httpquery, User, Currency, $log, $q, Product, $http) {
         var cart = [];
         return {
             cartList: null,
@@ -17,20 +17,29 @@ angular.module('app')
                 console.log(product);
                 console.log(User);
                 var self = this;
-                Httpquery.put({params1: 'deferred', params2: User.active.uuid, params3: product.uuid}, function (res) {
-                    console.log('Deferred res', res);
-                    if (!res.message){
-                        self.defList.push(product);
-                    }
-                }, function (err) {
-                    console.log('Deferred err', res);
-                })
+                $http({
+                    url: '/api/deferred/' + User.active.uuid + '/' + product.uuid,
+                    method: 'PUT'
+                }).then(function (res) {
+                    console.info('res', res);
+                }, function(err) {
+                    console.info('error', err);
+                });
+                // Httpquery.put({params1: 'deferred', params2: User.active.uuid, params3: product.uuid}, function (res) {
+                //     console.log('Deferred res', res);
+                //     if (!res.message){
+                //         self.defList.push(product);
+                //     }
+                // }, function (err) {
+                //     console.log('Deferred err', res);
+                // })
             },
             delFromDeferred: function(product) {
                 var self = this;
                 Httpquery.delete({params1:'deferred', params2: User.active.uuid, params3: product.uuid}, function(res){
                     console.log(res);
-                    self.defList.splice(_.findIndex(self.defList, {uuid: product.uuid}),1);
+                    _.remove(self.defList, {uuid: product.uuid});
+                    // self.defList.splice(_.findIndex(self.defList, {uuid: product.uuid}),1);
                 }, function(err){
                     console.log(err);
                 });
