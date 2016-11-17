@@ -46,7 +46,7 @@ angular.module('admin', [
             }
         });
         $stateProvider.state('admin.combination', {
-            url: "/goods",
+            url: "/combinations",
             views: {
                 '': {template: "<template-admin></template-admin>"},
                 'content': {template: "<combination></combination>"}

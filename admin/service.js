@@ -14,6 +14,7 @@ angular.module('admin')
             editprod: null,
             product: null,
             productIndex: null,
+            combinations: null,
             list: function () {
                 var self = this;
                 if (this.products == null) {
@@ -57,6 +58,15 @@ angular.module('admin')
                 }, function (err) {
                     callback(err);
                 })
+            },
+            combinationsList: function () {
+                var self = this;
+                if (self.combinations == null) {
+                    return HttpResource.query({params1: 'combinations'}, function (res) {
+                        self.combinations = res;
+                    })
+                }
+                return self.combinations;
             }
 
         }
