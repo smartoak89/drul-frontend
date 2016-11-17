@@ -1684,3 +1684,8 @@ uib-accordion .panel-body > a:hover{
 .sort{
     margin: 20px 0;
 }
+.btn_control{
+    display: flex;
+    flex-direction: row-reverse;
+    padding: 15px 30px 0 30px;
+}

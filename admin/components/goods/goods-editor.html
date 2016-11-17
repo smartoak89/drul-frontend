@@ -1,7 +1,7 @@
 <div ng-init="product = $ctrl.product" ng-switch="$ctrl.editMode">
     <div class="btn_control">
-        <button ng-click="$ctrl.edit()">Edit</button>
-        <button ng-click="$ctrl.save()">Save</button>
+        <button class="btn btn-default" ng-click="$ctrl.edit()">Edit</button>
+        <button class="btn btn-default" ng-click="$ctrl.save()">Save</button>
     </div>
     <div class="card" ng-switch-when="false">
         <div class="row">

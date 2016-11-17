@@ -14,8 +14,10 @@ angular.module('app')
                 return cart;
             },
             addToDeferred: function (product) {
+                console.log(product);
+                console.log(User);
                 var self = this;
-                Httpquery.save({params1: 'deferred', params2: product.uuid}, {user: User.active.uuid}, function (res) {
+                Httpquery.put({params1: 'deferred', params2: User.active.uuid, params3: product.uuid}, function (res) {
                     console.log('Deferred res', res);
                     if (!res.message){
                         self.defList.push(product);
@@ -26,8 +28,21 @@ angular.module('app')
             },
             delFromDeferred: function(product) {
                 var self = this;
-                //Httpquery.delete({params1:'deferred', params2: product.uuid})
-               self.defList.splice(_.findIndex(self.defList, {uuid: product.uuid}),1);
+                Httpquery.delete({params1:'deferred', params2: User.active.uuid, params3: product.uuid}, function(res){
+                    console.log(res);
+                    self.defList.splice(_.findIndex(self.defList, {uuid: product.uuid}),1);
+                }, function(err){
+                    console.log(err);
+                });
+            },
+            delFromCart: function(product) {
+                var self = this;
+                Httpquery.delete({params1:'cart', params2: User.active.uuid, params3: product.uuid}, function(res){
+                    console.log(res);
+                    self.cartList.splice(_.findIndex(self.cartList, {uuid: product.uuid}),1);
+                }, function(err){
+                    console.log(err);
+                });
             },
             list: function () {
                 var self = this;
@@ -68,17 +83,33 @@ angular.module('app')
                 return deffer.promise;
                 //TODO: user is not active
             },
-            save: function (id) {
+            save: function (product) {
                 var self = this;
-                var userID = User.active.uuid;
+                //var userID = User.active.uuid;
                 console.log('UserActive', User);
-                Httpquery.save({params1: 'cart', params2: id}, {user: userID}, function (res) {
+                Httpquery.put({params1: 'cart', params2: User.active.uuid, params3: product.uuid}, function (res) {
                     console.log('successAddToCart', res);
                         console.log(self.cartList);
                         self.cartList.push(res);
                 }, function (err) {
                     console.log('errAddToCart', err);
                 })
+            },
+            replace: function(product){
+                var self =this;
+                Httpquery.delete({params1:'deferred', params2: User.active.uuid, params3: product.uuid}, function(res){
+                    console.log(res);
+                    self.cartList.splice(_.findIndex(self.cartList, {uuid: product.uuid}),1);
+                    Httpquery.put({params1: 'cart', params2: User.active.uuid, params3: product.uuid}, function (res) {
+                        console.log('successAddToCart', res);
+                        console.log(self.cartList);
+                        self.cartList.push(res);
+                    }, function (err) {
+                        console.log('errAddToCart', err);
+                    })
+                }, function(err){
+                    console.log(err);
+                });
             },
             anyFunc: function(){
                 var self = this;

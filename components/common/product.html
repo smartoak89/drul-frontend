@@ -3,12 +3,7 @@
         <div class="goodsBlockHover">
             <div class="butWrappProd">
                 <div class="{{$ctrl.class}}" ng-mouseover="$ctrl.class='wrapW'; $ctrl.class1='s-11'" ng-mouseleave="$ctrl.class='wrapB'; $ctrl.class1='s-2'" ng-click="$event.preventDefault(); $event.stopPropagation(); $ctrl.cart.addToDeferred($ctrl.product); $ctrl.product.def = !$ctrl.product.def" modal="doneDef"><i class="{{$ctrl.class1}}"></i></div>
-                <div class="{{$ctrl.class3}}" ng-click="$event.preventDefault(); $event.stopPropagation();" ng-mouseover="$ctrl.class3='wrapW'; $ctrl.class2='s-12'" ng-mouseleave="$ctrl.class3='wrapB'; $ctrl.class2='s-3'" modal="doneCart"><i class="{{$ctrl.class2}}"></i></div>
-                <!--<div class="wrapW" ng-show="$ctrl.product.def" ng-click="$ctrl.cart.delFromDeferred($ctrl.product);$ctrl.product.def = !$ctrl.product.def"><i class="s-11"></i></div>-->
-                <!--<div class="s-11" ng-click="$ctrl.addToCart()" modal="done"></div>-->
-                <!--<div class="wrapB" ng-hide="$ctrl.product.def" ng-click="$ctrl.cart.addToDeferred($ctrl.product); $ctrl.product.def = !$ctrl.product.def"><i class="s-2"></i></div>-->
-                <!--<div class="wrapW" ng-show="$ctrl.product.def" ng-click="$ctrl.cart.delFromDeferred($ctrl.product);$ctrl.product.def = !$ctrl.product.def"><i class="s-11"></i></div>-->
-                <!--<button type="button" class="btn btn-drul" modal="product">подробнее</button>-->
+                <div class="{{$ctrl.class3}}" ng-click="$event.preventDefault(); $event.stopPropagation(); $ctrl.cart.save($ctrl.product)" ng-mouseover="$ctrl.class3='wrapW'; $ctrl.class2='s-12'" ng-mouseleave="$ctrl.class3='wrapB'; $ctrl.class2='s-3'" modal="doneCart"><i class="{{$ctrl.class2}}"></i></div>
             </div>
         </div>
         <div class="marker red">sale</div>

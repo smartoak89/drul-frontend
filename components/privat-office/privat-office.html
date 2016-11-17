@@ -65,7 +65,7 @@
                                     </div>
                                 </td>
                                 <td>
-                                    <div class="s-15"></div>
+                                    <div class="s-15" ng-click="$ctrl.cart.delFromCart(product)"></div>
                                 </td>
                             </tr>
                             <tr ng-repeat-end="product in $ctrl.cart.cartList">
@@ -115,13 +115,13 @@
                                 <div class="namePrice">
                                     <span>1300 грн</span>
                                     <strike>2700 грн</strike>
-                                    <button type="button" class="btn btn-drul">переместить в
+                                    <button type="button" ng-click="$ctrl.cart.replace(defProd);" class="btn btn-drul">переместить в
                                         <div class="s-3"></div>
                                     </button>
                                 </div>
                             </td>
                             <td>
-                                <div class="s-15"></div>
+                                <div class="s-15" ng-click="$ctrl.cart.delFromDeferred(defProd)"></div>
                             </td>
                         </tr>
                         <tr ng-repeat-end="defProd in $ctrl.cart.defList">
