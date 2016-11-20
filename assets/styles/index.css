@@ -1689,3 +1689,46 @@ uib-accordion .panel-body > a:hover{
     flex-direction: row-reverse;
     padding: 15px 30px 0 30px;
 }
+.prodEdit{
+
+}
+.file_upload{
+    position: relative;
+    overflow: hidden;
+    font-size: 1em;
+    line-height: 2em;
+    width: 16em;
+    cursor: pointer
+}
+.file_upload > button{
+     float: right;
+     width: 16em;
+     height: 100%;
+     z-index: 100
+ }
+.file_upload:hover > button{
+    color: #333;
+    background-color: #e6e6e6;
+    border-color: #adadad;
+}
+.file_upload > div{
+    padding-left: 1em
+}
+@media only screen and ( max-width: 500px ){
+    .file_upload > div{
+        display: none
+    }
+    .file_upload > button{
+        width: 100%
+    }
+}
+.file_upload input[type=file]{
+    position: absolute;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    cursor: pointer;
+    padding-left: 16em;
+}
