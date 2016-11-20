@@ -109,18 +109,23 @@ angular.module('admin')
         }
     }])
     // Categories
-    .factory('Categories',['HttpResource', function (HttpResource) {
+    .factory('Categories',['HttpResource', '$q', function (HttpResource, $q) {
         return {
             categories: null,
             list: function () {
                 var self = this;
+                var deffer = $q.defer();
                 if (self.categories == null) {
-                    return HttpResource.query({params1: 'categories'}, function (res) {
+                    HttpResource.query({params1: 'categories'}, function (res) {
+                        deffer.resolve(res);
                         self.categories = res;
                         console.log(self.categories);
+                    }, function (err) {
+                        console.log(err);
+                        deffer.reject(err);
                     })
                 }
-                return self.categories;
+                return deffer.promise;
             },
             curCategory: null,
             curIndex: null,

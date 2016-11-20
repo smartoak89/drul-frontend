@@ -4,11 +4,11 @@ angular.module('app')
         controller: ['Product', 'Cart', function(Product, Cart) {
             var self = this;
 
+
             this.$onInit = function () {
                 Cart.anyFunc();
                 self.prod = Product;
 
             };
-
         }]
     });

@@ -1,7 +1,9 @@
 angular.module('admin')
-    .controller('addGood',['$uibModalInstance', '$scope', 'Goods', 'Categories', 'HttpResource', '$location',
-        function($uibModalInstance, $scope, Goods, Categories, HttpResource, $location){
-            $scope.categories = Categories.list();
+    .controller('addGood',['$uibModalInstance', '$scope', 'Goods', 'Categories', 'HttpResource', '$location', '$q',
+        function($uibModalInstance, $scope, Goods, Categories, HttpResource, $location, $q){
+            Categories.list().then(function(){
+                $scope.categories = Categories.categories;
+            });
             $scope.newProduct = {};
 
             $scope.addProduct = function(){
