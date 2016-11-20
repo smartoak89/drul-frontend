@@ -17,14 +17,22 @@ angular.module('admin')
     })
     .component('goodsEditor', {
         templateUrl: "admin/components/goods/goods-editor.html",
-        controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', function(Goods, FileUploader, Conf, File, Categories, $state) {
+        controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', 'Stocks',
+            function(Goods, FileUploader, Conf, File, Categories, $state, Stocks) {
             var self = this;
             this.categories = Categories.list();
+            this.stocks = Stocks.list();
             this.editMode = true;
             this.product = Goods.editprod;
             this.preview = this.product.photo || '';
             this.range = [35,36,37,38,39,40,41,42,43,44,45,46];
             this.selected = _.find(this.categories, {slug: this.product.category});
+                if(!this.selected){
+                    this.selected = _.find(this.categories, {'children': {'link': this.product.category}});
+                    console.log(this.product.category);
+                    console.log(this.categories[1].children.slug);
+                    //console.log(_(this.categories).thru(function(coll) {return _.union(coll, _.map(coll, 'children'))}).flatten());
+                }
             this.$onInit = function () {
                 getGallery ();
                 if (self.product && !self.product.article) {
