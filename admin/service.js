@@ -88,6 +88,23 @@ angular.module('admin')
                     console.info('Combination create error => ', err);
                     callback(err);
                 })
+            },
+            updateComb: function (comb, index, callback) {
+                var self = this;
+                console.log('index', index);
+                HttpResource.put({params1: 'combination', params2: comb.uuid}, comb, function (res) {
+                    self.combinations.splice(index, 1, comb);
+                    callback();
+                }, function (err) {
+                    console.info('Combination create error => ', err);
+                    callback(err);
+                })
+            },
+            removeCombChild: function (comb, indexChild, callback) {
+                var self = this;
+                var parentIndex = _.indexOf(self.combinations, _.find(self.combinations, {uuid: comb.uuid}));
+                comb.value.splice(indexChild, 1);
+                self.updateComb(comb, parentIndex, callback);
             }
 
         }

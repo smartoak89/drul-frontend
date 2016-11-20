@@ -4,19 +4,42 @@ angular.module('admin')
         controller: ['Goods', function(Goods) {
             var self = this;
             this.combinations = Goods.listComb();
-            this.show = function (combination) {
-                _.each(self.combinations, function (i) {
-                    if (i == combination) {
-                        return combination.show = !combination.show;
-                    }
-                    return i.show = false;
-                });
+            this.show = function (comb) {
+                comb.show = !comb.show;
+                // _.each(self.combinations, function (i) {
+                //     if (i == combination) {
+                //         return combination.show = !combination.show;
+                //     }
+                //     return i.show = false;
+                // });
             };
             this.remove = function (comb) {
                 console.info('Combination remove => ', comb);
                 Goods.removeComb(comb, function (err) {
-                    console.error('Remove Combination => ', err);
+                    if (err) return showError(err);
                 })
+            };
+            this.removeChild = function (comb, index) {
+                console.info('Remove child => ', index);
+                Goods.removeCombChild(comb, index, function (err) {
+                    if (err) return showError(err);
+                })
+            };
+            this.changeComb = function (comb, index) {
+                if (comb.edit) {
+                    delete comb.edit;
+                    Goods.updateComb(comb, index, function (err) {
+                        if (err) {
+                            return showError(err)
+                        }
+                        return comb.edit = false;
+                    });
+                }
+                comb.edit = true;
+            };
+
+            function showError (err) {
+                console.error('Response error', err)
             }
 
         }]

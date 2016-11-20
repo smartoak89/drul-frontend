@@ -1,0 +1,23 @@
+<style>
+    .add_combination_value textarea {
+        max-width: 100%;
+    }
+</style>
+<div class="modal-content add_combination_value">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modalBasicLabel">Добавление значений для комбинации "{{ new.name }}"</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="name">Название значений</label>
+            <textarea class="form-control" placeholder="{{placeholder}}" id="name" autocomplete="off" ng-model="new.newValue"></textarea>
+        </div>
+    </div>
+    <div class="callout callout-danger text-center" ng-show="error">
+        {{error}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" ng-click="$dismiss()" class="btn btn-default" data-dismiss="modal">Отменить</button>
+        <button type="button" ng-click="create()" class="btn btn-primary">Создать</button>
+    </div>
+</div>

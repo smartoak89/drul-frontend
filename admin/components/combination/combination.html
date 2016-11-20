@@ -16,7 +16,8 @@
     </div>
 </div>
 <div class="combinations row">
-    <table class="table table-grid" ng-show="$ctrl.combinations.length > 0">
+    <div class="col-md-12">
+        <table class="table table-grid" ng-show="$ctrl.combinations.length > 0">
         <thead>
         <tr>
             <th>Название</th>
@@ -27,16 +28,26 @@
         </thead>
         <tbody ng-repeat="combination in $ctrl.combinations">
             <tr>
-                <td class="comb_name" ng-click="$ctrl.show(combination)">
-                    <p><i ng-class="combination.show ? 'fa fa-minus' : 'fa fa-plus'"></i> {{combination.name}}</p>
+                <td class="comb_name">
+                    <p ng-hide="combination.edit" ng-click="$ctrl.show(combination)"><i ng-class="combination.show ? 'fa fa-minus' : 'fa fa-plus'"></i> {{combination.name}}</p>
+
+                    <p ng-show="combination.edit">
+                        <input type="text" ng-model="combination.name">
+                    </p>
                 </td>
-                <td><button class="btn btn-default btn-sm">Новое значение</button></td>
-                <td><button class="btn btn-default btn-sm">Изменить</button></td>
+                <td>
+                    <button class="btn btn-default btn-sm" modal-admin="combination_add_value">Добавить значение</button>
+                </td>
+                <td>
+                    <button class="btn btn-default btn-sm" ng-click="$ctrl.changeComb(combination, $index)">
+                        {{combination.edit ? 'Сохранить' : 'Изменить'}}
+                    </button>
+                </td>
                 <td>
                     <button class="btn btn-default btn-sm" ng-click="$ctrl.remove(combination)">Удалить</button>
                 </td>
             </tr>
-            <tr ng-show="combination.show" ng-repeat="(key, value) in combination.value">
+            <tr ng-show="combination.show && combination.value.length > 0" ng-repeat="(key, value) in combination.value track by $index">
                 <td class="child">
                     <p>
                         <i class="fa fa-file-o"></i> {{value}}
@@ -45,9 +56,18 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <button class="btn btn-default btn-sm">Удалить</button>
+                    <button class="btn btn-default btn-sm" ng-click="$ctrl.removeChild(combination, $index)">Удалить</button>
                 </td>
+            </tr>
+            <tr ng-show="combination.show && combination.value.length == 0">
+                <td class="child">
+                    <p>Пусто...</p>
+                </td>
+                <td></td>
+                <td></td>
+                <td></td>
             </tr>
         </tbody>
     </table>
+    </div>
 </div>
