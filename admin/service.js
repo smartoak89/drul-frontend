@@ -59,7 +59,7 @@ angular.module('admin')
                     callback(err);
                 })
             },
-            combinationsList: function () {
+            listComb: function () {
                 var self = this;
                 if (self.combinations == null) {
                     return HttpResource.query({params1: 'combinations'}, function (res) {
@@ -67,6 +67,26 @@ angular.module('admin')
                     })
                 }
                 return self.combinations;
+            },
+            removeComb: function (comb, callback) {
+                var self = this;
+                HttpResource.delete({params1: 'combination', params2: comb.uuid}, function (res) {
+                    console.info('Combination deleted => ', res);
+                    _.remove(self.combinations, comb);
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            addComb: function (comb, callback) {
+                var self = this;
+                HttpResource.save({params1: 'combination'}, comb, function (res) {
+                    console.info('Combination created=> ', res);
+                    callback();
+                    self.combinations.push(res);
+                }, function (err) {
+                    console.info('Combination create error => ', err);
+                    callback(err);
+                })
             }
 
         }
