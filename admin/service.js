@@ -41,6 +41,7 @@ angular.module('admin')
             },
             update: function (product, callback) {
                 HttpResource.put({params1: 'product', params2: product.uuid}, product, function (res) {
+                    //$location.url('/admin/goods/');
                     callback(null, res)
                 }, function (err) {
                     callback(err);
