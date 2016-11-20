@@ -1,11 +1,13 @@
 angular.module('app')
     .component('filterPage', {
         templateUrl: "components/filter-page/filter-page.html",
-        controller: ['Product', 'Cart', function(Product, Cart) {
+        controller: ['Product', '$location', function(Product, $location) {
             var self = this;
             this.$onInit = function () {
-                Cart.anyFunc();
-                self.prod = Product;
+                var slug = $location.$$path.split('/').pop();
+                Product.getList({category: slug}).then(function (res) {
+                    self.prod = Product;
+                });
 
             };
             self.prod = Product;

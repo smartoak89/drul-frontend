@@ -6,6 +6,12 @@
     .combinations .comb_name {
         cursor: pointer;
     }
+    .combinations .fa {
+        color: #3877af;
+    }
+    .combinations .fa:hover {
+        color: #23527C;
+    }
 
 </style>
 <div class="row">
@@ -50,7 +56,7 @@
             <tr ng-show="combination.show && combination.value.length > 0" ng-repeat="(key, value) in combination.value track by $index">
                 <td class="child">
                     <p>
-                        <i class="fa fa-file-o"></i> {{value}}
+                        <i class="fa fa-file"></i> {{value}}
                     </p>
                 </td>
                 <td></td>

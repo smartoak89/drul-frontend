@@ -1,5 +1,6 @@
 angular.module('app')
-    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', function (Httpquery, $http, $cookies, $q) {
+    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', 'Cart',
+        function (Httpquery, $http, $cookies, $q, Cart) {
         function getCurrentCourse () {
             var url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
             return $http.get(url).then(function (res) {
@@ -8,24 +9,43 @@ angular.module('app')
         }
         return {
             products: null,
-            getList: function () {
+            getList: function (criteria) {
                 var self = this;
+                var request = {params1: 'products'};
+
+                for (var key in criteria) {
+                    request[key] = criteria[key];
+                }
+                console.log('Request', request);
+
                 var deffer = $q.defer();
-                if (this.products == null) {
-                    Httpquery.query({params1: 'products'}, function (res) {
+                // if (this.products == null) {
+                    Httpquery.query(request, function (res) {
                         // var currency = $cookies.get('currency');
                         // if (currency != 'UAH') {
                         //     self.changeCurrency(currency);
                         // }
-                        deffer.resolve(res);
+
                         self.products = res;
+                        Cart.getCartAndDeferred(self.products);
+                        deffer.resolve(self.products);
                     }, function (err) {
                         console.log(err);
                         deffer.reject(err);
                     })
-                }
+                // }
                 return deffer.promise;
                 // return self.products;
+            },
+            getAll: function(){
+                var self = this;
+                $q.all([Cart.listDef(), Cart.list(), self.getList()]).then(function(){
+                    _.forEach(self.products, function(elem){
+                        if(_.find(Cart.defList, {uuid: elem.uuid})){
+                            elem.def = true;
+                        }
+                    });
+                })
             },
             changeCurrency: function (newC) {
                 var self = this;

@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('Cart', ['Httpquery', 'User', 'Currency', '$log', '$q', 'Product', '$http',function (Httpquery, User, Currency, $log, $q, Product, $http) {
+    .service('Cart', ['Httpquery', 'User', 'Currency', '$log', '$q', '$http',function (Httpquery, User, Currency, $log, $q, $http) {
         var cart = [];
         return {
             cartList: null,
@@ -120,15 +120,27 @@ angular.module('app')
                     console.log(err);
                 });
             },
-            anyFunc: function(){
+            getCartAndDeferred: function (products) {
                 var self = this;
-                $q.all([self.listDef(), self.list(), Product.getList()]).then(function(){
-                    _.forEach(Product.products, function(elem){
+
+
+                if (self.defList && self.cartList) {
+                    return find();
+                }
+
+                $q.all([self.listDef(), self.list()]).then(function(){
+                    console.log('stop')
+                    find();
+                });
+
+                function find () {
+                    console.log('GetCartAndDeferred', products);
+                    _.forEach(products, function(elem){
                         if(_.find(self.defList, {uuid: elem.uuid})){
                             elem.def = true;
                         }
                     });
-                })
+                };
             }
         };
 

@@ -35,6 +35,9 @@ angular.module('admin')
                         return comb.edit = false;
                     });
                 }
+                angular.forEach(self.combinations, function (item) {
+                    item.edit = false;
+                });
                 comb.edit = true;
             };
 
