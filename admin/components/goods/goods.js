@@ -1,7 +1,7 @@
 angular.module('admin')
     .component('goods', {
         templateUrl: "admin/components/goods/goods.html",
-        controller: ['Goods', '$q',function(Goods, $q) {
+        controller: ['Goods', '$q', '$location', function(Goods, $q, $location) {
             var self = this;
             this.products = Goods.list();
             console.log('Products', this.products);
@@ -17,14 +17,14 @@ angular.module('admin')
     })
     .component('goodsEditor', {
         templateUrl: "admin/components/goods/goods-editor.html",
-        controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', function(Goods, FileUploader, Conf, File, Categories) {
+        controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', function(Goods, FileUploader, Conf, File, Categories, $state) {
             var self = this;
             this.categories = Categories.list();
-            this.editMode = false;
+            this.editMode = true;
             this.product = Goods.editprod;
             this.preview = this.product.photo || '';
             this.range = [35,36,37,38,39,40,41,42,43,44,45,46];
-
+            this.selected = _.find(this.categories, {slug: this.product.category});
             this.$onInit = function () {
                 getGallery ();
                 if (self.product && !self.product.article) {
@@ -80,6 +80,7 @@ angular.module('admin')
                         return uploader.uploadAll();
                     }
                     console.info('Update product => ', res);
+                    $state.go('admin.goodsAdmin');
                     self.editMode = false;
                 });
 
