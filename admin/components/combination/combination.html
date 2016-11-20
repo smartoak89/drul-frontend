@@ -1,6 +1,22 @@
+<style>
+    .combinations td.child {
+        padding-left:25px;
+    }
 
-<div class="combinations">
-    <table class="table table-grid">
+    .combinations .comb_name {
+        cursor: pointer;
+    }
+
+</style>
+<div class="row">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="butWrapp pull-right">
+            <button modal-admin="combination_add" class="btn btn-default">Добавить комбинацию</button>
+        </div>
+    </div>
+</div>
+<div class="combinations row">
+    <table class="table table-grid" ng-show="$ctrl.combinations.length > 0">
         <thead>
         <tr>
             <th>Название</th>
@@ -10,17 +26,27 @@
         </tr>
         </thead>
         <tbody ng-repeat="combination in $ctrl.combinations">
-            <tr ng-click="$ctrl.show(combination)">
-                <td>{{combination.name}}</td>
+            <tr>
+                <td class="comb_name" ng-click="$ctrl.show(combination)">
+                    <p><i ng-class="combination.show ? 'fa fa-minus' : 'fa fa-plus'"></i> {{combination.name}}</p>
+                </td>
                 <td><button class="btn btn-default btn-sm">Новое значение</button></td>
                 <td><button class="btn btn-default btn-sm">Изменить</button></td>
-                <td><button class="btn btn-default btn-sm">Удалить</button></td>
+                <td>
+                    <button class="btn btn-default btn-sm" ng-click="$ctrl.remove(combination)">Удалить</button>
+                </td>
             </tr>
             <tr ng-show="combination.show" ng-repeat="(key, value) in combination.value">
-                <td class="child">{{value}}</td>
+                <td class="child">
+                    <p>
+                        <i class="fa fa-file-o"></i> {{value}}
+                    </p>
+                </td>
                 <td></td>
                 <td></td>
-                <td><button class="btn btn-default btn-sm">Удалить</button></td>
+                <td>
+                    <button class="btn btn-default btn-sm">Удалить</button>
+                </td>
             </tr>
         </tbody>
     </table>

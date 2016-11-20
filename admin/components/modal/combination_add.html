@@ -1,0 +1,18 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modalBasicLabel">Добавление новой комбинации</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="name">Название</label>
+            <input class="form-control" placeholder="Название комбинации" id="name" autocomplete="off" ng-model="new.name">
+        </div>
+    </div>
+    <div class="callout callout-danger text-center" ng-show="error">
+        {{error}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" ng-click="$dismiss()" class="btn btn-default" data-dismiss="modal">Отменить</button>
+        <button type="button" ng-click="create()" class="btn btn-primary">Создать</button>
+    </div>
+</div>
