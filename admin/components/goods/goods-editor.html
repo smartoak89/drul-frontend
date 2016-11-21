@@ -119,19 +119,6 @@
                         </tr>
                     </thead>
                     <tbody>
-                        <!--<tr>-->
-                            <!--<td width="50%">-->
-                                <!--<strong class="name_goods">{{product.photo.name}}</strong>-->
-                                <!--<img src="{{'/api/file/' + product.photo.uuid}}" alt="" width="120" height="80" style="object-fit: cover;">-->
-                            <!--</td>-->
-                            <!--<td nowrap class="text-center">-->
-                                <!--<input type="radio" style="margin: 0 auto; display: block;" id="main" name="main" checked/>-->
-                            <!--</td>-->
-                            <!--<td nowrap>-->
-                                <!--<button type="button" class="btn btn-danger btn-xs" ng-click="$ctrl.remove(product.photo)">-->
-                                    <!--<span class="glyphicon glyphicon-trash"></span></button>-->
-                            <!--</td>-->
-                        <!--</tr>-->
                         <tr ng-repeat="photo in product.gallery">
                             <td width="50%">
                                 <strong class="name_goods">{{photo.name}}</strong>
@@ -171,21 +158,28 @@
                         </div>
                         <div class="form-group">
                             <label>Цена</label>
-                            <input class="form-control" type="text" placeholder="Цена" ng-model="product.price">
+                            <input class="form-control" type="text" placeholder="Цена" ng-model="product.price" ng-change="product.stock != 'stock.uuid'?$ctrl.stockFun(product.stock.percent, product.price):''">
                         </div>
-                        <div class="form-group">
-                            <label>Цена</label>
-                            <select class="form-control" id="inputMultiple" multiple="multiple" ng-model="product.size">
-                                <option ng-repeat="size in $ctrl.range">{{size}}</option>
-                            </select>
-                            <small>Зажмите кнопку 'Ctrl' для выбора нескольких пунктов</small>
+                        <div class="form-group" ng-if="product.stock != 'stock.uuid'">
+                            <label>Цена со скидкой</label>
+                            <div>{{$ctrl.stockCost}}</div>
                         </div>
                         <div class="form-group">
                             <label>Акция</label>
-                            <select class="form-control" ng-model="product.stock">
-                                <option ng-repeat="stock in $ctrl.stocks" value="stock.uuid">{{stock.name}}</option>
+                            <select class="form-control" ng-model="product.stock" ng-options="stock.name for stock in $ctrl.stocks" ng-change="$ctrl.stockFun(product.stock.percent, product.price)">
+                                <!--<option ng-repeat="stock in $ctrl.stocks" value="{{stock}}">{{stock}}</option>-->
                             </select>
                         </div>
+                        <div class="form-group" ng-repeat="combo in $ctrl.combinations">
+                            <label>{{combo.name}} <i class="fa viewCombo" ng-class="pror[$index]?'fa-minus':'fa-plus'" ng-click="pror[$index] = !pror[$index]; $ctrl.actionCombo(pror[$index], combo)" aria-hidden="true"></i></label>
+                            <div ng-if="pror[$index]">
+                                <select  class="form-control" id="inputMultiple" multiple="multiple" ng-model="product.combo[combo.slug].values" ng-change="$ctrl.view(product)">
+                                    <option ng-repeat="value in combo.value">{{value}}</option>
+                                </select>
+                                <small>Зажмите кнопку 'Ctrl' для выбора нескольких пунктов</small>
+                            </div>
+                        </div>
+
                     </div>
                 </div>
             </div>

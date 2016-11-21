@@ -17,13 +17,15 @@ angular.module('admin')
     })
     .component('goodsEditor', {
         templateUrl: "admin/components/goods/goods-editor.html",
-        controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', 'Stocks',
-            function(Goods, FileUploader, Conf, File, Categories, $state, Stocks) {
+        controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', 'Stocks', '$q',
+            function(Goods, FileUploader, Conf, File, Categories, $state, Stocks, $q) {
             var self = this;
-
-            Categories.list().then(function(){
+            self.categories = Categories.categories;
+            self.combinations = Goods.combinations;
+            $q.all([Categories.list(), Goods.listComb()]).then(function(){
                 self.categories = Categories.categories;
-                console.log(self.categories);
+                self.combinations = Goods.combinations;
+                console.log(self.combinations);
             });
             this.stocks = Stocks.list();
             this.editMode = true;
@@ -31,9 +33,6 @@ angular.module('admin')
             this.preview = this.product.photo || '';
             this.range = [35,36,37,38,39,40,41,42,43,44,45,46];
             this.selected = _.find(this.categories, {slug: this.product.category});
-
-                    console.log(this.selected);
-                    console.log(this.categories);
                     //console.log(this.categories[1].children[0]);
                     //console.log(_(this.categories).thru(function(coll) {return _.union(coll, _.map(coll, 'children'))}).flatten())
 
@@ -49,6 +48,10 @@ angular.module('admin')
                 Goods.getGallery(self.product, function (err) {
                     if (err) console.trace('error', err);
                 });
+            }
+
+                this.stockFun = function (per, price){
+                self.stockCost = Goods.countStock(per, price);
             }
 
             this.remove = function (file) {
@@ -101,6 +104,19 @@ angular.module('admin')
                 getGallery();
                 self.editMode = false;
             };
+
+            this.view = function(prop){
+                console.log(prop)
+            };
+
+            this.actionCombo = function(prop, comb){
+                if(prop){
+                    self.product.combo[comb.slug] = {name: comb.name, uuid: comb.uuid};
+                }else{
+                    delete self.product.combo[comb.slug];
+                }
+            };
+
             this.chooseMain = function (index) {
                 angular.forEach(uploader.queue, function (i, ind) {
                     i.alias = (ind === index) ? 'main' : 'gallery';

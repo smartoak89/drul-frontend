@@ -3,7 +3,11 @@ angular.module('admin')
         templateUrl: "admin/components/combination/combination.html",
         controller: ['Goods', function(Goods) {
             var self = this;
-            this.combinations = Goods.listComb();
+            self.combinations = Goods.combinations;
+            Goods.listComb().then(function(){
+                self.combinations = Goods.combinations;
+                console.log(self.combinations);
+            });
             this.show = function (comb) {
                 comb.show = !comb.show;
                 // _.each(self.combinations, function (i) {
