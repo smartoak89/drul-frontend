@@ -154,7 +154,7 @@ angular.module('admin')
         }
     }])
     // Stocks
-    .factory('Stocks', ['HttpResource', function (HttpResource) {
+    .factory('Stocks', ['HttpResource','$q', function (HttpResource, $q) {
         return {
             stocksList: null,
             dateExpires: null,
@@ -170,12 +170,17 @@ angular.module('admin')
             },
             list: function () {
                 var self = this;
+                var deffer = $q.defer();
                 if (self.stocksList == null) {
-                    return HttpResource.query({params1: 'stocks'}, function (res) {
+                    HttpResource.query({params1: 'stocks'}, function (res) {
+                        deffer.resolve(res);
                         self.stocksList = res;
+                    }, function (err) {
+                        console.log(err);
+                        deffer.reject(err);
                     })
                 }
-                return self.stocksList;
+                return deffer.promise;
             },
             remove: function (id, callback) {
                 var self = this;

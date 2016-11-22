@@ -22,12 +22,19 @@ angular.module('admin')
             var self = this;
             self.categories = Categories.categories;
             self.combinations = Goods.combinations;
-            $q.all([Categories.list(), Goods.listComb()]).then(function(){
+            self.stocks = Stocks.stocksList;
+            $q.all([Categories.list(), Goods.listComb(), Stocks.list()]).then(function(){
                 self.categories = Categories.categories;
                 self.combinations = Goods.combinations;
-                console.log(self.combinations);
+                self.stocks = Stocks.stocksList;
+                if(self.product.stock != null){
+                    self.curStock = _.find(self.stocks, {uuid: self.product.stock});
+                    self.stockFun(self.curStock.percent, self.product.price);
+
+                }else{
+                    self.curStock = null;
+                }
             });
-            this.stocks = Stocks.list();
             this.editMode = true;
             this.product = Goods.editprod;
             this.preview = this.product.photo || '';
@@ -50,9 +57,7 @@ angular.module('admin')
                 });
             }
 
-                this.stockFun = function (per, price){
-                self.stockCost = Goods.countStock(per, price);
-            }
+
 
             this.remove = function (file) {
                 File.remove(file.uuid, function (err, res) {
@@ -65,7 +70,9 @@ angular.module('admin')
                     _.remove(self.product.gallery, file);
                 })
             };
-
+            this.stockFun = function (per, price){
+                self.stockCost = Goods.countStock(per, price);
+            };
             this.addCategToProduct = function (category) {
                 this.product.category = category.slug;
                 // self.categArticle.article = category.article;
@@ -84,10 +91,12 @@ angular.module('admin')
             };
 
             this.edit = function () {
-                self.editMode = true;
+                self.editMode = !self.editMode;
             };
 
             this.save = function () {
+                console.log(self.curStock);
+                self.product.stock = self.curStock.uuid;
                 Goods.update(self.product, function (err, res) {
                     if (err) return self.error = err;
 
@@ -109,14 +118,22 @@ angular.module('admin')
                 console.log(prop)
             };
 
-            this.actionCombo = function(prop, comb){
+            this.actionCombo = function(prop, comb, ind){
                 if(prop){
-                    self.product.combo[comb.slug] = {name: comb.name, uuid: comb.uuid};
+                    self.product.combo[ind] = {name: comb.name};
                 }else{
-                    delete self.product.combo[comb.slug];
+                    delete self.product.combo[ind];
                 }
             };
-
+            this.addSub = function(n,v){
+                if (n && v ){
+                    if (!self.product.sublines){
+                        self.product.sublines = [];
+                    }
+                    self.product.sublines.push({name: n, value: v})
+                    console.log(self.product);
+                }
+            };
             this.chooseMain = function (index) {
                 angular.forEach(uploader.queue, function (i, ind) {
                     i.alias = (ind === index) ? 'main' : 'gallery';

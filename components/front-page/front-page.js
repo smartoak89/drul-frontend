@@ -1,13 +1,14 @@
 angular.module('app')
     .component('frontContent', {
         templateUrl: "components/front-page/front-page.html",
-        controller: ['Product', function(Product) {
+        controller: ['Product', '$q', function(Product, $q) {
             var self = this;
 
 
             this.$onInit = function () {
-                Product.getList().then(function (res) {
+                $q.all([Product.getList(), Product.listStocks()]).then(function (res) {
                     self.prod = Product;
+                    console.log(self.prod)
                 });
             };
         }]
