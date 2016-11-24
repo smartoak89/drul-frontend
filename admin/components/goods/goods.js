@@ -17,23 +17,29 @@ angular.module('admin')
     })
     .component('goodsEditor', {
         templateUrl: "admin/components/goods/goods-editor.html",
-        controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', 'Stocks',
-            function(Goods, FileUploader, Conf, File, Categories, $state, Stocks) {
+        controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', 'Stocks', '$q',
+            function(Goods, FileUploader, Conf, File, Categories, $state, Stocks, $q) {
             var self = this;
-
-            Categories.list().then(function(){
+            self.categories = Categories.categories;
+            self.combinations = Goods.combinations;
+            self.stocks = Stocks.stocksList;
+            $q.all([Categories.list(), Goods.listComb(), Stocks.list()]).then(function(){
                 self.categories = Categories.categories;
-                console.log(self.categories);
+                self.combinations = Goods.combinations;
+                self.stocks = Stocks.stocksList;
+                if(self.product.stock != null){
+                    self.curStock = _.find(self.stocks, {uuid: self.product.stock});
+                    self.stockFun(self.curStock.percent, self.product.price);
+
+                }else{
+                    self.curStock = null;
+                }
             });
-            this.stocks = Stocks.list();
             this.editMode = true;
             this.product = Goods.editprod;
             this.preview = this.product.photo || '';
             this.range = [35,36,37,38,39,40,41,42,43,44,45,46];
             this.selected = _.find(this.categories, {slug: this.product.category});
-
-                    console.log(this.selected);
-                    console.log(this.categories);
                     //console.log(this.categories[1].children[0]);
                     //console.log(_(this.categories).thru(function(coll) {return _.union(coll, _.map(coll, 'children'))}).flatten())
 
@@ -51,6 +57,8 @@ angular.module('admin')
                 });
             }
 
+
+
             this.remove = function (file) {
                 File.remove(file.uuid, function (err, res) {
                     if (err) return self.error = err;
@@ -62,7 +70,9 @@ angular.module('admin')
                     _.remove(self.product.gallery, file);
                 })
             };
-
+            this.stockFun = function (per, price){
+                self.stockCost = Goods.countStock(per, price);
+            };
             this.addCategToProduct = function (category) {
                 this.product.category = category.slug;
                 // self.categArticle.article = category.article;
@@ -81,10 +91,12 @@ angular.module('admin')
             };
 
             this.edit = function () {
-                self.editMode = true;
+                self.editMode = !self.editMode;
             };
 
             this.save = function () {
+                console.log(self.curStock);
+                self.product.stock = self.curStock.uuid;
                 Goods.update(self.product, function (err, res) {
                     if (err) return self.error = err;
 
@@ -100,6 +112,27 @@ angular.module('admin')
             uploader.onCompleteAll = function() {
                 getGallery();
                 self.editMode = false;
+            };
+
+            this.view = function(prop){
+                console.log(prop)
+            };
+
+            this.actionCombo = function(prop, comb, ind){
+                if(prop){
+                    self.product.combo[ind] = {name: comb.name};
+                }else{
+                    delete self.product.combo[ind];
+                }
+            };
+            this.addSub = function(n,v){
+                if (n && v ){
+                    if (!self.product.sublines){
+                        self.product.sublines = [];
+                    }
+                    self.product.sublines.push({name: n, value: v})
+                    console.log(self.product);
+                }
             };
             this.chooseMain = function (index) {
                 angular.forEach(uploader.queue, function (i, ind) {

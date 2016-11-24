@@ -6,13 +6,15 @@
                 <div class="{{$ctrl.class3}}" ng-click="$event.preventDefault(); $event.stopPropagation(); $ctrl.cart.save($ctrl.product)" ng-mouseover="$ctrl.class3='wrapW'; $ctrl.class2='s-12'" ng-mouseleave="$ctrl.class3='wrapB'; $ctrl.class2='s-3'" modal="doneCart"><i class="{{$ctrl.class2}}"></i></div>
             </div>
         </div>
-        <div class="marker red">sale</div>
-            <img ng-src="{{'/api/file/' + $ctrl.product.photo.uuid}}" class="img-responsive cover"/>
+        <div class="marker red" ng-if="$ctrl.product.stock">sale</div>
+            <img ng-src="{{'/api/file/' + $ctrl.preview.uuid}}" class="img-responsive cover"/>
             <div class="namePrice">
-                <div>{{$ctrl.product.article}}</div>
+                <div>Артикул {{$ctrl.product.article}}</div>
                 <p>{{$ctrl.product.name}}</p>
-                <hr class="line"/><span>{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
-                <strike ng-show="$ctrl.product.old_price">{{$ctrl.product.old_price + " " + $ctrl.product.currency}}</strike>
+                <hr class="line"/>
+                <span ng-if="$ctrl.curStock">{{$ctrl.stockCost + " " + $ctrl.product.currency}}</span>
+                <span ng-if="!$ctrl.curStock">{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
+                <strike ng-show="$ctrl.curStock">{{$ctrl.product.price + " " + $ctrl.product.currency}}</strike>
                 <!--<hr class="line"/>-->
                 <!--<div class="butWrappProd">-->
                     <!--<i ng-hide="$ctrl.product.def" ng-click="$ctrl.cart.addToDeferred($ctrl.product); $ctrl.product.def = !$ctrl.product.def" class="fa fa-heart-o"></i>-->

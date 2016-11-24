@@ -8,7 +8,7 @@ angular.module('admin')
         });
     }])
     // Product
-    .factory('Goods',['HttpResource', '$location', function (HttpResource, $location) {
+    .factory('Goods',['HttpResource', '$location', '$q', function (HttpResource, $location, $q) {
         return {
             products: null,
             editprod: null,
@@ -61,12 +61,17 @@ angular.module('admin')
             },
             listComb: function () {
                 var self = this;
+                var deffer = $q.defer();
                 if (self.combinations == null) {
-                    return HttpResource.query({params1: 'combinations'}, function (res) {
+                    HttpResource.query({params1: 'combinations'}, function (res) {
+                        deffer.resolve(res);
                         self.combinations = res;
+                    }, function (err) {
+                        console.log(err);
+                        deffer.reject(err);
                     })
                 }
-                return self.combinations;
+                return deffer.promise;
             },
             removeComb: function (comb, callback) {
                 var self = this;
@@ -104,6 +109,9 @@ angular.module('admin')
                 var parentIndex = _.indexOf(self.combinations, _.find(self.combinations, {uuid: comb.uuid}));
                 comb.value.splice(indexChild, 1);
                 self.updateComb(comb, parentIndex, callback);
+            },
+            countStock: function (per, price){
+                return Math.round(price-(price*per/100));
             }
 
         }
@@ -130,11 +138,23 @@ angular.module('admin')
             curCategory: null,
             curIndex: null,
             curParent: null,
-            curParentIndex: null
+            curParentIndex: null,
+            translite: function(text) {
+                text = text.toLowerCase();
+                var
+                    rus = "щ   ш  ч  ц  ю  я  ё  ж  ъ  ы  э  а б в г д е з и й к л м н о п р с т у ф х ь".split(/ +/g),
+                    eng = "shh sh ch cz yu ya yo zh ` y` e` a b v g d e z i j k l m n o p r s t u f x `".split(/ +/g);
+                for(var x = 0; x < rus.length; x++) {
+                    text = text.split(rus[x]).join(eng[x]);
+                }
+                text = text.replace(' ', '-');
+                text = text.replace('`', '');
+                return text;
+            }
         }
     }])
     // Stocks
-    .factory('Stocks', ['HttpResource', function (HttpResource) {
+    .factory('Stocks', ['HttpResource','$q', function (HttpResource, $q) {
         return {
             stocksList: null,
             dateExpires: null,
@@ -150,12 +170,17 @@ angular.module('admin')
             },
             list: function () {
                 var self = this;
+                var deffer = $q.defer();
                 if (self.stocksList == null) {
-                    return HttpResource.query({params1: 'stocks'}, function (res) {
+                    HttpResource.query({params1: 'stocks'}, function (res) {
+                        deffer.resolve(res);
                         self.stocksList = res;
+                    }, function (err) {
+                        console.log(err);
+                        deffer.reject(err);
                     })
                 }
-                return self.stocksList;
+                return deffer.promise;
             },
             remove: function (id, callback) {
                 var self = this;

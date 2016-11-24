@@ -1732,3 +1732,7 @@ uib-accordion .panel-body > a:hover{
     cursor: pointer;
     padding-left: 16em;
 }
+.viewCombo:hover{
+    cursor: pointer;
+    opacity: 0.8;
+}
