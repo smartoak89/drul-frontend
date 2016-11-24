@@ -11,7 +11,8 @@
                 </div>
                 <div class="form-inline">
                     <label>Категория</label>
-                    <treecontrol ng-if="categories"  class="tree-light" tree-model="categories" on-selection="addCategToProduct(node)">
+                    
+                    <treecontrol class="tree-light" tree-model="categories" on-selection="addCategToProduct(node)">
                         {{node.name}}
                     </treecontrol>
                 </div>

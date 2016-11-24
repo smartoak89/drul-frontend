@@ -115,7 +115,7 @@ angular.module('admin')
             list: function () {
                 var self = this;
                 var deffer = $q.defer();
-                if (self.categories == null) {
+                // if (self.categories == null) {
                     HttpResource.query({params1: 'categories'}, function (res) {
                         deffer.resolve(res);
                         self.categories = res;
@@ -124,7 +124,7 @@ angular.module('admin')
                         console.log(err);
                         deffer.reject(err);
                     })
-                }
+                // }
                 return deffer.promise;
             },
             curCategory: null,
