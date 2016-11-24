@@ -15,6 +15,7 @@ angular.module('admin')
             }
         }]
     })
+
     .component('goodsEditor', {
         templateUrl: "admin/components/goods/goods-editor.html",
         controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', 'Stocks', '$q',

@@ -22,17 +22,12 @@ angular.module('app')
                 var deffer = $q.defer();
                 // if (this.products == null) {
                     Httpquery.query(request, function (res) {
-                        // var currency = $cookies.get('currency');
-                        // if (currency != 'UAH') {
-                        //     self.changeCurrency(currency);
-                        // }
-                        angular.forEach(res, function (product) {
-                            self.getGallery(product, function (err) {
-                                if (err) console.trace('error', err);
-                            })
-                        });
-
+                        var currency = $cookies.get('currency');
+                        if ( currency != 'UAH') {
+                            self.changeCurrency(currency);
+                        }
                         self.products = res;
+                        self.getGallery(self.products);
                         Cart.getCartAndDeferred(self.products);
                         deffer.resolve(self.products);
                     }, function (err) {
@@ -67,30 +62,28 @@ angular.module('app')
                     });
                 })
             },
-            getGallery: function (product, callback) {
-                var criteria = {
-                    params1: 'files',
-                    params2: product.uuid
-                };
-                Httpquery.query(criteria, function (res) {
-                    product.photo = _.find(res, {type: 'main'});
-                    product.gallery = res;
-                    callback()
-                }, function (err) {
-                    callback(err);
-                })
+            getGallery: function (products, callback) {
+                console.log(products);
+                angular.forEach(products, function (item) {
+                    Httpquery.query({params1: 'files', params2: item.uuid}, function (res) {
+                        item.photo = _.find(res, {type: 'main'});
+                        item.gallery = res;
+                    }, function (err) {
+                        console.error('response gallery =>', err);
+                    })
+                });
             },
-
             countStock: function (per, price){
                 return Math.round(price-(price*per/100));
             },
-            changeCurrency: function (newC) {
+            changeCurrency: function (currency) {
+                if (!currency) currency = $cookies.get('currency');
                 var self = this;
                 var prod;
                 Httpquery.query({params1: 'products'}, function (res) {
                     prod = res;
                     getCurrentCourse().then(function (res) {
-                        changePrice (_.find(res.data, {ccy: newC}));
+                        changePrice (_.find(res.data, {ccy: currency}));
                     });
                 });
 
@@ -111,6 +104,9 @@ angular.module('app')
                         el.currency = curr.ccy;
                     })
                 }
+            },
+            checkCartandDeferred: function (products) {
+
             }
         }
     }]);

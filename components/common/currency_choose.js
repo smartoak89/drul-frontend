@@ -22,8 +22,8 @@
             self.selectedItem = {name: currency} || self.itemArray[0];
 
             this.changeCurrency = function (value) {
-                Product.changeCurrency(value);
                 $cookies.put('currency', value);
+                Product.changeCurrency(value);
             }
         }]
     });

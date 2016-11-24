@@ -1,18 +1,19 @@
 angular.module('app')
-    .service('Category', ['Httpquery', '$q', function (Httpquery, $q) {
-        var category = null;
+    .factory('Category', ['Httpquery', '$q', function (Httpquery, $q) {
+        return {
+            category: null,
+            getCategories: function (callback) {
+                var self = this;
+                if (this.category) return callback(null, this.category);
 
-        this.getList = function () {
-            var deffer = $q.defer();
-            if (category == null) {
                 Httpquery.query({params1: 'categories'}, function (res) {
-                    deffer.resolve(res);
-                    category = res;
+                    self.category = res;
+                    callback(null, self.category);
                 }, function (err) {
-                    console.log(err);
-                    deffer.reject(err);
-                })
+                    callback(err);
+                });
+
+
             }
-            return deffer.promise;
         }
     }]);
