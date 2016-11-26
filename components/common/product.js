@@ -27,16 +27,7 @@ angular.module('app')
             this.stockFun = function (per, price){
                 self.stockCost = Product.countStock(per, price);
             };
-<<<<<<< HEAD
-            if(self.product.stock){
-                if(_.find(self.stocks, {uuid: self.product.stock})) {
-                    self.curStock = _.find(self.stocks, {uuid: self.product.stock});
-                    this.stockFun(self.curStock.percent, self.product.price);
-                }
-            }else{
-                self.curStock = null;
-            }
-=======
+
             // if(self.product.stock){
             //     if(_.find(self.stocks, {uuid: self.product.stock})) {
             //         self.curStock = _.find(self.stocks, {uuid: self.product.stock});
@@ -46,6 +37,5 @@ angular.module('app')
             // }else{
             //     self.curStock = null;
             // }
->>>>>>> 3dd45f4529a066f66686370f4f36db5834a5d6b5
         }]
     });
