@@ -15,6 +15,15 @@
                 <li id="clock" class="placeTime">
                     <p>Киев 00:39</p>
                 </li>
+                <li>
+                    <section>
+                        <!--span.tooltip-->
+                        <div id="slider">
+                            <rzslider rz-slider-model="$ctrl.volumeSlider.value" rz-slider-options="$ctrl.volumeSlider.options"></rzslider>
+                        </div>
+                        <div class="volume" ng-class="$ctrl.volume"></div>
+                    </section>
+                </li>
                 <li class="singIn pull-right">
                     <button type="button" class="btn btn-drul dark" data-modal="auth" ng-hide="$ctrl.User.active">войти</button>
                     <button type="button" class="btn btn-drul dark" ng-click="$ctrl.logout()" ng-show="$ctrl.User.active">выйти</button>
@@ -28,15 +37,15 @@
                 <li class="singUp pull-right" ng-hide="$ctrl.User.active">
                     <button type="button" class="btn btn-drul" data-modal="register">регистрация</button>
                 </li>
-                <li class="icon iconRig pull-right">
+                <li class="icon iconRig pull-right" ng-show="$ctrl.User.active">
                     <div class="s-3" ui-sref="index.privat-office" ng-click="$ctrl.User.activeMenu = 1"></div>
                     <div class="countProd" ng-if="$ctrl.Cart.cartList.length>0">{{$ctrl.Cart.cartList.length}}</div>
                 </li>
-                <li class="icon iconRig pull-right">
+                <li class="icon iconRig pull-right" ng-show="$ctrl.User.active">
                     <div class="s-2" ui-sref="index.privat-office" ng-click="$ctrl.User.activeMenu = 2"></div>
                     <div class="countProd" ng-if="$ctrl.Cart.defList.length>0">{{$ctrl.Cart.defList.length}}</div>
                 </li>
-                <li class="icon iconRig pull-right">
+                <li class="icon iconRig pull-right" ng-show="$ctrl.User.active">
                     <div class="s-1"></div>
                 </li>
             </ul>

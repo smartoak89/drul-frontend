@@ -22,6 +22,7 @@ angular.module('app')
                     method: 'PUT'
                 }).then(function (res) {
                     console.info('res', res);
+                    self.defList.push(product);
                 }, function(err) {
                     console.info('error', err);
                 });
@@ -96,13 +97,23 @@ angular.module('app')
                 var self = this;
                 //var userID = User.active.uuid;
                 console.log('UserActive', User);
-                Httpquery.put({params1: 'cart', params2: User.active.uuid, params3: product.uuid}, function (res) {
-                    console.log('successAddToCart', res);
-                        console.log(self.cartList);
-                        self.cartList.push(res);
-                }, function (err) {
-                    console.log('errAddToCart', err);
-                })
+
+                $http({
+                    url: '/api/cart/' + User.active.uuid + '/' + product.uuid,
+                    method: 'PUT'
+                }).then(function (res) {
+                    console.info('res', res);
+                    self.cartList.push(product);
+                }, function(err) {
+                    console.info('error', err);
+                });
+                //Httpquery.put({params1: 'cart', params2: User.active.uuid, params3: product.uuid}, function (res) {
+                //    console.log('successAddToCart', res);
+                //        console.log(self.cartList);
+                //        self.cartList.push(res);
+                //}, function (err) {
+                //    console.log('errAddToCart', err);
+                //})
             },
             replace: function(product){
                 var self =this;
@@ -122,25 +133,38 @@ angular.module('app')
             },
             getCartAndDeferred: function (products) {
                 var self = this;
-
+                //var deffer = $q.defer();
 
                 if (self.defList && self.cartList) {
-                    return find();
+                    return [find(), addGal()]
                 }
 
                 $q.all([self.listDef(), self.list()]).then(function(){
-                    console.log('stop')
+                    console.log('stop');
                     find();
+                    addGal();
                 });
 
                 function find () {
-                    console.log('GetCartAndDeferred', products);
+                    //console.log('GetCartAndDeferred', products);
                     _.forEach(products, function(elem){
                         if(_.find(self.defList, {uuid: elem.uuid})){
                             elem.def = true;
                         }
                     });
-                };
+                }
+                function addGal () {
+                    _.forEach(products, function(elem){
+                        if(_.find(self.defList, {uuid: elem.uuid})){
+                            self.defList[_.findIndex(self.defList, {uuid: elem.uuid})].gallery = elem.gallery;
+                            self.defList[_.findIndex(self.defList, {uuid: elem.uuid})].photo = elem.photo;
+                        }
+                        if(_.find(self.cartList, {uuid: elem.uuid})){
+                            self.cartList[_.findIndex(self.cartList, {uuid: elem.uuid})].gallery = elem.gallery;
+                            self.cartList[_.findIndex(self.cartList, {uuid: elem.uuid})].photo = elem.photo;
+                        }
+                    });
+                }
             }
         };
 

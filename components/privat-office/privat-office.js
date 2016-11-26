@@ -5,8 +5,7 @@ angular.module('app')
             var self = this;
             self.user = User;
             self.cart = Cart;
-            console.log(self.cart.defList)
-            self.counter = 0;
+            console.log(self.cart.cartList)
             self.countPlus = function(){
                 self.counter++;
             };

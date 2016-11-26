@@ -1,4 +1,13 @@
-<div class="navv {{$ctrl.rootScope.URL === '' ? '' : 'compact'}}">
+<div class="na" ng-show="$ctrl.url">
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <div class="logoWrapper1">
+                <div class="logo2" ui-sref="index"></div>
+            </div>
+        </div>
+    </div>
+</div>
+<div ng-class="$ctrl.url?'compact1':'compact'">
     <div class="container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <div class="logoWrapper">
@@ -10,13 +19,7 @@
                 <li>сумки</li>
                 <li>обувь</li>
             </ul>
-            <section>
-                <!--span.tooltip-->
-                <div id="slider">
-                    <rzslider rz-slider-model="$ctrl.volumeSlider.value" rz-slider-options="$ctrl.volumeSlider.options"></rzslider>
-                </div>
-                <div class="volume" ng-class="$ctrl.volume"></div>
-            </section>
+
         </div>
     </div>
 </div>

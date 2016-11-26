@@ -15,6 +15,7 @@ angular.module('app')
             this.class2 = 's-3';
             this.stockCost = null;
             this.curStock = null;
+            self.User = User;
             this.addToCart = function () {
                 var self = this;
                 if (User.checkUser()) {
@@ -29,7 +30,6 @@ angular.module('app')
             if(self.product.stock){
                 if(_.find(self.stocks, {uuid: self.product.stock})) {
                     self.curStock = _.find(self.stocks, {uuid: self.product.stock});
-                    console.log(self.curStock);
                     this.stockFun(self.curStock.percent, self.product.price);
                 }
             }else{

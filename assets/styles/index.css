@@ -18,6 +18,7 @@ button:focus{
 .prevs ul.cutTime>li{
     float: left;
     display: block;
+    position: relative;
 }
 .current{
     padding: 12px 0 5px 0;
@@ -117,14 +118,24 @@ button:focus{
     text-align: center;
     margin-top: 35px;
 }
-.navv.compact .logoWrapper{
+.logoWrapper1{
+    display: flex;
+    margin-top: 60px;
+    justify-content: center;
+}
+.compact .logoWrapper, .compact1 .logoWrapper{
     display: inline-flex;
     text-align: left;
-    margin-top: 12px;
     width: auto;
 
 }
-.navv.compact .logoWrapper > .logo{
+.compact1 .logoWrapper, .compact.fixed .logoWrapper{
+    margin-top: 12px;
+}
+.compact .logoWrapper{
+    margin-top: 2px;
+}
+.compact .logoWrapper > .logo, .compact1 .logoWrapper > .logo{
     margin: 0;
 }
 .placeTime{
@@ -155,7 +166,7 @@ button:focus{
     margin-right: 25px;
     margin-left: 0;
 }
-.navv{
+.na{
     height: 250px;
     background: #000;
     position: relative;
@@ -170,9 +181,24 @@ button:focus{
     position:fixed;
 
 }
-.navv.compact{
+.compact{
     height: 100px;
-    /*transform: translateY(100px);*/
+    background: url('../images/backHeader.jpg') 50% 50% no-repeat;
+    /*position: relative;*/
+    transition: transform .2s ease;
+}
+.compact1{
+    top: -100px;
+    right: 0;
+    left: 0;
+    height: 100px;
+    z-index: 1030;
+    position:fixed;
+    transition: top .4s ease;
+    background: url('../images/backHeader2.jpg') 50% 50% no-repeat;
+}
+.compact1.fixed{
+    top: 0 !important;
 }
 
 .list > li:first-child{
@@ -186,11 +212,11 @@ button:focus{
     text-align: center;
     margin-top: 70px;
 }
-.navv.compact .navigation{
+.compact .navigation, .compact1 .navigation{
     width: auto;
     position: relative;
     top: 39px;
-    right: 120px;
+    /*right: 120px;*/
     display: inline;
     float: right;
     margin-top: 0;
@@ -213,33 +239,30 @@ section {
     height: auto;
     /*margin: 100px auto 0;*/
     position: absolute;
-    right: 20px;
+    /*right: 20px;*/
 }
-.navv.compact section{
-    top: 47px;
-}
+
 #slider{
     width: 65px;
     position: absolute;
-    right: 30px;
-    bottom: -15px;
 }
 #slider .rzslider {
     height: 1px;
+    margin: 28px 0 15px 25px;
 }
 #slider .rzslider .rz-bar{
     height: 1px;
-    background: #333333;
+    background: #cccccc;
 }
-#slider .rzslider .rz-bar.rz-selection{
-    background: #fff;
-}
+/*#slider .rzslider .rz-bar.rz-selection{*/
+    /*background: #fff;*/
+/*}*/
 #slider .rzslider .rz-pointer {
-    top: -7px;
+    top: -6px;
     width: 13px;
     height: 13px;
-    background: #000000;
-    border: 1px solid #fff;
+    background: #fff;
+    border: 1px solid #000;
 }
 #slider .rzslider .rz-pointer:after,
 #slider .rzslider .rz-floor,
@@ -249,11 +272,15 @@ section {
 }
 .volume {
     display: inline-block;
-    right: -5px;
+    right: -25px;
     position: absolute;
-    margin-top: -13px;
+    margin-top: 18px;
     color: #fff;
     font-size: 20px;
+}
+.volume.s-22{
+    margin-top: 15px;
+    right: -29px;
 }
 #sm_slider{
     background: url(../images/slideBack.jpg)no-repeat center center;
@@ -265,7 +292,7 @@ section {
     max-height: 560px;
 }
 .padScroll{
-    margin-top: 250px;
+    margin-top: 100px;
 }
 #sm_slider > div{
     height: 100%;
@@ -610,8 +637,27 @@ section {
     width: 15px;
     height: 20px;
 }
+.s-21, .s-22, .logo2{
+    background: url(../images/sprites2.png) no-repeat;
+}
 
+.s-21{
+    background-position: -29px 0;
+    width: 20px;
+    height: 19px;
+}
 
+.s-22{
+    background-position: 0 0;
+    width: 24px;
+    height: 25px;
+}
+
+.logo2{
+    background-position: -54px 0;
+    width: 136px;
+    height: 131px;
+}
 .logo{
     background-position: -145px 0;
     width: 73px;
@@ -626,9 +672,9 @@ section {
     margin: 0 auto;
 }
 .footerr{
-    background: #000;
+    background: url('../images/backFooter.jpg') 50% 50% no-repeat;
     height: 320px;
-    margin-top: 150px
+    /*margin-top: 150px*/
 }
 .logoWrapper2{
     width: 100%;
@@ -738,8 +784,8 @@ input[type=radio]{
 }
 
 strong.name_goods {
-    width: 92%;
-    display: block;
+    width: 250px;
+    display: table-caption;
     white-space: nowrap;
     overflow: hidden;
     text-overflow: ellipsis;

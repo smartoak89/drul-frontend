@@ -23,6 +23,7 @@ angular.module('admin')
             self.categories = Categories.categories;
             self.combinations = Goods.combinations;
             self.stocks = Stocks.stocksList;
+            self.pror = {};
             $q.all([Categories.list(), Goods.listComb(), Stocks.list()]).then(function(){
                 self.categories = Categories.categories;
                 self.combinations = Goods.combinations;
@@ -93,9 +94,17 @@ angular.module('admin')
             this.edit = function () {
                 self.editMode = !self.editMode;
             };
-
+            this.delCombo= function (pr, slug){
+                delete pr.combo[slug];
+            };
+            this.actionCombo = function(pr){
+                console.log(pr);
+                angular.forEach(pr, function(elem, key){
+                    console.log(elem);
+                })
+            };
             this.save = function () {
-                console.log(self.curStock);
+                //console.log(self.curStock);
                 self.product.stock = self.curStock.uuid;
                 Goods.update(self.product, function (err, res) {
                     if (err) return self.error = err;
@@ -118,13 +127,6 @@ angular.module('admin')
                 console.log(prop)
             };
 
-            this.actionCombo = function(prop, comb, ind){
-                if(prop){
-                    self.product.combo[ind] = {name: comb.name};
-                }else{
-                    delete self.product.combo[ind];
-                }
-            };
             this.addSub = function(n,v){
                 if (n && v ){
                     if (!self.product.sublines){

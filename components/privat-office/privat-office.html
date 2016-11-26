@@ -30,7 +30,7 @@
                             <tr ng-repeat-start="product in $ctrl.cart.cartList">
                                 <td>
                                     <div class="marker red">sale</div>
-                                    <img ng-src="{{'/api/file/' + product.gallery[0].uuid}}" class="img-responsive cover" alt=""></td>
+                                    <img ng-src="{{'/api/file/' + product.photo.uuid}}" class="img-responsive cover" alt=""></td>
                                 <td>
                                     <div class="namePrice">
                                         <div>Артикул {{product.article}}</div>
@@ -60,7 +60,7 @@
                                 <td>
                                     <div class="namePrice">
                                         <span>{{product.price}} грн</span>
-                                        <strike>2700 грн</strike>
+                                        <strike>{{product.price}} грн</strike>
                                         <div class="marCustom1">Цена указана без учета доставки</div>
                                     </div>
                                 </td>
@@ -91,10 +91,10 @@
                         <tr ng-repeat-start="defProd in $ctrl.cart.defList">
                             <td>
                                 <div class="marker red">sale</div>
-                                <img ng-src="{{'/api/file/' + defProd.gallery[0].uuid}}" class="img-responsive cover" alt=""></td>
+                                <img ng-src="{{'/api/file/' + defProd.photo.uuid}}" class="img-responsive cover" alt=""></td>
                             <td>
                                 <div class="namePrice">
-                                    <div>Артикул 30530101</div>
+                                    <div>Артикул {{defProd.article}}</div>
                                     <p>{{defProd.name}}</p>
 
                                     <div class="params">
@@ -113,8 +113,8 @@
                             </td>
                             <td>
                                 <div class="namePrice">
-                                    <span>1300 грн</span>
-                                    <strike>2700 грн</strike>
+                                    <span>{{defProd.price}} грн</span>
+                                    <strike>{{defProd.price}} грн</strike>
                                     <button type="button" ng-click="$ctrl.cart.replace(defProd);" class="btn btn-drul">переместить в
                                         <div class="s-3"></div>
                                     </button>
