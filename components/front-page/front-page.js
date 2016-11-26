@@ -3,14 +3,15 @@ angular.module('app')
         templateUrl: "components/front-page/front-page.html",
         controller: ['Product', '$q', 'SortService', function(Product, $q, SortService) {
             var self = this;
+            self.Product = Product;
 
             this.$onInit = function () {
                 Product.getList();
             };
-            self.Product = Product;
+
             this.showMore = function () {
-                console.log('showMore');
-                SortService.showMore();
+                Product.showMore();
             }
         }]
+
     });

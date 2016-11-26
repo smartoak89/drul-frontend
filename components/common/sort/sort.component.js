@@ -11,10 +11,8 @@ angular.module('app')
                 var criteria = {};
                 orders[type] = orders[type] == defOrd ? -1 : 1;
                 criteria[type] = orders[type];
-                console.log(criteria);
-
-                Product.products
-                // SortService.orderBy(criteria);
+                criteria.skip = 0;
+                Product.getList(criteria);
             };
 
             function reversOrder () {

@@ -7,43 +7,51 @@ angular.module('app')
                 return res;
             });
         }
+        var skip = 0;
         return {
             products: [],
             stocksList: null,
             getList: function (criteria) {
                 var self = this;
-                var request = {params1: 'products'};
-                for (var key in criteria) {
-                    request[key] = criteria[key];
+                var request = {
+                    params1: 'products',
+                    skip: skip
+                };
+                if (criteria) {
+                    for (var key in criteria) {
+                        key == 'skip' ? skip = 0 : false;
+                        request[key] = criteria[key];
+                    }
                 }
                 console.log('Request', request);
                 var promise = $q(function (resolve, reject) {
                     Httpquery.query(request, function (res) {
-                        // var currency = $cookies.get('currency');
-                        // if ( currency != 'UAH') {
-                        //     self.changeCurrency(currency);
-                        // }
-                        // self.products = res;
-                        // Cart.getCartAndDeferred(self.products);
                         resolve(res)
                     }, function (err) {
                         console.error('Get products response', err);
                         reject(err);
                     })
                 });
+
                 self.configurableProducts(promise, function (products) {
-                    self.products = self.products.concat(products);
+                   if (request.skip !== 0) return self.products = self.products.concat(products);
+                    self.products = products;
                 });
 
             },
             configurableProducts: function (products, callback) {
                 var self = this;
                 products.then(function (res) {
+                    console.log('res products', res);
                     Cart.getCartAndDeferred(res);
                     $q.all(self.getGallery(res)).then(function (allProd) {
                         callback(allProd);
                     })
                 })
+            },
+            showMore: function () {
+                skip += 1;
+                this.getList();
             },
             listStocks: function () {
                 var self = this;
