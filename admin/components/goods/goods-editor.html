@@ -29,14 +29,14 @@
                             {{ product.description }}
                         </div>
                         <div class="priceCard"><span>{{ product.stock?$ctrl.stockCost:product.price }} грн</span>
-                            <strike ng-if="product.stock">{{ product.price }}</strike>
+                            <strike ng-if="product.stock">{{ product.price }} грн</strike>
                         </div>
                         <hr class="marCard"/>
-                        <div class="sizeCard">Размер
+                        <div class="sizeCard" ng-repeat="(key, value) in product.combo">{{value.name}}
                             <div class="sizeCardDis">
-                                <div class="checkbo" ng-repeat="(key, value) in product.size">
+                                <div class="checkbo" ng-repeat="(key, val) in value.values">
                                     <input type="checkbox" id="{{key}}" name="option" value="a"/>
-                                    <label for="{{key}}"></label><span>{{value}}</span>
+                                    <label for="{{key}}"></label><span>{{val}}</span>
                                 </div>
                             </div>
                         </div>
@@ -138,7 +138,7 @@
                         <div class="form-group" ng-repeat="combo in $ctrl.combinations">
                             <label style="width: 100%">{{combo.name}} <i class="fa viewCombo" ng-class="pror[$index].check?'fa-minus':'fa-plus'" ng-click="pror[$index].check = !pror[$index].check" aria-hidden="true"></i> <i class="fa fa-close viewCombo pull-right" ng-click="$ctrl.delCombo(product, combo.slug)"></i></label>
                             <div ng-if="pror[$index].check">
-                                <select  class="form-control" id="inputMultiple" multiple="multiple" ng-model="product.combo[combo.slug].values" ng-change="$ctrl.view(product)">
+                                <select  class="form-control" id="inputMultiple" multiple="multiple" ng-model="product.combo[combo.slug].values" ng-change="$ctrl.view(product); product.combo[combo.slug].name = combo.name">
                                     <option ng-repeat="value in combo.value">{{value}}</option>
                                 </select>
                                 <small>Зажмите кнопку 'Ctrl' для выбора нескольких пунктов</small>

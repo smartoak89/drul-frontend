@@ -62,7 +62,7 @@ angular.module('admin')
             listComb: function () {
                 var self = this;
                 var deffer = $q.defer();
-                if (self.combinations == null) {
+                //if (self.combinations == null) {
                     HttpResource.query({params1: 'combinations'}, function (res) {
                         deffer.resolve(res);
                         self.combinations = res;
@@ -70,7 +70,7 @@ angular.module('admin')
                         console.log(err);
                         deffer.reject(err);
                     })
-                }
+                //}
                 return deffer.promise;
             },
             removeComb: function (comb, callback) {
@@ -171,7 +171,7 @@ angular.module('admin')
             list: function () {
                 var self = this;
                 var deffer = $q.defer();
-                if (self.stocksList == null) {
+                //if (self.stocksList == null) {
                     HttpResource.query({params1: 'stocks'}, function (res) {
                         deffer.resolve(res);
                         self.stocksList = res;
@@ -179,7 +179,7 @@ angular.module('admin')
                         console.log(err);
                         deffer.reject(err);
                     })
-                }
+                //}
                 return deffer.promise;
             },
             remove: function (id, callback) {

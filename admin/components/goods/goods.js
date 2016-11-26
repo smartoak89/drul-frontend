@@ -37,8 +37,16 @@ angular.module('admin')
                     self.curStock = null;
                 }
             });
+
             this.editMode = true;
             this.product = Goods.editprod;
+            //if(this.product.stock){
+            //    self.stocks = Stocks.stocksList;
+            //    self.curStock = _.find(self.stocks, {uuid: self.product.stock});
+            //    self.stockFun(self.curStock.percent, self.product.price);
+            //}else{
+            //    self.curStock = null;
+            //}
             this.preview = this.product.photo || '';
             this.range = [35,36,37,38,39,40,41,42,43,44,45,46];
             this.selected = _.find(this.categories, {slug: this.product.category});
@@ -98,12 +106,6 @@ angular.module('admin')
             this.delCombo= function (pr, slug){
                 delete pr.combo[slug];
             };
-            this.actionCombo = function(pr){
-                console.log(pr);
-                angular.forEach(pr, function(elem, key){
-                    console.log(elem);
-                })
-            };
             this.save = function () {
                 //console.log(self.curStock);
                 self.product.stock = self.curStock.uuid;
@@ -113,7 +115,10 @@ angular.module('admin')
                     if (uploader.queue.length > 0) {
                         return uploader.uploadAll();
                     }
+                    res.photo = self.product.photo;
+                    res.gallery = self.product.gallery;
                     console.info('Update product => ', res);
+                    Goods.products[_.findIndex(Goods.products, {uuid: res.uuid})] = res;
                     $state.go('admin.goodsAdmin');
                     self.editMode = false;
                 });
