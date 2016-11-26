@@ -19,6 +19,7 @@ angular.module('admin')
                 var self = this;
                 if (this.products == null) {
                     return HttpResource.query({params1: 'products'}, function (res) {
+                        console.log(res);
                         angular.forEach(res, function (product) {
                            self.getGallery(product, function (err) {
                                if (err) console.trace('error', err);
