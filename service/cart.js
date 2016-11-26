@@ -56,41 +56,42 @@ angular.module('app')
             },
             list: function () {
                 var self = this;
-                var deffer = $q.defer();
+                var defer = $q.defer();
                 var user = User.checkUser();
                 if (user) {
+                    console.info('user defined', user);
                     if (self.cartList === null) {
                         //console.log(user.uuid);
                         Httpquery.query({params1: 'cart', params2: user.uuid}, function (res) {
                             //$log.info('response cartList ', res);
-                            deffer.resolve(res);
+                            defer.resolve(res);
                             self.cartList = res;
                         }, function (err) {
                             console.log(err);
-                            deffer.reject(err);
+                            defer.reject(err);
                         })
                     }
+                    return deffer.promise;
                 }
-                return deffer.promise;
                 //TODO: user is not active
             },
             listDef: function () {
                 var self = this;
-                var deffer = $q.defer();
+                var defer = $q.defer();
                 var user = User.checkUser()
                 if (user) {
                     if (self.defList === null) {
                         Httpquery.query({params1: 'deferred', params2: user.uuid}, function (res) {
                             //$log.info('response defList ', res);
-                            deffer.resolve(res);
+                            defer.resolve(res);
                             self.defList = res;
                         }, function (err) {
                             console.log(err);
-                            deffer.reject(err);
-                        })
+                            defer.reject(err);
+                        });
+                        return defer.promise;
                     }
                 }
-                return deffer.promise;
                 //TODO: user is not active
             },
             save: function (product) {
@@ -133,7 +134,6 @@ angular.module('app')
             },
             getCartAndDeferred: function (products) {
                 var self = this;
-                //var deffer = $q.defer();
 
                 if (self.defList && self.cartList) {
                     return [find(), addGal()]
@@ -146,12 +146,11 @@ angular.module('app')
                 });
 
                 function find () {
-                    //console.log('GetCartAndDeferred', products);
                     _.forEach(products, function(elem){
                         if(_.find(self.defList, {uuid: elem.uuid})){
                             elem.def = true;
                         }
-                    });
+                })
                 }
                 function addGal () {
                     _.forEach(products, function(elem){
@@ -167,8 +166,6 @@ angular.module('app')
                 }
             }
         };
-
-
         // return {
         //     addToCart: function (product) {
         //         var storOrders = $cookies.get('order');

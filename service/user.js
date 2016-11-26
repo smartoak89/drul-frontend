@@ -1,5 +1,6 @@
 angular.module('app')
     .factory('User', ['Httpquery', '$cookies', function (Httpquery, $cookies) {
+        if (!$cookies.get('currency')) $cookies.put('currency', 'UAH');
         function tryActivate () {
             try {
                 return JSON.parse($cookies.get('user'));

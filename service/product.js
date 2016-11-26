@@ -8,40 +8,42 @@ angular.module('app')
             });
         }
         return {
-            products: null,
+            products: [],
             stocksList: null,
             getList: function (criteria) {
                 var self = this;
                 var request = {params1: 'products'};
-
                 for (var key in criteria) {
                     request[key] = criteria[key];
                 }
                 console.log('Request', request);
-
-                var deffer = $q.defer();
-                // if (this.products == null) {
+                var promise = $q(function (resolve, reject) {
                     Httpquery.query(request, function (res) {
                         // var currency = $cookies.get('currency');
-                        // if (currency != 'UAH') {
+                        // if ( currency != 'UAH') {
                         //     self.changeCurrency(currency);
                         // }
-                        angular.forEach(res, function (product) {
-                            self.getGallery(product, function (err) {
-                                if (err) console.trace('error', err);
-                            })
-                        });
-
-                        self.products = res;
-                        Cart.getCartAndDeferred(self.products);
-                        deffer.resolve(self.products);
+                        // self.products = res;
+                        // Cart.getCartAndDeferred(self.products);
+                        resolve(res)
                     }, function (err) {
-                        console.log(err);
-                        deffer.reject(err);
+                        console.error('Get products response', err);
+                        reject(err);
                     })
-                // }
-                return deffer.promise;
-                // return self.products;
+                });
+                self.configurableProducts(promise, function (products) {
+                    self.products = self.products.concat(products);
+                });
+
+            },
+            configurableProducts: function (products, callback) {
+                var self = this;
+                products.then(function (res) {
+                    Cart.getCartAndDeferred(res);
+                    $q.all(self.getGallery(res)).then(function (allProd) {
+                        callback(allProd);
+                    })
+                })
             },
             listStocks: function () {
                 var self = this;
@@ -67,30 +69,32 @@ angular.module('app')
                     });
                 })
             },
-            getGallery: function (product, callback) {
-                var criteria = {
-                    params1: 'files',
-                    params2: product.uuid
-                };
-                Httpquery.query(criteria, function (res) {
-                    product.photo = _.find(res, {type: 'main'});
-                    product.gallery = res;
-                    callback()
-                }, function (err) {
-                    callback(err);
-                })
-            },
+            getGallery: function (products) {
+                var promises = products.map(function (prod) {
+                    return $q(function (resolve, reject) {
+                        Httpquery.query({params1: 'files', params2: prod.uuid}, function (res) {
+                            prod.photo = _.find(res, {type: 'main'});
+                            prod.gallery = res;
+                            resolve(prod);
+                        }, function (err) {
+                            reject(err);
+                        });
+                    })
+                });
 
+                return promises;
+            },
             countStock: function (per, price){
                 return Math.round(price-(price*per/100));
             },
-            changeCurrency: function (newC) {
+            changeCurrency: function (currency) {
+                if (!currency) currency = $cookies.get('currency');
                 var self = this;
                 var prod;
                 Httpquery.query({params1: 'products'}, function (res) {
                     prod = res;
                     getCurrentCourse().then(function (res) {
-                        changePrice (_.find(res.data, {ccy: newC}));
+                        changePrice (_.find(res.data, {ccy: currency}));
                     });
                 });
 
