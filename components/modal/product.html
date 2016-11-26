@@ -26,31 +26,11 @@
                         <strike ng-if="product.stock">{{product.price}} грн</strike>
                     </div>
                     <hr class="marCard"/>
-                    <div class="sizeCard">Размер
+                    <div class="sizeCard" ng-repeat="value in product.combo">{{value.name}}
                         <div class="sizeCardDis">
-                            <div class="checkbo">
-                                <input type="checkbox" id="144" name="option" value="a"/>
-                                <label for="144"></label><span>44</span>
-                            </div>
-                            <div class="checkbo">
-                                <input type="checkbox" id="146" name="option" value="a"/>
-                                <label for="146"></label><span>46</span>
-                            </div>
-                            <div class="checkbo">
-                                <input type="checkbox" id="148" name="option" value="a"/>
-                                <label for="148"></label><span>48</span>
-                            </div>
-                            <div class="checkbo">
-                                <input type="checkbox" id="150" name="option" value="a"/>
-                                <label for="150"></label><span>50</span>
-                            </div>
-                            <div class="checkbo">
-                                <input type="checkbox" id="152" name="option" value="a"/>
-                                <label for="152"></label><span>52</span>
-                            </div>
-                            <div class="checkbo">
-                                <input type="checkbox" id="154" name="option" value="a"/>
-                                <label for="154"></label><span>54</span>
+                            <div class="checkbo" ng-repeat="(key, val) in value.values">
+                                <input type="checkbox" id="{{key}}" name="option" value="{{val}}"/>
+                                <label for="{{key}}"></label><span>{{val}}</span>
                             </div>
                         </div>
                     </div>

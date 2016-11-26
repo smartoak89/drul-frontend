@@ -71,7 +71,7 @@ angular.module('app')
                             defer.reject(err);
                         })
                     }
-                    return deffer.promise;
+                    return defer.promise;
                 }
                 //TODO: user is not active
             },
