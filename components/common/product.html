@@ -7,7 +7,7 @@
             </div>
         </div>
         <div class="marker red" ng-if="$ctrl.product.stock">sale</div>
-            <img ng-src="/api/file/{{$ctrl.product.photo.uuid}}" class="img-responsive cover"/>
+            <img ng-src="/api/file/{{$ctrl.product.photo.uuid}}" class="img-responsive cover" no-image/>
             <div class="namePrice">
                 <div>Артикул {{$ctrl.product.article}}</div>
                 <p>{{$ctrl.product.name}}</p>

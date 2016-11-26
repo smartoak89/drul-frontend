@@ -12,7 +12,9 @@
             <div class="row">
                 <product ng-repeat="product in $ctrl.prod.products" product="product" modal="product"></product>
             </div>
-
+            <div class="row">
+                <button class="btn btn-default" ng-click="$ctrl.showMore()">Показать еще 6 товара</button>
+            </div>
         </div>
     </div>
 </div>

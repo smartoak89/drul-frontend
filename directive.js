@@ -144,4 +144,34 @@ angular.module('app')
         ].join(''),
         link: link
     };
-});
+})
+    .directive('noImage', function($timeout) {
+        var all = [];
+        return {
+            restrict: 'A',
+            link: function(scope, element, attrs) {
+                var srcCache;
+                all.push(attrs);
+                element.addClass('image_preloader');
+
+                $timeout(function() {
+                    _.each(all, function(elem) {
+                        if (elem.src == undefined) {
+                            elem.$set('src', '/assets/images/noimage.png');
+                        }
+                    })
+                }, 1500);
+
+                element.bind('load', function() {
+                    element.removeClass('image_preloader');
+                }).on('error', function() {
+                    console.error('error load image');
+                });
+
+                attrs.$observe('ngSrc', function(src) {
+                    if (srcCache) _.remove(all, attrs);
+                    else srcCache = attrs
+                })
+            }
+        };
+    });

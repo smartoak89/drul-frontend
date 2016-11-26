@@ -1736,3 +1736,10 @@ uib-accordion .panel-body > a:hover{
     cursor: pointer;
     opacity: 0.8;
 }
+.image_preloader {
+    background-color: #fff;
+    background-image: url('/assets/images/loading.gif');
+    background-size: 40%;
+    background-repeat: no-repeat;
+    background-position: center center;
+}
