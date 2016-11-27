@@ -6,7 +6,9 @@ angular.module('app')
         templateUrl: "components/filter-page/filter-sidebar.html",
         controller: ['FilterService', function(FilterService) {
             var self = this;
-            console.log('filter sidebar', self.category);
-            // FilterService.getFilter(self.category);
+            this.FilterServ = FilterService;
+            this.$onInit = function () {
+                FilterService.getFilter(self.category);
+            }
         }]
     });

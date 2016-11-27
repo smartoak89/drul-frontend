@@ -1793,3 +1793,16 @@ uib-accordion .panel-body > a:hover{
     background-repeat: no-repeat;
     background-position: center center;
 }
+.closed_accordion .panel-heading a {
+    outline: none;
+}
+.closed_accordion .panel-heading span {
+    color: #000;
+}
+.closed_accordion:hover .panel-heading span {
+    color: #292929;
+    text-decoration: underline;
+}
+.closed_accordion .panel-heading:after{
+    display: none !important;
+}
