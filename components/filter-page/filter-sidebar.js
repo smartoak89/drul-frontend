@@ -1,9 +1,12 @@
 angular.module('app')
     .component('filterSidebar', {
+        bindings: {
+            category: "<"
+        },
         templateUrl: "components/filter-page/filter-sidebar.html",
-        controller: ['Httpquery', 'Product', function(Httpquery, Product) {
-            console.log('filter sidebar')
+        controller: ['FilterService', function(FilterService) {
             var self = this;
-            self.products = Product;
+            console.log('filter sidebar', self.category);
+            FilterService.getFilter(self.category);
         }]
     });
