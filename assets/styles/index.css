@@ -1796,6 +1796,22 @@ uib-accordion .panel-body > a:hover{
     background-repeat: no-repeat;
     background-position: center center;
 }
+<<<<<<< HEAD
 .modal-register, .modal-auth, .modal-cancelAdd, .modal-doneCart, .modal-doneDef{
     margin-top: 50px;
 }
+=======
+.closed_accordion .panel-heading a {
+    outline: none;
+}
+.closed_accordion .panel-heading span {
+    color: #000;
+}
+.closed_accordion:hover .panel-heading span {
+    color: #292929;
+    text-decoration: underline;
+}
+.closed_accordion .panel-heading:after{
+    display: none !important;
+}
+>>>>>>> 7954edfccd127547cb736785b9fe06ca6cb81ba1

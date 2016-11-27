@@ -66,6 +66,15 @@ angular.module('admin')
                 });
             }
 
+            this.findComboModel = function (name) {
+                console.log('init')
+                var index = _.findIndex(self.product.combo, {name : name} );
+                if (index === -1) {
+                    index = self.product.combo.length;
+                    self.product.combo[index] = {name: name};
+                }
+                return index;
+            };
 
 
             this.remove = function (file) {
@@ -102,8 +111,8 @@ angular.module('admin')
             this.edit = function () {
                 self.editMode = !self.editMode;
             };
-            this.delCombo= function (pr, slug){
-                delete pr.combo[slug];
+            this.delCombo= function (name){
+                _.remove(self.product.combo, {name: name});
             };
             this.save = function () {
                 //console.log(self.curStock);

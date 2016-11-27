@@ -1,7 +1,7 @@
 angular.module('app')
     .component('categoriesSidebar', {
         templateUrl: "components/front-page/category-sidebar.html",
-        controller: ['Category', function(Category) {
+        controller: ['Category', '$location', function(Category, $location) {
             var self = this;
             this.$onInit = function () {
                 Category.getCategories(function (err, res) {
@@ -9,6 +9,10 @@ angular.module('app')
                     console.log('categories => ', res);
                     self.categories = res;
                 });
+            }
+
+            this.goTo = function (categ) {
+                $location.url('/category/' + categ);
             }
         }]
     });
