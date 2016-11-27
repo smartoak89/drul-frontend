@@ -45,20 +45,27 @@ angular.module('app')
 
         element
             .on('mouseenter', function(evt){
+                console.log(evt);
                 mark.removeClass('hide');
                 zoomed.removeClass('hide');
 
-                var offset = calculateOffset(evt);
-                moveMark(offset.X, offset.Y);
+                this.offset = calculateOffset(evt);
+                moveMark(this.offset.X, this.offset.Y);
             })
             .on('mouseleave', function(evt){
+                console.log(evt);
                 mark.addClass('hide');
                 zoomed.addClass('hide');
+                this.offset = calculateOffset(evt);
+                moveMark(this.offset.X, this.offset.Y);
             })
             .on('mousemove', function(evt){
-                var offset = calculateOffset(evt);
-                moveMark(offset.X, offset.Y);
-            });
+                this.offset = calculateOffset(evt);
+                moveMark(this.offset.X, this.offset.Y);
+            })
+            .scroll(function(){
+                console.log('+gti ')
+            })
         scope.$on('mark:moved', function(event, data){
             updateZoomed.apply(this, data);
         });

@@ -1,7 +1,7 @@
 angular.module('app')
     .component('headerr', {
         templateUrl: "components/common/headerr.html",
-        controller: ['User', 'Cart', function(User, Cart) {
+        controller: ['User', 'Cart', 'angularPlayer', '$rootScope', function(User, Cart, angularPlayer, $rootScope) {
             var self = this;
             this.User = User;
             this.Cart = Cart;
@@ -18,6 +18,7 @@ angular.module('app')
                 options: {
                     showSelectionBar: true,
                     onChange: function () {
+                        angularPlayer.adjustVolumeSlider(self.volumeSlider.value);
                         if (self.volumeSlider.value > 0) {
                             self.volume = 's-21'
                         } else {
@@ -26,34 +27,36 @@ angular.module('app')
                     }
                 }
             };
+            self.mute = function(){
+                if (self.volumeSlider.value > 0) {
+                    self.curVol = self.volumeSlider.value;
+                    console.log(self.curVol);
+                    self.volumeSlider.value = 0;
+                    self.volume = 's-22';
+                    angularPlayer.adjustVolumeSlider(self.volumeSlider.value);
+                }else{
+                    self.volumeSlider.value = self.curVol;
+                    self.volume = 's-21';
+                    angularPlayer.adjustVolumeSlider(self.volumeSlider.value);
+                    self.curVol = null;
+                }
+            };
 
-            self.songs = [];
+            self.song =
+                {
+                    id: 'one',
+                    title: 'Rain',
+                    artist: 'Drake',
+                    url: 'http://freshly-ground.com/data/audio/sm2/Figub%20Brazlevi%C4%8D%20-%20Bosnian%20Syndicate.mp3'
+                };
 
-            SC.initialize({
-                client_id: "202120949",
-                redirect_uri: 'http://95.46.99.177/'
+            $rootScope.$on('angularPlayer:ready', function(event, data) {
+                angularPlayer.addTrack(self.song);
+                //angularPlayer.play();
+                angularPlayer.repeatToggle();
+                self.repeat = angularPlayer.getRepeatStatus();
+                console.log(self.repeat);
             });
-            SC.get('/me', function(me) {
-                console.log(me);
-            });
-            //SC.get("/me", {
-            //    limit: 5
-            //}, function(tracks) {
-            //    console.log(tracks);
-                //for (var i = 0; i < tracks.length; i ++) {
-                //    SC.stream( '/tracks/' + tracks[i].id, function( sm_object ){
-                //        var track = {
-                //            id: tracks[i].id,
-                //            title: tracks[i].title,
-                //            artist: tracks[i].genre,
-                //            url: sm_object.url
-                //        };
-                //
-                //        $scope.$apply(function () {
-                //            $scope.songs.push(track);
-                //        });
-                //    });
-                //}
-            //});
+
         }]
     });

@@ -48,7 +48,6 @@ angular.module('admin')
             //    self.curStock = null;
             //}
             this.preview = this.product.photo || '';
-            this.range = [35,36,37,38,39,40,41,42,43,44,45,46];
             this.selected = _.find(this.categories, {slug: this.product.category});
                     //console.log(this.categories[1].children[0]);
                     //console.log(_(this.categories).thru(function(coll) {return _.union(coll, _.map(coll, 'children'))}).flatten())

@@ -21,9 +21,11 @@
                         <div id="slider">
                             <rzslider rz-slider-model="$ctrl.volumeSlider.value" rz-slider-options="$ctrl.volumeSlider.options"></rzslider>
                         </div>
-                        <div class="volume" ng-class="$ctrl.volume"></div>
+                        <div class="volume" ng-class="$ctrl.volume" ng-click="$ctrl.mute()"></div>
+                        <sound-manager></sound-manager>
                     </section>
                 </li>
+
                 <li class="singIn pull-right">
                     <button type="button" class="btn btn-drul dark" data-modal="auth" ng-hide="$ctrl.User.active">войти</button>
                     <button type="button" class="btn btn-drul dark" ng-click="$ctrl.logout()" ng-show="$ctrl.User.active">выйти</button>
@@ -52,3 +54,4 @@
         </div>
     </div>
 </div>
+
