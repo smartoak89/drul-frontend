@@ -1,6 +1,6 @@
 angular.module('app')
-    .component('nav', {
-        templateUrl: "components/common/nav.html",
+    .component('navCus', {
+        templateUrl: "components/common/nav-cus.html",
         controller: [ function () {
             var self = this;
             $(window).scroll(function () {
