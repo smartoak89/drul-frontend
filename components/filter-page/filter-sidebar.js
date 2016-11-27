@@ -7,6 +7,6 @@ angular.module('app')
         controller: ['FilterService', function(FilterService) {
             var self = this;
             console.log('filter sidebar', self.category);
-            FilterService.getFilter(self.category);
+            // FilterService.getFilter(self.category);
         }]
     });
