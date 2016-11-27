@@ -11,7 +11,8 @@ var app = angular.module('app', [
     'rzModule',
     'ngCookies',
     'ngScrollbars',
-    'angularFileUpload'
+    'angularFileUpload',
+    'angularSoundManager'
 ]);
 app.constant('Conf', {
    api_path: 'http://95.46.99.177/api'

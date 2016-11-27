@@ -26,5 +26,34 @@ angular.module('app')
                     }
                 }
             };
+
+            self.songs = [];
+
+            SC.initialize({
+                client_id: "202120949",
+                redirect_uri: 'http://95.46.99.177/'
+            });
+            SC.get('/me', function(me) {
+                console.log(me);
+            });
+            //SC.get("/me", {
+            //    limit: 5
+            //}, function(tracks) {
+            //    console.log(tracks);
+                //for (var i = 0; i < tracks.length; i ++) {
+                //    SC.stream( '/tracks/' + tracks[i].id, function( sm_object ){
+                //        var track = {
+                //            id: tracks[i].id,
+                //            title: tracks[i].title,
+                //            artist: tracks[i].genre,
+                //            url: sm_object.url
+                //        };
+                //
+                //        $scope.$apply(function () {
+                //            $scope.songs.push(track);
+                //        });
+                //    });
+                //}
+            //});
         }]
     });
