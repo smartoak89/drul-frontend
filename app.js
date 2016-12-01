@@ -48,7 +48,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         views: {
             '': {template: "<template-common></template-common>"},
             'content': {template: "<filter-page></filter-page>"}
-        },
+        }
         // resolve: {
         //     checkCateg: ['$location', 'Category', function($location, Category){
         //         var categ = Category.getList();

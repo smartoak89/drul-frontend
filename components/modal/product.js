@@ -3,7 +3,12 @@ angular.module('app')
         function ($rootScope, $scope, $uibModalInstance, Cart, modalData, Category) {
             $rootScope.$broadcast('modalOpened');
             $scope.product = modalData.product;
-            $scope.config = {neutralZoomLevel: 1};
+            $scope.config = {
+                zoomLevels: 3,
+                neutralZoomLevel:0,
+                zoomToFitZoomLevelFactor:1,
+                initialPanX:-300,
+                initialPanY:-300};
             $scope.model = {};
             $scope.addToDeferred = function () {
                 Cart.addToDeferred($scope.product);
