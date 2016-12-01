@@ -12,7 +12,8 @@ var app = angular.module('app', [
     'ngCookies',
     'ngScrollbars',
     'angularFileUpload',
-    'angularSoundManager'
+    'angularSoundManager',
+    'angularQueryParams'
 ]);
 app.constant('Conf', {
    api_path: 'http://95.46.99.177/api'
@@ -26,6 +27,7 @@ app.run(['$location', '$state', '$rootScope', '$anchorScroll', 'User', 'Cart', '
         $rootScope.URL = $location.url().split('/').pop();
         $anchorScroll(0);
     });
+    // Product.changeCurrency();
 }]);
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 

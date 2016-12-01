@@ -23,7 +23,7 @@
 
             this.changeCurrency = function (value) {
                 $cookies.put('currency', value);
-                Product.changeCurrency(value);
+                Product.getList();
             }
         }]
     });
