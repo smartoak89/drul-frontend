@@ -5,6 +5,9 @@
             <zoom mark-height="100" mark-width="100" src="{{'/api/file/' + product.photo.uuid}}" zoom-lvl="4"></zoom>
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div class="jzoom">
+                        <img src="/assets/images/tiger.svg">
+                    </div>
                     <div class="galleryWrap">
                         <div class="imageWrap" ng-repeat="photo in product.gallery">
                             <img class="cover img-responsive img-thumbnail" src="{{'/api/file/' + photo.uuid}}" alt="">
@@ -70,3 +73,6 @@
         </div>
     </div>
 </div>
+<script>
+    $('.jzoom').jzoom();
+</script>
