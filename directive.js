@@ -56,16 +56,19 @@ angular.module('app')
                 console.log(evt);
                 mark.addClass('hide');
                 zoomed.addClass('hide');
-                this.offset = calculateOffset(evt);
-                moveMark(this.offset.X, this.offset.Y);
+                //this.offset = calculateOffset(evt);
+                //moveMark(this.offset.X, this.offset.Y);
             })
             .on('mousemove', function(evt){
                 this.offset = calculateOffset(evt);
                 moveMark(this.offset.X, this.offset.Y);
             })
-            .scroll(function(){
-                console.log('+gti ')
-            })
+            .on("wheel", function(evt) {
+                console.log(evt.originalEvent.deltaY);
+                this.offset = calculateOffset(evt);
+
+                moveMark(this.offset.X, this.offset.Y+evt.originalEvent.deltaY);
+            });
         scope.$on('mark:moved', function(event, data){
             updateZoomed.apply(this, data);
         });
@@ -88,8 +91,8 @@ angular.module('app')
                 y=0
             }
             mark
-                .css('left', x + 'px')
-                .css('top',  y + 'px');
+                .css('left', x  + 'px')
+                .css('top',  y  + 'px');
 
             scope.$broadcast('mark:moved', [
                 x, y, dx, dy, originalImg[0].height, originalImg[0].width

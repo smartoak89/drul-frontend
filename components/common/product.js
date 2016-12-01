@@ -5,6 +5,7 @@ angular.module('app')
             product: '='
         },
         controller: ['$cookies', 'Cart', 'User','Product', function($cookies, Cart, User, Product) {
+
             var self = this;
             this.cart = Cart;
             this.product.currency = $cookies.get('currency');

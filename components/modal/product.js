@@ -3,6 +3,16 @@ angular.module('app')
         function ($rootScope, $scope, $uibModalInstance, Cart, modalData, Category) {
             $rootScope.$broadcast('modalOpened');
             $scope.product = modalData.product;
+
+            //$scope.ZoomIn = function () {
+            //    spzTrigger.zoomIn();
+            //};
+            //$scope.ZoomOut = function () {
+            //    spzTrigger.zoomOut();
+            //};
+            //$scope.Reset = function () {
+            //    spzTrigger.resetZoom();
+            //};
             // $scope.categories = Category.category;
             // Category.getList().then(function(res){
             //     $scope.categories = Category.category;
