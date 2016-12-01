@@ -12,7 +12,9 @@ var app = angular.module('app', [
     'ngCookies',
     'ngScrollbars',
     'angularFileUpload',
-    'angularSoundManager'
+    'angularSoundManager',
+    'panzoom'
+
 ]);
 app.constant('Conf', {
    api_path: 'http://95.46.99.177/api'
