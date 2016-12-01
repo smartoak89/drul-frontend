@@ -13,7 +13,9 @@ var app = angular.module('app', [
     'ngScrollbars',
     'angularFileUpload',
     'angularSoundManager',
-    'angularQueryParams'
+    'angularQueryParams',
+    'panzoom'
+
 ]);
 app.constant('Conf', {
    api_path: 'http://95.46.99.177/api'
