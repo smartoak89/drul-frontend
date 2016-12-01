@@ -1796,11 +1796,11 @@ uib-accordion .panel-body > a:hover{
     background-repeat: no-repeat;
     background-position: center center;
 }
-<<<<<<< HEAD
+
 .modal-register, .modal-auth, .modal-cancelAdd, .modal-doneCart, .modal-doneDef{
     margin-top: 50px;
 }
-=======
+
 .closed_accordion .panel-heading a {
     outline: none;
 }

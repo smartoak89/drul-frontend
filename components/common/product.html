@@ -2,11 +2,6 @@
     <div class="goodsBlock">
         <div class="goodsBlockHover">
             <div class="butWrappProd">
-<<<<<<< HEAD
-                <div class="{{$ctrl.class}}" ng-mouseover="$ctrl.class='wrapW'; $ctrl.class1='s-11'" ng-mouseleave="$ctrl.class='wrapB'; $ctrl.class1='s-2'" ng-click="$event.preventDefault(); $event.stopPropagation(); $ctrl.User.active?$ctrl.cart.addToDeferred($ctrl.product): ''" modal="{{$ctrl.User.active?'doneDef':'cancelAdd'}}"><i class="{{$ctrl.class1}}"></i></div>
-                <div class="{{$ctrl.class3}}" ng-click="$event.preventDefault(); $event.stopPropagation(); $ctrl.User.active?$ctrl.cart.save($ctrl.product):''" ng-mouseover="$ctrl.class3='wrapW'; $ctrl.class2='s-12'" ng-mouseleave="$ctrl.class3='wrapB'; $ctrl.class2='s-3'" modal="{{$ctrl.User.active?'doneCart':'cancelAdd'}}"><i class="{{$ctrl.class2}}"></i></div>
-=======
-
                 <div class="{{$ctrl.class}}"
                      ng-show="$ctrl.User.active"
                      ng-mouseover="$ctrl.class='wrapW';
@@ -50,7 +45,7 @@
                      $ctrl.class2='s-3'" modal="cancelAdd">
                     <i class="{{$ctrl.class2}}"></i>
                 </div>
->>>>>>> 7954edfccd127547cb736785b9fe06ca6cb81ba1
+
             </div>
         </div>
         <div class="marker red" ng-if="$ctrl.product.stock">sale</div>

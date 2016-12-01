@@ -9,7 +9,7 @@ angular.module('app')
                     console.log('categories => ', res);
                     self.categories = res;
                 });
-            }
+            };
 
             this.goTo = function (categ) {
                 $location.url('/category/' + categ);
