@@ -59,6 +59,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         //     }]
         // }
     });
+    $stateProvider.state('index.product', {
+        url: "product/:slug",
+        views: {
+            '': {template: "<template-common></template-common>"},
+            'content': {template: "<product-detail></product-detail>"}
+        }
+    });
 
     $stateProvider.state('index.privat-office', {
         url: "privat-office",

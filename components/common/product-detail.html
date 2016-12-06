@@ -1,0 +1,81 @@
+<!--Navigator-->
+<nav-cus></nav-cus>
+
+<div class="container-fluid">
+    <div class="row">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+            <!--<zoom mark-height="100" mark-width="100" src="{{'/api/file/' + product.photo.uuid}}" zoom-lvl="4"></zoom>-->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <panzoom config="$ctrl.config" model="$ctrl.model" style="width:100%; height: 400px">
+                        <img src="/assets/images/123.jpg">
+                    </panzoom>
+                    <div class="galleryWrap">
+                        <div class="imageWrap" ng-repeat="photo in product.gallery">
+                            <img class="cover img-responsive img-thumbnail" src="{{'/api/file/' + photo.uuid}}" alt="">
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="categCard">{{product.category}}</p>
+
+                    <div class="artNameCard">
+                        <div>Артикул {{product.article}}</div>
+                        <p id="goodNameCard">{{product.name}}</p>
+                    </div>
+                    <div class="descriptionCard">{{product.description}}</div>
+                    <div class="priceCard"><span>{{product.price}} грн</span>
+                        <strike ng-if="product.stock">{{product.price}} грн</strike>
+                    </div>
+                    <hr class="marCard"/>
+                    <div class="sizeCard" ng-repeat="value in product.combo">{{value.name}}
+                        <div class="sizeCardDis">
+                            <div class="checkbo" ng-repeat="(key, val) in value.values">
+                                <input type="checkbox" id="{{key}}" name="option" value="{{val}}"/>
+                                <label for="{{key}}"></label><span>{{val}}</span>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="buttonsCard">
+                        <button type="button" class="btn btn-drul dark">оформить заказ</button>
+                        <button type="button" class="btn btn-drul" ng-click="addToDeferred()">
+                            <div class="fa fa-heart-o"></div>
+                            отложить
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul role="tablist" class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#about" aria-controls="home" role="tab"
+                                                          data-toggle="tab">О товаре</a></li>
+                <li role="presentation"><a href="#comm" aria-controls="profile" role="tab" data-toggle="tab">Отзывы</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="about" role="tabpanel" class="tab-pane active">
+                    <div class="row">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <table class="table">
+                                <tbody>
+                                <tr ng-repeat="sub in product.sublines">
+                                    <td>{{sub.name}}</td>
+                                    <td>{{sub.value}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="comm" role="tabpanel" class="tab-pane">222</div>
+            </div>
+        </div>
+    </div>
+</div>
