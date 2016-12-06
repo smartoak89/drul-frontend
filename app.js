@@ -60,7 +60,7 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         // }
     });
     $stateProvider.state('index.product', {
-        url: "product/:slug",
+        url: "product/:id",
         views: {
             '': {template: "<template-common></template-common>"},
             'content': {template: "<product-detail></product-detail>"}
