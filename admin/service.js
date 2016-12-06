@@ -14,26 +14,38 @@ angular.module('admin')
             editprod: null,
             product: null,
             productIndex: null,
-            combinations: null,
+            combinations: [],
             list: function () {
                 var self = this;
                 if (this.products == null) {
                     return HttpResource.query({params1: 'products'}, function (res) {
                         console.log(res);
                         angular.forEach(res, function (product) {
-                           self.getGallery(product, function (err) {
-                               if (err) console.trace('error', err);
-                           })
+                           self.getGallery(product);
                         });
                         self.products = res;
                     })
                 }
                 return self.products;
             },
+            add: function (product, callback) {
+                var self = this;
+                HttpResource.save({params1: 'product'}, product, function (res) {
+                    console.log('added product', res);
+                    self.editLocal(res);
+                    self.products.push(product);
+                    callback();
+                }, function (err) {
+                    callback(err);
+                })
+            },
             get: function (id) {
                 var self = this;
-                HttpResource.query({params1: 'product', params2: id}, function (res) {
+                if (self.editprod) return;
+                HttpResource.get({params1: 'product', params2: id}, function (res) {
                     self.editprod = res;
+                }, function (err) {
+                    console.error('Get one product => ',err);
                 })
             },
             editLocal: function (product) {
@@ -47,32 +59,32 @@ angular.module('admin')
                     callback(err);
                 })
             },
-            getGallery: function (product, callback) {
+            getGallery: function (product) {
                 var criteria = {
                     params1: 'files',
                     params2: product.uuid
                 };
                 HttpResource.query(criteria, function (res) {
-                    product.photo = _.find(res, {type: 'main'});
-                    product.gallery = res;
-                    callback()
+                    if (res.length > 0) {
+                        product.photo = _.find(res, {type: 'main'});
+                        product.gallery = res;
+                    }
                 }, function (err) {
-                    callback(err);
+                    console.error('Get gallery => ', err);
                 })
             },
-            listComb: function () {
+            listComb: function (callback) {
                 var self = this;
-                var deffer = $q.defer();
-                //if (self.combinations == null) {
+                if (self.combinations.length == 0) {
                     HttpResource.query({params1: 'combinations'}, function (res) {
-                        deffer.resolve(res);
                         self.combinations = res;
+                        callback(res)
                     }, function (err) {
-                        console.log(err);
-                        deffer.reject(err);
+                        console.error('Get combinations => ', err);
                     })
-                //}
-                return deffer.promise;
+                } else {
+                    callback(self.combinations);
+                }
             },
             removeComb: function (comb, callback) {
                 var self = this;
@@ -120,21 +132,19 @@ angular.module('admin')
     // Categories
     .factory('Categories',['HttpResource', '$q', function (HttpResource, $q) {
         return {
-            categories: null,
-            list: function () {
+            categories: [],
+            list: function (callback) {
                 var self = this;
-                var deffer = $q.defer();
-                // if (self.categories == null) {
+                if (self.categories.length == 0) {
                     HttpResource.query({params1: 'categories'}, function (res) {
-                        deffer.resolve(res);
                         self.categories = res;
-                        console.log(self.categories);
+                        callback(res);
                     }, function (err) {
-                        console.log(err);
-                        deffer.reject(err);
-                    })
-                // }
-                return deffer.promise;
+                        console.error('Load list of categories', err);
+                    });
+                } else {
+                    callback(self.categories)
+                }
             },
             curCategory: null,
             curIndex: null,
@@ -157,7 +167,7 @@ angular.module('admin')
     // Stocks
     .factory('Stocks', ['HttpResource','$q', function (HttpResource, $q) {
         return {
-            stocksList: null,
+            stocksList: [],
             dateExpires: null,
             create: function (stocks, callback) {
                 var self = this;
@@ -169,19 +179,18 @@ angular.module('admin')
                     callback(err);
                 })
             },
-            list: function () {
+            list: function (callback) {
                 var self = this;
-                var deffer = $q.defer();
-                //if (self.stocksList == null) {
+                if (self.stocksList.length == 0) {
                     HttpResource.query({params1: 'stocks'}, function (res) {
-                        deffer.resolve(res);
                         self.stocksList = res;
+                        callback(res);
                     }, function (err) {
-                        console.log(err);
-                        deffer.reject(err);
+                        console.error('Get stoks', err);
                     })
-                //}
-                return deffer.promise;
+                } else {
+                    callback(self.stocksList)
+                }
             },
             remove: function (id, callback) {
                 var self = this;

@@ -39,7 +39,7 @@ angular.module('admin', [
             resolve: {
                 checkProductEditor: function (Goods, $location) {
                     if (Goods.editprod == null) {
-                        Goods.get($location.url().split('/').pop());
+                        Goods.get($location.url().split('/').pop())
                         // $location.url('/admin/goods');
                     }
                 }
