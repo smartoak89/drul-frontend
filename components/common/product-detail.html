@@ -5,6 +5,7 @@
     <div class="row">
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
             <!--<zoom mark-height="100" mark-width="100" src="{{'/api/file/' + product.photo.uuid}}" zoom-lvl="4"></zoom>-->
+
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <!--<div image-src="" zoom-factor="2" image-zoom data-template-url="bower_components/angular-image-zoom/dist/image-zoom.html"></div>-->
@@ -15,7 +16,8 @@
                             <!--ez-plus-->
                             <!--data-zoom-image="{{'/api/file/' + $ctrl.product.photo.uuid}}"-->
                             <!--id="zoom_01" ng-src="{{'/api/file/' + $ctrl.product.photo.uuid}}"/>-->
-                    <img id="zoom_01" class="img-responsive" src="{{'/api/file/' + $ctrl.product.photo.uuid}}" data-zoom-image="http://95.46.99.177/api/file/5a0518ab-9b5f-4af8-830f-8873bdac2509"/>
+                    <!--<img id="zooimg id="ass="img-responsive" src="{{'/api/file/' + $ctrl.product.photo.uuid}}" data-zoom-image="{{$ctrl.getImg()}}"/>-->
+
                     <div class="galleryWrap">
                         <div class="imageWrap" ng-repeat="photo in $ctrl.product.gallery">
                             <img class="cover img-responsive img-thumbnail" ng-src="{{'/api/file/' + photo.uuid}}" alt="">

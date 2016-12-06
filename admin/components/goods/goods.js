@@ -27,7 +27,6 @@ angular.module('admin')
             this.$onInit = function () {
                 console.log('Product => ', self.product);
                 Categories.list(function (categories) {
-                    self.currentCategory = _.find(categories, {slug: self.product.category.slug});
                     self.categories = categories;
                 });
                 Goods.listComb(function (combinations) {
@@ -40,8 +39,22 @@ angular.module('admin')
                     Goods.getGallery(self.product);
                 }
             };
-            this.currentCateg = function () {
-                return self.currentCategory;
+            this.currentCategory = function () {
+
+                var category = _.find(self.categories, {slug: self.product.category.slug});
+                if (!category) {
+                    _.each(self.categories, function (elem) {
+                        elem.show = false;
+                        if (elem.children.length > 0) {
+                            var subcat = _.find(elem.children, {slug: self.product.category.slug});
+                            if (subcat) {
+                                elem.show = true;
+                                category = subcat;
+                            }
+                        }
+                    });
+                }
+                return category;
             };
             // $q.all([Categories.list(), Goods.listComb(), Stocks.list()]).then(function(){
             //     self.categories = Categories.categories;
@@ -63,7 +76,6 @@ angular.module('admin')
             // }else{
             //    self.curStock = null;
             // }
-            this.preview = this.product.photo || '';
             // console.log(this.categories[1].children[0]);
             // console.log(_(this.categories).thru(function(coll) {return _.union(coll, _.map(coll, 'children'))}).flatten())
 
@@ -108,9 +120,11 @@ angular.module('admin')
                 self.stockCost = Goods.countStock(per, price);
             };
 
-            this.addCategToProduct = function (category) {
-                this.product.category = category.slug;
-                // self.categArticle.article = category.article;
+            this.addCategory = function (category) {
+                this.product.category = {
+                    name: category.name,
+                    slug: category.slug
+                };
             };
 
             // Uploader

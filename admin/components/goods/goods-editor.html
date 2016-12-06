@@ -106,9 +106,21 @@
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <p class="categCard">
                             <label>Категория</label>
-                            <treecontrol ng-if="$ctrl.categories" class="tree-light" tree-model="$ctrl.categories" selected-node="$ctrl.currentCateg()" expanded-nodes="$ctrl.selected"  on-selection="$ctrl.addCategToProduct(node)">
-                                {{node.name}}
-                            </treecontrol>
+                            <ul class="category_list">
+                                <li ng-repeat="category in $ctrl.categories">
+                                    <i ng-if="category.children.length > 0" class="fa fa-{{category.show ? 'minus':'plus'}}" ng-click="category.show = !category.show"></i>
+                                    <i ng-if="category.children == 0" class="fa fa-file"></i>
+                                    <a ng-click="$ctrl.addCategory(category)">{{category.name}}</a>
+                                    <i class="fa fa-check" ng-show="$ctrl.currentCategory() == category"></i>
+                                    <ul ng-if="category.children" ng-show="category.show" class="children">
+                                        <li ng-repeat="child in category.children">
+                                            <i class="fa fa-file"></i>
+                                            <a ng-click="$ctrl.addCategory(child)">{{child.name}}</a>
+                                            <i class="fa fa-check" ng-show="$ctrl.currentCategory() == child"></i>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
                         </p>
                         <div class="form-group">
                             <label>Артикул</label>
