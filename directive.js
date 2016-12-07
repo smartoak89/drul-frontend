@@ -154,6 +154,19 @@ angular.module('app')
         ].join(''),
         link: link
     };
+}).directive('dynamic', function ($compile) {
+    return {
+        restrict: 'A',
+        replace: true,
+        link: function (scope, ele, attrs) {
+            scope.$watch(attrs.dynamic, function(html) {
+                ele.html(html);
+                console.log(ele)
+                $compile(ele.contents())(scope);
+                ele.elevateZoom();
+            });
+        }
+    };
 })
     .directive('noImage', function($timeout) {
         var all = [];
