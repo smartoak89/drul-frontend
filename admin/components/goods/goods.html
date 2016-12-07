@@ -19,10 +19,10 @@
             <tbody>
                 <tr ng-repeat="product in $ctrl.products">
                     <td>
-                        <img style="object-fit: cover;" class="product-photo" src="{{'/api/file/' + product.photo.uuid}}" alt="{{product.name}}" width="100" height="60">
+                        <img style="object-fit: cover;" class="product-photo" ng-src="/api/file/{{product.photo.uuid}}" alt="{{product.name}}" width="100" height="60" no-image>
                     </td>
                     <td>{{product.name}}</td>
-                    <td>{{product.category}}</td>
+                    <td>{{product.category.name}}</td>
                     <td>{{product.article}}</td>
                     <td>{{product.price}}</td>
                     <td>
@@ -34,7 +34,8 @@
                     <!--<td><button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button></td>-->
                     <td>
                         <button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button>
-                        <button class="btn btn-default btn-sm" ng-click="$ctrl.removeProd(product, $index)" modal-admin="delGood">Remove</button></td>
+                        <button class="btn btn-default btn-sm" ng-click="$ctrl.removeProd(product, $index)" modal-admin="delGood">Remove</button>
+                    </td>
                 </tr>
             </tbody>
         </table>

@@ -18,53 +18,80 @@ angular.module('admin')
 
     .component('goodsEditor', {
         templateUrl: "admin/components/goods/goods-editor.html",
-        controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', 'Stocks', '$q',
-            function(Goods, FileUploader, Conf, File, Categories, $state, Stocks, $q) {
+        controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', 'Stocks', '$q', '$location',
+            function(Goods, FileUploader, Conf, File, Categories, $state, Stocks, $q, $location) {
             var self = this;
-            self.categories = Categories.categories;
-            self.combinations = Goods.combinations;
-            self.stocks = Stocks.stocksList;
-            self.pror = {};
-            $q.all([Categories.list(), Goods.listComb(), Stocks.list()]).then(function(){
-                self.categories = Categories.categories;
-                self.combinations = Goods.combinations;
-                self.stocks = Stocks.stocksList;
-                if(self.product.stock != null){
-                    self.curStock = _.find(self.stocks, {uuid: self.product.stock});
-                    self.stockFun(self.curStock.percent, self.product.price);
-
-                }else{
-                    self.curStock = null;
-                }
-            });
-
-            this.editMode = true;
+            // this.editMode = true;
             this.product = Goods.editprod;
-            //if(this.product.stock){
+            this.pror = {};
+            this.$onInit = function () {
+                console.log('Product => ', self.product);
+                Categories.list(function (categories) {
+                    self.categories = categories;
+                });
+                Goods.listComb(function (combinations) {
+                    self.combinations = combinations;
+                });
+                Stocks.list(function (stocks) {
+                    self.stocks = stocks;
+                });
+                if (self.product.gallery == undefined) {
+                    Goods.getGallery(self.product);
+                }
+            };
+            this.currentCategory = function () {
+
+                var category = _.find(self.categories, {slug: self.product.category.slug});
+                if (!category) {
+                    _.each(self.categories, function (elem) {
+                        elem.show = false;
+                        if (elem.children.length > 0) {
+                            var subcat = _.find(elem.children, {slug: self.product.category.slug});
+                            if (subcat) {
+                                elem.show = true;
+                                category = subcat;
+                            }
+                        }
+                    });
+                }
+                return category;
+            };
+            // $q.all([Categories.list(), Goods.listComb(), Stocks.list()]).then(function(){
+            //     self.categories = Categories.categories;
+            //     self.combinations = Goods.combinations;
+            //     self.stocks = Stocks.stocksList;
+            //     if(self.product.stock != null){
+            //         self.curStock = _.find(self.stocks, {uuid: self.product.stock});
+            //         self.stockFun(self.curStock.percent, self.product.price);
+            //
+            //     }else{
+            //         self.curStock = null;
+            //     }
+            // });
+
+            // if(this.product.stock){
             //    self.stocks = Stocks.stocksList;
             //    self.curStock = _.find(self.stocks, {uuid: self.product.stock});
             //    self.stockFun(self.curStock.percent, self.product.price);
-            //}else{
+            // }else{
             //    self.curStock = null;
-            //}
-            this.preview = this.product.photo || '';
-            this.selected = _.find(this.categories, {slug: this.product.category});
-                    //console.log(this.categories[1].children[0]);
-                    //console.log(_(this.categories).thru(function(coll) {return _.union(coll, _.map(coll, 'children'))}).flatten())
+            // }
+            // console.log(this.categories[1].children[0]);
+            // console.log(_(this.categories).thru(function(coll) {return _.union(coll, _.map(coll, 'children'))}).flatten())
 
-            this.$onInit = function () {
-                getGallery ();
-                if (self.product && !self.product.article) {
-                    // self.categArticle = _.find(self.categories, {slug: self.product.category});
-                    // self.product.article = categArticle + '.';
-                }
-            };
+            // this.$onInit = function () {
+            //     getGallery ();
+            //     if (self.product && !self.product.article) {
+            //         // self.categArticle = _.find(self.categories, {slug: self.product.category});
+            //         // self.product.article = categArticle + '.';
+            //     }
+            // };
 
-            function getGallery () {
-                Goods.getGallery(self.product, function (err) {
-                    if (err) console.trace('error', err);
-                });
-            }
+            // function getGallery () {
+            //     Goods.getGallery(self.product, function (err) {
+            //         if (err) console.trace('error', err);
+            //     });
+            // }
 
             this.findComboModel = function (name) {
                 console.log('init')
@@ -88,12 +115,16 @@ angular.module('admin')
                     _.remove(self.product.gallery, file);
                 })
             };
+
             this.stockFun = function (per, price){
                 self.stockCost = Goods.countStock(per, price);
             };
-            this.addCategToProduct = function (category) {
-                this.product.category = category.slug;
-                // self.categArticle.article = category.article;
+
+            this.addCategory = function (category) {
+                this.product.category = {
+                    name: category.name,
+                    slug: category.slug
+                };
             };
 
             // Uploader
@@ -111,9 +142,11 @@ angular.module('admin')
             this.edit = function () {
                 self.editMode = !self.editMode;
             };
+
             this.delCombo= function (name){
                 _.remove(self.product.combo, {name: name});
             };
+
             this.save = function () {
                 //console.log(self.curStock);
                 self.product.stock = self.curStock.uuid;
@@ -132,8 +165,9 @@ angular.module('admin')
                 });
 
             };
+
             uploader.onCompleteAll = function() {
-                getGallery();
+                Goods.getGallery(self.product);
                 self.editMode = false;
             };
 

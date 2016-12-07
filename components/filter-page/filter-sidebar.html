@@ -20,7 +20,7 @@
         <uib-accordion close-others="true">
             <div uib-accordion-group class="panel-default category" ng-repeat="item in $ctrl.FilterServ.filters[$ctrl.category]" heading="{{item._id}}">
                 <div class="checkbo" ng-repeat="(key, value) in item.values">
-                    <input type="checkbox" id="{{key}}{{value}}" name="option" value="{{value}}"/>
+                    <input type="checkbox" id="{{key}}{{value}}" name="option" ng-click="$ctrl.filterBy(item._id, value)" value="{{value}}"/>
                     <label for="{{key}}{{value}}"><span>{{value}}</span></label>
                 </div>
             </div>

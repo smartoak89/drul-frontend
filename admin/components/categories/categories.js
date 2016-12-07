@@ -4,7 +4,9 @@ angular.module('admin')
         controller: ['Categories', function(Categories) {
             var self = this;
             this.$onInit = function(){
-                Categories.list();
+                Categories.list(function (categories) {
+                    self.categories = categories;
+                });
             };
             self.categ = Categories;
             //self.dalCategory = function(obj, index){

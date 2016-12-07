@@ -1814,3 +1814,19 @@ uib-accordion .panel-body > a:hover{
 .closed_accordion .panel-heading:after{
     display: none !important;
 }
+.category_list .children {
+    padding-left:25px;
+}
+
+.category_list a {
+    cursor: default;
+    text-decoration: none;
+    color: #000;
+}
+.category_list .fa {
+    cursor: pointer;
+    color: #3877af;
+}
+.category_list .fa:hover {
+    color: #23527C;
+}

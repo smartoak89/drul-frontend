@@ -10,11 +10,25 @@
                     <input class="form-control" id="name" autocomplete="off" ng-model="newProduct.name">
                 </div>
                 <div class="form-inline">
-                    <label>Категория</label>
-                    
-                    <treecontrol class="tree-light" tree-model="categories" on-selection="addCategToProduct(node)">
-                        {{node.name}}
-                    </treecontrol>
+                    <div class="combinations row">
+                        <div class="col-md-12">
+                            <ul class="category_list">
+                                <li ng-repeat="category in categories">
+                                    <i ng-if="category.children.length > 0" class="fa fa-{{category.show ? 'minus':'plus'}}" ng-click="category.show = !category.show"></i>
+                                    <i ng-if="category.children == 0" class="fa fa-file"></i>
+                                    <a ng-click="addCategory(category)">{{category.name}}</a>
+                                    <i class="fa fa-check" ng-show="category.check"></i>
+                                    <ul ng-if="category.children" ng-show="category.show" class="children">
+                                        <li ng-repeat="child in category.children">
+                                            <i class="fa fa-file"></i>
+                                            <a ng-click="addCategory(child)">{{child.name}}</a>
+                                            <i class="fa fa-check" ng-show="child.check"></i>
+                                        </li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
