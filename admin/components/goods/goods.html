@@ -19,7 +19,7 @@
             <tbody>
                 <tr ng-repeat="product in $ctrl.products">
                     <td>
-                        <img style="object-fit: cover;" class="product-photo" ng-src="/api/file/{{product.photo.uuid}}" alt="{{product.name}}" width="100" height="60" no-image>
+                        <img style="object-fit: cover;" class="product-photo" ng-src="/api/file/{{product.photo.uuid}}" alt="" width="100" height="80" no-image>
                     </td>
                     <td>{{product.name}}</td>
                     <td>{{product.category.name}}</td>

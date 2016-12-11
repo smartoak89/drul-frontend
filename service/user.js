@@ -16,7 +16,6 @@ angular.module('app')
                 if (!id) return self.active = null;
                 return Httpquery.get({params1: 'user', params2: id}, function (user) {
                     self.active = user;
-                    console.log('User', self.active.uuid);
                     callback();
                 });
             },

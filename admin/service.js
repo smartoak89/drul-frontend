@@ -8,7 +8,7 @@ angular.module('admin')
         });
     }])
     // Product
-    .factory('Goods',['HttpResource', '$location', '$q', function (HttpResource, $location, $q) {
+    .factory('Goods',['HttpResource', '$location', '$q', 'Stocks', function (HttpResource, $location, $q, Stocks) {
         return {
             products: null,
             editprod: null,
@@ -43,6 +43,7 @@ angular.module('admin')
                 var self = this;
                 if (self.editprod) return;
                 HttpResource.get({params1: 'product', params2: id}, function (res) {
+                    self.getGallery(res);
                     self.editprod = res;
                 }, function (err) {
                     console.error('Get one product => ',err);
@@ -68,6 +69,7 @@ angular.module('admin')
                     if (res.length > 0) {
                         product.photo = _.find(res, {type: 'main'});
                         product.gallery = res;
+                        console.log('prodGall ', product);
                     }
                 }, function (err) {
                     console.error('Get gallery => ', err);
@@ -123,8 +125,9 @@ angular.module('admin')
                 comb.value.splice(indexChild, 1);
                 self.updateComb(comb, parentIndex, callback);
             },
-            countStock: function (per, price){
-                return Math.round(price-(price*per/100));
+            applyStock: function (product){
+                var stock = _.find(Stocks.stocksList, {uuid: product.stock});
+                product.stockCost = Math.round(product.price - ( product.price * stock.percent / 100 ));
             }
 
         }
