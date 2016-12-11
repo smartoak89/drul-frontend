@@ -5,13 +5,15 @@ angular.module('app')
             var self = this;
             this.User = User;
             this.Cart = Cart;
+            this.Cart.list();
+            this.Cart.listDef();
             this.logout = function () {
                 // this.user = null;
                 User.deactive();
             };
-            this.click = function () {
-                User.set({id: 92873928219});
-            };
+            //this.click = function () {
+            //    User.set({id: 92873928219});
+            //};
             self.volume = 's-21';
             self.volumeSlider = {
                 value: 100,

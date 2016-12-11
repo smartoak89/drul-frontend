@@ -14,7 +14,8 @@ var app = angular.module('app', [
     'angularFileUpload',
     'angularSoundManager',
     'angularQueryParams',
-    'panzoom'
+    'panzoom',
+    'ezplus'
 
 ]);
 app.constant('Conf', {

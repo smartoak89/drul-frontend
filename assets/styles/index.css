@@ -129,8 +129,8 @@ button:focus{
     width: auto;
 
 }
-.compact1 .logoWrapper, .compact.fixed .logoWrapper{
-    margin-top: 12px;
+.compact1 .logoWrapper, .fixed .logoWrapper{
+    margin-top: 12px !important;
 }
 .compact .logoWrapper{
     margin-top: 2px;
@@ -168,9 +168,9 @@ button:focus{
 }
 .na{
     height: 250px;
-    background: #000;
     position: relative;
     transition: transform .2s ease;
+    background: url(../images/backHeader.jpg) 50% 50% no-repeat;
 }
 .fixed{
     /*top: -100px;*/
@@ -217,11 +217,14 @@ button:focus{
 .compact .navigation, .compact1 .navigation{
     width: auto;
     position: relative;
-    top: 39px;
+    top: 30px;
     /*right: 120px;*/
     display: inline;
     float: right;
     margin-top: 0;
+}
+.fixed .navigation{
+    top: 39px !important;
 }
 .navigation > li{
     display: inline;
@@ -487,13 +490,10 @@ section {
 .goodsBlock:hover > .goodsBlockHover {
     opacity: 1;
 }
-.butWrappProd > div{
-    margin-right: 15px;
-}
 .butWrappProd > .wrapB{
      border: 1px solid #000;
      display: flex;
-     padding: 5px;
+     padding: 20px;
      min-width: 35px;
      background-color: #fff;
     justify-content: center;
@@ -502,7 +502,7 @@ section {
 .butWrappProd > .wrapW{
     border: 1px solid #000;
     display: flex;
-    padding: 5px;
+    padding: 20px;
     min-width: 35px;
     background-color: #000;
     cursor: pointer;
@@ -1829,4 +1829,25 @@ uib-accordion .panel-body > a:hover{
 }
 .category_list .fa:hover {
     color: #23527C;
+}
+.zoomContainer{
+    height: 400px !important;
+}
+.zoomWrapper {
+    /*width: 100% !important;*/
+    height: 400px !important;
+}
+.zoomWrapper img{
+    width: inherit !important;
+    height: auto !important;
+    max-height: 400px !important;
+}
+.blackCol, .blackCol:hover, .blackCol:focus, .blackCol:active{
+    color: #000;
+}
+.zoomLens{
+    display: none !important;
+}
+.pad15{
+    padding: 15px 0;
 }
