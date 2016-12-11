@@ -154,20 +154,14 @@ angular.module('app')
         ].join(''),
         link: link
     };
-}).directive('dynamic', function ($compile) {
-    return {
-        restrict: 'A',
-        replace: true,
-        link: function (scope, ele, attrs) {
-            scope.$watch(attrs.dynamic, function(html) {
-                ele.html(html);
-                console.log(ele)
-                $compile(ele.contents())(scope);
-                ele.elevateZoom();
-            });
+}).directive('dynamic', ['$timeout', function($timeout) {
+        return {
+            restrict: 'A',
+                link: function ($scope, element, attrs) {
+                $timeout(function(){$scope.$apply($('#zoom_03').elevateZoom()); console.log('+')}, 500);
+            }
         }
-    };
-})
+    }])
     .directive('noImage', function($timeout) {
         var all = [];
         return {
