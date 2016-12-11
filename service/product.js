@@ -40,8 +40,17 @@ angular.module('app')
                     products.then(function (res) {
                         Cart.getCartAndDeferred(res);
                         $q.all([self.getGallery(res), self.changeCurrency(res)]).then(function (result) {
-                            console.log(result[1]);
-                            callback(result[1]);
+                            self.countStock(result[1]).then(function(result2){
+                                console.log(result2);
+                                if(self.curProd){
+                                    var curren = _.find(result2, {uuid: self.curProd.uuid});
+                                    console.log(curren);
+                                    self.curProd.price = curren.price;
+                                    self.curProd.stockCost = curren.stockCost;
+                                }
+                                callback(result2);
+                            })
+
                         })
                     })
                 },
@@ -88,10 +97,45 @@ angular.module('app')
 
                     return promises;
                 },
-                countStock: function (per, price) {
-                    return Math.round(price - (price * per / 100));
+                countStock: function (products) {
+                    var self = this;
+                    return $q(function(resolve){
+                    if (self.stocksList == null) {
+                        self.listStocks().then(function () {
+                            if(!Array.isArray(products)){
+                                var stock = _.find(self.stocksList, {uuid: products.stock});
+                                if (stock) {
+                                    products.stockCost = Math.round(products.price - ( products.price * stock.percent / 100 ));
+                                } else products.stockCost = null
+                            }else {
+                                _.each(products, function (el) {
+                                    var stock = _.find(self.stocksList, {uuid: el.stock});
+                                    if (stock) {
+                                        el.stockCost = Math.round(el.price - ( el.price * stock.percent / 100 ));
+                                    } else el.stockCost = null
+                                });
+                            }
+                            resolve(products);
+                        })
+                    } else {
+                        if(!Array.isArray(products)){
+                            var stock = _.find(self.stocksList, {uuid: products.stock});
+                            if (stock) {
+                                products.stockCost = Math.round(products.price - ( products.price * stock.percent / 100 ));
+                            } else products.stockCost = null
+                        }else {
+                            _.each(products, function (el) {
+                                var stock = _.find(self.stocksList, {uuid: el.stock});
+                                if (stock) {
+                                    el.stockCost = Math.round(el.price - ( el.price * stock.percent / 100 ));
+                                } else el.stockCost = null
+                            });
+                        }
+                        resolve(products);
+                    }})
                 },
                 changeCurrency: function (products) {
+                    var self = this;
                     var currency = $cookies.get('currency') || 'UAH';
                     var url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
                     return $q(function (resolve, reject) {
@@ -100,7 +144,8 @@ angular.module('app')
                         $http.get(url).then(function (res) {
                             var curr = _.find(res.data, {ccy: currency});
                             _.each(products, function (el) {
-                                el.price = (el.price / curr.sale).toFixed(2);
+                                el.price = Math.round(el.price / curr.sale);
+                                //.toFixed(2)
                             });
                             resolve(products);
                         }, function (err) {
@@ -118,8 +163,12 @@ angular.module('app')
                             res.photo = _.find(ress, {type: 'main'});
                             res.gallery = ress;
                         })
-                        defer.resolve(res);
-                        self.curProd = res;
+                        self.countStock(res).then(function(result){
+                            //console.log(result)
+                            defer.resolve(result);
+                            self.curProd = result;
+                        })
+
                     }, function (err) {
                         console.log(err);
                         defer.reject(err);

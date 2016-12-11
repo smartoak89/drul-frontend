@@ -55,9 +55,9 @@
                 <div>Артикул {{$ctrl.product.article}}</div>
                 <p>{{$ctrl.product.name}}</p>
                 <hr class="line"/>
-                <span ng-if="$ctrl.curStock">{{$ctrl.stockCost + " " + $ctrl.product.currency}}</span>
-                <span ng-if="!$ctrl.curStock">{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
-                <strike ng-show="$ctrl.curStock">{{$ctrl.product.price + " " + $ctrl.product.currency}}</strike>
+                <span ng-if="$ctrl.product.stockCost">{{$ctrl.product.stockCost + " " + $ctrl.product.currency}}</span>
+                <span ng-if="!$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
+                <strike ng-show="$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</strike>
             </div>
         </div>
     </div>

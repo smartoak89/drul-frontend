@@ -14,9 +14,40 @@
                             <input type="checkbox" id="111" name="option" value="a"/>
                             <label for="111"></label>
                         </div>
+
                     </li>
                 </ul>
             </div>
+            <div>
+                <div class="nameSet">Галерея</div>
+                    <!--GALLERY-->
+                    <div ng-include="'admin/components/common/upload-template.html'" ng-init="uploader = $ctrl.uploader"></div>
+                    <table class="table" ng-hide="$ctrl.addingGallery || !product.gallery && !product.photo">
+                        <thead>
+                        <tr>
+                            <th>Имя</th>
+                            <th>Обложка</th>
+                            <th>Удалить</th>
+                        </tr>
+                        </thead>
+                        <tbody>
+                        <tr ng-repeat="photo in product.gallery">
+                            <td>
+                                <strong class="name_goods">{{photo.name}}</strong>
+                                <img ng-src="/api/file/{{photo.uuid}}" alt="" width="120" height="80" style="object-fit: cover;">
+                            </td>
+                            <td class="text-center">
+                                <input type="radio" style="margin: 0 auto; display: block;" id="main" name="main" ng-checked="photo.type == 'main'"/>
+                            </td>
+                            <td>
+                                <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="$ctrl.remove(photo)">
+                                    <span class="glyphicon glyphicon-trash"></span></button>
+                            </td>
+                        </tr>
+                        </tbody>
+                    </table>
+            </div>
+
         </div>
     </div>
 </div>

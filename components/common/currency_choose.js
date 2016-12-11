@@ -9,7 +9,7 @@
                             '<span ng-bind="item.name"></span>' +
                         '</ui-select-choices>' +
                     '</ui-select>',
-        controller: ['$cookies', 'Product', function($cookies, Product) {
+        controller: ['$cookies', 'Product', '$location', function($cookies, Product, $location) {
             var self = this;
             self.itemArray = [
                 {id: 1, name: 'UAH'},
@@ -24,6 +24,10 @@
             this.changeCurrency = function (value) {
                 $cookies.put('currency', value);
                 Product.getList();
+                if(Product.curProd != null){
+                    Product.curProd.currency = value;
+                }
+
             }
         }]
     });

@@ -57,7 +57,6 @@ angular.module('app')
                 //angularPlayer.play();
                 angularPlayer.repeatToggle();
                 self.repeat = angularPlayer.getRepeatStatus();
-                console.log(self.repeat);
             });
 
         }]

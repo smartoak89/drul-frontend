@@ -14,8 +14,6 @@ angular.module('app')
             this.class3 = 'wrapB';
             this.class1 = 's-2';
             this.class2 = 's-3';
-            this.stockCost = null;
-            this.curStock = null;
             self.User = User;
             this.addToCart = function () {
                 var self = this;
@@ -25,9 +23,6 @@ angular.module('app')
                 Cart.addToCart(this.product);
             }
             // this.preview = this.product.photo || '';
-            this.stockFun = function (per, price){
-                self.stockCost = Product.countStock(per, price);
-            };
 
             // if(self.product.stock){
             //     if(_.find(self.stocks, {uuid: self.product.stock})) {

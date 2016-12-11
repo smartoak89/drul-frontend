@@ -9,10 +9,10 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <img dynamic class="cover img-responsive" id="zoom_03"
-                         src="{{'/api/file/' + $ctrl.product.photo.uuid}}"
-                         data-zoom-image="{{'/api/file/' + $ctrl.product.photo.uuid}}"
+                         src="{{'/api/file/' + $ctrl.Product.curProd.photo.uuid}}"
+                         data-zoom-image="{{'/api/file/' + $ctrl.Product.curProd.photo.uuid}}"
                          ng-init="$ctrl.initImg()"
-                         ng-if="$ctrl.product.photo.uuid"
+                         ng-if="$ctrl.Product.curProd.photo.uuid"
                          no-image
                          ez-plus
                          ezp-model="$ctrl.zoomModelGallery01"
@@ -20,7 +20,7 @@
                     />
                     <div id="gallery_01" class="galleryWrap">
                         <a class="imageWrap"
-                           ng-repeat="photo in $ctrl.product.gallery"
+                           ng-repeat="photo in $ctrl.Product.curProd.gallery"
                            ng-click="$ctrl.setActiveImageInGallery('zoomModelGallery01', photo.uuid);"
 
                            data-image="{{'http://95.46.99.177/api/file/' + photo.uuid}}"
@@ -34,18 +34,18 @@
         <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                    <p class="categCard">{{$ctrl.product.category.name}}</p>
+                    <p class="categCard">{{$ctrl.Product.curProd.category.name}}</p>
 
                     <div class="artNameCard">
-                        <div>Артикул {{$ctrl.product.article}}</div>
-                        <p id="goodNameCard">{{$ctrl.product.name}}</p>
+                        <div>Артикул {{$ctrl.Product.curProd.article}}</div>
+                        <p id="goodNameCard">{{$ctrl.Product.curProd.name}}</p>
                     </div>
-                    <div class="descriptionCard">{{$ctrl.product.description}}</div>
-                    <div class="priceCard"><span>{{$ctrl.product.price}} грн</span>
-                        <strike ng-if="$ctrl.product.stock">{{$ctrl.product.price}} грн</strike>
+                    <div class="descriptionCard">{{$ctrl.Product.curProd.description}}</div>
+                    <div class="priceCard"><span>{{$ctrl.Product.curProd.stock?$ctrl.Product.curProd.stockCost  + ' ' + $ctrl.Product.curProd.currency:$ctrl.Product.curProd.price + ' ' + $ctrl.Product.curProd.currency}}</span>
+                        <strike ng-if="$ctrl.Product.curProd.stock">{{$ctrl.Product.curProd.price + ' ' + $ctrl.Product.curProd.currency}}</strike>
                     </div>
                     <hr class="marCard"/>
-                    <div class="sizeCard" ng-repeat="value in $ctrl.product.combo">{{value.name}}
+                    <div class="sizeCard" ng-repeat="value in $ctrl.Product.curProd.combo">{{value.name}}
                         <div class="sizeCardDis">
                             <div class="checkbo" ng-repeat="(key, val) in value.values">
                                 <input type="radio" id="{{val + key}}" name="{{value.name}}" value="{{val}}"/>
@@ -54,8 +54,8 @@
                         </div>
                     </div>
                     <div class="buttonsCard">
-                        <button type="button" class="btn btn-drul dark" ng-click="$ctrl.cart.save($ctrl.product)">оформить заказ</button>
-                        <button type="button" class="btn btn-drul" ng-click="$ctrl.cart.addToDeferred($ctrl.product)" modal="doneDef">
+                        <button type="button" class="btn btn-drul dark" ng-click="$ctrl.cart.save($ctrl.Product.curProd)">оформить заказ</button>
+                        <button type="button" class="btn btn-drul" ng-click="$ctrl.cart.addToDeferred($ctrl.Product.curProd)" modal="doneDef">
                             <div class="fa fa-heart-o"></div>
                             отложить
                         </button>
@@ -78,7 +78,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <table class="table">
                                 <tbody>
-                                <tr ng-repeat="sub in $ctrl.product.sublines">
+                                <tr ng-repeat="sub in $ctrl.Product.curProd.sublines">
                                     <td>{{sub.name}}</td>
                                     <td>{{sub.value}}</td>
                                 </tr>
