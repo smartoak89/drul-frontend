@@ -22,30 +22,34 @@
                 <div class="nameSet">Галерея</div>
                     <!--GALLERY-->
                     <div ng-include="'admin/components/common/upload-template.html'" ng-init="uploader = $ctrl.uploader"></div>
-                    <table class="table" ng-hide="$ctrl.addingGallery || !product.gallery && !product.photo">
+                <div ng-if="$ctrl.error" class="callout callout-danger">
+                    <p>{{$ctrl.error}}</p>
+                </div>
+                <div class="progress" style="" ng-show="$ctrl.uploading">
+                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': $ctrl.uploader.progress + '%' }"></div>
+                </div>
+                <button class="btn btn-default mar10" type="button" ng-show="uploader.queue.length > 0" ng-click="uploader.uploadSlide()">Загрузить</button>
+                    <table class="table" ng-hide="!$ctrl.slides">
                         <thead>
                         <tr>
                             <th>Имя</th>
-                            <th>Обложка</th>
                             <th>Удалить</th>
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat="photo in product.gallery">
+                        <tr ng-repeat="slide in $ctrl.slides">
                             <td>
-                                <strong class="name_goods">{{photo.name}}</strong>
-                                <img ng-src="/api/file/{{photo.uuid}}" alt="" width="120" height="80" style="object-fit: cover;">
-                            </td>
-                            <td class="text-center">
-                                <input type="radio" style="margin: 0 auto; display: block;" id="main" name="main" ng-checked="photo.type == 'main'"/>
+                                <strong class="name_goods">{{slide.name}}</strong>
+                                <img ng-src="/api/file/{{slide.uuid}}" alt="" width="120" height="80" style="object-fit: cover;">
                             </td>
                             <td>
-                                <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="$ctrl.remove(photo)">
+                                <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="$ctrl.remove(slide)">
                                     <span class="glyphicon glyphicon-trash"></span></button>
                             </td>
                         </tr>
                         </tbody>
                     </table>
+
             </div>
 
         </div>

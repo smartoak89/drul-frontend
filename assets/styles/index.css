@@ -1851,3 +1851,59 @@ uib-accordion .panel-body > a:hover{
 .pad15{
     padding: 15px 0;
 }
+.mar10{
+    margin: 10px 0;
+}
+.comment-content {
+    margin: 10px 0;
+    padding: 10px;
+    border: 1px solid #ccc;
+    border-radius: 3px;
+}
+.comment-author {
+    margin: 0 0 20px;
+}
+.comment-author a{
+    color: #111;
+}
+.comment-meta {
+    font-size: 12px;
+}
+.comment-meta a {
+    text-transform: uppercase;
+    letter-spacing: 2px;
+    color: rgba(17, 17, 17, 0.55);
+}
+.comment-meta a:hover {
+    text-decoration: none;
+    color: #111;
+    outline: 0;
+}
+.comment-form {
+    margin: 40px 0;
+    padding: 0;
+}
+.comment-form-title {
+    margin: 0 0 15px;
+}
+.m-b-30 {
+    margin-bottom: 30px !important;
+}
+.form-control {
+    border: 1px solid #eee;
+    height: 32px;
+    letter-spacing: 1px;
+    font-size: 11px;
+    -webkit-border-radius: 2px;
+    -moz-border-radius: 2px;
+    -ms-border-radius: 2px;
+    -o-border-radius: 2px;
+    border-radius: 2px;
+    -webkit-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+    -moz-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+    -o-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+    transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
+}
+.form-control:focus {
+    border-color: #111;
+}

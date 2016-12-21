@@ -66,10 +66,10 @@
     </div>
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-            <ul role="tablist" class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#about" aria-controls="home" role="tab"
+            <ul id="myTab" role="tablist" class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab"
                                                           data-toggle="tab">О товаре</a></li>
-                <li role="presentation"><a href="#comm" aria-controls="profile" role="tab" data-toggle="tab">Отзывы</a>
+                <li role="presentation"><a href="#comm" aria-controls="comm" role="tab" data-toggle="tab">Отзывы</a>
                 </li>
             </ul>
             <div class="tab-content">
@@ -87,12 +87,44 @@
                         </div>
                     </div>
                 </div>
-                <div id="comm" role="tabpanel" class="tab-pane">222</div>
+                <div id="comm" role="tabpanel" class="tab-pane">
+                    <div class="comment-content clearfix">
+                        <h5 class="comment-author font-alt">
+                            <a>John Doe</a>
+                        </h5>
+                        <div class="comment-body">
+                            <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The European languages are members of the same family. Their separate existence is a myth.</p>
+                        </div>
+                        <div class="comment-meta font-alt">Today, 14:55 - <a href="#">Reply</a></div>
+                    </div>
+                    <div class="comment-form col-md-8">
+                        <h4 class="comment-form-title font-alt">Оставить комментарий</h4>
+                        <hr class="divider m-b-30">
+
+                        <div class="row">
+
+                            <form>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea id="message" name="message" class="form-control" placeholder="Сообщение" rows="6"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-drul dark">Отправить</button>
+                                </div>
+                            </form>
+
+                        </div>
+
+                    </div>
+                </div>
             </div>
         </div>
     </div>
 </div>
-<!--<script>-->
-    <!--$('#zoom_03').elevateZoom();-->
-
-<!--</script>-->
+<script>
+    $('#myTab a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>

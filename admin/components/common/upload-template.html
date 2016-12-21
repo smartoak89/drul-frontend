@@ -2,14 +2,13 @@
     <div class="row">
         <div class="col-md-12">
             <div class="file_upload">
-                <button class="btn btn-default" type="button">Добавить новое изображение</button>
+                <button class="btn btn-default mar10" type="button">Добавить новое изображение</button>
 
                 <input type="file" nv-file-select="" value="" uploader="uploader" multiple /><br/>
             </div>
-            <button class="btn btn-default" type="button" ng-click="uploader.uploadAll()">Загрузить</button>
     </div>
-    <div class="row" ng-show="uploader.queue.length > 0">
-        <div class="col-md-12" style="margin-bottom: 40px">
+    <div ng-show="uploader.queue.length > 0">
+        <div class="col-md-12" style="margin-bottom: 10px">
             <table class="table">
                 <thead>
                     <tr>
