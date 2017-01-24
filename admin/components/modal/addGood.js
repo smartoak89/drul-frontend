@@ -6,6 +6,7 @@ angular.module('admin')
 
             Categories.list(function(categories){
                 $scope.categories = categories;
+                console.log('categoryList', $scope.categories)
             });
 
             $scope.addProduct = function(){
@@ -18,6 +19,7 @@ angular.module('admin')
             $scope.addCategory = function (category) {
                 disableCheck();
                 category.check = true;
+                console.log('category', category);
                 $scope.newProduct.category = {
                     name: category.name,
                     slug: category.slug};

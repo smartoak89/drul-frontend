@@ -8,7 +8,7 @@ angular.module('app')
 
             this.$onInit = function () {
                 self.category = $location.$$path.split('/').pop();
-                Product.getList({category: self.category});
+                Product.getList(null, self.category);
             };
 
             this.showMore = function () {

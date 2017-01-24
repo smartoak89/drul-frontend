@@ -8,6 +8,7 @@
                      is-disabled="category.children.length == 0"
                      ng-click="category.children.length == 0 ? $ctrl.goTo(category.link) : ''">
                     <a href="{{'#/category/' + child.link}}" ng-repeat="child in category.children">{{child.name}}</br></a>
+                    <a class="pull-right" href="{{'#/category/' + category.link}}">все...</br></a>
                 </div>
             </uib-accordion>
         </div>

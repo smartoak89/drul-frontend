@@ -5,7 +5,6 @@ angular.module('admin')
             var self = this;
             this.$onInit = function () {
                 this.listUsers = Users.list();
-                console.log('listUsers', this.listUsers);
             }
 
         }]

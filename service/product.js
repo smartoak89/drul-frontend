@@ -7,18 +7,23 @@ angular.module('app')
                 products: null,
                 stocksList: null,
                 curProd: null,
-                getList: function (criteria) {
+                getList: function (criteria, category) {
                     var self = this;
+                    criteria = criteria || null;
                     var request = {
-                        params1: 'products',
-                        skip: skip
+                        params1: 'products'
                     };
-                    if (criteria) {
-                        for (var key in criteria) {
-                            key == 'skip' ? skip = 0 : false;
-                            request[key] = criteria[key];
-                        }
+                    if (category) {
+                        request.params2 = 'category';
+                        request.params3 = category;
                     }
+                    console.log(request);
+                    // if (criteria) {
+                    //     for (var key in criteria) {
+                    //         // key == 'skip' ? skip = 0 : false;
+                    //         request[key] = criteria[key];
+                    //     }
+                    // }
                     console.log('Request', request);
                     var promise = $q(function (resolve, reject) {
                         Httpquery.query(request, function (res) {
@@ -30,7 +35,7 @@ angular.module('app')
                     });
 
                     self.configurableProducts(promise, function (products) {
-                        if (request.skip !== 0) return self.products = self.products.concat(products);
+                        // if (request.skip !== 0) return self.products = self.products.concat(products);
                         self.products = products;
                     });
 
