@@ -50,14 +50,14 @@
             </div>
         </div>
         <div class="marker red" ng-if="$ctrl.product.stock">sale</div>
-            <img ng-src="/api/file/{{$ctrl.product.photo.uuid}}" class="img-responsive cover" no-image/>
-            <div class="namePrice">
-                <div>Артикул {{$ctrl.product.article}}</div>
-                <p>{{$ctrl.product.name}}</p>
-                <hr class="line"/>
-                <span ng-if="$ctrl.product.stockCost">{{$ctrl.product.stockCost + " " + $ctrl.product.currency}}</span>
-                <span ng-if="!$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
-                <strike ng-show="$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</strike>
-            </div>
+        <img ng-src="/api/file/{{$ctrl.product.photo.uuid}}" class="img-responsive cover" no-image/>
+        <div class="namePrice">
+            <div>Артикул {{$ctrl.product.article}}</div>
+            <p>{{$ctrl.product.name}}</p>
+            <hr class="line"/>
+            <span ng-if="$ctrl.product.stockCost">{{$ctrl.product.stockCost + " " + $ctrl.product.currency}}</span>
+            <span ng-if="!$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
+            <strike ng-show="$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</strike>
         </div>
     </div>
+</div>

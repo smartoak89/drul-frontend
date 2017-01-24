@@ -88,36 +88,54 @@
                     </div>
                 </div>
                 <div id="comm" role="tabpanel" class="tab-pane">
-                    <div class="comment-content clearfix">
+                    <div class="comment-content">
                         <h5 class="comment-author font-alt">
                             <a>John Doe</a>
+                            <div class="comment-meta font-alt">Today, 14:55</div>
+
                         </h5>
                         <div class="comment-body">
                             <p>The European languages are members of the same family. Their separate existence is a myth. For science, music, sport, etc, Europe uses the same vocabulary. The European languages are members of the same family. Their separate existence is a myth.</p>
+                            <hr class="">
                         </div>
-                        <div class="comment-meta font-alt">Today, 14:55 - <a href="#">Reply</a></div>
-                    </div>
-                    <div class="comment-form col-md-8">
-                        <h4 class="comment-form-title font-alt">Оставить комментарий</h4>
-                        <hr class="divider m-b-30">
 
-                        <div class="row">
+                        <div class="comment-form">
+                            <div class="row">
 
-                            <form>
-                                <div class="col-md-12">
-                                    <div class="form-group">
-                                        <textarea id="message" name="message" class="form-control" placeholder="Сообщение" rows="6"></textarea>
+                                <form>
+                                    <div class="col-md-12">
+                                        <div class="form-group">
+                                            <textarea id="message" name="message" class="form-control" placeholder="Ваш отзыв..." rows="8"></textarea>
+                                        </div>
                                     </div>
-                                </div>
-                                <div class="col-md-12">
-                                    <button class="btn btn-drul dark">Отправить</button>
-                                </div>
-                            </form>
+                                    <div class="col-md-12">
+                                        <button class="btn btn-drul dark">Отправить</button>
+                                    </div>
+                                </form>
+
+                            </div>
 
                         </div>
-
                     </div>
+
                 </div>
+            </div>
+        </div>
+    </div>
+    <div class="row">
+        <div class="similar">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <p>вам также могут понравиться</p>
+                    <div ng-repeat="n in [0, 1, 2, 3, 4, 5]" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">
+                        <div class="goodsBlock">
+                            <img ng-src="/api/file/430ee8b4-be27-40b2-a16e-fdecedccf34a" class="img-responsive cover" no-image/>
+                            <div class="namePrice">
+                                <p>хрень {{n}}</p>
+                                <hr class="line"/>
+                                <span>1111</span>
+                            </div>
+                        </div>
+                    </div>
             </div>
         </div>
     </div>

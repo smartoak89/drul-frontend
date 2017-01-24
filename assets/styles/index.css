@@ -183,10 +183,14 @@ button:focus{
 }
 .compact{
     height: 100px;
+    padding: 10px 0;
     background: url('../images/backHeader.jpg') 50% 50% no-repeat;
     /*position: relative;*/
     transition: transform .2s ease;
     background-size: cover;
+}
+.compact.fixed{
+    padding: 0;
 }
 .compact1{
     top: -100px;
@@ -1855,10 +1859,10 @@ uib-accordion .panel-body > a:hover{
     margin: 10px 0;
 }
 .comment-content {
-    margin: 10px 0;
+    /*margin: 10px 0;*/
     padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 3px;
+    /*border: 1px solid #ccc;*/
+    /*border-radius: 3px;*/
 }
 .comment-author {
     margin: 0 0 20px;
@@ -1868,6 +1872,10 @@ uib-accordion .panel-body > a:hover{
 }
 .comment-meta {
     font-size: 12px;
+    display: inline-block;
+    font-weight: 400;
+    margin-left: 15px;
+    color: #aaaaaa;
 }
 .comment-meta a {
     text-transform: uppercase;
@@ -1880,11 +1888,15 @@ uib-accordion .panel-body > a:hover{
     outline: 0;
 }
 .comment-form {
-    margin: 40px 0;
+    margin: 30px 0;
     padding: 0;
+    width: 66.66666667%;
 }
 .comment-form-title {
     margin: 0 0 15px;
+}
+.comment-body{
+
 }
 .m-b-30 {
     margin-bottom: 30px !important;
@@ -1893,12 +1905,12 @@ uib-accordion .panel-body > a:hover{
     border: 1px solid #eee;
     height: 32px;
     letter-spacing: 1px;
-    font-size: 11px;
-    -webkit-border-radius: 2px;
-    -moz-border-radius: 2px;
-    -ms-border-radius: 2px;
-    -o-border-radius: 2px;
-    border-radius: 2px;
+    font-size: 13px;
+    -webkit-border-radius: 0;
+    -moz-border-radius: 0;
+    -ms-border-radius: 0;
+    -o-border-radius: 0;
+    border-radius: 0;
     -webkit-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
     -moz-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
     -o-transition: all 0.3s cubic-bezier(0.300, 0.100, 0.580, 1.000);
@@ -1906,4 +1918,23 @@ uib-accordion .panel-body > a:hover{
 }
 .form-control:focus {
     border-color: #111;
+}
+.similar{
+    background-color: #f7f7f7;
+}
+.similar > div{
+    padding: 60px 0;
+}
+.similar > div > p{
+    text-transform: uppercase;
+    font-size: 2.5em;
+    text-align: center;
+    font-weight: 300;
+}
+.similar .goodsBlock > img {
+    height: 230px;
+}
+.tab-pane{
+    background-color: #f8f7f7;
+    padding: 10px 0;
 }
