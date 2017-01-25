@@ -17,7 +17,7 @@ angular.module('admin')
             combinations: [],
             list: function () {
                 var self = this;
-                if (this.products == null) {
+                // if (this.products == null) {
                     return HttpResource.query({params1: 'products'}, function (res) {
                         console.log(res);
                         angular.forEach(res, function (product) {
@@ -25,8 +25,8 @@ angular.module('admin')
                         });
                         self.products = res;
                     })
-                }
-                return self.products;
+                // }
+                // return self.products;
             },
             add: function (product, callback) {
                 var self = this;
@@ -60,7 +60,7 @@ angular.module('admin')
                     callback(err);
                 })
             },
-            getGallery: function (product) {
+                getGallery: function (product) {
                 var criteria = {
                     params1: 'files',
                     params2: product.uuid
@@ -69,7 +69,7 @@ angular.module('admin')
                     if (res.length > 0) {
                         product.photo = _.find(res, {type: 'main'});
                         product.gallery = res;
-                        console.log('prodGall ', product);
+                        console.log('MainPhoto ', product.photo);
                     }
                 }, function (err) {
                     console.error('Get gallery => ', err);

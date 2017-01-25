@@ -1,8 +1,8 @@
 <div class="sort">
     <span>Сортировать:</span>
-    <a>по популярности</a>
+    <a ng-click="$ctrl.orderBy('popularity')">по популярности</a>
     <a ng-click="$ctrl.orderBy('price')">по цене</a>
-    <a>по рейтингу</a>
-    <a>по отзывам</a>
+    <a ng-click="$ctrl.orderBy('reviews')">по отзывам</a>
     <a ng-click="$ctrl.orderBy('created')">по новизне</a>
+    <!--<a>по рейтингу</a>-->
 </div>

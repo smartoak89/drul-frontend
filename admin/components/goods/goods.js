@@ -150,7 +150,7 @@ angular.module('admin')
                         if (err) return self.error = err.message;
                         console.info('saved', res);
                         Goods.getGallery(res);
-                        self.product = res;
+                        Goods.editprod = res;
                         self.editMode = false;
                         $state.go('admin.goodsAdmin');
                     });
