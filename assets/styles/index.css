@@ -303,6 +303,9 @@ section {
 .padScroll{
     margin-top: 100px;
 }
+.padScroll > about{
+    background-position-y: -100px;
+}
 #sm_slider > div{
     height: 100%;
 }
@@ -1937,4 +1940,36 @@ uib-accordion .panel-body > a:hover{
 .tab-pane{
     background-color: #f8f7f7;
     padding: 10px 0;
+}
+about{
+    background: url("/assets/images/111.png");
+    background-repeat: no-repeat;
+    background-color: #000000;
+    display: block;
+}
+.aboutTopText{
+    text-align: center;
+    text-transform: uppercase;
+    color: #fff;
+    font-weight: 200;
+    font-size: 17em;
+}
+
+.aboutUsCon > div{
+    padding-left: 30px;
+    padding-right: 30px;
+    background: rgba(0,0,0,0);
+    background: -moz-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.64) 9%, rgba(0,0,0,1) 19%, rgba(0,0,0,1) 100%);
+    background: -webkit-gradient(left top, left bottom, color-stop(0%, rgba(0,0,0,0)), color-stop(9%, rgba(0,0,0,0.64)), color-stop(19%, rgba(0,0,0,1)), color-stop(100%, rgba(0,0,0,1)));
+    background: -webkit-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.64) 9%, rgba(0,0,0,1) 19%, rgba(0,0,0,1) 100%);
+    background: -o-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.64) 9%, rgba(0,0,0,1) 19%, rgba(0,0,0,1) 100%);
+    background: -ms-linear-gradient(top, rgba(0,0,0,0) 0%, rgba(0,0,0,0.64) 9%, rgba(0,0,0,1) 19%, rgba(0,0,0,1) 100%);
+    background: linear-gradient(to bottom, rgba(0,0,0,0) 0%, rgba(0,0,0,0.64) 9%, rgba(0,0,0,1) 19%, rgba(0,0,0,1) 100%);
+    filter: progid:DXImageTransform.Microsoft.gradient( startColorstr='#000000', endColorstr='#000000', GradientType=0 );
+    padding-top: 100px;
+    margin-top: -120px;
+}
+.aboutUs{
+    height: 1100px;
+    background: #FFF;
 }
