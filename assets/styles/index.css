@@ -681,7 +681,7 @@ section {
     margin: 0 auto;
 }
 .footerr{
-    background: url('../images/backFooter.jpg') 50% 50% no-repeat;
+    background: #000;
     height: 320px;
     background-size: cover;
     /*margin-top: 150px*/
@@ -1970,6 +1970,60 @@ about{
     margin-top: -120px;
 }
 .aboutUs{
-    height: 1100px;
     background: #FFF;
+    padding: 80px 0 0 0;
+}
+.aboutUs > .row > div{
+    margin-bottom: 30px;
+}
+.aboutUs > .row > div > h3{
+    text-align: center;
+    font-size: 2em;
+    color: #333333;
+    text-transform: uppercase;
+    font-weight: 300;
+    letter-spacing: 3px;
+    margin-bottom: 30px;
+}
+.aboutUs > .row > div > p {
+    text-align: center;
+    color: #333333;
+    font-size: 16px;
+    padding: 0 10%;
+    font-weight: 300;
+}
+.aboutUs > .row > div > .icons{
+    color: #cfcfcf;
+    text-align: center;
+    font-size: 4em;
+    margin-bottom: 10px;
+}
+.aboutUs > .row > div > b{
+    font-size: 16px;
+    text-align: center;
+    color: #333333;
+    display: block;
+    margin-bottom: 10px;
+}
+.aboutUsBot{
+    padding: 40px 0;
+    background: #f0f9fc;
+}
+.aboutUsBot > .row > div{
+    text-align: center;
+}
+.aboutUsBot > .row > div > p:first-child{
+    color: #cfcfcf;
+    font-size: 14px;
+    font-weight: 200;
+}
+.aboutUsBot > .row > div > p:nth-child(2),
+.aboutUsBot > .row > div > p:nth-child(3){
+    color: #333333;
+    font-size: 15px;
+    font-weight: 500;
+}
+.aboutUsBot > .row > div:nth-child(2) > p:nth-child(2),
+.aboutUsBot > .row > div:nth-child(2) > p:nth-child(3){
+    color: #779dff;
 }
