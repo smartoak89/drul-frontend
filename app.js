@@ -15,7 +15,8 @@ var app = angular.module('app', [
     'angularSoundManager',
     'angularQueryParams',
     'panzoom',
-    'ezplus'
+    'ezplus',
+    'ngPatternRestrict'
 
 ]);
 app.constant('Conf', {
