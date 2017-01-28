@@ -855,10 +855,14 @@ input[type=radio]:checked + label:before {
     justify-content: center
     /*height: 17px;*/
 }
-.office input[type=radio] + label + span{
+.office input[type=radio] + label + span,
+.cartMain input[type=radio] + label + span{
     font-size: 14px;
     color: #000;
     margin-right: 40px;
+}
+.cartMain input[type=radio] + label + span{
+    font-weight: 300;
 }
 .scroll{
     max-height: 300px;
@@ -1263,6 +1267,9 @@ input[type=radio]:checked + label:before {
 .cartMain .table>tbody>tr>td{
     vertical-align: middle;
 }
+.cartMain .table>tbody>tr>td{
+    border-top: 0;
+}
 .office .table>tbody>tr>td>.form-group>input,
 .cartMain .table>tbody>tr>td>.form-group>input{
     border: 1px solid #fff;
@@ -1270,12 +1277,15 @@ input[type=radio]:checked + label:before {
     padding: 5px 15px;
     height: 40px;
     box-shadow: none;
+    width: 100%;
 }
 .office .table>tbody>tr>td>.form-group>input:active,
 .office .table>tbody>tr>td>.form-group>input:focus,
 .cartMain .table>tbody>tr>td>.form-group>input:active,
 .cartMain .table>tbody>tr>td>.form-group>input:focus{
     border: 1px solid #000;
+    outline: 0;
+
 }
 .office .table>tbody>tr>td:first-child,
 .cartMain .table>tbody>tr>td:first-child{
@@ -2085,4 +2095,23 @@ make-order{
     display: block;
     background: #f8f7f7;
     padding: 60px 0;
+}
+.orderTitel{
+    font-size: 15px;
+    font-weight: 600;
+    color: #000;
+    text-transform: uppercase;
+}
+make-order hr{
+    border-top: 1px solid #dedede;
+}
+.orderInfo > .table > tbody > tr > td:first-child{
+    color: #000;
+    font-weight: 300;
+}
+.orderCost > p{
+    font-weight: 300;
+}
+.orderCost > p:last-child{
+    font-weight: 500;
 }
