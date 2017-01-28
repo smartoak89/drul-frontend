@@ -8,6 +8,7 @@ angular.module('admin')
             this.product = Goods.editprod;
             this.pror = {};
             this.categoryArticle;
+
             this.$onInit = function () {
                 console.log('Product => ', self.product);
                 Categories.list(function (categories) {
@@ -33,14 +34,14 @@ angular.module('admin')
 
             this.searchCurrentCategory = function () {
 
-                var category = _.find(self.categories, {slug: self.product.category[0]});
+                var category = _.find(self.categories, {slug: self.product.category.slug[0]});
                 if (category) {
                     self.categoryArticle = category.article;
                 } else {
                     _.each(self.categories, function (elem) {
                         // elem.show = false;
                         if (elem.children.length > 0) {
-                            var subcat = _.find(elem.children, {slug: self.product.category[0]});
+                            var subcat = _.find(elem.children, {slug: self.product.category.slug[0]});
                             if (subcat) {
                                 // elem.show = true;
                                 self.categoryArticle = subcat.article;
@@ -85,11 +86,23 @@ angular.module('admin')
                 Goods.applyStock(self.product);
             };
 
-            this.addCategory = function (category) {
+            this.addCategory = function (category, parent) {
+
                 this.product.category = {
-                    name: category.name,
-                    slug: category.slug
+                    name: [],
+                    slug: []
                 };
+
+                this.product.category.name[0] = category.name;
+                this.product.category.slug[0] = category.slug;
+
+                if (parent) {
+                    this.product.category.name[1] = parent.name;
+                    this.product.category.slug[1] = parent.slug;
+
+                }
+                console.log(this.product.category);
+
             };
 
             this.edit = function () {

@@ -47,7 +47,7 @@
                                     <ul ng-if="category.children" ng-show="category.show" class="children">
                                         <li ng-repeat="child in category.children">
                                             <i class="fa fa-file"></i>
-                                            <a ng-click="$ctrl.addCategory(child)">{{child.name}}</a>
+                                            <a ng-click="$ctrl.addCategory(child, category)">{{child.name}}</a>
                                             <i class="fa fa-check" ng-show="$ctrl.searchCurrentCategory() == child"></i>
                                         </li>
                                     </ul>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label>Цена</label>
-                            <input class="form-control" type="text" placeholder="Цена" ng-model="product.price" ng-change="product.stock != 'stock.uuid'?$ctrl.stockFun(product.stock.percent, product.price):''">
+                            <input class="form-control" type="text" placeholder="Цена" ng-model="product.price" ng-pattern="regex" ng-change="product.stock != 'stock.uuid'?$ctrl.stockFun(product.stock.percent, product.price):''">
                         </div>
                         <div class="form-group" ng-show="product.stockCost">
                             <label>Цена со скидкой</label>

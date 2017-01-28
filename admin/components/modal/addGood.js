@@ -16,24 +16,23 @@ angular.module('admin')
                 })
             };
 
-            $scope.newProduct.category = {};
             $scope.addCategory = function (category, parent) {
                 disableCheck();
                 category.check = true;
-                $scope.newProduct.category.name = [][0] = category.name;
-                $scope.newProduct.category.slug = [][0] = category.slug;
 
-                // if(!parent && $scope.newProduct.category.name[1] ) {
-                //     $scope.newProduct.category.splice(0, 1);
-                //     console.log(parent);
-                // }
-                //
+                $scope.newProduct.category = {
+                    name: [],
+                    slug: []
+                };
+
+                $scope.newProduct.category.name[0] = category.name;
+                $scope.newProduct.category.slug[0] = category.slug;
+
                 if (parent) {
-                    $scope.newProduct.category.name = [][1] = category.name;
-                    $scope.newProduct.category.slug = [][1] = category.slug;
+                    $scope.newProduct.category.name[1] = parent.name;
+                    $scope.newProduct.category.slug[1] = parent.slug;
 
                 }
-                console.log($scope.newProduct.category);
 
             };
 
