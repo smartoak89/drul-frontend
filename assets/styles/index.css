@@ -1249,17 +1249,22 @@ input[type=radio]:checked + label:before {
 .admin-products img.product-photo {
     object-fit: cover;
 }
-.office h1{
+.office h1,
+.cartMain h1{
     text-transform: uppercase;
     font-weight: 300;
 }
-.office .table{
+.office .table,
+.cartMain .table{
     box-shadow: none;
 }
-.office .table>tbody>tr>td{
+
+.office .table>tbody>tr>td,
+.cartMain .table>tbody>tr>td{
     vertical-align: middle;
 }
-.office .table>tbody>tr>td>.form-group>input{
+.office .table>tbody>tr>td>.form-group>input,
+.cartMain .table>tbody>tr>td>.form-group>input{
     border: 1px solid #fff;
     border-radius: 0;
     padding: 5px 15px;
@@ -1267,36 +1272,46 @@ input[type=radio]:checked + label:before {
     box-shadow: none;
 }
 .office .table>tbody>tr>td>.form-group>input:active,
-.office .table>tbody>tr>td>.form-group>input:focus{
+.office .table>tbody>tr>td>.form-group>input:focus,
+.cartMain .table>tbody>tr>td>.form-group>input:active,
+.cartMain .table>tbody>tr>td>.form-group>input:focus{
     border: 1px solid #000;
 }
-.office .table>tbody>tr>td:first-child{
+.office .table>tbody>tr>td:first-child,
+.cartMain .table>tbody>tr>td:first-child{
     font-size: 14px;
     color: #a3a3a3;
     width: 10%;
 }
-.office table>tbody>tr>td:nth-child(2){
+.office table>tbody>tr>td:nth-child(2),
+.cartMain table>tbody>tr>td:nth-child(2){
     width: 30%;
 }
-.office .checkbo{
+.office .checkbo,
+.cartMain .checkbo{
     padding: 10px 0;
 }
-.office .tab-content{
+.office .tab-content,
+.cartMain .tab-content{
     margin: 0 -30px;
 }
-.office .tab-content>.tab-pane{
+.office .tab-content>.tab-pane,
+.cartMain .tab-content>.tab-pane{
     padding: 45px 35px;
 }
-.office .nav>li>a {
+.office .nav>li>a,
+.cartMain .nav>li>a{
     padding: 10px 20px;
 }
-.office .btn-drul {
+.office .btn-drul,
+.cartMain .btn-drul{
     padding: 10px 22px;
     font-size: 14px;
     display: flex;
     align-items: center;
 }
-.office .btn-drul>div{
+.office .btn-drul>div,
+.cartMain .btn-drul>div{
     margin-left: 10px;
 }
 .custom tbody>tr:nth-child(1n)>td,
@@ -1311,6 +1326,7 @@ input[type=radio]:checked + label:before {
     padding: 0;
     position: relative;
 }
+
 .custom tbody>tr:nth-child(1n)>td:first-child,
 .custom1 tbody>tr:nth-child(1n)>td:first-child,
 .custom2 tbody>tr:nth-child(1n)>td:first-child{
@@ -1339,6 +1355,13 @@ input[type=radio]:checked + label:before {
 .custom1 tbody>tr>td>.namePrice,
 .custom2 tbody>tr>td>.namePrice{
     border: 0;
+}
+.cartMain .table>tbody>tr:last-child>td {
+    border: 0;
+    height: 100%;
+}
+.cartMain .table>tbody>tr:last-child>td>.btn{
+    float: right
 }
 .office table.custom>tbody>tr>td:nth-child(2){
     width: 57%
@@ -2026,4 +2049,26 @@ about{
 .aboutUsBot > .row > div:nth-child(2) > p:nth-child(2),
 .aboutUsBot > .row > div:nth-child(2) > p:nth-child(3){
     color: #779dff;
+}
+.successBlock{
+    display: flex;
+    align-items: center;
+    padding: 40px 0;
+    flex-direction: column;
+}
+.successBlock > .goodsBlock{
+    width: 300px;
+}
+.successTitel{
+    text-transform: uppercase;
+    font-weight: 300;
+    font-size: 2em;
+}
+.successText{
+    width: 500px;
+    text-align: center;
+    color: #c3c3c3;
+}
+.successIcon{
+
 }
