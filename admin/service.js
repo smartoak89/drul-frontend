@@ -69,7 +69,6 @@ angular.module('admin')
                     if (res.length > 0) {
                         product.photo = _.find(res, {type: 'main'});
                         product.gallery = res;
-                        console.log('MainPhoto ', product.photo);
                     }
                 }, function (err) {
                     console.error('Get gallery => ', err);

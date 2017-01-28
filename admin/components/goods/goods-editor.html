@@ -83,7 +83,7 @@
                         <div class="form-group" ng-repeat="combo in $ctrl.combinations">
                             <label style="width: 100%">{{combo.name}} <i class="fa viewCombo" ng-class="pror[$index].check?'fa-minus':'fa-plus'" ng-click="pror[$index].check = !pror[$index].check" aria-hidden="true"></i> <i class="fa fa-close viewCombo pull-right" ng-click="$ctrl.delCombo(combo.name)"></i></label>
                             <div ng-if="pror[$index].check">
-                                <select ng-init="$ctrl.findComboModel(combo.name)" class="form-control" id="inputMultiple" multiple="multiple" ng-model="product.combo[$ctrl.findComboModel(combo.name)].values" ng-change="$ctrl.view(product)">
+                                <select ng-init="$ctrl.findComboModel(combo.name, combo.slug)" class="form-control" id="inputMultiple" multiple="multiple" ng-model="product.combo[$ctrl.findComboModel(combo.name, combo.slug)].values" ng-change="$ctrl.view(product)">
                                     <option ng-repeat="value in combo.value">{{value}}</option>
                                 </select>
                                 <small>Зажмите кнопку 'Ctrl' для выбора нескольких пунктов</small>

@@ -3,6 +3,7 @@ angular.module('admin')
         function($uibModalInstance, $scope, Goods, Categories, HttpResource, $location, $q){
             $scope.error = null;
             $scope.newProduct = {};
+            $scope.newProduct.category = [];
 
             Categories.list(function(categories){
                 $scope.categories = categories;
@@ -16,13 +17,20 @@ angular.module('admin')
                 })
             };
 
-            $scope.addCategory = function (category) {
+            $scope.addCategory = function (category, parent) {
                 disableCheck();
                 category.check = true;
-                console.log('category', category);
-                $scope.newProduct.category = {
-                    name: category.name,
-                    slug: category.slug};
+                $scope.newProduct.category[0] = category.slug;
+
+                if(!parent && $scope.newProduct.category[1] ) {
+                    $scope.newProduct.category.splice(0, 1);
+                    console.log(parent);
+                }
+
+                if (parent) {
+                    $scope.newProduct.category[1] = parent;
+                }
+
             };
 
             function disableCheck() {
