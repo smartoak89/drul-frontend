@@ -1,7 +1,7 @@
 angular.module('admin')
     .component('settings', {
         templateUrl: "admin/components/settings/settings.html",
-        controller: ['Currency', 'FileUploader', 'Conf', 'Goods', 'HttpResource', 'File', function(Currency, FileUploader, Conf, Goods, HttpResource, File) {
+        controller: ['Currency', 'Conf', 'Goods', 'HttpResource', 'File', function(Currency, Conf, Goods, HttpResource, File) {
             var self = this;
             self.slides = [];
             self.fields=[
@@ -22,7 +22,7 @@ angular.module('admin')
 
             self.getSlider = function(){
                 self.slides = [];
-                HttpResource.query({params1:'files', params2:'78d56607-fc11-41eb-a60d-fcfb3b3cb797'}, function (res) {
+                HttpResource.query({params1:'files', params2:'5f0eeb5f-3fd7-4932-8ea8-3abf1578242c'}, function (res) {
                     _.forEach(res, function(obj){
                         if(obj.type == 'slide'){
                             self.slides.push(obj);
@@ -41,29 +41,6 @@ angular.module('admin')
 
                     _.remove(self.slides, file);
                 })
-            };
-
-            // Uploader
-            var uploader = this.uploader = new FileUploader({
-                url: Conf.api_path + '/file/78d56607-fc11-41eb-a60d-fcfb3b3cb797'
-            });
-            uploader.onAfterAddingAll = function () {
-                _.each(uploader.queue, function(img){
-                    img.alias = 'slide';
-                    console.log(img);
-                });
-                console.log(uploader);
-
-            };
-            uploader.onCompleteAll = function () {
-                uploader.queue = [];
-                self.uploading = false;
-                self.getSlider()
-            };
-            uploader.uploadSlide = function(){
-                self.uploading = true;
-                console.log(self.uploading);
-                uploader.uploadAll();
             };
 
             self.$onInit = function () {

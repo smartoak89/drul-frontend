@@ -1,0 +1,29 @@
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modalBasicLabel">Новый слайд</h4>
+    </div>
+    <div class="modal-body">
+        <div class="form-group">
+            <label for="link">Ссылка</label>
+            <input class="form-control" id="link" autocomplete="off" ng-model="slid.link">
+        </div>
+        <div class="form-group">
+            <label for="header">Заголовок</label>
+            <input class="form-control" id="header" autocomplete="off" ng-model="slid.header">
+        </div>
+        <div class="form-group">
+            <label for="description">Описание</label>
+            <textarea class="form-control" id="description" cols="10" rows="10" ng-model="slide.description"></textarea>
+        </div>
+        <div class="form-group">
+            <div ng-include="'admin/components/common/upload-template.html'" ng-init="uploader = uploader"></div>
+        </div>
+    </div>
+    <div class="callout callout-danger text-center" ng-show="error">
+        {{error}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" ng-click="$dismiss()" class="btn btn-default" data-dismiss="modal">Отменить</button>
+        <button type="button" ng-click="edit()" class="btn btn-primary">Добавить</button>
+    </div>
+</div>

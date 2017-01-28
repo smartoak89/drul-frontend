@@ -22,7 +22,7 @@ angular.module('app')
             self.getSlider = function(){
                 self.slides = [];
 
-                HttpResource.query({params1:'files', params2:'78d56607-fc11-41eb-a60d-fcfb3b3cb797'}, function (res) {
+                HttpResource.query({params1:'files', params2:'5f0eeb5f-3fd7-4932-8ea8-3abf1578242c'}, function (res) {
                     console.log(res);
                     _.forEach(res, function(obj){
                         if(obj.type == 'slide'){
