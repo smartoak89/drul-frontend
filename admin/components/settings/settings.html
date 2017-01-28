@@ -19,36 +19,41 @@
                 </ul>
             </div>
             <div>
-                <div class="nameSet">Галерея</div>
-                    <!--GALLERY-->
-                    <div ng-include="'admin/components/common/upload-template.html'" ng-init="uploader = $ctrl.uploader"></div>
-                <div ng-if="$ctrl.error" class="callout callout-danger">
-                    <p>{{$ctrl.error}}</p>
-                </div>
-                <div class="progress" style="" ng-show="$ctrl.uploading">
-                    <div class="progress-bar" role="progressbar" ng-style="{ 'width': $ctrl.uploader.progress + '%' }"></div>
-                </div>
-                <button class="btn btn-default mar10" type="button" ng-show="uploader.queue.length > 0" ng-click="uploader.uploadSlide()">Загрузить</button>
-                    <table class="table" ng-hide="!$ctrl.slides">
-                        <thead>
-                        <tr>
-                            <th>Имя</th>
-                            <th>Удалить</th>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr ng-repeat="slide in $ctrl.slides">
-                            <td>
-                                <strong class="name_goods">{{slide.name}}</strong>
-                                <img ng-src="/api/file/{{slide.uuid}}" alt="" width="120" height="80" style="object-fit: cover;">
-                            </td>
-                            <td>
-                                <button type="button" class="btn btn-danger btn-xs pull-right" ng-click="$ctrl.remove(slide)">
-                                    <span class="glyphicon glyphicon-trash"></span></button>
-                            </td>
-                        </tr>
-                        </tbody>
-                    </table>
+                <!--SLIDERS-->
+
+                <slider></slider>
+
+                <!--<div ng-if="$ctrl.error" class="callout callout-danger">-->
+                    <!--<p>{{$ctrl.error}}</p>-->
+                <!--</div>-->
+
+                <!--<div class="progress" style="" ng-show="$ctrl.uploading">-->
+                    <!--<div class="progress-bar" role="progressbar" ng-style="{ 'width': $ctrl.uploader.progress + '%' }"></div>-->
+                <!--</div>-->
+
+                <!--<button class="btn btn-default mar10" type="button" ng-show="uploader.queue.length > 0" ng-click="uploader.uploadSlide()">Загрузить</button>-->
+                    <!--<table class="table" ng-hide="!$ctrl.slides">-->
+                        <!--<thead>-->
+                        <!--<tr>-->
+                            <!--<th>Имя</th>-->
+                            <!--<th>Ссылка</th>-->
+                            <!--<th>Удалить</th>-->
+                        <!--</tr>-->
+                        <!--</thead>-->
+                        <!--<tbody>-->
+                        <!--<tr ng-repeat="slide in $ctrl.slides">-->
+                            <!--<td>-->
+                                <!--<strong class="name_goods">{{slide.name}}</strong>-->
+                                <!--<img ng-src="/api/file/{{slide.uuid}}" alt="" width="120" height="80" style="object-fit: cover;">-->
+                            <!--</td>-->
+                            <!--<td>-->
+                                <!--<button type="button" class="btn btn-danger btn-xs" ng-click="$ctrl.remove(slide)">-->
+                                    <!--<span class="glyphicon glyphicon-trash"></span>-->
+                                <!--</button>-->
+                            <!--</td>-->
+                        <!--</tr>-->
+                        <!--</tbody>-->
+                    <!--</table>-->
 
             </div>
 

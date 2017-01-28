@@ -47,7 +47,7 @@
                                     <ul ng-if="category.children" ng-show="category.show" class="children">
                                         <li ng-repeat="child in category.children">
                                             <i class="fa fa-file"></i>
-                                            <a ng-click="$ctrl.addCategory(child)">{{child.name}}</a>
+                                            <a ng-click="$ctrl.addCategory(child, category)">{{child.name}}</a>
                                             <i class="fa fa-check" ng-show="$ctrl.searchCurrentCategory() == child"></i>
                                         </li>
                                     </ul>
@@ -56,11 +56,11 @@
                         </p>
                         <div class="form-group">
                             <label>Артикул</label>
-                            <input class="form-control" ng-model="product.article" placeholder="{{$ctrl.categoryArticle}}">
+                            <input class="form-control" ng-model="product.article" ng-pattern-restrict="^[a-zA-Z0-9_-]*$" placeholder="{{$ctrl.categoryArticle}}">
                         </div>
                         <div class="form-group">
                             <label>Название</label>
-                            <input class="form-control" ng-model="product.name" type="text" placeholder="Название">
+                            <input class="form-control" ng-model="product.name" ng-pattern-restrict="^[a-zA-Z0-9 _-]*$" type="text" placeholder="Название">
                         </div>
                         <div class="form-group">
                             <label>Описание</label>
@@ -68,7 +68,7 @@
                         </div>
                         <div class="form-group">
                             <label>Цена</label>
-                            <input class="form-control" type="text" placeholder="Цена" ng-model="product.price" ng-change="product.stock != 'stock.uuid'?$ctrl.stockFun(product.stock.percent, product.price):''">
+                            <input class="form-control" type="text" placeholder="Цена" ng-model="product.price" ng-pattern-restrict="^[0-9]*$" ng-change="product.stock != 'stock.uuid'?$ctrl.stockFun(product.stock.percent, product.price):''">
                         </div>
                         <div class="form-group" ng-show="product.stockCost">
                             <label>Цена со скидкой</label>
@@ -83,7 +83,7 @@
                         <div class="form-group" ng-repeat="combo in $ctrl.combinations">
                             <label style="width: 100%">{{combo.name}} <i class="fa viewCombo" ng-class="pror[$index].check?'fa-minus':'fa-plus'" ng-click="pror[$index].check = !pror[$index].check" aria-hidden="true"></i> <i class="fa fa-close viewCombo pull-right" ng-click="$ctrl.delCombo(combo.name)"></i></label>
                             <div ng-if="pror[$index].check">
-                                <select ng-init="$ctrl.findComboModel(combo.name)" class="form-control" id="inputMultiple" multiple="multiple" ng-model="product.combo[$ctrl.findComboModel(combo.name)].values" ng-change="$ctrl.view(product)">
+                                <select ng-init="$ctrl.findComboModel(combo.name, combo.slug)" class="form-control" id="inputMultiple" multiple="multiple" ng-model="product.combo[$ctrl.findComboModel(combo.name, combo.slug)].values" ng-change="$ctrl.view(product)">
                                     <option ng-repeat="value in combo.value">{{value}}</option>
                                 </select>
                                 <small>Зажмите кнопку 'Ctrl' для выбора нескольких пунктов</small>

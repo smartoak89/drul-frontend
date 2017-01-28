@@ -21,7 +21,7 @@
                                     <ul ng-if="category.children" ng-show="category.show" class="children">
                                         <li ng-repeat="child in category.children">
                                             <i class="fa fa-file"></i>
-                                            <a ng-click="addCategory(child)">{{child.name}}</a>
+                                            <a ng-click="addCategory(child, category)">{{child.name}}</a>
                                             <i class="fa fa-check" ng-show="child.check"></i>
                                         </li>
                                     </ul>

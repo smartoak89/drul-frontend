@@ -10,8 +10,8 @@ angular.module('admin')
                 {name: 'Заказы', url: 'admin.requestsAdmin'},
                 {name: 'Акции', url: 'admin.stocksAdmin'},
                 {name: 'Комментарии', url: 'admin.commentsAdmin'},
-                {name: 'Настройки', url: 'admin.settingsAdmin'},
-                {name: 'Комбинации', url: 'admin.combination'}
+                {name: 'Комбинации', url: 'admin.combination'},
+                {name: 'Настройки', url: 'admin.settingsAdmin'}
             ]
         }]
     });

@@ -17,7 +17,7 @@ angular.module('admin')
             function isValid () {
                 if (!$scope.stocks.name) return $scope.error = 'Введите название акции';
                 if (!$scope.stocks.percent) return $scope.error = 'Введите процент скидки';
-                if (!Stocks.dateExpires) return $scope.error = 'Выберите дату истечения акции';
+                // if (!Stocks.dateExpires) return $scope.error = 'Выберите дату истечения акции';
                 $scope.error = null;
                 return true;
             }

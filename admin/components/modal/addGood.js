@@ -16,13 +16,24 @@ angular.module('admin')
                 })
             };
 
-            $scope.addCategory = function (category) {
+            $scope.addCategory = function (category, parent) {
                 disableCheck();
                 category.check = true;
-                console.log('category', category);
+
                 $scope.newProduct.category = {
-                    name: category.name,
-                    slug: category.slug};
+                    name: [],
+                    slug: []
+                };
+
+                $scope.newProduct.category.name[0] = category.name;
+                $scope.newProduct.category.slug[0] = category.slug;
+
+                if (parent) {
+                    $scope.newProduct.category.name[1] = parent.name;
+                    $scope.newProduct.category.slug[1] = parent.slug;
+
+                }
+
             };
 
             function disableCheck() {

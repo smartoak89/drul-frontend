@@ -14,17 +14,17 @@
                     <th>Процент скидки</th>
                     <!--<th>Дата создания</th>-->
                     <!--<th>Дата истечения</th>-->
-                    <th>Товары</th>
-                    <th>Настройки</th>
+                    <!--<th>Товары</th>-->
+                    <th>Удалить</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="stocks in $ctrl.stocksList">
                     <td>{{stocks.name}}</td>
-                    <td>{{stocks.percent }}</td>
+                    <td>{{stocks.percent }} %</td>
                     <!--<td>{{stocks.created | date: 'shortDate'}}</td>-->
                     <!--<td>{{stocks.expires | date: 'shortDate'}}</td>-->
-                    <td><button class="btn btn-default btn-sm" modal-admin="addToProducts">Применить к товарам</button></td>
+                    <!--<td><button class="btn btn-default btn-sm" modal-admin="addToProducts">Применить к товарам</button></td>-->
                     <td><button class="btn btn-default btn-sm" modal-admin="removeStocks">Удалить</button></td>
                 </tr>
             </tbody>

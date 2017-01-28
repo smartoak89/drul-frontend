@@ -69,7 +69,6 @@ angular.module('admin')
                     if (res.length > 0) {
                         product.photo = _.find(res, {type: 'main'});
                         product.gallery = res;
-                        console.log('MainPhoto ', product.photo);
                     }
                 }, function (err) {
                     console.error('Get gallery => ', err);
@@ -246,6 +245,18 @@ angular.module('admin')
     }])
     // File
     .factory('File',['HttpResource', function (HttpResource) {
+        return {
+            remove: function (id, callback) {
+                console.info(id);
+                HttpResource.delete({params1: 'file', params2: id}, function (res) {
+                    callback(null, res);
+                }, function (err) {
+                    callback(err);
+                })
+            }
+        }
+    }])
+    .factory('SliderService',['HttpResource', function (HttpResource) {
         return {
             remove: function (id, callback) {
                 console.info(id);
