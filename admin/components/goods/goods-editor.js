@@ -19,7 +19,6 @@ angular.module('admin')
                 Stocks.list(function (stocks) {
                     self.stocks = stocks;
                     if (self.product.stock){
-                        console.log('balbalba')
                         self.currentStock = _.find(Stocks.stocksList, {uuid: self.product.stock});
                         self.applyStock();
                     }
