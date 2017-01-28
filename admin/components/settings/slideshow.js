@@ -3,14 +3,12 @@ angular.module('admin')
         templateUrl: "admin/components/settings/slideshow.html",
         controller: ['FileUploader', 'Conf', 'SlideshowService', function(FileUploader, Conf, SlideshowService) {
             var self = this;
+            SlideshowService.list(function (err, sliders) {
+                if (err) return console.log(err);
+                console.log('sliders', sliders)
+                self.sliders = sliders;
 
-            this.$onInit = function () {
-                // SlideshowService.list(function (err, sliders) {
-                //     if (err) return console.log(err);
-                //     self.sliders = sliders;
-                //
-                // })
-            };
+            })
 
             this.save = function () {
                 self.addSliderMode = false;
