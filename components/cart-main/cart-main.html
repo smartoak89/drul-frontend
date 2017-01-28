@@ -1,62 +1,67 @@
 <!--Navigator-->
 <nav-cus></nav-cus>
+<div class="cartMain">
+    <div class="container-fluid">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <h1>Корзина</h1>
+            <table class="table custom1">
+                <thead>
+                <tr>
+                    <td>Товар</td>
+                    <td></td>
+                    <td>Количество</td>
+                    <td>Цена</td>
+                    <td></td>
+                </tr>
+                </thead>
+                <tbody>
+                <tr ng-repeat-start="product in $ctrl.cart.cartList">
+                    <td>
+                        <div class="marker red">sale</div>
+                        <img ng-src="{{'/api/file/' + product.photo.uuid}}" class="img-responsive cover" alt=""></td>
+                    <td>
+                        <div class="namePrice">
+                            <div>Артикул {{product.article}}</div>
+                            <p>{{product.name}}</p>
 
-<h1>Корзина</h1>
+                            <div class="params">
+                                <div>Состав</div>
+                                <div>Шерсть - 56%, Вискоза - 44%</div>
+                            </div>
+                            <div class="params">
+                                <div>Размер</div>
+                                <div>42</div>
+                            </div>
+                            <div class="params">
+                                <div>Цвет</div>
+                                <div>Бежевый</div>
+                            </div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="counter">
+                            <button ng-click="$ctrl.countMinus()">‒ </button>
+                            <input ng-model="$ctrl.counter" type="number"/>
+                            <button ng-click="$ctrl.countPlus()">+</button>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="namePrice">
+                            <span>{{product.price}} грн</span>
+                            <strike>{{product.price}} грн</strike>
+                            <div class="marCustom1">Цена указана без учета доставки</div>
+                        </div>
+                    </td>
+                    <td>
+                        <div class="s-15" ng-click="$ctrl.cart.delFromCart(product)"></div>
+                    </td>
+                </tr>
+                <tr ng-repeat-end="product in $ctrl.cart.cartList">
+                    <td></td>
+                </tr>
+                </tbody>
+            </table>
+        </div>
+    </div>
+</div>
 
-<table class="table custom1">
-    <thead>
-    <tr>
-        <td>Товар</td>
-        <td></td>
-        <td>Количество</td>
-        <td>Цена</td>
-        <td></td>
-    </tr>
-    </thead>
-    <tbody>
-    <tr ng-repeat-start="product in $ctrl.cart.cartList">
-        <td>
-            <div class="marker red">sale</div>
-            <img ng-src="{{'/api/file/' + product.photo.uuid}}" class="img-responsive cover" alt=""></td>
-        <td>
-            <div class="namePrice">
-                <div>Артикул {{product.article}}</div>
-                <p>{{product.name}}</p>
-
-                <div class="params">
-                    <div>Состав</div>
-                    <div>Шерсть - 56%, Вискоза - 44%</div>
-                </div>
-                <div class="params">
-                    <div>Размер</div>
-                    <div>42</div>
-                </div>
-                <div class="params">
-                    <div>Цвет</div>
-                    <div>Бежевый</div>
-                </div>
-            </div>
-        </td>
-        <td>
-            <div class="counter">
-                <button ng-click="$ctrl.countMinus()">‒ </button>
-                <input ng-model="$ctrl.counter" type="number"/>
-                <button ng-click="$ctrl.countPlus()">+</button>
-            </div>
-        </td>
-        <td>
-            <div class="namePrice">
-                <span>{{product.price}} грн</span>
-                <strike>{{product.price}} грн</strike>
-                <div class="marCustom1">Цена указана без учета доставки</div>
-            </div>
-        </td>
-        <td>
-            <div class="s-15" ng-click="$ctrl.cart.delFromCart(product)"></div>
-        </td>
-    </tr>
-    <tr ng-repeat-end="product in $ctrl.cart.cartList">
-        <td></td>
-    </tr>
-    </tbody>
-</table>
