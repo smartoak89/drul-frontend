@@ -256,16 +256,15 @@ angular.module('admin')
             }
         }
     }])
-    .factory('SliderService',['HttpResource', function (HttpResource) {
+    .factory('SlideshowService',['HttpResource', function (HttpResource) {
         return {
-            remove: function (id, callback) {
-                console.info(id);
-                HttpResource.delete({params1: 'file', params2: id}, function (res) {
+            list: function (callback) {
+                HttpResource.query({params1: 'sliders'}, function (res) {
                     callback(null, res);
                 }, function (err) {
                     callback(err);
                 })
             }
         }
-    }])
+    }]);
 

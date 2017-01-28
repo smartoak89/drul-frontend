@@ -1,12 +1,20 @@
 angular.module('admin')
-    .component('slider', {
-        templateUrl: "admin/components/settings/sliders.html",
-        controller: ['FileUploader', 'Conf', 'SliderService', function(FileUploader, Conf, SliderService) {
+    .component('slideshow', {
+        templateUrl: "admin/components/settings/slideshow.html",
+        controller: ['FileUploader', 'Conf', 'SlideshowService', function(FileUploader, Conf, SlideshowService) {
             var self = this;
+
+            this.$onInit = function () {
+                // SlideshowService.list(function (err, sliders) {
+                //     if (err) return console.log(err);
+                //     self.sliders = sliders;
+                //
+                // })
+            };
 
             this.save = function () {
                 self.addSliderMode = false;
-            }
+            };
 
             this.cancel = function () {
                 self.addSliderMode = false;
@@ -17,16 +25,16 @@ angular.module('admin')
 
             self.getSlider = function(){
                 self.slides = [];
-                HttpResource.query({params1:'files', params2:'5f0eeb5f-3fd7-4932-8ea8-3abf1578242c'}, function (res) {
-                    _.forEach(res, function(obj){
-                        if(obj.type == 'slide'){
-                            self.slides.push(obj);
-                        }
-                    });
-                    console.log('prodGall ', self.slides);
-                }, function (err) {
-                    console.error('Get gallery => ', err);
-                })
+                // HttpResource.query({params1:'files', params2:'5f0eeb5f-3fd7-4932-8ea8-3abf1578242c'}, function (res) {
+                //     _.forEach(res, function(obj){
+                //         if(obj.type == 'slide'){
+                //             self.slides.push(obj);
+                //         }
+                //     });
+                //     console.log('prodGall ', self.slides);
+                // }, function (err) {
+                //     console.error('Get gallery => ', err);
+                // })
             };
 
             self.remove = function (file) {
