@@ -51,6 +51,14 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             'content': {template: "<about></about>"}
         }
     });
+    //
+    //$stateProvider.state('index.about', {
+    //    url: "about",
+    //    views: {
+    //        '': {template: "<template-common></template-common>"},
+    //        'content': {template: "<about></about>"}
+    //    }
+    //});
 
     $stateProvider.state('index.filterPage', {
         url: "category/:name",
