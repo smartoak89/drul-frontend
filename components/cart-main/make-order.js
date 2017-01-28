@@ -1,6 +1,6 @@
 angular.module('app')
-    .component('cartMain', {
-        templateUrl: "components/cart-main/cart-main.html",
+    .component('makeOrder', {
+        templateUrl: "components/cart-main/make-order.html",
         controller: ['Cart', 'User', function(Cart, User) {
             var self = this;
             self.user = User;

@@ -2068,7 +2068,21 @@ about{
     width: 500px;
     text-align: center;
     color: #c3c3c3;
+    font-weight: 300;
 }
 .successIcon{
-
+    position: absolute;
+    right: 20px;
+    top: 20px;
+    width: 30px;
+    height: 30px;
+    background: #2eb72e;
+    border-radius: 20px;
+    padding: 7px 5px;
+    color: #fff;
+}
+make-order{
+    display: block;
+    background: #f8f7f7;
+    padding: 60px 0;
 }
