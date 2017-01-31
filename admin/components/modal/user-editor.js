@@ -22,7 +22,7 @@ angular.module('app')
                 if (!user.lastname) return callback('Пожалуйста введите Фамилию!');
                 if (!user.email) return callback('Пожалуйста введите email!');
                 if (!reg.test(user.email)) return callback('Некоректный email!');
-                if (!user.state) return callback('Выберите страну!');
+                // if (!user.state) return callback('Выберите страну!');
                 if (!user.phone) return callback('Пожалуйста введите номер телефона!');
 
                 return callback(null);

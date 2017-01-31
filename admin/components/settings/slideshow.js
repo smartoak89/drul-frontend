@@ -1,82 +1,125 @@
 angular.module('admin')
     .component('slideshow', {
         templateUrl: "admin/components/settings/slideshow.html",
-        controller: ['FileUploader', 'Conf', 'SlideshowService', function(FileUploader, Conf, SlideshowService) {
+        controller: ['FileUploader', 'Conf', 'SlideshowService', '$timeout', function(FileUploader, Conf, SlideshowService, $timeout) {
             var self = this;
-            SlideshowService.list(function (err, sliders) {
-                if (err) return console.log(err);
-                console.log('sliders', sliders)
-                self.sliders = sliders;
 
-            })
+            self.slider = {};
+            self.error;
+            self.sliders = [];
+            var uploader;
+            var newSlider = false;
+
+            self.$onInit = function () {
+                listSliders();
+            };
 
             this.save = function () {
-                self.addSliderMode = false;
+                newSlider = false;
+                validate(sanitize(self.slider), function (slider) {
+                    if (uploader.queue.length > 0) {
+                        self.uploading = true;
+                        return uploader.uploadAll();
+                    }
+                    update();
+                });
+            };
+            function update() {
+                SlideshowService.update(self.slider, function(err, res) {
+                    if (err) return self.error = err.message;
+                    SlideshowService.getImage(res, function (slide) {
+                        self.sliders[_.findIndex(self.sliders, {uuid: res.uuid})] = slide;
+                        self.addSliderMode = false;
+                    })
+                });
+            }
+            this.update = function (slide) {
+                self.slider = angular.copy(slide);
+                uploaderInit ()
             };
 
             this.cancel = function () {
+                if (newSlider) self.remove(self.slider);
+                newSlider = false;
                 self.addSliderMode = false;
                 self.showUploadBtn = false;
                 uploader.clearQueue();
             };
-            self.slides = []
 
-            self.getSlider = function(){
-                self.slides = [];
-                // HttpResource.query({params1:'files', params2:'5f0eeb5f-3fd7-4932-8ea8-3abf1578242c'}, function (res) {
-                //     _.forEach(res, function(obj){
-                //         if(obj.type == 'slide'){
-                //             self.slides.push(obj);
-                //         }
-                //     });
-                //     console.log('prodGall ', self.slides);
-                // }, function (err) {
-                //     console.error('Get gallery => ', err);
-                // })
+            self.remove = function (slide) {
+                SlideshowService.remove(slide, function (err, result) {
+                    if (err) self.error = err.message;
+                    _.remove(self.sliders, slide);
+                })
             };
 
-            self.remove = function (file) {
-                File.remove(file.uuid, function (err, res) {
-                    if (err) return self.error = err;
-                    console.info('file was removed', res);
-
-                    _.remove(self.slides, file);
+            self.newSlider = function () {
+                newSlider = true;
+                SlideshowService.save({}, function(err, res) {
+                    if (err) return self.error = err.message;
+                    self.slider = res;
+                    self.sliders.push(res);
+                    uploaderInit();
                 })
             };
 
             // Uploader
-            var uploader = this.uploader = new FileUploader({
-                url: Conf.api_path + '/file/slider/5f0eeb5f-3fd7-4932-8ea8-3abf1578242c'
-            });
-
-            uploader.filters.push({
-                name: 'imgFilter',
-                fn: function(item) {
-                    var image = item.type.split('/')[0] == 'image';
-                    return image ? true : false;
-                }
-            });
-
-            uploader.onAfterAddingAll = function () {
-                self.showUploadBtn = true;
-                _.each(uploader.queue, function(img){
-                    img.alias = 'slide';
+            function uploaderInit () {
+                uploader = self.uploader = new FileUploader({
+                    url: Conf.api_path + '/file/slider/' + self.slider.uuid
                 });
 
-            };
-            uploader.onCompleteAll = function () {
-                uploader.queue = [];
-                self.uploading = false;
-                self.getSlider()
-            };
-            uploader.uploadSlide = function(){
-                self.uploading = true;
-                console.log(self.uploading);
-                uploader.uploadAll();
-            };
+                uploader.filters.push({
+                    name: 'imgFilter',
+                    fn: function(item) {
+                        var image = item.type.split('/')[0] == 'image';
+                        return image ? true : false;
+                    }
+                });
 
-            self.$onInit = function () {
-                self.getSlider();
-            };
+                uploader.onAfterAddingAll = function () {
+                    self.showUploadBtn = true;
+                    _.each(uploader.queue, function(img){
+                        img.alias = 'slide';
+                    });
+
+                };
+
+                uploader.onCompleteAll = function () {
+                    uploader.queue = [];
+                    // self.uploading = false;
+                    update();
+                };
+
+                self.addSliderMode = true;
+            }
+
+            function listSliders () {
+                SlideshowService.list(function (err, sliders) {
+                    if (err) return console.log(err);
+                    _.each(sliders, function (slide) {
+                        SlideshowService.getImage(slide, function (res) {
+                            self.sliders.push(res);
+                        });
+                    })
+
+
+                });
+            }
+
+            function validate (slider, callback) {
+                // if (!slider.link && !slider.header && !slider.description) return self.error = 'Нет данных для сохранения!';
+                callback(slider);
+            }
+
+            function sanitize(slider) {
+                return {
+                    uuid: slider.uuid,
+                    link: slider.link,
+                    header: slider.header,
+                    description: slider.description
+                }
+            }
+
         }]
     });

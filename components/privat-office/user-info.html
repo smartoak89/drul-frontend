@@ -42,10 +42,10 @@
         <td>Страна</td>
         <td>
             <div class="checkbo">
-                <input type="radio" id="111" name="option" value="a" ng-model="$ctrl.user.country"/>
-                <label for="111"></label><span>Украина</span>
-                <input type="radio" id="11" name="option" value="a" ng-model="$ctrl.user.country"/>
-                <label for="11"></label><span>Россия</span>
+                <label for="111">Украина</label>
+                <input type="radio" id="111" name="state" ng-model="$ctrl.user.country"/>
+                <label for="11"><span>Россия</span></label>
+                <input type="radio" id="11" name="state" ng-model="$ctrl.user.country"/>
             </div>
         </td>
         <td></td>
@@ -95,8 +95,8 @@
         </td>
         <td></td>
     </tr>
-    <tr ng-show="$ctrl.error">
-        <td>
+    <tr ng-if="$ctrl.error" class="callout callout-danger">
+        <td colspan="2">
             {{$ctrl.error}}
         </td>
     </tr>

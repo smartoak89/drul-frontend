@@ -153,7 +153,7 @@ angular.module('admin')
 
             // Uploader
             var uploader = this.uploader = new FileUploader({
-                url: Conf.api_path + '/file/' + Goods.editprod.uuid
+                url: Conf.api_path + '/file/product/' + Goods.editprod.uuid
             });
             uploader.onAfterAddingAll = function () {
                 self.addingGallery = true;

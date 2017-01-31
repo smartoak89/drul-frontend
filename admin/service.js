@@ -264,7 +264,50 @@ angular.module('admin')
                 }, function (err) {
                     callback(err);
                 })
+            },
+            save: function (slider, callback) {
+                HttpResource.save({params1: 'slider'}, slider, function (res) {
+                    callback(null, res);
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            update: function (slider, callback) {
+                HttpResource.put({params1: 'slider', params2: slider.uuid}, slider, function (res) {
+                    callback(null, res);
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            remove: function (slide, callback) {
+                console.log(slide);
+                HttpResource.delete({params1: 'slider', params2: slide.uuid}, function (res) {
+                    callback(null, res);
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            getImage: function (slide, callback) {
+                HttpResource.query({params1: 'files', params2: slide.uuid}, function (res) {
+                    if (res.length > 0) {
+                        slide.image = res[0].uuid;
+                        for (var i = 1; i < res.length; i++) {
+                            removeImage(res[i].uuid);
+                        }
+                    }
+                    callback(slide);
+                }, function (err) {
+                    console.log('err', err);
+                })
             }
+        };
+
+        function removeImage (id) {
+            HttpResource.delete({params1: 'file', params2: id}, function (res) {
+                console.log('removed image', res);
+            }, function (err) {
+                console.log('err', err);
+            })
         }
     }]);
 
