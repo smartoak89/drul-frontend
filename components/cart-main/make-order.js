@@ -1,11 +1,11 @@
 angular.module('app')
-    .component('cartMain', {
-        templateUrl: "components/cart-main/cart-main.html",
+    .component('makeOrder', {
+        templateUrl: "components/cart-main/make-order.html",
         controller: ['Cart', 'User', function(Cart, User) {
             var self = this;
             self.user = User;
             self.cart = Cart;
-            console.log(self.cart)
+            console.log(self.cart);
             //self.countPlus = function(){
             //    self.counter++;
             //};
