@@ -6,6 +6,9 @@ angular.module('app')
             self.cart = Cart;
             //console.log($location.url().split('/').pop());
             self.Product = Product;
+            self.curProdCheck = {};
+            self.mesSuc = false;
+            self.mesWar = false;
             if(self.Product.products === null){
                 self.Product.getCurProd($location.url().split('/').pop()).then(function(){
                     self.Product.changeCurrency([self.Product.curProd]).then(function(){
@@ -48,10 +51,48 @@ angular.module('app')
             };
             self.initImg = function(){
                 self.setActiveImageInGallery('zoomModelGallery01', self.Product.curProd.photo.uuid)
+
             };
 
             self.$onDestroy = function() {
                 $('.zoomContainer').remove();
             };
+            self.valueChecked = function(){
+                for (var i = 0; i<self.curProdCheck.combo.length;i++){
+                    console.log(self.curProdCheck.combo[i]);
+                    if(self.curProdCheck.combo[i].val==null){
+                        self.mesWar = true;
+                        self.mesSuc = false;
+                        return
+                    }
+                }
+                console.log(self.curProdCheck);
+                self.cart.save(self.curProdCheck);
+                self.mesWar = false;
+                self.mesSuc = true;
+                return
+            };
+            self.$onInit = function() {
+                var self = this;
+                console.log(self.Product.curProd);
+
+                self.curProdCheck = {
+                    name: self.Product.curProd.name,
+                    article: self.Product.curProd.article,
+                    price: self.Product.curProd.price,
+                    currency: self.Product.curProd.currency,
+                    uuid: self.Product.curProd.uuid,
+                    description: self.Product.curProd.description,
+                    photo: self.Product.curProd.photo.uuid,
+                    combo: []
+                };
+                for (var i=0; i<self.Product.curProd.combo.length;i++) {
+                    self.curProdCheck.combo.push({
+                        name: self.Product.curProd.combo[i].name,
+                        slug: self.Product.curProd.combo[i].slug,
+                        val: null
+                    });
+                }
+            }
         }]
     });

@@ -1330,7 +1330,7 @@ input[type=radio]:checked + label:before {
     border: 1px solid #dedede;
     border-left: 0;
     border-right: 0;
-    height: 150px;
+    height: 200px;
     background-color: #fff;
     vertical-align: top;
     padding: 0;
@@ -2114,4 +2114,11 @@ make-order hr{
 }
 .orderCost > p:last-child{
     font-weight: 500;
+}
+.optCheckMes{
+    margin-top: 20px;
+    width: 342px;
+    font-size: 15px;
+    font-weight: 300;
+    text-align: center;
 }

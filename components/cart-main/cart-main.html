@@ -18,23 +18,15 @@
                 <tr ng-repeat-start="product in $ctrl.cart.cartList">
                     <td>
                         <div class="marker red">sale</div>
-                        <img ng-src="{{'/api/file/' + product.photo.uuid}}" class="img-responsive cover" alt=""></td>
+                        <img ng-src="{{'/api/file/' + product.photo}}" class="img-responsive cover" alt=""></td>
                     <td>
                         <div class="namePrice">
                             <div>Артикул {{product.article}}</div>
                             <p>{{product.name}}</p>
 
-                            <div class="params">
-                                <div>Состав</div>
-                                <div>Шерсть - 56%, Вискоза - 44%</div>
-                            </div>
-                            <div class="params">
-                                <div>Размер</div>
-                                <div>42</div>
-                            </div>
-                            <div class="params">
-                                <div>Цвет</div>
-                                <div>Бежевый</div>
+                            <div class="params" ng-repeat="value in product.combo">
+                                <div>{{value.name}}</div>
+                                <div>{{value.val}}</div>
                             </div>
                         </div>
                     </td>
