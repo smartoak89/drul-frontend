@@ -18,7 +18,7 @@
                 <tr ng-repeat-start="product in $ctrl.cart.cartList">
                     <td>
                         <div class="marker red">sale</div>
-                        <img ng-src="{{'/api/file/' + product.photo}}" class="img-responsive cover" alt=""></td>
+                        <img ng-src="{{'/api/file/' + product.image}}" class="img-responsive cover" alt=""></td>
                     <td>
                         <div class="namePrice">
                             <div>Артикул {{product.article}}</div>
@@ -32,9 +32,9 @@
                     </td>
                     <td>
                         <div class="counter">
-                            <button ng-click="$ctrl.countMinus()">‒ </button>
-                            <input ng-model="$ctrl.counter" type="number"/>
-                            <button ng-click="$ctrl.countPlus()">+</button>
+                            <button ng-click="$ctrl.countMinus($index)">‒ </button>
+                            <input ng-model="product.counter" ng-change="$ctrl.checkMinus($index)" type="number"/>
+                            <button ng-click="$ctrl.countPlus($index)">+</button>
                         </div>
                     </td>
                     <td>

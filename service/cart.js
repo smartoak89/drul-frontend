@@ -94,17 +94,18 @@ angular.module('app')
                 }
                 //TODO: user is not active
             },
-            save: function (product) {
+            save: function (product, data) {
                 var self = this;
                 //var userID = User.active.uuid;
                 console.log('UserActive', User);
 
                 $http({
                     url: '/api/cart/' + User.active.uuid + '/' + product.uuid,
-                    method: 'PUT'
+                    method: 'PUT',
+                    data: data
                 }).then(function (res) {
                     console.info('res', res);
-                    self.cartList.push(product);
+                    self.cartList.push(res.data);
                 }, function(err) {
                     console.info('error', err);
                 });
