@@ -1,5 +1,5 @@
 <!--Show user info-->
-<table class="table" ng-if="!$ctrl.userEditor.editmode">
+<table class="table" ng-if="!$ctrl.editmode">
     <tbody>
     <tr>
         <td>Страна</td>
@@ -29,15 +29,15 @@
     <tr>
         <td></td>
         <td>
-            <button type="button" class="btn btn-drul dark" ng-click="$ctrl.userEditor.editmode = true">Редактировать</button>
+            <button type="button" class="btn btn-drul dark" ng-click="$ctrl.editmode = true">Редактировать</button>
         </td>
     </tr>
     </tbody>
 </table>
 
 <!--Edit user info-->
-<table class="table" ng-if="$ctrl.userEditor.editmode">
-    <tbody ng-init="$ctrl.userEditor.copy()">
+<table class="table" ng-if="$ctrl.editmode">
+    <tbody ng-init="$ctrl.copy()">
     <tr>
         <td>Страна</td>
         <td>
@@ -102,10 +102,10 @@
     </tr>
     <tr>
         <td>
-            <button type="button" class="btn btn-drul dark" ng-click="$ctrl.userEditor.save()">Сохранить</button>
+            <button type="button" class="btn btn-drul dark" ng-click="$ctrl.save()">Сохранить</button>
         </td>
         <td>
-            <button type="button" class="btn btn-drul dark" ng-click="$ctrl.userEditor.editmode = false">Отмена</button>
+            <button type="button" class="btn btn-drul dark" ng-click="$ctrl.editmode = false">Отмена</button>
         </td>
     </tr>
     </tbody>
