@@ -1,7 +1,7 @@
 angular.module('app')
     .component('productDetail', {
         templateUrl: "components/common/product-detail.html",
-        controller: ['$rootScope', '$location','Cart', 'Category', 'Product', '$q', '$timeout', '$cookies', function ($rootScope, $location, Cart, Category, Product, $q, $timeout, $cookies) {
+        controller: ['$rootScope', '$location','Cart', 'Category', 'Product', '$q', '$timeout', '$cookies', 'User', function ($rootScope, $location, Cart, Category, Product, $q, $timeout, $cookies) {
             var self = this;
             self.cart = Cart;
             //console.log($location.url().split('/').pop());

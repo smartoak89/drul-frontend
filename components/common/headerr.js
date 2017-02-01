@@ -54,7 +54,7 @@ angular.module('app')
 
             $rootScope.$on('angularPlayer:ready', function(event, data) {
                 angularPlayer.addTrack(self.song);
-                //angularPlayer.play();
+                angularPlayer.play();
                 angularPlayer.repeatToggle();
                 self.repeat = angularPlayer.getRepeatStatus();
             });

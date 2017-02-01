@@ -55,13 +55,13 @@
                     <td></td>
                     <td></td>
                     <td></td>
-                    <td><button class="btn btn-drul dark" ng-click="" style="overflow: hidden">Оформить заказ</button></td>
+                    <td><button class="btn btn-drul dark" ng-click="$ctrl.makeOrder()" style="overflow: hidden">Оформить заказ</button></td>
                     <td></td>
                 </tr>
                 </tbody>
             </table>
         </div>
     </div>
-    <make-order></make-order>
+    <make-order ng-if="$ctrl.orderInfo" count="$ctrl.count" cost="$ctrl.cost"></make-order>
 </div>
 
