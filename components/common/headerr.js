@@ -44,12 +44,11 @@ angular.module('app')
                 }
             };
 
-            self.song =
-                {
+            self.song = {
                     id: 'one',
-                    title: 'Rain',
-                    artist: 'Drake',
-                    url: 'http://freshly-ground.com/data/audio/sm2/Figub%20Brazlevi%C4%8D%20-%20Bosnian%20Syndicate.mp3'
+                    title: 'Rain2',
+                    artist: 'Drake2',
+                    url: 'http://95.46.99.177/api/file/bcf11a9b-706c-43bb-b593-903ec48704f1'
                 };
 
             $rootScope.$on('angularPlayer:ready', function(event, data) {

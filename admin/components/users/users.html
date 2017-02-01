@@ -3,23 +3,23 @@
         <table class="table table-grid">
             <thead>
                 <tr>
+                    <th>Email</th>
                     <th>Имя</th>
                     <th>Фамилия</th>
                     <th>Телефон</th>
                     <th>Страна</th>
-                    <th>Email</th>
-                    <th>Edit</th>
+                    <!--<th>Edit</th>-->
                     <th>Remove</th>
                 </tr>
             </thead>
             <tbody>
                 <tr ng-repeat="user in $ctrl.listUsers">
+                    <td>{{user.email}}</td>
                     <td>{{user.firstname}}</td>
                     <td>{{user.lastname}}</td>
                     <td>{{user.phone}}</td>
                     <td>{{user.state}}</td>
-                    <td>{{user.email}}</td>
-                    <td><button class="btn btn-default btn-sm" modal-admin="user-editor">Edit</button></td>
+                    <!--<td><button class="btn btn-default btn-sm" modal-admin="user-editor">Edit</button></td>-->
                     <td><button class="btn btn-default btn-sm" modal-admin="remove-user">Remove</button></td>
                 </tr>
             </tbody>

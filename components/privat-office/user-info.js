@@ -6,26 +6,29 @@ angular.module('app')
             this.User = User;
             this.user = {};
             this.error = null;
+            this.editmode = false;
 
-            this.userEditor = {
-                editmode: false,
-                save: function () {
-                    isValid(self.user, function (err) {
-                        if (err) return self.error = err;
 
-                        Httpquery.put({params1: 'user', params2: self.user.uuid}, self.user, function (res) {
-                            console.log('success', res);
-                            this.editmode = false;
-                        }, function (err) {
-                            console.log('error', err);
-                            self.error = err.message;
-                        })
-                    });
-                },
-                copy: function () {
-                    self.user = angular.copy(self.User.active);
-                }
+            this.save = function () {
+                var self = this;
+                isValid(self.user, function (err) {
+                    if (err) return self.error = err;
+
+                    Httpquery.put({params1: 'user', params2: self.user.uuid}, self.user, function (res) {
+                        User.active = res;
+                        self.editmode = false;
+                        self.error = null;
+                    }, function (err) {
+                        console.log('error', err);
+                        self.error = err.data.message;
+                    })
+                });
             };
+
+            this.copy = function () {
+                self.user = angular.copy(self.User.active);
+            };
+
 
             function isValid (user, callback) {
                 var reg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
