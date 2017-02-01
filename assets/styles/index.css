@@ -2122,3 +2122,7 @@ make-order hr{
     font-weight: 300;
     text-align: center;
 }
+.optCheckMes > a{
+    font-weight: 500;
+    color: #3c763d;
+}

@@ -59,7 +59,6 @@ angular.module('app')
             };
             self.valueChecked = function(){
                 for (var i = 0; i<self.curProdCheck.combo.length;i++){
-                    console.log(self.curProdCheck.combo[i]);
                     if(self.curProdCheck.combo[i].val==null){
                         self.mesWar = true;
                         self.mesSuc = false;
@@ -67,7 +66,7 @@ angular.module('app')
                     }
                 }
                 console.log(self.curProdCheck);
-                self.cart.save(self.curProdCheck);
+                self.cart.save(self.Product.curProd, self.curProdCheck);
                 self.mesWar = false;
                 self.mesSuc = true;
                 return
@@ -77,13 +76,7 @@ angular.module('app')
                 console.log(self.Product.curProd);
 
                 self.curProdCheck = {
-                    name: self.Product.curProd.name,
-                    article: self.Product.curProd.article,
-                    price: self.Product.curProd.price,
-                    currency: self.Product.curProd.currency,
-                    uuid: self.Product.curProd.uuid,
-                    description: self.Product.curProd.description,
-                    photo: self.Product.curProd.photo.uuid,
+                    image: self.Product.curProd.photo.uuid,
                     combo: []
                 };
                 for (var i=0; i<self.Product.curProd.combo.length;i++) {
