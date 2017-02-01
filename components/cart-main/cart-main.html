@@ -33,7 +33,7 @@
                     <td>
                         <div class="counter">
                             <button ng-click="$ctrl.countMinus($index)">‒ </button>
-                            <input ng-model="product.counter" ng-change="$ctrl.checkMinus($index)" type="number"/>
+                            <input ng-model="product.counter" ng-init="product.counter" ng-change="$ctrl.checkMinus($index)" type="number"/>
                             <button ng-click="$ctrl.countPlus($index)">+</button>
                         </div>
                     </td>
@@ -60,6 +60,7 @@
                 </tr>
                 </tbody>
             </table>
+            <button data-modal="register" id="toMod" style="display: none"></button>
         </div>
     </div>
     <make-order ng-if="$ctrl.orderInfo" count="$ctrl.count" cost="$ctrl.cost"></make-order>
