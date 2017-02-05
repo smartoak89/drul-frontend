@@ -2109,6 +2109,9 @@ make-order hr{
     color: #000;
     font-weight: 300;
 }
+.orderCost{
+    float: left;
+}
 .orderCost > p{
     font-weight: 300;
 }

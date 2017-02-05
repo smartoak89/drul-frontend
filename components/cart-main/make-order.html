@@ -14,7 +14,7 @@
                                 <td>Страна</td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="text">
+                                        <input type="text" ng-model="$ctrl.orderMake.state">
                                     </div>
                                 </td>
                             </tr>
@@ -22,7 +22,7 @@
                                 <td>Имя</td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="text">
+                                        <input type="text" ng-model="$ctrl.orderMake.firstname">
                                     </div>
                                 </td>
                             </tr>
@@ -30,7 +30,7 @@
                                 <td>Фамилия</td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="text">
+                                        <input type="text" ng-model="$ctrl.orderMake.lastname">
                                     </div>
                                 </td>
                             </tr>
@@ -38,7 +38,7 @@
                                 <td>Моб. номер</td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="text">
+                                        <input type="text" ng-model="$ctrl.orderMake.phone">
                                     </div>
                                 </td>
                             </tr>
@@ -46,7 +46,7 @@
                                 <td>Эл. почта</td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="text">
+                                        <input type="text" ng-model="$ctrl.orderMake.email">
                                     </div>
                                 </td>
                             </tr>
@@ -171,7 +171,7 @@
                     <!--<br>-->
                     <p>Общая сумма: {{$ctrl.cost}} грн</p>
                 </div>
-                <button class="btn btn-drul dark" ng-click="" style="overflow: hidden">Оформить заказ</button>
+                <button class="btn btn-drul dark" ng-click="$ctrl.orderFun()" style="overflow: hidden; float: right">Оформить заказ</button>
             </div>
         </div>
     </div>

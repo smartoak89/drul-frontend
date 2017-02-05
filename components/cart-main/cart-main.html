@@ -1,7 +1,7 @@
 <!--Navigator-->
 <nav-cus></nav-cus>
 <div class="cartMain">
-    <div class="container-fluid">
+    <div class="container-fluid" ng-if="!$ctrl.orderInfo">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h1>Корзина</h1>
             <table class="table custom1">
@@ -33,7 +33,7 @@
                     <td>
                         <div class="counter">
                             <button ng-click="$ctrl.countMinus($index)">‒ </button>
-                            <input ng-model="product.counter" ng-init="product.counter" ng-change="$ctrl.checkMinus($index)" type="number"/>
+                            <input ng-model="product.counter" ng-init="product.counter" ng-pattern-restrict="^[a-zA-Z0-9_-]*$" ng-change="$ctrl.checkMinus($index)" type="number"/>
                             <button ng-click="$ctrl.countPlus($index)">+</button>
                         </div>
                     </td>
@@ -63,6 +63,6 @@
             <button data-modal="register" id="toMod" style="display: none"></button>
         </div>
     </div>
-    <make-order ng-if="$ctrl.orderInfo" count="$ctrl.count" cost="$ctrl.cost"></make-order>
+    <make-order ng-if="$ctrl.orderInfo" order="$ctrl.cart.cartList" count="$ctrl.count" cost="$ctrl.cost"></make-order>
 </div>
 

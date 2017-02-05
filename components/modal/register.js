@@ -14,7 +14,7 @@ angular.module('app')
                 Httpquery.save({params1: 'user', params2: 'register'}, $scope.user, function (res) {
                     console.log('Register success', res);
                     User.set(res);
-                    if($location.path() == '/cart' && Cart.cartList != null && Cart.cartList != []){
+                    if(Cart.cartList != null && Cart.cartList != []){
                         angular.forEach(Cart.cartList, function(prod){
                             console.log(prod);
                             $scope.savePro.image = prod.image;

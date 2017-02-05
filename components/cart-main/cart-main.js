@@ -12,11 +12,13 @@ angular.module('app')
                 }
                 for(var i =0; i<self.cart.cartList.length; i++){
                     self.cart.cartList[i].counter = 1;
+                    console.log('-');
                     console.log(self.cart.cartList[i]);
                 }
             }else {
                 self.cart.list().then(function () {
                     for (var i = 0; i < self.cart.cartList.length; i++) {
+                        console.log('+');
                         self.cart.cartList[i].counter = 1;
                     }
 
