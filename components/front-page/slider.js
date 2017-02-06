@@ -46,7 +46,6 @@ angular.module('app')
             };
 
             self.$onInit = function () {
-                console.log('+')
                 self.getSlider();
             };
 

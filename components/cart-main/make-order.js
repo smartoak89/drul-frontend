@@ -10,15 +10,15 @@ angular.module('app')
             var self = this;
             self.user = User;
             self.cart = Cart;
+
             self.orderMake = {
-                firstname: self.user.firstname,
-                lastname: self.user.lastname,
-                state: self.user.state,
-                phone: self.user.phone,
-                email: self.user.email
+                firstname: self.user.active.firstname,
+                lastname: self.user.active.lastname,
+                state: self.user.active.state,
+                phone: self.user.active.phone,
+                email: self.user.active.email
             };
             self.orderMake.order = self.order;
-            console.log(self.user.active);
             self.orderFun = function(){
                 console.log(self.orderMake);
             }

@@ -925,7 +925,13 @@ input[type=radio]:checked + label:before {
 .categCard{
     color: #c3c3c3;
     font-size: 13px;
+    display: inline;
+    margin-right: 8px;
 }
+.categCard:last-child{
+    margin-right: 0;
+}
+
 .artNameCard{
     margin-top: 70px;
 }
@@ -2128,4 +2134,7 @@ make-order hr{
 .optCheckMes > a{
     font-weight: 500;
     color: #3c763d;
+}
+.zoomWindowContainer > div{
+    border:0!important;
 }

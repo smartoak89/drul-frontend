@@ -30,7 +30,7 @@
                     <button type="button" class="btn btn-drul dark" data-modal="auth" ng-hide="$ctrl.User.active">войти</button>
                     <button type="button" class="btn btn-drul dark" ng-click="$ctrl.logout()" ng-show="$ctrl.User.active">выйти</button>
                 </li>
-                <li class="singUp pull-right" ng-show="$ctrl.User.active">
+                <li class="singUp pull-right" ng-show="$ctrl.User.active"  tooltip-placement="left" uib-tooltip="Личный кабинет">
                     <a class="activeUser" ui-sref="index.privat-office"><i class="bi_user-alt"></i>
                         {{$ctrl.User.active.firstname + ' ' + $ctrl.user.User.active.lastname}}
                     </a>
@@ -40,14 +40,14 @@
                     <button type="button" class="btn btn-drul" data-modal="register">регистрация</button>
                 </li>
                 <li class="icon iconRig pull-right">
-                    <div class="s-3" ui-sref="index.cartMain"></div>
+                    <div class="s-3" ui-sref="index.cartMain" tooltip-placement="left" uib-tooltip="Корзина"></div>
                     <div class="countProd" ng-if="$ctrl.Cart.cartList.length>0">{{$ctrl.Cart.cartList.length}}</div>
                 </li>
-                <li class="icon iconRig pull-right" ng-show="$ctrl.User.active">
+                <li class="icon iconRig pull-right" ng-show="$ctrl.User.active" tooltip-placement="left" uib-tooltip="Избранное">
                     <div class="s-2" ui-sref="index.privat-office" ng-click="$ctrl.User.activeMenu = 1"></div>
                     <div class="countProd" ng-if="$ctrl.Cart.defList.length>0">{{$ctrl.Cart.defList.length}}</div>
                 </li>
-                <li class="icon iconRig pull-right" ng-show="$ctrl.User.active">
+                <li class="icon iconRig pull-right" ng-show="$ctrl.User.active" tooltip-placement="left" uib-tooltip="Поиск">
                     <div class="s-1"></div>
                 </li>
             </ul>

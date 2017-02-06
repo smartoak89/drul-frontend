@@ -1,6 +1,6 @@
 angular.module('app')
-    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', 'Cart',
-        function (Httpquery, $http, $cookies, $q, Cart) {
+    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', 'Cart', 'User',
+        function (Httpquery, $http, $cookies, $q, Cart, User) {
 
             var skip = 0;
             return {
@@ -46,6 +46,9 @@ angular.module('app')
                         Cart.getCartAndDeferred(res);
                         $q.all([self.getGallery(res), self.changeCurrency(res)]).then(function (result) {
                             self.countStock(result[1]).then(function(result2){
+                                _.forEach(result2, function (elem) {
+                                   self.getCom(elem);
+                                });
                                 console.log(result2);
                                 if(self.curProd){
                                     var curren = _.find(result2, {uuid: self.curProd.uuid});
@@ -77,6 +80,18 @@ angular.module('app')
                     }
                     return deffer.promise;
                 },
+                saveCom: function(com, prod, user){
+                    Httpquery.save({params1:'reviews', params2:prod.uuid, params3: user.uuid}, com, function(res){
+                        console.log(res);
+                    }, function(err){
+                        console.log(err);
+                    })
+                },
+                getCom: function(elem){
+                    Httpquery.query({params1: 'reviews', params2:elem.uuid}, function(resss){
+                        elem.comments = resss;
+                    });
+                },
                 getAll: function () {
                     var self = this;
                     $q.all([Cart.listDef(), Cart.list(), self.getList()]).then(function () {
@@ -84,6 +99,9 @@ angular.module('app')
                             if (_.find(Cart.defList, {uuid: elem.uuid})) {
                                 elem.def = true;
                             }
+                            Httpquery.query({params1: 'reviews', params2:elem.uuid}, function(resss){
+                                elem.comments = resss;
+                            });
                         });
                     })
                 },
@@ -167,7 +185,8 @@ angular.module('app')
                         Httpquery.query({params1: 'files', params2: res.uuid}, function (ress) {
                             res.photo = _.find(ress, {type: 'main'});
                             res.gallery = ress;
-                        })
+                        });
+                        self.getCom(res);
                         self.countStock(res).then(function(result){
                             //console.log(result)
                             defer.resolve(result);

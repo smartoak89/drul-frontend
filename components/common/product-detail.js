@@ -10,11 +10,15 @@ angular.module('app')
             self.curProdCheck = {};
             self.mesSuc = false;
             self.mesWar = false;
+            self.commBody = {
+                body: null
+            };
             if(self.Product.products === null){
                 self.Product.getCurProd($location.url().split('/').pop()).then(function(){
                     self.Product.changeCurrency([self.Product.curProd]).then(function(){
                         self.Product.countStock(self.Product.curProd).then(function(){
                             console.log(self.Product.curProd);
+
                         })
                         self.curProdCheck = {
                             image: self.Product.curProd.photo.uuid,
@@ -112,6 +116,13 @@ angular.module('app')
                 self.mesWar = false;
                 self.mesSuc = true;
                 return
+            };
+            self.sendComm = function(){
+                if(self.commBody.body){
+                    self.Product.saveCom(self.commBody, self.Product.curProd, self.user.active)
+                }else{
+                    self.sendCommError = true
+                }
             };
             self.$onInit = function() {
                 var self = this;
