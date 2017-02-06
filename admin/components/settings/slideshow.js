@@ -66,7 +66,8 @@ angular.module('admin')
             // Uploader
             function uploaderInit () {
                 uploader = self.uploader = new FileUploader({
-                    url: Conf.api_path + '/file/slider/' + self.slider.uuid
+                    url: Conf.api_path + '/file/slider/' + self.slider.uuid,
+                    queueLimit: 1
                 });
 
                 uploader.filters.push({
@@ -83,6 +84,10 @@ angular.module('admin')
                         img.alias = 'slide';
                     });
 
+                };
+
+                uploader.onCompleteItem = function () {
+                    console.log('arguments', arguments);
                 };
 
                 uploader.onCompleteAll = function () {

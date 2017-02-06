@@ -1,19 +1,38 @@
 angular.module('app')
     .component('headerr', {
         templateUrl: "components/common/headerr.html",
-        controller: ['User', 'Cart', 'angularPlayer', '$rootScope', function(User, Cart, angularPlayer, $rootScope) {
+        controller: ['User', 'Cart', 'angularPlayer', '$rootScope', 'HttpResource', function(User, Cart, angularPlayer, $rootScope, HttpResource) {
             var self = this;
             this.User = User;
             this.Cart = Cart;
             this.Cart.list();
             this.Cart.listDef();
             this.logout = function () {
-                // this.user = null;
                 User.deactive();
             };
-            //this.click = function () {
-            //    User.set({id: 92873928219});
-            //};
+            self.songs = []
+            this.$onInit = function () {
+                HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
+                    // self.songs = res.map(function (el){
+                    //         return {
+                    //             id: el.uuid,
+                    //             title: el.uuid,
+                    //             artist: el.name,
+                    //             url: 'http://95.46.99.177/api/file/' + el.uuid
+                    //         }
+                    // })
+                    res.forEach(function (el) {
+
+                        self.songs.push({
+                            id: el.uuid,
+                            title: el.type,
+                            artist: el.name,
+                            url: 'http://95.46.99.177/api/file/' + el.uuid
+                        })
+                    });
+                    // self.showPlayer = true;
+                })
+            };
             self.volume = 's-21';
             self.volumeSlider = {
                 value: 100,
@@ -44,19 +63,57 @@ angular.module('app')
                 }
             };
 
-            self.song = {
-                    id: 'one',
-                    title: 'Rain2',
-                    artist: 'Drake2',
-                    url: 'http://95.46.99.177/api/file/bcf11a9b-706c-43bb-b593-903ec48704f1'
-                };
-
             $rootScope.$on('angularPlayer:ready', function(event, data) {
-                angularPlayer.addTrack(self.song);
-                angularPlayer.play();
-                angularPlayer.repeatToggle();
-                self.repeat = angularPlayer.getRepeatStatus();
+                console.log('init')
+                // angularPlayer.addToPlaylist(
+                //     {
+                //         id: 'l.uuid',
+                //         title: 'el.uuid',
+                //         artist: 'el.name',
+                //         url: 'http://95.46.99.177/api/file/98e57600-acdc-4e08-bb2e-e8f3ceb80e3f'
+                //     }
+                // );
+
+                // angularPlayer.addToPlaylist(
+                //     {
+                //         id: 'l.uuid',
+                //         title: 'el.uuid',
+                //         artist: 'el.name',
+                //         url: 'http://95.46.99.177/api/file/98e57600-acdc-4e08-bb2e-e8f3ceb80e3f'
+                //     }
+                // );
+
+                // angularPlayer.addTrack({
+                //     id: 'l.uuid',
+                //     title: 'el.uuid',
+                //     artist: 'el.name',
+                //     url: 'http://95.46.99.177/api/file/98e57600-acdc-4e08-bb2e-e8f3ceb80e3f'
+                // });
+
+                // angularPlayer.addToPlaylist({
+                //     id: 'l.uuid',
+                //     title: 'el.uuid',
+                //     artist: 'el.name',
+                //     url: 'http://95.46.99.177/api/file/98e57600-acdc-4e08-bb2e-e8f3ceb80e3f'
+                // });
+                // angularPlayer.playTrack(1)
+                angularPlayer.play()
+                // angularPlayer.repeatToggle();
+                // self.repeat = angularPlayer.getRepeatStatus();
             });
+            // $rootScope.$on('track:progress', function (t, d) {
+            //     console.log('d',d)
+            //     if(d >= 5) {
+            //        angularPlayer.initPlayTrack();
+            //         // angularPlayer.addTrack({
+            //         //     id: 'l.uuids',
+            //         //     title: 'el.uuisd',
+            //         //     artist: 'el.namse',
+            //         //     url: 'http://95.46.99.177/api/file/2c861042-53eb-4873-979d-0124e82f4e25'
+            //         // });
+            //         angularPlayer.play();
+            //     }
+            // })
 
         }]
     });

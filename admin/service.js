@@ -309,5 +309,50 @@ angular.module('admin')
                 console.log('err', err);
             })
         }
+    }])
+    .factory('MusicService',['HttpResource', function (HttpResource) {
+        return {
+            list: function (callback) {
+                HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
+                    callback(null, res);
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            // save: function (slider, callback) {
+            //     HttpResource.save({params1: 'slider'}, slider, function (res) {
+            //         callback(null, res);
+            //     }, function (err) {
+            //         callback(err);
+            //     })
+            // },
+            // update: function (slider, callback) {
+            //     HttpResource.put({params1: 'slider', params2: slider.uuid}, slider, function (res) {
+            //         callback(null, res);
+            //     }, function (err) {
+            //         callback(err);
+            //     })
+            // },
+            remove: function (music, callback) {
+                HttpResource.delete({params1: 'file', params2: music.uuid}, function (res) {
+                    callback(null, res);
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            // getImage: function (slide, callback) {
+            //     HttpResource.query({params1: 'files', params2: slide.uuid}, function (res) {
+            //         if (res.length > 0) {
+            //             slide.image = res[0].uuid;
+            //             for (var i = 1; i < res.length; i++) {
+            //                 removeImage(res[i].uuid);
+            //             }
+            //         }
+            //         callback(slide);
+            //     }, function (err) {
+            //         console.log('err', err);
+            //     })
+
+        }
     }]);
 
