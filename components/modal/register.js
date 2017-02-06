@@ -1,8 +1,12 @@
 angular.module('app')
-    .controller('register', ['$uibModalInstance', '$scope', 'Httpquery', 'User', function ($uibModalInstance, $scope, Httpquery, User) {
+    .controller('register', ['$uibModalInstance', '$scope', 'Httpquery', 'User', '$location', 'Cart', function ($uibModalInstance, $scope, Httpquery, User, $location, Cart) {
         $scope.user = {};
         $scope.error = null;
-
+        $scope.savePro = {
+            image: '',
+            combo: []
+        }
+        console.log(Cart);
         $scope.register = function () {
             isValid($scope.user, function (err) {
                 if (err) return $scope.error = err;
@@ -10,6 +14,14 @@ angular.module('app')
                 Httpquery.save({params1: 'user', params2: 'register'}, $scope.user, function (res) {
                     console.log('Register success', res);
                     User.set(res);
+                    if(Cart.cartList != null && Cart.cartList != []){
+                        angular.forEach(Cart.cartList, function(prod){
+                            console.log(prod);
+                            $scope.savePro.image = prod.image;
+                            $scope.savePro.combo = prod.combo;
+                            Cart.save(prod, $scope.savePro)
+                        })
+                    }
                     $scope.close();
                 }, function (ex) {
                     $scope.error = ex.data.message;
@@ -20,7 +32,7 @@ angular.module('app')
 
         $scope.close = function () {
             $uibModalInstance.dismiss();
-        }
+        };
 
         function isValid(user, callback) {
             var reg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;

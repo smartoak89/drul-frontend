@@ -1,10 +1,11 @@
 angular.module('app')
     .component('productDetail', {
         templateUrl: "components/common/product-detail.html",
-        controller: ['$rootScope', '$location','Cart', 'Category', 'Product', '$q', '$timeout', '$cookies', function ($rootScope, $location, Cart, Category, Product, $q, $timeout, $cookies) {
+        controller: ['$rootScope', '$location','Cart', 'Category', 'Product', '$q', '$timeout', '$cookies', 'User', function ($rootScope, $location, Cart, Category, Product, $q, $timeout, $cookies, User) {
             var self = this;
             self.cart = Cart;
-            //console.log($location.url().split('/').pop());
+            self.user = User;
+            console.log(self.user);
             self.Product = Product;
             self.curProdCheck = {};
             self.mesSuc = false;
@@ -15,6 +16,17 @@ angular.module('app')
                         self.Product.countStock(self.Product.curProd).then(function(){
                             console.log(self.Product.curProd);
                         })
+                        self.curProdCheck = {
+                            image: self.Product.curProd.photo.uuid,
+                            combo: []
+                        };
+                        for (var i=0; i<self.Product.curProd.combo.length;i++) {
+                            self.curProdCheck.combo.push({
+                                name: self.Product.curProd.combo[i].name,
+                                slug: self.Product.curProd.combo[i].slug,
+                                val: null
+                            });
+                        }
                     });
 
                     self.Product.curProd.currency = $cookies.get('currency');
@@ -22,6 +34,18 @@ angular.module('app')
             }else{
                 self.Product.curProd = _.find(self.Product.products, {uuid: $location.url().split('/').pop()});
                 self.Product.curProd.currency = $cookies.get('currency');
+                self.curProdCheck = {
+                    image: self.Product.curProd.photo.uuid,
+                    counter: 1,
+                    combo: []
+                };
+                for (var i=0; i<self.Product.curProd.combo.length;i++) {
+                    self.curProdCheck.combo.push({
+                        name: self.Product.curProd.combo[i].name,
+                        slug: self.Product.curProd.combo[i].slug,
+                        val: null
+                    });
+                }
             }
             //self.mainPhoto = function(photo){
             //    console.log(photo);
@@ -66,7 +90,25 @@ angular.module('app')
                     }
                 }
                 console.log(self.curProdCheck);
-                self.cart.save(self.Product.curProd, self.curProdCheck);
+                console.log(angular.isArray(self.cart.cartList));
+                if(self.user.active == null && self.cart.cartList == null){
+                    self.curProdCheck.name = self.Product.curProd.name;
+                    self.curProdCheck.article = self.Product.curProd.article;
+                    self.curProdCheck.price = self.Product.curProd.price;
+                    self.curProdCheck.uuid = self.Product.curProd.uuid;
+                    self.curProdCheck.currency = self.Product.curProd.currency;
+                    self.cart.cartList = [];
+                    self.cart.cartList.push(self.curProdCheck);
+                }else if(self.user.active == null && angular.isArray(self.cart.cartList)){
+                    self.curProdCheck.name = self.Product.curProd.name;
+                    self.curProdCheck.article = self.Product.curProd.article;
+                    self.curProdCheck.price = self.Product.curProd.price;
+                    self.curProdCheck.uuid = self.Product.curProd.uuid;
+                    self.curProdCheck.currency = self.Product.curProd.currency;
+                    self.cart.cartList.push(self.curProdCheck);
+                }else{
+                    self.cart.save(self.Product.curProd, self.curProdCheck);
+                }
                 self.mesWar = false;
                 self.mesSuc = true;
                 return
@@ -75,17 +117,7 @@ angular.module('app')
                 var self = this;
                 console.log(self.Product.curProd);
 
-                self.curProdCheck = {
-                    image: self.Product.curProd.photo.uuid,
-                    combo: []
-                };
-                for (var i=0; i<self.Product.curProd.combo.length;i++) {
-                    self.curProdCheck.combo.push({
-                        name: self.Product.curProd.combo[i].name,
-                        slug: self.Product.curProd.combo[i].slug,
-                        val: null
-                    });
-                }
+
             }
         }]
     });

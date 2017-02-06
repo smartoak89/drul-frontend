@@ -105,6 +105,7 @@ angular.module('app')
                     data: data
                 }).then(function (res) {
                     console.info('res', res);
+                    res.data.counter = 0;
                     self.cartList.push(res.data);
                 }, function(err) {
                     console.info('error', err);
