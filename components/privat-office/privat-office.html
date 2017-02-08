@@ -149,52 +149,52 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr>
-                            <td>
-                                <div class="marker red">sale</div>
-                                <img src="assets/images/11.png" class="img-responsive cover" alt=""></td>
-                            <td>
-                                <div class="namePrice">
-                                    <div>Артикул 30530101</div>
-                                    <p>пальто maria velada</p>
+                            <tr ng-repeat="order in $ctrl.OrderServ.listHistoryOrders">
+                                <td>
+                                    <div class="marker red">sale</div>
+                                    <img src="assets/images/11.png" class="img-responsive cover" alt=""></td>
+                                <td>
+                                    <div class="namePrice">
+                                        <div>Артикул 30530101</div>
+                                        <p>пальто maria velada</p>
 
-                                    <div class="params">
-                                        <div>Состав</div>
-                                        <div>Шерсть - 56%, Вискоза - 44%</div>
+                                        <div class="params">
+                                            <div>Состав</div>
+                                            <div>Шерсть - 56%, Вискоза - 44%</div>
+                                        </div>
+                                        <div class="params">
+                                            <div>Размер</div>
+                                            <div>42</div>
+                                        </div>
+                                        <div class="params">
+                                            <div>Цвет</div>
+                                            <div>Бежевый</div>
+                                        </div>
                                     </div>
-                                    <div class="params">
-                                        <div>Размер</div>
-                                        <div>42</div>
+                                </td>
+                                <td>
+                                    <div class="namePrice">
+                                        <span>1300 грн</span>
                                     </div>
-                                    <div class="params">
-                                        <div>Цвет</div>
-                                        <div>Бежевый</div>
+                                </td>
+                                <td>
+                                    <div class="namePrice center">
+                                        <span>12.10.2016</span>
                                     </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="namePrice">
-                                    <span>1300 грн</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="namePrice center">
-                                    <span>12.10.2016</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="namePrice center colorRed">
-                                    <span>Не оплачено</span>
-                                    <button type="button" class="btn btn-drul">перейти к оплате</button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="s-3"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                        </tr>
+                                </td>
+                                <td>
+                                    <div class="namePrice center colorRed">
+                                        <span>Не оплачено</span>
+                                        <button type="button" class="btn btn-drul">перейти к оплате</button>
+                                    </div>
+                                </td>
+                                <td>
+                                    <div class="s-3"></div>
+                                </td>
+                            </tr>
+                            <tr>
+                                <td></td>
+                            </tr>
                         </tbody>
                     </table>
                 </uib-tab>
