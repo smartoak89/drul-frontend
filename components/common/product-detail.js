@@ -117,13 +117,13 @@ angular.module('app')
                 self.mesSuc = true;
                 return
             };
-            self.sendComm = function(){
-                if(self.commBody.body){
-                    self.Product.saveCom(self.commBody, self.Product.curProd, self.user.active)
-                }else{
-                    self.sendCommError = true
-                }
-            };
+            //self.sendComm = function(){
+            //    if(self.commBody.body){
+            //        self.Product.saveCom(self.commBody, self.Product.curProd, self.user.active)
+            //    }else{
+            //        self.sendCommError = true
+            //    }
+            //};
             self.$onInit = function() {
                 var self = this;
                 console.log(self.Product.curProd);

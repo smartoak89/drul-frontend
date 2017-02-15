@@ -49,6 +49,15 @@ angular.module('admin')
                     console.error('Get one product => ',err);
                 })
             },
+            getThisProd: function (id) {
+                var self = this;
+                HttpResource.get({params1: 'product', params2: id}, function (res) {
+                    self.getGallery(res);
+                    return res;
+                }, function (err) {
+                    console.error('Get one product => ',err);
+                })
+            },
             editLocal: function (product) {
                 this.editprod = product;
                 $location.url('/admin/goods/' + product.uuid)
@@ -256,6 +265,20 @@ angular.module('admin')
             }
         }
     }])
+
+    // Comments
+    .factory('Comm',['HttpResource', function (HttpResource) {
+        return {
+            getCom: function (callback) {
+                HttpResource.query({params1: 'reviews'}, function (res) {
+                    callback(null, res);
+                }, function (err) {
+                    callback(err);
+                })
+            }
+        }
+    }])
+
     .factory('SlideshowService',['HttpResource', function (HttpResource) {
         return {
             list: function (callback) {

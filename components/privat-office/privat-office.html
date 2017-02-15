@@ -137,66 +137,50 @@
                     <uib-tab-heading>
                         История покупок
                     </uib-tab-heading>
-                    <table class="table custom2">
-                        <thead>
-                        <tr>
-                            <td>Товар</td>
-                            <td></td>
-                            <td></td>
-                            <td>Дата</td>
-                            <td></td>
-                            <td></td>
-                        </tr>
-                        </thead>
-                        <tbody>
-                        <tr>
-                            <td>
-                                <div class="marker red">sale</div>
-                                <img src="assets/images/11.png" class="img-responsive cover" alt=""></td>
-                            <td>
-                                <div class="namePrice">
-                                    <div>Артикул 30530101</div>
-                                    <p>пальто maria velada</p>
+                    <div class="main">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <div class="accordion">
+                                <uib-accordion close-others="true">
+                                    <div uib-accordion-group class="panel-default orderList"
+                                         ng-repeat="category in [1,2,3,4,5]" heading="111" >
+                                        <uib-accordion-heading>
+                                            <div class="orderNumb">001</div>
+                                            <div class="orderDate">08.02.2017</div>
+                                            <div class="orderSum">20000 грн</div>
+                                        </uib-accordion-heading>
 
-                                    <div class="params">
-                                        <div>Состав</div>
-                                        <div>Шерсть - 56%, Вискоза - 44%</div>
+                                        <div class="accWrapper">
+                                            <table class="table">
+                                                <tbody>
+                                                    <tr>
+                                                        <td>
+                                                            <img class="img-responsive" src="http://95.46.99.177/api/file/fa349075-202b-4797-878f-66bed3297ba3" alt="">
+                                                        </td>
+                                                        <td>
+                                                            <div>Артикул</div>
+                                                            <div>Название</div>
+                                                            <div>комбо1<span>знач</span></div>
+                                                            <div>комбо2<span>знач</span></div>
+                                                            <div>Колво</div>
+                                                        </td>
+                                                        <td>1123 грн.</td>
+                                                        <td></td>
+                                                    </tr>
+                                                    <tr>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                        <td></td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
+                                        </div>
+
                                     </div>
-                                    <div class="params">
-                                        <div>Размер</div>
-                                        <div>42</div>
-                                    </div>
-                                    <div class="params">
-                                        <div>Цвет</div>
-                                        <div>Бежевый</div>
-                                    </div>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="namePrice">
-                                    <span>1300 грн</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="namePrice center">
-                                    <span>12.10.2016</span>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="namePrice center colorRed">
-                                    <span>Не оплачено</span>
-                                    <button type="button" class="btn btn-drul">перейти к оплате</button>
-                                </div>
-                            </td>
-                            <td>
-                                <div class="s-3"></div>
-                            </td>
-                        </tr>
-                        <tr>
-                            <td></td>
-                        </tr>
-                        </tbody>
-                    </table>
+                                </uib-accordion>
+                            </div>
+                        </div>
+                    </div>
                 </uib-tab>
             </uib-tabset>
         </div>
