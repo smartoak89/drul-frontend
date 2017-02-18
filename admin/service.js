@@ -1,7 +1,7 @@
 angular.module('admin')
     // Httpquery
     .service('HttpResource', ['$resource', function ($resource) {
-        return $resource('/api/:params1/:params2/:params3', {}, {
+        return $resource('/api/:params1/:params2/:params3?:option1', {}, {
             put: {
                 method: "PUT"
             }
@@ -51,9 +51,10 @@ angular.module('admin')
             },
             getThisProd: function (id) {
                 var self = this;
-                HttpResource.get({params1: 'product', params2: id}, function (res) {
+                return HttpResource.get({params1: 'product', params2: id}, function (res) {
                     //self.getGallery(res);
-                    self.product = res;
+                    console.log(res)
+                    //self.product = res;
                 }, function (err) {
                     console.error('Get one product => ',err);
                 })
@@ -69,7 +70,7 @@ angular.module('admin')
                     callback(err);
                 })
             },
-                getGallery: function (product) {
+            getGallery: function (product) {
                 var criteria = {
                     params1: 'files',
                     params2: product.uuid
@@ -81,6 +82,14 @@ angular.module('admin')
                     }
                 }, function (err) {
                     console.error('Get gallery => ', err);
+                })
+            },
+            getMainPhoto: function(id){
+                var self = this;
+                return  HttpResource.query({params1: 'files', params2: id, option1: 'type=main'}, function (res) {
+                    console.log(res)
+                }, function (err) {
+                    console.error('Get one photo => ',err);
                 })
             },
             listComb: function (callback) {
