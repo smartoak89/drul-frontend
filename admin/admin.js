@@ -59,11 +59,11 @@ angular.module('admin', [
                 'content': {template: "<users></users>"}
             }
         });
-        $stateProvider.state('admin.requestsAdmin', {
-            url: "/requests",
+        $stateProvider.state('admin.ordersAdmin', {
+            url: "/orders",
             views: {
                 '': {template: "<template-admin></template-admin>"},
-                'content': {template: "<requests></requests>"}
+                'content': {template: "<orders></orders>"}
             }
         });
         $stateProvider.state('admin.stocksAdmin', {

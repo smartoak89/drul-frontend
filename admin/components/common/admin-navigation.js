@@ -7,7 +7,7 @@ angular.module('admin')
                 {name: 'Категории', url: 'admin.categoriesAdmin'},
                 {name: 'Торвары', url: 'admin.goodsAdmin'},
                 {name: 'Пользователи', url: 'admin.usersAdmin'},
-                {name: 'Заказы', url: 'admin.requestsAdmin'},
+                {name: 'Заказы', url: 'admin.ordersAdmin'},
                 {name: 'Акции', url: 'admin.stocksAdmin'},
                 {name: 'Комментарии', url: 'admin.commentsAdmin'},
                 {name: 'Комбинации', url: 'admin.combination'},

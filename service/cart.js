@@ -54,6 +54,12 @@ angular.module('app')
                     console.log(err);
                 });
             },
+            clearCart: function () {
+                var self = this;
+                _.each(self.cartList, function (i) {
+                    self.delFromCart(i);
+                })
+            },
             list: function () {
                 var self = this;
                 var defer = $q.defer();
