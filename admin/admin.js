@@ -66,6 +66,13 @@ angular.module('admin', [
                 'content': {template: "<orders></orders>"}
             }
         });
+        $stateProvider.state('admin.orderDetaleAdmin', {
+            url: "/order/:id",
+            views: {
+                '': {template: "<template-admin></template-admin>"},
+                'content': {template: "<order-detale></order-detale>"}
+            }
+        });
         $stateProvider.state('admin.stocksAdmin', {
             url: "/stocks",
             views: {

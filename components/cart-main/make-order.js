@@ -26,14 +26,21 @@ angular.module('app')
 
             self.orderFun = function(){
                 if (isValid() === true) {
-
+                    var price = 0;
                     _.each(self.order, function (product, index) {
+                        price = price + (product.price * product.counter);
+                        // console.log('price', product.price);
+                        // console.log('price', product.price);
                         self.orderMake.products[index] = {
-                            productID: product.uuid,
+                            productID: product.product_uuid,
                             combo: product.combo,
-                            count: product.counter
+                            count: product.counter,
+                            price: product.price
                         }
                     });
+
+                    self.orderMake.price = price;
+
                     OrderService.doOrder(self.orderMake, function (err, res) {
                         if (err) return self.error = err.data.message;
                         console.log('res order', res);

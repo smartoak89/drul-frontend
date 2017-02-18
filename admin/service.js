@@ -386,7 +386,8 @@ angular.module('admin')
 
         }
     }])
-    .factory('RequestService',['HttpResource', function (HttpResource) {
+    .factory('RequestService',['HttpResource', '$q', function (HttpResource, $q) {
+
         return {
             list: function (callback) {
                 HttpResource.query({params1: 'orders'}, function (res) {
@@ -394,7 +395,50 @@ angular.module('admin')
                 }, function (err) {
                     callback(err);
                 })
+            },
+            getOneOrder: function (id, callback) {
+                HttpResource.get({params1: 'order', params2: id}, function (res) {
+                    // _.each(res.products, function (product, index) {
+                    //     // console.log('prod', product);
+                    //     HttpResource.get({params1: 'product', params2: product.productID}, function (prodres) {
+                    //         prodres.combo = product.combo;
+                    //         prodres.count = product.count;
+                    //         product = prodres;
+                    //         console.log('prod', product);
+                    //     })
+                    // });
+                    // callback(null, res);
+                    getAllProducts(res, callback);
+                }, function (err) {
+                    callback(err);
+                })
             }
+        }
+        function getAllProducts(order, callback) {
+            var promises = [];
+
+            _.each(order.products, function (product) {
+                promises.push($q(function (resolve, reject) {
+                    HttpResource.get({params1: 'product', params2: product.productID}, function (res) {
+                        resolve(res);
+                    }, function (err) {
+                        reject(err);
+                    })
+                }))
+            });
+            // $q(function (resolve, reject) {
+            //     _.each(order.products, function (product) {
+            //         return HttpResource.get({params1: 'product', params2: product.productID}, function (res) {
+            //             console.log(res);
+            //             resolve(res);
+            //
+            //         })
+            //     })
+            // }
+            //
+            $q.all(promises, function (products) {
+                console.log('prod', products);
+            })
         }
     }]);
 
