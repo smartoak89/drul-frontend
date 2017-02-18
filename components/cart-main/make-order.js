@@ -19,25 +19,29 @@ angular.module('app')
                     state: self.user.active.state,
                     phone: self.user.active.phone,
                     email: self.user.active.email,
-                    currency:  $cookies.get('currency') || 'UAH'
+                    currency:  $cookies.get('currency') || 'UAH',
+                    products: []
                 }
             };
 
             self.orderFun = function(){
-                console.log('order', self.order);
                 if (isValid() === true) {
 
-                    // _.each(self.order, function (i) {
-                    //     self.orderMake.count = i.counter;
-                    //     self.orderMake.combo = i.combo;
-                    //
-                    //     OrderService.doOrder(i.product_uuid, self.orderMake, function (err, res) {
-                    //         if (err) return self.error = err.data.message;
-                    //         console.log('res order', res);
-                    //     })
-                    // })
+                    _.each(self.order, function (product, index) {
+                        self.orderMake.products[index] = {
+                            productID: product.uuid,
+                            combo: product.combo,
+                            count: product.counter
+                        }
+                    });
+                    OrderService.doOrder(self.orderMake, function (err, res) {
+                        if (err) return self.error = err.data.message;
+                        console.log('res order', res);
+                        Cart.clearCart();
+                    })
                 }
             };
+
             function isValid() {
                 if (!self.orderMake.state) return self.error = 'Укажите страну получателя!';
                 if (!self.orderMake.firstname) return self.error = 'Укажите имя получателя!';

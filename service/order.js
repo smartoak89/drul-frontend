@@ -15,9 +15,9 @@ angular.module('app')
                     callback(err);
                 })
             },
-            doOrder: function (id, order, callback) {
+            doOrder: function (order, callback) {
                 var userId = User.active.uuid;
-                Httpquery.save({params1: 'order', params2: id, params3: userId}, order, function (res) {
+                Httpquery.save({params1: 'order', params3: userId}, order, function (res) {
                     callback(null, res);
                 }, function (err) {
                     callback(err);

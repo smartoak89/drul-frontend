@@ -1166,7 +1166,7 @@ input[type=radio]:checked + label:before {
     padding: 15px;
 }
 .content-wrapper{
-    /*height: calc(100vh - 100px);*/
+    height: 100vh;
     min-height: inherit;
     overflow-y: auto;
     overflow-x: hidden;

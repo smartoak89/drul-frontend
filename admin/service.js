@@ -287,7 +287,6 @@ angular.module('admin')
             }
         }
     }])
-
     .factory('SlideshowService',['HttpResource', function (HttpResource) {
         return {
             list: function (callback) {
@@ -385,6 +384,17 @@ angular.module('admin')
             //         console.log('err', err);
             //     })
 
+        }
+    }])
+    .factory('RequestService',['HttpResource', function (HttpResource) {
+        return {
+            list: function (callback) {
+                HttpResource.query({params1: 'orders'}, function (res) {
+                    callback(null, res);
+                }, function (err) {
+                    callback(err);
+                })
+            }
         }
     }]);
 
