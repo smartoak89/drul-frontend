@@ -52,8 +52,8 @@ angular.module('admin')
             getThisProd: function (id) {
                 var self = this;
                 HttpResource.get({params1: 'product', params2: id}, function (res) {
-                    self.getGallery(res);
-                    return res;
+                    //self.getGallery(res);
+                    self.product = res;
                 }, function (err) {
                     console.error('Get one product => ',err);
                 })

@@ -170,7 +170,7 @@ button:focus{
     height: 250px;
     position: relative;
     transition: transform .2s ease;
-    background: url(../images/backHeader.jpg) 50% 50% no-repeat;
+    background: #000;
 }
 .fixed{
     /*top: -100px;*/
@@ -2162,29 +2162,48 @@ make-order hr{
     padding: 10px;
 }
 .orderList .orderNumb{
-    width: 75%;
+    width: 65%;
     border-right: 1px solid #000;
 }
 .orderList .orderDate,
-.orderList .orderSum{
+.orderList .orderSum,
+.orderList .orderStatus{
     width: 10%;
     text-align: center;
     border-right: 1px solid #000;
 }
 .orderList .orderArrow{
-    width: 5%;
+    width: 50px;
+    position: relative;
+}
+.orderList .orderArrow:after{
+    font-family: FontAwesome;
+    font-size: 18px;
+    color: #000;
+    content: '\f107';
+    position: absolute;
+    right: 18px;
+    bottom: -5px;
+    transition: all ease 0.3s;
+}
+.orderList.panel-open .orderArrow:after{
+    transform: rotate(180deg);
 }
 .orderList.panel-default>.panel-heading+.panel-collapse>.panel-body{
     border-top-color: #000000;
     background: #ffffff;
     padding: 30px;
 }
-.orderList .accWrapper > table > tbody > tr{
-    margin-bottom: 20px;
+.orderList .accWrapper > table {
+    margin: 0;
 }
 .orderList .accWrapper > table > tbody > tr > td{
     border: 1px solid #ddd;
     background: #ffffff;
+}
+.orderList .accWrapper > table > tbody > tr:nth-child(2) > td{
+    border: 0;
+    padding: 10px;
 }
 .orderList .accWrapper > table > tbody > tr > td:first-child{
     width: 10%;

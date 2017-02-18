@@ -11,8 +11,11 @@ angular.module('admin')
                 Comm.getCom(function(err, res){
                     if (err) return console.log(err);
                     self.comments = res;
+                    console.log(self.comments);
                     _.forEach(self.comments, function(elem){
-                        elem.product = Goods.getThisProd(elem.product_id);
+                        Goods.getThisProd(elem.product_id);
+                        elem.product = Goods.product;
+                        console.log(elem);
                     });
                 });
             }

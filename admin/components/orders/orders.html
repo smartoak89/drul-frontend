@@ -13,7 +13,7 @@
             </tr>
             </thead>
             <tbody>
-                <tr ng-repeat="order in $ctrl.orderList">
+                <tr ng-repeat="order in $ctrl.orderList | orderBy: 'created'">
                     <td>{{$index}}</td>
                     <td>{{order.order_num}}</td>
                     <td><a>{{order.owner_name}}</a></td>
