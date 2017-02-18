@@ -1166,8 +1166,7 @@ input[type=radio]:checked + label:before {
     padding: 15px;
 }
 .content-wrapper{
-    height: 100vh;
-    min-height: inherit;
+    min-height: 100vh;
     overflow-y: auto;
     overflow-x: hidden;
 }
@@ -1650,7 +1649,11 @@ input::-webkit-inner-spin-button {
     -webkit-transition: none!important;
     -o-transition: none!important;
 }
-goods .table>tbody>tr>td{
+order-detale .table{
+    box-shadow: none;
+}
+goods .table>tbody>tr>td,
+order-detale .table>tbody>tr>td{
     vertical-align: middle;
 }
 .addFieldForm{
@@ -2245,4 +2248,21 @@ make-order hr{
 .orderList .accWrapper > table > tbody > tr > td:nth-child(4){
     width: 5%;
     border: 0;
+}
+.content-wrapper .content {
+    z-index: 7;
+    padding: 15px;
+    background-color: #F5F7FA;
+    min-height: inherit;
+}
+.field{
+    display: block;
+    margin-bottom: 15px;
+}
+.fieldName, .fieldValue{
+    display: inline-block;
+}
+.fieldName{
+    width: 100px;
+    font-weight: 500;
 }
