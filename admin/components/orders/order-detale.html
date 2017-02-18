@@ -1,1 +1,5 @@
 {{$ctrl.order}}
+
+<div class="col-md-3" ng-repeat="product in $ctrl.order.products">
+    <img ng-src="/api/file/{{product.image}}" alt="">
+</div>
