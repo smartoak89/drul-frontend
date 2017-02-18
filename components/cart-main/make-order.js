@@ -24,16 +24,18 @@ angular.module('app')
             };
 
             self.orderFun = function(){
+                console.log('order', self.order);
                 if (isValid() === true) {
-                    _.each(self.order, function (i) {
-                        self.orderMake.count = i.counter;
-                        self.orderMake.combo = i.combo;
 
-                        OrderService.doOrder(i.product_uuid, self.orderMake, function (err, res) {
-                            if (err) return self.error = err.data.message;
-                            console.log('res', res);
-                        })
-                    })
+                    // _.each(self.order, function (i) {
+                    //     self.orderMake.count = i.counter;
+                    //     self.orderMake.combo = i.combo;
+                    //
+                    //     OrderService.doOrder(i.product_uuid, self.orderMake, function (err, res) {
+                    //         if (err) return self.error = err.data.message;
+                    //         console.log('res order', res);
+                    //     })
+                    // })
                 }
             };
             function isValid() {
