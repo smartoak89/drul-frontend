@@ -398,7 +398,8 @@ angular.module('admin')
             },
             getOneOrder: function (id, callback) {
                 HttpResource.get({params1: 'order', params2: id}, function (res) {
-                    getAllProducts(res, callback);
+                    getAllProducts(res, callback)
+                    console.log(res);
                 }, function (err) {
                     callback(err);
                 })
@@ -415,6 +416,13 @@ angular.module('admin')
                         res.combo = product.combo;
                         res.price = product.price;
                         product = res;
+
+                        delete product._id;
+                        delete product.category;
+                        delete product.created;
+                        delete product.description;
+                        delete product.show;
+                        delete product.sublines;
 
                         HttpResource.query({params1: 'files', params2: res.uuid, type: "main"}, function (image) {
                             product.image = image[0].uuid;

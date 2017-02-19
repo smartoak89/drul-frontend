@@ -29,8 +29,6 @@ angular.module('app')
                     var price = 0;
                     _.each(self.order, function (product, index) {
                         price = price + (product.price * product.counter);
-                        // console.log('price', product.price);
-                        // console.log('price', product.price);
                         self.orderMake.products[index] = {
                             productID: product.product_uuid,
                             combo: product.combo,
@@ -40,6 +38,8 @@ angular.module('app')
                     });
 
                     self.orderMake.price = price;
+
+                    console.log(self.orderMake);
 
                     OrderService.doOrder(self.orderMake, function (err, res) {
                         if (err) return self.error = err.data.message;

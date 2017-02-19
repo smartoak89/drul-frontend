@@ -7,11 +7,15 @@ angular.module('admin')
 
             self.editUserInfo = false;
             self.editOrderInfo = false;
-            self.newUserInfo = {};
-            self.newOrderInfo = {};
+
 
             RequestService.getOneOrder(orderID, function (err, res) {
                 self.order = res;
+                self.newInfo = self.order;
             })
+
+            self.saveChanges = function(){
+                console.log(self.newInfo);
+            }
         }]
     });

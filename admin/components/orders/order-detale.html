@@ -55,26 +55,26 @@
                         <form role="form">
                             <div class="form-group">
                                 <label>Имя</label>
-                                <input class="form-control" placeholder="Имя" ng-init="$ctrl.newUserInfo.firstname = $ctrl.order.firstname" ng-model="$ctrl.newUserInfo.firstname">
+                                <input class="form-control" placeholder="Имя" ng-model="$ctrl.newInfo.firstname">
                             </div>
                             <div class="form-group">
                                 <label>Фамилия</label>
-                                <input class="form-control" placeholder="Фамилия" ng-init="$ctrl.newUserInfo.lastname = $ctrl.order.lastname" ng-model="$ctrl.newUserInfo.lastname">
+                                <input class="form-control" placeholder="Фамилия" ng-model="$ctrl.newInfo.lastname">
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input class="form-control" placeholder="Email" ng-init="$ctrl.newUserInfo.email = $ctrl.order.email" ng-model="$ctrl.newUserInfo.email">
+                                <input class="form-control" placeholder="Email" ng-model="$ctrl.newInfo.email">
                             </div>
                             <div class="form-group">
                                 <label>Страна</label>
-                                <input class="form-control" placeholder="Страна" ng-init="$ctrl.newUserInfo.state = $ctrl.order.state" ng-model="$ctrl.newUserInfo.state">
+                                <input class="form-control" placeholder="Страна" ng-model="$ctrl.newInfo.state">
                             </div>
                             <div class="form-group">
                                 <label>Телефон</label>
-                                <input class="form-control" placeholder="Телефон" ng-init="$ctrl.newUserInfo.phone = $ctrl.order.phone" ng-model="$ctrl.newUserInfo.phone">
+                                <input class="form-control" placeholder="Телефон" ng-model="$ctrl.newInfo.phone">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-default">Сохранить</button>
+                                <button type="submit" class="btn btn-default" ng-click="$ctrl.saveChanges()">Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -132,7 +132,7 @@
                         <form role="form">
                             <div class="form-group">
                                 <label>Валюта</label>
-                                <select class="form-control" ng-model="$ctrl.newOrderInfo.currency" ng-init="$ctrl.newOrderInfo.currency = $ctrl.order.currency">
+                                <select class="form-control" ng-model="$ctrl.newInfo.currency">
                                     <option value="UAH">UAH</option>
                                     <option value="USD">USD</option>
                                     <option value="RUB">RUB</option>
@@ -140,7 +140,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Сатус заказа</label>
-                                <select class="form-control" ng-model="$ctrl.newOrderInfo.status" ng-init="$ctrl.newOrderInfo.status = $ctrl.order.status">
+                                <select class="form-control" ng-model="$ctrl.newInfo.status">
                                     <option value="Новый заказ">Новый заказ</option>
                                     <option value="Ожидает получения оплаты">Ожидает получения оплаты</option>
                                     <option value="Оплачен">Оплачен</option>
@@ -167,8 +167,8 @@
                             <tr>
                                 <th>Фото</th>
                                 <th>Название</th>
-                                <th>Категория</th>
                                 <th>Артикул</th>
+                                <th>Параметры</th>
                                 <th>Цена</th>
                                 <th>Удалить</th>
                             </tr>
@@ -179,8 +179,13 @@
                                     <img style="object-fit: cover;" class="product-photo" ng-src="/api/file/{{product.image}}" alt="" width="100" height="80" no-image>
                                 </td>
                                 <td>{{product.name}}</td>
-                                <td>{{product.category.name[0]}}</td>
                                 <td>{{product.article}}</td>
+                                <td>
+                                    <div ng-repeat="combo in product.combo">
+                                        <span>{{combo.name}}</span>
+                                        {{combo.val}}
+                                    </div>
+                                </td>
                                 <td>{{product.price}}</td>
                                 <td>
                                     <!--<button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button>-->
