@@ -2266,3 +2266,16 @@ make-order hr{
     width: 100px;
     font-weight: 500;
 }
+.editBut{
+    position: absolute;
+    top: 15px;
+    right: 30px;
+}
+.editBut:hover{
+    color: #707070;
+    cursor: pointer;
+}
+.form-group > label{
+    color: #000;
+    font-weight: 500;
+}
