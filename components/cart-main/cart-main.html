@@ -1,8 +1,14 @@
 <!--Navigator-->
 <nav-cus></nav-cus>
+
 <div class="cartMain">
     <div class="container-fluid" ng-if="!$ctrl.orderInfo">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="$ctrl.cart.cartList.length == 0" style="height: 400px;">
+            <h1 class="text-center"><i class="fa fa-shopping-cart"></i></h1>
+            <h1 class="text-center">Ваша корзина пуста</h1>
+            <h4 class="text-center"><a href="#/" style="color: silver">Перейти на главную</a></h4>
+        </div>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="$ctrl.cart.cartList.length != 0">
             <h1>Корзина</h1>
             <table class="table custom1">
                 <thead>
@@ -33,7 +39,7 @@
                     <td>
                         <div class="counter">
                             <button ng-click="$ctrl.countMinus($index)">‒ </button>
-                            <input ng-model="product.counter" ng-init="product.counter" ng-pattern-restrict="^[a-zA-Z0-9_-]*$" ng-change="$ctrl.checkMinus($index)" type="number"/>
+                            <input ng-model="product.counter" ng-init="product.counter = 1" ng-pattern-restrict="^[0-9]*$" ng-change="$ctrl.checkMinus($index)" type="number"/>
                             <button ng-click="$ctrl.countPlus($index)">+</button>
                         </div>
                     </td>

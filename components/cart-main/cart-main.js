@@ -1,7 +1,7 @@
 angular.module('app')
     .component('cartMain', {
         templateUrl: "components/cart-main/cart-main.html",
-        controller: ['Cart', 'User', 'Product', '$timeout', function(Cart, User, Product, $timeout) {
+        controller: ['Cart', 'User', 'Product', '$timeout', '$anchorScroll', function(Cart, User, Product, $timeout, $anchorScroll) {
             var self = this;
             self.user = User;
             self.cart = Cart;
@@ -10,20 +10,18 @@ angular.module('app')
                 if(self.cart.cartList == null){
                     self.cart.cartList = [];
                 }
-                for(var i =0; i<self.cart.cartList.length; i++){
-                    self.cart.cartList[i].counter = 1;
-                    console.log('-');
-                    console.log(self.cart.cartList[i]);
-                }
-            }else {
-                self.cart.list().then(function () {
-                    for (var i = 0; i < self.cart.cartList.length; i++) {
-                        console.log('+');
-                        self.cart.cartList[i].counter = 1;
-                    }
-
-                });
+                // for(var i =0; i<self.cart.cartList.length; i++){
+                //     self.cart.cartList[i].counter = 1;
+                // }
             }
+            // else {
+            //     self.cart.list().then(function () {
+            //         for (var i = 0; i < self.cart.cartList.length; i++) {
+            //             self.cart.cartList[i].counter = 1;
+            //         }
+            //
+            //     });
+            // }
             self.countPlus = function(i){
                 self.cart.cartList[i].counter++;
             };
@@ -32,8 +30,8 @@ angular.module('app')
                     self.checkMinus(i);
             };
             self.checkMinus = function(i){
-                if(self.cart.cartList[i].counter<0) {
-                    self.cart.cartList[i].counter = 0;
+                if(self.cart.cartList[i].counter < 1) {
+                    self.cart.cartList[i].counter = 1;
                 }
             };
             self.clickToMod = function () {
@@ -45,6 +43,7 @@ angular.module('app')
                 if (self.user.active == null) {
                     self.clickToMod();
                 } else {
+                    $anchorScroll(0);
                     self.orderInfo = true;
                     self.count = 0;
                     self.cost = 0;

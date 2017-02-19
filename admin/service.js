@@ -414,7 +414,7 @@ angular.module('admin')
                     HttpResource.get({params1: 'product', params2: product.productID}, function (res) {
                         res.count = product.count;
                         res.combo = product.combo;
-                        res.price = product.price;
+                        // res.price = product.price;
                         product = res;
 
                         delete product._id;
