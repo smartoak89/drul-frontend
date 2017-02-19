@@ -1,33 +1,33 @@
 <!--Navigator-->
-<nav-cus></nav-cus>
+<!--<nav-cus></nav-cus>-->
 <div class="container-fluid">
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
         <div class="successBlock">
-            <div class="goodsBlock">
-                <div class="successIcon">
-                    <i class="bi_interface-tick"></i>
-                </div>
-                <img ng-src="/api/file/{{$ctrl.product.photo.uuid}}" class="img-responsive cover" no-image/>
-                <div class="namePrice">
-                    <div>Артикул {{$ctrl.product.article}}</div>
-                    <p>{{$ctrl.product.name}}</p>
-                    <hr class="line"/>
-                    <span ng-if="$ctrl.product.stockCost">{{$ctrl.product.stockCost + " " + $ctrl.product.currency}}</span>
-                    <span ng-if="!$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
-                    <strike ng-show="$ctrl.product.stockCost">{{$ctrl.product.price + " " +
-                        $ctrl.product.currency}}</strike>
-                </div>
-            </div>
+            <!--<div class="goodsBlock">-->
+                <!--<div class="successIcon">-->
+                    <!--<i class="bi_interface-tick"></i>-->
+                <!--</div>-->
+                <!--<img ng-src="/api/file/{{$ctrl.product.photo.uuid}}" class="img-responsive cover" no-image/>-->
+                <!--<div class="namePrice">-->
+                    <!--<div>Артикул {{$ctrl.product.article}}</div>-->
+                    <!--<p>{{$ctrl.product.name}}</p>-->
+                    <!--<hr class="line"/>-->
+                    <!--<span ng-if="$ctrl.product.stockCost">{{$ctrl.product.stockCost + " " + $ctrl.product.currency}}</span>-->
+                    <!--<span ng-if="!$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>-->
+                    <!--<strike ng-show="$ctrl.product.stockCost">{{$ctrl.product.price + " " +-->
+                        <!--$ctrl.product.currency}}</strike>-->
+                <!--</div>-->
+            <!--</div>-->
             <div class="successTitel">
-                товар оформлен
+                Заказ оформлен успешно оформлен.
             </div>
             <div class="successText">
-                Товар {Артикул} "Пальто женское" успешно оформлен.<br>
                 В ближайшее время по указаному вами номеру телефона или электронной почте
                 для уточнения деталей с вами свяжется наш менеджер.<br>
                 <br>
-                Спасибо за совершенную покупку! С уважением TODAY!
+                Спасибо за совершенную покупку! С уважением интернет магазин "TODAY"!
             </div>
+            <h4 class="text-center"><a href="#/" style="color: silver">Перейти на главную</a></h4>
         </div>
     </div>
 </div>

@@ -6,13 +6,14 @@ angular.module('app')
             count: '=',
             order: '='
         },
-        controller: ['Cart', 'User','OrderService', '$cookies', function(Cart, User, OrderService, $cookies) {
+        controller: ['Cart', 'User','OrderService', '$cookies', '$anchorScroll', function(Cart, User, OrderService, $cookies, $anchorScroll) {
             var self = this;
             self.user = User;
             self.cart = Cart;
             self.error = '';
 
             this.$onInit = function () {
+                self.orderSuccess = false;
                 self.orderMake = {
                     firstname: self.user.active.firstname,
                     lastname: self.user.active.lastname,
@@ -43,8 +44,9 @@ angular.module('app')
 
                     OrderService.doOrder(self.orderMake, function (err, res) {
                         if (err) return self.error = err.data.message;
-                        console.log('res order', res);
                         Cart.clearCart();
+                        $anchorScroll(0);
+                        self.orderSuccess = true;
                     })
                 }
             };

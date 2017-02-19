@@ -1,7 +1,7 @@
 angular.module('app')
     .component('privatOffice', {
         templateUrl: "components/privat-office/privat-office.html",
-        controller: ['Cart', 'User', 'OrderService', 'RequestService', function(Cart, User, OrderService, RequestService) {
+        controller: ['Cart', 'User', 'OrderService', 'RequestService','$location', function(Cart, User, OrderService, RequestService, $location) {
             var self = this;
             self.user = User;
             self.cart = Cart;
@@ -24,7 +24,9 @@ angular.module('app')
             self.countMinus = function(){
                 self.counter--;
             };
-
+            self.goToProduct = function (product) {
+                $location.path('/product/' + product.uuid);
+            };
             this.cartList = Cart.list();
 
         }]

@@ -154,21 +154,19 @@
                                         <div class="accWrapper">
                                             <table class="table">
                                                 <tbody ng-repeat="product in order.products">
-                                                    <tr>
+                                                    <tr ng-click="$ctrl.goToProduct(product)">
                                                         <td>
-                                                            <img class="img-responsive" src="api/file/{{product.image}}" alt="">
+                                                            <img class="img-responsive" ng-src="api/file/{{product.image}}" alt="">
                                                         </td>
                                                         <td>
                                                             <div>Артикул: {{product.article}}</div>
                                                             <div>{{product.name}}</div>
                                                             <div ng-repeat="combo in product.combo">{{combo.name}}:<span>{{combo.val}}</span></div>
-                                                            <div>Колво: {{product.count}}</div>
+                                                            <div>Кол-во: {{product.count}}</div>
                                                         </td>
                                                         <td>{{product.price + ' ' + order.currency}}</td>
-                                                        <td></td>
                                                     </tr>
                                                     <tr>
-                                                        <td></td>
                                                         <td></td>
                                                         <td></td>
                                                         <td></td>

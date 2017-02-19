@@ -1,5 +1,5 @@
 <div class="container-fluid">
-    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-hide="$ctrl.orderSuccess">
         <div class="row">
             <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
                 <div class="orderTitel">
@@ -177,6 +177,10 @@
                 <button class="btn btn-drul dark" ng-click="$ctrl.orderFun()" style="overflow: hidden; float: right">Оформить заказ</button>
             </div>
         </div>
+
+    </div>
+    <div ng-show="$ctrl.orderSuccess" class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+        <div ng-show="$ctrl.orderSuccess" ng-include="'/components/cart-main/success.html'"></div>
     </div>
 </div>
 

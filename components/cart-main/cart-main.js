@@ -1,7 +1,7 @@
 angular.module('app')
     .component('cartMain', {
         templateUrl: "components/cart-main/cart-main.html",
-        controller: ['Cart', 'User', 'Product', '$timeout', function(Cart, User, Product, $timeout) {
+        controller: ['Cart', 'User', 'Product', '$timeout', '$anchorScroll', function(Cart, User, Product, $timeout, $anchorScroll) {
             var self = this;
             self.user = User;
             self.cart = Cart;
@@ -45,6 +45,7 @@ angular.module('app')
                 if (self.user.active == null) {
                     self.clickToMod();
                 } else {
+                    $anchorScroll(0);
                     self.orderInfo = true;
                     self.count = 0;
                     self.cost = 0;
