@@ -413,7 +413,7 @@ angular.module('admin')
                     HttpResource.get({params1: 'product', params2: product.productID}, function (res) {
                         res.count = product.count;
                         res.combo = product.combo;
-                        res.price = product.price;
+                        // res.price = product.price;
                         product = res;
 
                         HttpResource.query({params1: 'files', params2: res.uuid, type: "main"}, function (image) {

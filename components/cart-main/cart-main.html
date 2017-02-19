@@ -39,7 +39,7 @@
                     <td>
                         <div class="counter">
                             <button ng-click="$ctrl.countMinus($index)">‒ </button>
-                            <input ng-model="product.counter" ng-init="product.counter" ng-pattern-restrict="^[a-zA-Z0-9_-]*$" ng-change="$ctrl.checkMinus($index)" type="number"/>
+                            <input ng-model="product.counter" ng-init="product.counter = 1" ng-pattern-restrict="^[0-9]*$" ng-change="$ctrl.checkMinus($index)" type="number"/>
                             <button ng-click="$ctrl.countPlus($index)">+</button>
                         </div>
                     </td>
