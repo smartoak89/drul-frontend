@@ -141,31 +141,30 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="accordion">
                                 <uib-accordion close-others="true">
-                                    <div uib-accordion-group class="panel-default orderList"
-                                         ng-repeat="category in [1,2,3,4,5]" heading="111" >
+                                    <div uib-accordion-group class="panel-default orderList" ng-repeat="order in $ctrl.orders" heading="111">
+
                                         <uib-accordion-heading>
-                                            <div class="orderNumb">001</div>
-                                            <div class="orderDate">08.02.2017</div>
-                                            <div class="orderStatus">Оплачено</div>
-                                            <div class="orderSum">20000 грн</div>
+                                            <div class="orderNumb">{{order.order_num}}</div>
+                                            <div class="orderDate">{{order.created | date:"MM/dd/yy ' ' h:mm"}}</div>
+                                            <div class="orderStatus">{{order.status}}</div>
+                                            <div class="orderSum">{{order.price + ' ' + order.currency}}</div>
                                             <div class="orderArrow"></div>
                                         </uib-accordion-heading>
 
                                         <div class="accWrapper">
                                             <table class="table">
-                                                <tbody>
+                                                <tbody ng-repeat="product in order.products">
                                                     <tr>
                                                         <td>
-                                                            <img class="img-responsive" src="http://95.46.99.177/api/file/fa349075-202b-4797-878f-66bed3297ba3" alt="">
+                                                            <img class="img-responsive" src="api/file/{{product.image}}" alt="">
                                                         </td>
                                                         <td>
-                                                            <div>Артикул</div>
-                                                            <div>Название</div>
-                                                            <div>комбо1<span>знач</span></div>
-                                                            <div>комбо2<span>знач</span></div>
-                                                            <div>Колво</div>
+                                                            <div>Артикул: {{product.article}}</div>
+                                                            <div>{{product.name}}</div>
+                                                            <div ng-repeat="combo in product.combo">{{combo.name}}:<span>{{combo.val}}</span></div>
+                                                            <div>Колво: {{product.count}}</div>
                                                         </td>
-                                                        <td>1123 грн.</td>
+                                                        <td>{{product.price + ' ' + order.currency}}</td>
                                                         <td></td>
                                                     </tr>
                                                     <tr>
