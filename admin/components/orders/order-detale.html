@@ -1,5 +1,142 @@
 {{$ctrl.order}}
 
-<div class="col-md-3" ng-repeat="product in $ctrl.order.products">
-    <img ng-src="/api/file/{{product.image}}" alt="">
+<div class="content">
+    <div class="content-body">
+        <div class="row">
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="panel fade in panel-default panel-fill" data-fill-color="true" data-init-panel="true">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-user-circle"></i> Информация о пользователе </h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="field">
+                            <div class="fieldName">
+                                Имя:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.firstname}}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="fieldName">
+                                Фамилия:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.lastname}}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="fieldName">
+                                Email:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.email}}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="fieldName">
+                                Страна:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.state}}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="fieldName">
+                                Телефон:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.phone}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                <div class="panel fade in panel-default panel-fill" data-fill-color="true" data-init-panel="true">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-file-text-o"></i> Информация о заказе</h3>
+                    </div>
+                    <div class="panel-body">
+                        <div class="field">
+                            <div class="fieldName">
+                                Номер:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.order_num}}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="fieldName">
+                                Сумма:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.price}}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="fieldName">
+                                Валюта:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.currency}}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="fieldName">
+                                Дата:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.created | date:'short'}}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="fieldName">
+                                Статус:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.status}}
+                            </div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="panel fade in panel-default panel-fill" data-fill-color="true" data-init-panel="true">
+                    <div class="panel-heading">
+                        <h3 class="panel-title"><i class="fa fa-file-text-o"></i> Список товаров</h3>
+                    </div>
+                    <div class="panel-body">
+                        <table class="table table-grid">
+                            <thead>
+                            <tr>
+                                <th>Фото</th>
+                                <th>Название</th>
+                                <th>Категория</th>
+                                <th>Артикул</th>
+                                <th>Цена</th>
+                                <th>Удалить</th>
+                            </tr>
+                            </thead>
+                            <tbody>
+                            <tr ng-repeat="product in $ctrl.order.products">
+                                <td>
+                                    <img style="object-fit: cover;" class="product-photo" ng-src="/api/file/{{product.image}}" alt="" width="100" height="80" no-image>
+                                </td>
+                                <td>{{product.name}}</td>
+                                <td>{{product.category.name[0]}}</td>
+                                <td>{{product.article}}</td>
+                                <td>{{product.price}}</td>
+                                <td>
+                                    <!--<button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button>-->
+                                    <button class="btn btn-default btn-sm" ng-click="$ctrl.removeProd(product, $index)" modal-admin="delGood">Remove</button>
+                                </td>
+                            </tr>
+                            </tbody>
+                        </table>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
 </div>
