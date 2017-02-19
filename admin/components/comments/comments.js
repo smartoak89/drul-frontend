@@ -13,9 +13,9 @@ angular.module('admin')
                     self.comments = res;
                     console.log(self.comments);
                     _.forEach(self.comments, function(elem){
-                        Goods.getThisProd(elem.product_id);
-                        elem.product = Goods.product;
-                        console.log(elem);
+                        //Goods.getThisProd(elem.product_id);
+                        elem.product = Goods.getThisProd(elem.product_id);
+                        elem.photo = Goods.getMainPhoto(elem.product_id);
                     });
                 });
             }

@@ -7,10 +7,7 @@ angular.module('app')
                 var self = this;
                 Httpquery.query({params1: 'orders', params2: userId}, function (res) {
                     self.listHistoryOrders = res;
-                    // _.each(res, function (i) {
-                    //     Product.getCurProd(i.product_id)
-                    // })
-                    console.log('list', self.listHistoryOrders);
+                    callback(null, res);
                 }, function (err) {
                     callback(err);
                 })

@@ -22,12 +22,10 @@
                             <rzslider rz-slider-model="$ctrl.volumeSlider.value" rz-slider-options="$ctrl.volumeSlider.options"></rzslider>
                         </div>
                         <div class="volume" ng-class="$ctrl.volume" ng-click="$ctrl.mute()"></div>
-                        <!--<sound-manager ng-if="$ctrl.showPlayer"></sound-manager>-->
-
+                        <sound-manager ng-if="$ctrl.showPlayer"></sound-manager>
                     </section>
                 </li>
                 <li class="singIn pull-right">
-                    <!--<button ng-if="$ctrl.showPlayer" play-all="$ctrl.songs">Play all</button>-->
                     <button type="button" class="btn btn-drul dark" data-modal="auth" ng-hide="$ctrl.User.active">войти</button>
                     <button type="button" class="btn btn-drul dark" ng-click="$ctrl.logout()" ng-show="$ctrl.User.active">выйти</button>
                 </li>

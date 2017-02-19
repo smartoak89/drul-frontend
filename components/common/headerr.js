@@ -13,6 +13,7 @@ angular.module('app')
             self.songs = []
             this.$onInit = function () {
                 HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
+                    console.log('music', res);
                     // self.songs = res.map(function (el){
                     //         return {
                     //             id: el.uuid,
@@ -21,15 +22,15 @@ angular.module('app')
                     //             url: 'http://95.46.99.177/api/file/' + el.uuid
                     //         }
                     // })
-                    res.forEach(function (el) {
-
-                        self.songs.push({
-                            id: el.uuid,
-                            title: el.type,
-                            artist: el.name,
-                            url: 'http://95.46.99.177/api/file/' + el.uuid
-                        })
-                    });
+                    // res.forEach(function (el) {
+                    //
+                    //     self.songs.push({
+                    //         id: el.uuid,
+                    //         title: el.type,
+                    //         artist: el.name,
+                    //         url: 'http://95.46.99.177/api/file/' + el.uuid
+                    //     })
+                    // });
                     // self.showPlayer = true;
                 })
             };
