@@ -10,18 +10,8 @@ angular.module('app')
                 if(self.cart.cartList == null){
                     self.cart.cartList = [];
                 }
-                // for(var i =0; i<self.cart.cartList.length; i++){
-                //     self.cart.cartList[i].counter = 1;
-                // }
             }
-            // else {
-            //     self.cart.list().then(function () {
-            //         for (var i = 0; i < self.cart.cartList.length; i++) {
-            //             self.cart.cartList[i].counter = 1;
-            //         }
-            //
-            //     });
-            // }
+
             self.countPlus = function(i){
                 self.cart.cartList[i].counter++;
             };

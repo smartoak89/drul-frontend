@@ -85,7 +85,7 @@
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <table class="table">
                                 <tbody>
-                                <tr ng-repeat="sub in $ctrl.Product.curProd.sublines">
+                                <tr ng-repeat="sub in $ctrl.Product.curProd.sublines" >
                                     <td>{{sub.name}}</td>
                                     <td>{{sub.value}}</td>
                                 </tr>
@@ -95,7 +95,7 @@
                     </div>
                 </div>
                 <div id="comm" role="tabpanel" class="tab-pane">
-                    <div class="comment-content" ng-repeat="com in $ctrl.Product.curProd.comments">
+                    <div class="comment-content" ng-repeat="com in $ctrl.Product.curProd.comments" ng-if="com.publish">
                         <h5 class="comment-author font-alt">
                             <a>{{com.owner_name}}</a>
                             <div class="comment-meta font-alt">{{com.created | date:'dd.MM.yyyy, H:mm'}}</div>
@@ -106,25 +106,30 @@
                             <hr class="">
                         </div>
 
-                        <!--<div class="comment-form" ng-show="$ctrl.user.active">-->
-                            <!--<div class="row">-->
-
-                                <!--<form>-->
-                                    <!--<div class="col-md-12">-->
-                                        <!--<div class="form-group">-->
-                                            <!--<textarea id="message" name="message" ng-model="$ctrl.commBody.body" class="form-control" placeholder="Ваш отзыв..." rows="8"></textarea>-->
-                                        <!--</div>-->
-                                    <!--</div>-->
-                                    <!--<div class="col-md-12">-->
-                                        <!--<button class="btn btn-drul dark" ng-click="$ctrl.sendComm()">Отправить</button>-->
-                                    <!--</div>-->
-                                <!--</form>-->
-
-                            <!--</div>-->
-
-                        <!--</div>-->
                     </div>
 
+                    <div class="comment-form" ng-if="$ctrl.accessFormReview">
+                        <div class="row">
+                            <form>
+                                <div class="col-md-12">
+                                    <div class="form-group">
+                                        <textarea id="message" name="message" ng-model="$ctrl.commBody.body" class="form-control" placeholder="Ваш отзыв..." rows="8"></textarea>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <div ng-if="$ctrl.error.reviews" class="callout callout-danger">
+                                        <p>{{$ctrl.error.reviews}}</p>
+                                    </div>
+                                    <div ng-if="$ctrl.message.reviews" class="callout callout-success">
+                                        <p>{{$ctrl.message.reviews}}</p>
+                                    </div>
+                                </div>
+                                <div class="col-md-12">
+                                    <button class="btn btn-drul dark" ng-click="$ctrl.sendComm()">Отправить</button>
+                                </div>
+                            </form>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
