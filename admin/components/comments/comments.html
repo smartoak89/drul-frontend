@@ -13,17 +13,20 @@
             </tr>
             </thead>
             <tbody>
-            <tr ng-repeat="comm in $ctrl.comments">
+            <tr ng-repeat="comm in $ctrl.comments" ng-click="$ctrl.goToProduct(comm.product.uuid)">
                 {{comm}}
                 <td>
-                    <img style="object-fit: cover; width: 100px; height: 100px;" ng-src="/api/file/{{comm.photo[0].uuid}}" alt="">
+                    <img style="object-fit: cover; width: 60px; height: 60px;" ng-src="/api/file/{{comm.photo[0].uuid}}" alt="">
                 </td>
                 <td>{{comm.product.name}}</td>
                 <td>{{comm.body}}</td>
                 <td>{{comm.owner_name}}</td>
                 <td>{{comm.created | date:"MM/dd/yy ' ' h:mm"}}</td>
                 <!--<td><button class="btn btn-default btn-sm" modal-admin="user-editor">Edit</button></td>-->
-                <td><button class="btn btn-default btn-sm" modal-admin="remove-user">Remove</button></td>
+                <td>
+                    <button class="btn btn-default btn-sm" modal-admin="review-publish" ng-click="$event.stopPropagation()">Опубликовать</button>
+                    <button class="btn btn-default btn-sm" modal-admin="review-remove" ng-click="$event.stopPropagation()">Удалить</button>
+                </td>
             </tr>
             </tbody>
         </table>
