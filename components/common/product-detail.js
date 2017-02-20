@@ -15,7 +15,6 @@ angular.module('app')
             self.commBody = {
                 body: null
             };
-
             self.$onInit = function() {
                 var self = this;
 
@@ -130,7 +129,6 @@ angular.module('app')
                    if (err) return self.error.reviews = err.data.message;
                    self.commBody.body = '';
                    self.message.reviews = 'Отзыв будет опубликован после проверки модератором!';
-                   // self.Product.curProd.comments.push(res);
                 })
             };
             function accessFormReviews() {

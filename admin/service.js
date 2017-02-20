@@ -387,7 +387,6 @@ angular.module('admin')
         }
     }])
     .factory('RequestService',['HttpResource', '$q', function (HttpResource, $q) {
-
         return {
             list: function (callback) {
                 HttpResource.query({params1: 'orders'}, function (res) {
