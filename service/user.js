@@ -9,6 +9,7 @@ angular.module('app')
             }
         }
         return {
+            activeMenu: 0,
             active: null,
             init: function (callback) {
                 var self = this;
@@ -42,9 +43,7 @@ angular.module('app')
                 if (user.password.length < 4) return callback('Пароль должен быть не менее 4 символов!');
 
                 return callback(null);
-            },
-            activeMenu: 0
-
+            }
         };
 
     }]);

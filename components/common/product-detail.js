@@ -17,7 +17,7 @@ angular.module('app')
             };
             self.$onInit = function() {
                 var self = this;
-
+                self.admin = User.active.permission == 'administrator' ? true : false;
                 if(self.Product.products === null){
                     self.Product.getCurProd($location.url().split('/').pop()).then(function(){
                         self.Product.changeCurrency([self.Product.curProd]).then(function(){
@@ -127,8 +127,9 @@ angular.module('app')
 
                 ReviewsService.addReviews(self.Product.curProd.uuid, self.commBody, function (err, res) {
                    if (err) return self.error.reviews = err.data.message;
-                   self.commBody.body = '';
-                   self.message.reviews = 'Отзыв будет опубликован после проверки модератором!';
+                    self.commBody.body = '';
+                    self.Product.curProd.comments.push(res);
+                    self.message.reviews = 'Отзыв будет опубликован после проверки администратором!';
                 })
             };
             function accessFormReviews() {
@@ -136,6 +137,14 @@ angular.module('app')
                     self.accessFormReview = access;
                 })
             };
+
+            $rootScope.$on('reviewRemoved', function (event, reviewId) {
+                _.remove(self.Product.curProd.comments, {uuid: reviewId});
+            })
+
+            $rootScope.$on('reviewPublished', function (event, reviewId) {
+                _.find(self.Product.curProd.comments, {uuid: reviewId}).publish = true;
+            })
 
         }]
     });

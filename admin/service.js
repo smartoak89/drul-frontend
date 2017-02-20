@@ -276,10 +276,27 @@ angular.module('admin')
     }])
 
     // Comments
-    .factory('Comm',['HttpResource', function (HttpResource) {
+    .factory('ReviewsAdmin',['HttpResource', function (HttpResource) {
         return {
+            list: null,
             getCom: function (callback) {
+                var self = this;
                 HttpResource.query({params1: 'reviews'}, function (res) {
+                    self.list = res;
+                    callback(null, self.list);
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            remove: function (id, callback) {
+                HttpResource.delete({params1: 'reviews', params2: id}, function (res) {
+                    callback(null, res);
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            changeStatus: function (review, callback) {
+                HttpResource.put({params1: 'reviews', params2: review.uuid}, review, function (res) {
                     callback(null, res);
                 }, function (err) {
                     callback(err);
