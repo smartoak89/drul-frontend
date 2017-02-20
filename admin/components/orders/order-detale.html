@@ -55,26 +55,26 @@
                         <form role="form">
                             <div class="form-group">
                                 <label>Имя</label>
-                                <input class="form-control" placeholder="Имя" ng-model="$ctrl.newInfo.firstname">
+                                <input class="form-control" placeholder="Имя" ng-init="$ctrl.newInfo.firstname = $ctrl.order.firstname" ng-model="$ctrl.newInfo.firstname">
                             </div>
                             <div class="form-group">
                                 <label>Фамилия</label>
-                                <input class="form-control" placeholder="Фамилия" ng-model="$ctrl.newInfo.lastname">
+                                <input class="form-control" placeholder="Фамилия" ng-init="$ctrl.newInfo.lastname = $ctrl.order.lastname" ng-model="$ctrl.newInfo.lastname">
                             </div>
                             <div class="form-group">
                                 <label>Email</label>
-                                <input class="form-control" placeholder="Email" ng-model="$ctrl.newInfo.email">
+                                <input class="form-control" placeholder="Email" ng-init="$ctrl.newInfo.email = $ctrl.order.email" ng-model="$ctrl.newInfo.email">
                             </div>
                             <div class="form-group">
                                 <label>Страна</label>
-                                <input class="form-control" placeholder="Страна" ng-model="$ctrl.newInfo.state">
+                                <input class="form-control" placeholder="Страна" ng-init="$ctrl.newInfo.state = $ctrl.order.state" ng-model="$ctrl.newInfo.state">
                             </div>
                             <div class="form-group">
                                 <label>Телефон</label>
-                                <input class="form-control" placeholder="Телефон" ng-model="$ctrl.newInfo.phone">
+                                <input class="form-control" placeholder="Телефон" ng-init="$ctrl.newInfo.phone = $ctrl.order.phone" ng-model="$ctrl.newInfo.phone">
                             </div>
                             <div class="form-group">
-                                <button type="submit" class="btn btn-default" ng-click="$ctrl.saveChanges()">Сохранить</button>
+                                <button type="submit" class="btn btn-default" ng-click="$ctrl.saveChanges('user')">Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -132,7 +132,7 @@
                         <form role="form">
                             <div class="form-group">
                                 <label>Валюта</label>
-                                <select class="form-control" ng-model="$ctrl.newInfo.currency">
+                                <select class="form-control" ng-model="$ctrl.newInfo.currency" ng-init="$ctrl.newInfo.currency = $ctrl.order.currency">
                                     <option value="UAH">UAH</option>
                                     <option value="USD">USD</option>
                                     <option value="RUB">RUB</option>
@@ -140,7 +140,7 @@
                             </div>
                             <div class="form-group">
                                 <label>Сатус заказа</label>
-                                <select class="form-control" ng-model="$ctrl.newInfo.status">
+                                <select class="form-control" ng-model="$ctrl.newInfo.status" ng-init="$ctrl.newInfo.status = $ctrl.order.status">
                                     <option value="Новый заказ">Новый заказ</option>
                                     <option value="Ожидает получения оплаты">Ожидает получения оплаты</option>
                                     <option value="Оплачен">Оплачен</option>
@@ -151,6 +151,9 @@
                                     <option value="Возврат">Возврат</option>
                                     <option value="Выполнено">Выполнено</option>
                                 </select>
+                            </div>
+                            <div class="form-group">
+                                <button type="submit" class="btn btn-default" ng-click="$ctrl.saveChanges('order')">Сохранить</button>
                             </div>
                         </form>
                     </div>
@@ -188,8 +191,8 @@
                                 </td>
                                 <td>{{product.price}}</td>
                                 <td>
-                                    <!--<button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button>-->
-                                    <button class="btn btn-default btn-sm" ng-click="$ctrl.removeProd(product, $index)" modal-admin="delGood">Remove</button>
+                                    <button class="btn btn-default btn-sm" ng-click="$ctrl.pushProduct($ctrl.order, $index)" modal-admin="editOrderProd">Edit</button>
+                                    <button class="btn btn-default btn-sm" ng-click="$ctrl.pushProduct($ctrl.order, $index)" modal-admin="delOrderProd">Remove</button>
                                 </td>
                             </tr>
                             </tbody>

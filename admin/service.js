@@ -1,7 +1,7 @@
 angular.module('admin')
     // Httpquery
     .service('HttpResource', ['$resource', function ($resource) {
-        return $resource('/api/:params1/:params2/:params3?:option1', {}, {
+        return $resource('/api/:params1/:params2/:params3', {}, {
             put: {
                 method: "PUT"
             }
@@ -86,7 +86,7 @@ angular.module('admin')
             },
             getMainPhoto: function(id){
                 var self = this;
-                return  HttpResource.query({params1: 'files', params2: id, option1: 'type=main'}, function (res) {
+                return  HttpResource.query({params1: 'files', params2: id, type: "main"}, function (res) {
                     console.log(res)
                 }, function (err) {
                     console.error('Get one photo => ',err);
@@ -408,7 +408,7 @@ angular.module('admin')
 
         function getAllProducts(order, callback) {
             var promises = [];
-
+            console.log(order);
             _.each(order.products, function (product) {
                 promises.push($q(function (resolve, reject) {
                     HttpResource.get({params1: 'product', params2: product.productID}, function (res) {
