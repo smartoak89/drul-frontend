@@ -428,20 +428,24 @@ angular.module('admin')
             _.each(order.products, function (product) {
                 promises.push($q(function (resolve, reject) {
                     HttpResource.get({params1: 'product', params2: product.productID}, function (res) {
+                        console.log(res);
                         res.count = product.count;
+                        var allCombos = angular.copy(res.combo);
                         res.combo = product.combo;
                         // res.price = product.price;
                         product = res;
+                        product.allCombos = allCombos;
 
-                        delete product._id;
-                        delete product.category;
-                        delete product.created;
-                        delete product.description;
-                        delete product.show;
-                        delete product.sublines;
+                        //delete product._id;
+                        //delete product.category;
+                        //delete product.created;
+                        //delete product.description;
+                        //delete product.show;
+                        //delete product.sublines;
 
                         HttpResource.query({params1: 'files', params2: res.uuid, type: "main"}, function (image) {
                             product.image = image[0].uuid;
+                            product.productID = res.uuid
                             resolve(product);
                         });
                     }, function (err) {

@@ -10,6 +10,7 @@ angular.module('app')
             },
             getImage: function (slide, callback) {
                 HttpResource.query({params1: 'files', params2: slide.uuid}, function (res) {
+
                     if (res.length > 0) {
                         slide.image = res[0].uuid;
                     }

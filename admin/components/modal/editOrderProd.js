@@ -7,20 +7,19 @@ angular.module('admin')
             delete $scope.curProd.uuid;
             console.log($scope.curProd);
             $scope.error = null;
-            $scope.combinations=[];
-            Goods.listComb(function (combinations) {
-                _.each(combinations, function(elem){
-                    if(_.find($scope.curProd.combo, {slug: elem.slug})){
-                        $scope.combinations.push(elem)
-                    }
-                })
-            });
+            //Goods.listComb(function (combinations) {
+            //    _.each(combinations, function(elem){
+            //        if(_.find($scope.curProd.combo, {slug: elem.slug})){
+            //            $scope.combinations.push(elem)
+            //        }
+            //    })
+            //});
             $scope.countPlus = function(){
                 $scope.curProd.count++;
             };
             $scope.countMinus = function(){
                 $scope.curProd.count--;
-                self.checkMinus();
+                $scope.checkMinus();
             };
             $scope.checkMinus = function(){
                 if($scope.curProd.count < 1) {
@@ -29,6 +28,10 @@ angular.module('admin')
             };
             $scope.change = function(){
                 Goods.product.products[Goods.productIndex] = $scope.curProd;
+                _.each(Goods.product.products, function(elem){
+                    //elem.productID = elem.uuid;
+                    console.log(elem);
+                })
                 HttpResource.put({params1: 'order', params2: Goods.product.uuid}, Goods.product, function(res){
                     console.log(res);
                     $uibModalInstance.dismiss('cancel');

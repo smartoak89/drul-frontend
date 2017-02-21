@@ -23,10 +23,12 @@ angular.module('app')
                 self.slides = [];
 
                 SliderService.list(function (err, sliders) {
+                    console.log(sliders);
                     if (err) return console.log(err);
                     _.each(sliders, function (slide) {
                         SliderService.getImage(slide, function (res) {
                             self.slides.push(res);
+                            //console.log(self.slides)
                         });
                     })
 
