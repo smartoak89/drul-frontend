@@ -3,41 +3,68 @@
         <div class="butWrapp pull-right">
             <button modal-admin="addGood" size="sm" class="btn btn-default">Добавить товар</button>
         </div>
-        <table class="table table-grid">
-            <thead>
-                <tr>
-                    <th>Фото</th>
-                    <th>Название</th>
-                    <th>Категория</th>
-                    <th>Артикул</th>
-                    <th>Цена</th>
-                    <th>Отметить</th>
-                    <!--<th>Редактировать</th>-->
-                    <th>Изменить/Удалить</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr ng-repeat="product in $ctrl.products | orderBy:'-created'">
-                    <td>
-                        <img style="object-fit: cover;" class="product-photo" ng-src="/api/file/{{product.photo.uuid}}" alt="" width="100" height="80" no-image>
-                    </td>
-                    <td>{{product.name}}</td>
-                    <td>{{product.category.name[0]}}</td>
-                    <td>{{product.article}}</td>
-                    <td>{{product.price}}</td>
-                    <td>
-                        <div class="checkbo">
-                            <input type="checkbox" id="{{product.name}}" name="option" value="a"/>
-                            <label for="{{product.name}}"></label>
-                        </div>
-                    </td>
-                    <!--<td><button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button></td>-->
-                    <td>
-                        <button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button>
-                        <button class="btn btn-default btn-sm" ng-click="$ctrl.removeProd(product, $index)" modal-admin="delGood">Remove</button>
-                    </td>
-                </tr>
-            </tbody>
-        </table>
+        <div>
+            <table class="table table-grid">
+                <thead>
+                    <tr>
+                        <th>Фото</th>
+                        <th>
+                            Название
+                            <input style="width:50%" type="text" ng-model="$ctrl.search.name" placeholder="Поиск" ng-change="$ctrl.searchProducts({name: $ctrl.search.name})">
+                        </th>
+                        <th>
+                            Категория
+                            <input style="width:50%" type="text" ng-model="$ctrl.search.category" placeholder="Поиск" ng-change="$ctrl.searchProducts({'category.name': $ctrl.search.category})">
+                        </th>
+                        <th>
+                            Артикул
+                            <input style="width:50%" type="text" ng-model="$ctrl.search.article" placeholder="Поиск" ng-change="$ctrl.searchProducts({article: $ctrl.search.article})">
+                        </th>
+                        <th>Цена</th>
+                        <th>Отметить</th>
+                        <!--<th>Редактировать</th>-->
+                        <th>Действия</th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr ng-repeat="product in $ctrl.products | orderBy:'-created'">
+                        <td>
+                            <img style="object-fit: cover;" class="product-photo" ng-src="/api/file/{{product.photo.uuid}}" alt="" width="100" height="80" no-image>
+                        </td>
+                        <td>{{product.name}}</td>
+                        <td>{{product.category.name[0]}}</td>
+                        <td>{{product.article}}</td>
+                        <td>{{product.price}}</td>
+                        <td>
+                            <div class="checkbo">
+                                <input type="checkbox" id="{{product.name}}" name="option" value="a" ng-click="$ctrl.selected(product)"/>
+                                <label for="{{product.name}}"></label>
+                            </div>
+                        </td>
+                        <!--<td><button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button></td>-->
+                        <td>
+                            <button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)" tooltip-placement="top" uib-tooltip="Редактировать">
+                                <i class="fa fa-pencil"></i>
+                            </button>
+                            <button class="btn btn-default btn-sm" ng-click="$ctrl.removeProd(product, $index)" modal-admin="delGood" tooltip-placement="top" uib-tooltip="Удалить">
+                                <i class="fa fa-trash"></i>
+                            </button>
+                        </td>
+                    </tr>
+                </tbody>
+            </table>
+
+            <div class="common_behavior">
+            <div class="dropup">
+                <button class="btn btn-default dropdown-toggle" type="button" id="dropdownMenu2" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                    Действия
+                    <span class="caret"></span>
+                </button>
+                <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                    <li modal-admin="remove-all-goods"><a href="">Удалить отмеченные</a></li>
+                </ul>
+            </div>
+        </div>
+        </div>
     </div>
 </div>

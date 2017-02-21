@@ -1,7 +1,7 @@
 angular.module('admin')
     .component('orderDetale', {
         templateUrl: "admin/components/orders/order-detale.html",
-        controller: ['RequestService', 'HttpResource', '$location', 'Goods', function(RequestService, HttpResource, $location, Goods) {
+        controller: ['RequestService', 'HttpResource', '$location', 'Goods', '$timeout', function(RequestService, HttpResource, $location, Goods, $timeout) {
             var self = this;
             var orderID = $location.$$path.split('/').pop();
 
@@ -53,6 +53,22 @@ angular.module('admin')
             self.pushProduct = function(prod, index){
                 Goods.product = prod;
                 Goods.productIndex = index;
+            }
+
+            var disabled = null;
+
+            self.searchProduct = function(txt) {
+                txt = txt.toLowerCase();
+                if (!txt) return self.searchProducts= null;
+                console.log(txt);
+                if (!disabled) {
+                    disabled = true;
+                    Goods.list({article: txt}, function (products) {
+                        self.searchProducts = products;
+                        console.log(self.searchProducts)
+                        disabled = false;
+                    });
+                }
             }
 
         }]

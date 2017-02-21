@@ -15,18 +15,25 @@ angular.module('admin')
             product: null,
             productIndex: null,
             combinations: [],
-            list: function () {
+            selectedArr: [],
+            list: function (parameters, callback) {
                 var self = this;
-                // if (this.products == null) {
-                    return HttpResource.query({params1: 'products'}, function (res) {
-                        console.log(res);
-                        angular.forEach(res, function (product) {
-                           self.getGallery(product);
-                        });
-                        self.products = res;
-                    })
-                // }
-                // return self.products;
+
+                var criteria = {params1: 'products'};
+
+                if (parameters) {
+                    for (var key in parameters) {
+                        criteria[key] = parameters[key];
+                    }
+                }
+
+                HttpResource.query(criteria, function (res) {
+                    angular.forEach(res, function (product) {
+                       self.getGallery(product);
+                    });
+
+                    callback(res);
+                });
             },
             add: function (product, callback) {
                 var self = this;
@@ -145,8 +152,23 @@ angular.module('admin')
             applyStock: function (product){
                 var stock = _.find(Stocks.stocksList, {uuid: product.stock});
                 product.stockCost = Math.round(product.price - ( product.price * stock.percent / 100 ));
-            }
+            },
+            search: function (parameters, callback) {
 
+                var criteria = {
+                    params1: 'products'
+                };
+
+                for (var key in parameters) {
+                    criteria[key] = parameters[key];
+                }
+
+                HttpResource.query(criteria, function (res) {
+                    callback(res);
+                }, function (err) {
+                    callback(err);
+                })
+            }
         }
     }])
     // Categories

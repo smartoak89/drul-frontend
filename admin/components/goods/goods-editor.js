@@ -27,16 +27,12 @@ angular.module('admin')
                 if(self.product.article)
                     self.product.article = self.product.article.split('_').pop();
             };
-            this.show = function () {
-                console.info('Product => ', self.product);
-                changeArticle ()
-            };
 
             this.searchCurrentCategory = function () {
 
                 var category = _.find(self.categories, {slug: self.product.category.slug[0]});
                 if (category) {
-                    self.categoryArticle = category.article;
+                    self.categoryArticle = category.article.toLowerCase();
                 } else {
                     _.each(self.categories, function (elem) {
                         // elem.show = false;
@@ -44,7 +40,7 @@ angular.module('admin')
                             var subcat = _.find(elem.children, {slug: self.product.category.slug[0]});
                             if (subcat) {
                                 // elem.show = true;
-                                self.categoryArticle = subcat.article;
+                                self.categoryArticle = subcat.article.toLowerCase();
                                 category = subcat;
                             }
                         }
@@ -139,7 +135,7 @@ angular.module('admin')
                 });
             };
             function changeArticle () {
-                self.product.article = self.categoryArticle + '_' + self.product.article.split('_').pop();
+                self.product.article = self.categoryArticle.toLowerCase() + '_' + self.product.article.split('_').pop();
             }
             function updateProduct () {
                 Goods.update(self.product, function (err, res) {

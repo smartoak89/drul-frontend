@@ -2287,3 +2287,33 @@ order-detale table>tbody>tr>td>div>span{
     display: inline-block;
     width: 90px;
 }
+.panel-heading > h3 {
+    display: inline-block;
+}
+.order_new_product {
+    padding-top: 15px;
+    display: inline-block;
+    float: right;
+    margin-top: -16px;
+
+}
+.order_new_product > span {
+    position: relative;
+}
+.order_new_product > span > ul {
+    position: absolute;
+    left:0;
+    right:0;
+    background: #f2f2f2;
+}
+.order_new_product > span > ul > li{
+    padding: 1px;
+    border-bottom: 1px solid #dddddd;
+}
+.order_new_product > span > ul > li:hover{
+    cursor:pointer;
+    background: #dddddd;
+}
+.common_behavior {
+    padding-left: 10px;
+}
