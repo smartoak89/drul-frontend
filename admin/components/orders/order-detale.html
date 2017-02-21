@@ -183,6 +183,7 @@
                                 <th>Название</th>
                                 <th>Артикул</th>
                                 <th>Параметры</th>
+                                <th>Количество</th>
                                 <th>Цена</th>
                                 <th>Удалить</th>
                             </tr>
@@ -200,6 +201,7 @@
                                         {{combo.val}}
                                     </div>
                                 </td>
+                                <td>{{product.count}}</td>
                                 <td>{{product.price}}</td>
                                 <td>
                                     <button class="btn btn-default btn-sm" ng-click="$ctrl.pushProduct($ctrl.order, $index)" modal-admin="editOrderProd">Edit</button>

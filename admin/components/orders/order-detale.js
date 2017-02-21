@@ -10,6 +10,13 @@ angular.module('admin')
 
             RequestService.getOneOrder(orderID, function (err, res) {
                 self.order = res;
+                //delete res._id;
+                //delete res.category;
+                ////delete res.created;
+                //delete res.description;
+                //delete res.show;
+                //delete res.sublines;
+
                 self.newInfo = {
                     currency: res.currency,
                     email: res.email,
@@ -28,6 +35,9 @@ angular.module('admin')
                         price: elem.price,
                         productID: elem.uuid
                     }
+                    //self.order.products[index] = {
+                    //    productID: elem.uuid
+                    //}
                 })
             });
 

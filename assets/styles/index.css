@@ -298,7 +298,7 @@ section {
     -o-background-size: cover;
     background-size: cover;
     position: relative;
-    max-height: 560px;
+    height: 560px;
 }
 .padScroll{
     margin-top: 100px;
@@ -332,6 +332,7 @@ section {
 }
 #sm_slider .carousel-indicators{
     bottom: 15px;
+    left: 49%;
 }
 #sm_slider .carousel-indicators li{
     width: 17px;
@@ -357,10 +358,21 @@ section {
     height: 210px;
     position: relative;
 }
-.bigBlock > img, .littleBlock > img{
+.bigBlock > a > div{
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+}
+.bigBlock > a > div > img, .littleBlock > img{
     height: 100%;
     width:100%;
     object-position: 0 30%;
+}
+.bigBlock > a > div > h2{
+    color: #fff;
+    position: absolute;
 }
 .cover{
     object-fit: cover;
@@ -1582,7 +1594,7 @@ input::-webkit-inner-spin-button {
     font-size: 16px;
 }
 .setSiteWrap .form-control{
-    width: 80px;
+    /*width: 80px;*/
     border-radius: 0;
 }
 .setSiteWrap .form-control:focus {

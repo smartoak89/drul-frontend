@@ -4,7 +4,13 @@
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="bigBlock">
                     <!--<div class="marker blue">new</div>-->
-                    <img ng-src="/api/file/{{slide.image}}" class="img-responsive cover"/>
+                    <a href="#/{{slide.link}}">
+                        <div>
+                            <img ng-src="/api/file/{{slide.image}}" class="img-responsive cover"/>
+                            <h2>{{slide.description}}</h2>
+                        </div>
+
+                    </a>
                     <!--<div class="bigNamePrice"><span>Пальто Mango</span><br/><span>2700 грн</span></div>-->
                 </div>
             </div>
