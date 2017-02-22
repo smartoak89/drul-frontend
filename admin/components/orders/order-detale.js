@@ -75,7 +75,6 @@ angular.module('admin')
                     disabled = true;
                     Goods.list({article: txt}, function (products) {
                         self.searchProducts = products;
-                        console.log(self.searchProducts)
                         disabled = false;
                     });
                 }

@@ -9,22 +9,21 @@ angular.module('app')
                 curProd: null,
                 getList: function (criteria, category) {
                     var self = this;
-                    criteria = criteria || null;
+
                     var request = {
                         params1: 'products'
                     };
+
                     if (category) {
                         request.params2 = 'category';
                         request.params3 = category;
                     }
-                    console.log(request);
-                    // if (criteria) {
-                    //     for (var key in criteria) {
-                    //         // key == 'skip' ? skip = 0 : false;
-                    //         request[key] = criteria[key];
-                    //     }
-                    // }
-                    console.log('Request', request);
+                    criteria = criteria || {sort: 'created.desk'};
+
+                    for (var key in criteria) {
+                        request[key] = criteria[key];
+                    }
+
                     var promise = $q(function (resolve, reject) {
                         Httpquery.query(request, function (res) {
                             resolve(res)
@@ -49,7 +48,6 @@ angular.module('app')
                                 _.forEach(result2, function (elem) {
                                    self.getCom(elem);
                                 });
-                                console.log(result2);
                                 if(self.curProd){
                                     var curren = _.find(result2, {uuid: self.curProd.uuid});
                                     console.log(curren);

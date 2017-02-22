@@ -487,6 +487,7 @@ section {
     padding-left: 15px;
     color: #36a5ec;
     text-decoration: none;
+    cursor: pointer;
 }
 .sort > a:first-child{
     padding-left: 10px;

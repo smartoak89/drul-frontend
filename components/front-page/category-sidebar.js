@@ -6,7 +6,6 @@ angular.module('app')
             this.$onInit = function () {
                 Category.getCategories(function (err, res) {
                     if (err) return console.error('Error response categories', err);
-                    console.log('categories => ', res);
                     self.categories = res;
                 });
             };
