@@ -11,12 +11,10 @@ angular.module('app')
             var currIndex = 0;
 
             $rootScope.$on('modalOpened', function () {
-                console.info('modalOpened')
                 self.noWrapSlides = true;
             });
 
             $rootScope.$on('modalClosed', function () {
-                console.info('modalClosed')
                 self.noWrapSlides = false;
             });
 
@@ -24,7 +22,6 @@ angular.module('app')
                 self.slides = [];
 
                 SliderService.list(function (err, sliders) {
-                    console.log(sliders);
                     if (err) return console.log(err);
                     _.each(sliders, function (slide) {
                         SliderService.getImage(slide, function (res) {

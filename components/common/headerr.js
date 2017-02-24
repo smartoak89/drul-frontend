@@ -13,7 +13,6 @@ angular.module('app')
             self.songs = []
             this.$onInit = function () {
                 HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
-                    console.log('music', res);
                     // self.songs = res.map(function (el){
                     //         return {
                     //             id: el.uuid,

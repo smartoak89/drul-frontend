@@ -17,7 +17,7 @@ angular.module('app')
             };
             self.$onInit = function() {
                 var self = this;
-                self.admin = User.active.permission == 'administrator' ? true : false;
+                if (User.active) self.admin = User.active.permission == 'administrator' ? true : false;
                 if(self.Product.products === null){
                     self.Product.getCurProd($location.url().split('/').pop()).then(function(){
                         self.Product.changeCurrency([self.Product.curProd]).then(function(){
@@ -38,7 +38,7 @@ angular.module('app')
                         });
 
                         self.Product.curProd.currency = $cookies.get('currency');
-                        accessFormReviews();
+                        if (User.active) accessFormReviews();
                     });
                 }else{
                     self.Product.curProd = _.find(self.Product.products, {uuid: $location.url().split('/').pop()});
@@ -55,7 +55,7 @@ angular.module('app')
                             val: null
                         });
                     }
-                    accessFormReviews();
+                    if (User.active) accessFormReviews();
                 }
 
             };
