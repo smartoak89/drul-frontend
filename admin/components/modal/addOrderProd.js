@@ -1,5 +1,5 @@
 angular.module('admin')
-    .controller('editOrderProd',['$uibModalInstance', '$scope', 'Goods', 'HttpResource',
+    .controller('addOrderProd',['$uibModalInstance', '$scope', 'Goods', 'HttpResource',
         function($uibModalInstance, $scope, Goods, HttpResource){
             //$scope.name = Goods.product.products[Goods.productIndex].name;
             $scope.curProd = angular.copy(Goods.product.products[Goods.productIndex]);
