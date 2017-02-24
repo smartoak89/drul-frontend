@@ -9,6 +9,7 @@ angular.module('admin')
             this.pror = {};
             this.categoryArticle;
             self.Conf = Conf;
+            self.viewComments = false;
 
             this.$onInit = function () {
                 console.log('Product => ', self.product);
@@ -18,6 +19,7 @@ angular.module('admin')
                 Goods.listComb(function (combinations) {
                     self.combinations = combinations;
                 });
+                Goods.getCom(self.product);
                 Stocks.list(function (stocks) {
                     self.stocks = stocks;
                     if (self.product.stock){

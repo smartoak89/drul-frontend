@@ -1,10 +1,12 @@
 angular.module('app')
     .component('productDetail', {
         templateUrl: "components/common/product-detail.html",
-        controller: ['$rootScope', '$location','Cart', 'Category', 'Product', '$q', '$timeout', '$cookies', 'User', 'ReviewsService', function ($rootScope, $location, Cart, Category, Product, $q, $timeout, $cookies, User, ReviewsService) {
+        controller: ['$rootScope', '$location','Cart', 'Category', 'Product', '$q', '$timeout', '$cookies', 'User', 'ReviewsService', 'Conf',
+            function ($rootScope, $location, Cart, Category, Product, $q, $timeout, $cookies, User, ReviewsService, Conf) {
             var self = this;
             self.cart = Cart;
             self.user = User;
+            self.Conf = Conf;
             console.log(self.user);
             self.Product = Product;
             self.curProdCheck = {};

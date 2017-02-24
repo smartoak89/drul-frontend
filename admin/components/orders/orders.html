@@ -18,7 +18,7 @@
                     <td>{{$index}}</td>
                     <td>{{order.order_num}}</td>
                     <td>{{order.state}}</td>
-                    <td><a>{{order.owner_name}}</a></td>
+                    <td><a>{{order.owner_name.indexOf('undefined')+1?order.email:order.owner_name}}</a></td>
                     <!--<td>-->
                         <!--<ul>-->
                             <!--<li>art 1</li>-->

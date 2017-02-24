@@ -89,6 +89,23 @@
                                 <small>Зажмите кнопку 'Ctrl' для выбора нескольких пунктов</small>
                             </div>
                         </div>
+                        <div class="form-group">
+                            <label style="width: 100%">Комментарии ({{product.comments.length}}) <i class="fa viewCombo pull-right" ng-class="$ctrl.viewComments?'fa-minus':'fa-plus'" ng-click="$ctrl.viewComments = !$ctrl.viewComments"></i></label>
+                            <div class="comment" ng-repeat="comm in product.comments" ng-show="$ctrl.viewComments">
+                                <span class="comment-meta">{{comm.created | date: short}}</span>
+                                <div class="comment-body">
+                                    <p>{{comm.body}}</p>
+                                    <div class="text-right">
+                                        <button class="btn btn-default btn-sm" modal-admin="review-remove">
+                                            <i class="fa fa-trash"></i>
+                                            Удалить
+                                        </button>
+                                        <button class="btn btn-default btn-sm" ng-if="!comm.publish" modal-admin="review-publish">Опубликовать</button>
+                                    </div>
+                                    <hr class="">
+                                </div>
+                            </div>
+                        </div>
                     </div>
                 </div>
             </div>

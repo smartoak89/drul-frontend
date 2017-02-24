@@ -168,7 +168,7 @@
                                 <input type="text" placeholder="Поиск по артиклю" ng-model="$ctrl.searchValue" ng-change="$ctrl.searchProduct($ctrl.searchValue)" ng-disabled="$ctrl.searchDisabled">
 
                                 <ul>
-                                    <li ng-repeat="product in $ctrl.searchProducts" ng-click="$ctrl.pushProduct(product)" modal-admin="addOrderProd">{{product.name}}</li>
+                                    <li ng-repeat="product in $ctrl.searchProducts" ng-click="$ctrl.pushProduct($ctrl.order, $index)" modal-admin="addOrderProd">{{product.name}}</li>
                                 </ul>
                             </span>
                             <i class="fa fa-{{$ctrl.showAddProduct ? 'minus' : 'plus'}}" tooltip-placement="top" uib-tooltip="{{$ctrl.showAddProduct ? 'Отмена' : 'Добавить товар'}}" ng-click="$ctrl.showAddProduct = !$ctrl.showAddProduct"></i>

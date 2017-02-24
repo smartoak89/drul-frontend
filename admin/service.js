@@ -153,6 +153,11 @@ angular.module('admin')
                 var stock = _.find(Stocks.stocksList, {uuid: product.stock});
                 product.stockCost = Math.round(product.price - ( product.price * stock.percent / 100 ));
             },
+            getCom: function(product){
+                HttpResource.query({params1: 'reviews', params2:product.uuid}, function(res){
+                    product.comments = res;
+                });
+            },
             search: function (parameters, callback) {
 
                 var criteria = {
@@ -437,7 +442,7 @@ angular.module('admin')
             getOneOrder: function (id, callback) {
                 HttpResource.get({params1: 'order', params2: id}, function (res) {
                     getAllProducts(res, callback)
-                    console.log(res);
+                    // console.log(res);
                 }, function (err) {
                     callback(err);
                 })
@@ -446,11 +451,11 @@ angular.module('admin')
 
         function getAllProducts(order, callback) {
             var promises = [];
-            console.log(order);
+            // console.log(order);
             _.each(order.products, function (product) {
                 promises.push($q(function (resolve, reject) {
                     HttpResource.get({params1: 'product', params2: product.productID}, function (res) {
-                        console.log(res);
+                        // console.log(res);
                         res.count = product.count;
                         var allCombos = angular.copy(res.combo);
                         res.combo = product.combo;

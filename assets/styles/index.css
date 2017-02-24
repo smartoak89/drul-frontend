@@ -240,8 +240,15 @@ button:focus{
 }
 
 .navigation > li:hover{
-    color: #fff;
     cursor: pointer;
+}
+.navigation > li> a{
+    color:#4b4b4b;
+}
+.navigation > li > a:hover{
+    cursor: pointer;
+    color:#fff;
+    text-decoration: none;
 }
 section {
     width: 100px;
@@ -2329,4 +2336,7 @@ order-detale table>tbody>tr>td>div>span{
 }
 .common_behavior {
     padding-left: 10px;
+}
+admin-navigation .sidebar {
+    position: fixed;
 }

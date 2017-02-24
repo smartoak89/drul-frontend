@@ -9,8 +9,8 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <img dynamic class="cover img-responsive" id="zoom_03"
-                             ng-src="/api/file/{{$ctrl.Product.curProd.photo.uuid}}"
-                             data-zoom-image="{{'/api/file/' + $ctrl.Product.curProd.photo.uuid}}"
+                             ng-src="{{$ctrl.Conf.api_path + '/file/' + $ctrl.Product.curProd.photo.uuid}}"
+                             data-zoom-image="{{$ctrl.Conf.api_path + '/file/' + $ctrl.Product.curProd.photo.uuid}}"
                              ng-init="$ctrl.initImg()"
                              ng-if="$ctrl.Product.curProd.photo.uuid"
                              no-image
@@ -23,9 +23,9 @@
                                ng-repeat="photo in $ctrl.Product.curProd.gallery"
                                ng-click="$ctrl.setActiveImageInGallery('zoomModelGallery01', photo.uuid);"
 
-                               data-image="{{'http://95.46.99.177/api/file/' + photo.uuid}}"
-                               data-zoom-image="{{'http://95.46.99.177/api/file/' + photo.uuid}}">
-                                <img class="cover img-responsive img-thumbnail" ng-src="/api/file/{{photo.uuid}}"/>
+                               data-image="{{$ctrl.Conf.api_path + '/file/' + photo.uuid}}"
+                               data-zoom-image="{{$ctrl.Conf.api_path + '/file/' + photo.uuid}}">
+                                <img class="cover img-responsive img-thumbnail" ng-src="{{$ctrl.Conf.api_path}}/file/{{photo.uuid}}"/>
                             </a>
                         </div>
                     </div>
@@ -81,7 +81,7 @@
                 </ul>
                 <div class="tab-content">
                     <div id="about" role="tabpanel" class="tab-pane active">
-                        <div class="row">
+                        <div class="row" style="margin: 0">
                             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                                 <table class="table">
                                     <tbody>
@@ -104,11 +104,11 @@
                             <div class="comment-body">
                                 <p>{{comm.body}}</p>
                                 <div class="text-right" ng-if="$ctrl.admin">
-                                    <button modal-admin="review-remove">
+                                    <button class="btn" modal-admin="review-remove">
                                         <i class="fa fa-trash"></i>
                                         Удалить
                                     </button>
-                                    <button ng-if="!comm.publish" modal-admin="review-publish">Опубликовать</button>
+                                    <button class="btn" ng-if="!comm.publish" modal-admin="review-publish">Опубликовать</button>
                                 </div>
                                 <hr class="">
                             </div>
@@ -116,7 +116,7 @@
                         </div>
 
                         <div class="comment-form" ng-if="$ctrl.accessFormReview || $ctrl.admin">
-                            <div class="row">
+                            <div class="row" style="margin: 0">
                                 <form>
                                     <div class="col-md-12">
                                         <div class="form-group">
