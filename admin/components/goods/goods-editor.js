@@ -8,6 +8,7 @@ angular.module('admin')
             this.product = Goods.editprod;
             this.pror = {};
             this.categoryArticle;
+            self.Conf = Conf;
 
             this.$onInit = function () {
                 console.log('Product => ', self.product);

@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('Cart', ['Httpquery', 'User', 'Currency', '$log', '$q', '$http',function (Httpquery, User, Currency, $log, $q, $http) {
+    .service('Cart', ['Httpquery', 'User', 'Currency', '$log', '$q', '$http', 'Conf', function (Httpquery, User, Currency, $log, $q, $http, Conf) {
         var cart = [];
         return {
             cartList: null,
@@ -18,7 +18,7 @@ angular.module('app')
                 console.log(User);
                 var self = this;
                 $http({
-                    url: '/api/deferred/' + User.active.uuid + '/' + product.uuid,
+                    url: Conf.api_path + '/deferred/' + User.active.uuid + '/' + product.uuid,
                     method: 'PUT'
                 }).then(function (res) {
                     console.info('res', res);
@@ -106,7 +106,7 @@ angular.module('app')
                 console.log('UserActive', User);
 
                 $http({
-                    url: '/api/cart/' + User.active.uuid + '/' + product.uuid,
+                    url: Conf.api_path + '/cart/' + User.active.uuid + '/' + product.uuid,
                     method: 'PUT',
                     data: data
                 }).then(function (res) {

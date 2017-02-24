@@ -1,9 +1,10 @@
 angular.module('admin')
     .component('goods', {
         templateUrl: "admin/components/goods/goods.html",
-        controller: ['Goods', '$q', '$location', function (Goods, $q, $location) {
+        controller: ['Goods', '$q', '$location', 'Conf', function (Goods, $q, $location, Conf) {
             var self = this;
             self.prodService = Goods;
+            self.Conf = Conf;
             self.search = {};
 
             Goods.list({}, function (res) {

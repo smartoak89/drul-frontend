@@ -94,7 +94,7 @@
                         <tr ng-repeat-start="defProd in $ctrl.cart.defList">
                             <td>
                                 <div class="marker red">sale</div>
-                                <img ng-src="{{'/api/file/' + defProd.photo.uuid}}" class="img-responsive cover" alt=""></td>
+                                <img ng-src="{{$ctrl.Conf.api_path + '/file/' + defProd.photo.uuid}}" class="img-responsive cover" alt=""></td>
                             <td>
                                 <div class="namePrice">
                                     <div>Артикул {{defProd.article}}</div>
@@ -156,7 +156,7 @@
                                                 <tbody ng-repeat="product in order.products">
                                                     <tr ng-click="$ctrl.goToProduct(product)">
                                                         <td>
-                                                            <img class="img-responsive" ng-src="api/file/{{product.image}}" alt="">
+                                                            <img class="img-responsive" ng-src="{{$ctrl.Conf.api_path}}/file/{{product.image}}" alt="">
                                                         </td>
                                                         <td>
                                                             <div>Артикул: {{product.article}}</div>

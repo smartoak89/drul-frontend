@@ -1,11 +1,12 @@
 angular.module('app')
     .component('privatOffice', {
         templateUrl: "components/privat-office/privat-office.html",
-        controller: ['Cart', 'User', 'OrderService', 'RequestService','$location', function(Cart, User, OrderService, RequestService, $location) {
+        controller: ['Cart', 'User', 'OrderService', 'RequestService','$location', 'Conf', function(Cart, User, OrderService, RequestService, $location, Conf) {
             var self = this;
             self.user = User;
             self.cart = Cart;
             self.orders = [];
+            self.Conf = Conf;
             this.$onInit = function () {
                 self.OrderServ = OrderService;
                 OrderService.getListHistoryOrders(function (err, res) {

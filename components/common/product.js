@@ -4,7 +4,7 @@ angular.module('app')
         bindings: {
             product: '='
         },
-        controller: ['$cookies', 'Cart', 'User','Product', function($cookies, Cart, User, Product) {
+        controller: ['$cookies', 'Cart', 'User','Product','Conf', function($cookies, Cart, User, Product, Conf) {
 
             var self = this;
             this.cart = Cart;
@@ -15,6 +15,7 @@ angular.module('app')
             this.class1 = 's-2';
             this.class2 = 's-3';
             self.User = User;
+            self.Conf = Conf;
             this.addToCart = function () {
                 var self = this;
                 if (User.checkUser()) {

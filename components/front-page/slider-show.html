@@ -6,7 +6,7 @@
                     <!--<div class="marker blue">new</div>-->
                     <a href="#/{{slide.link}}">
                         <div>
-                            <img ng-src="/api/file/{{slide.image}}" class="img-responsive cover"/>
+                            <img ng-src="{{$ctrl.Conf.api_path}}/file/{{slide.image}}" class="img-responsive cover"/>
                             <h2>{{slide.description}}</h2>
                         </div>
 

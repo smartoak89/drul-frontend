@@ -1,10 +1,11 @@
 angular.module('admin')
     .component('comments', {
         templateUrl: "admin/components/comments/comments.html",
-        controller: ['$rootScope', 'ReviewsAdmin', 'Goods', '$location', function($rootScope, ReviewsAdmin, Goods, $location) {
+        controller: ['$rootScope', 'ReviewsAdmin', 'Goods', '$location', 'Conf', function($rootScope, ReviewsAdmin, Goods, $location, Conf) {
             var self = this;
 
             self.comments = null;
+            self.Conf = Conf;
 
             $rootScope.$on('reviewRemoved', function (event, reviewId) {
                 _.remove(ReviewsAdmin.list, {uuid: reviewId});

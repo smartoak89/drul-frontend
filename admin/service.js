@@ -1,7 +1,7 @@
 angular.module('admin')
     // Httpquery
-    .service('HttpResource', ['$resource', function ($resource) {
-        return $resource('/api/:params1/:params2/:params3', {}, {
+    .service('HttpResource', ['$resource', 'Conf', function ($resource, Conf) {
+        return $resource(Conf.api_path + '/:params1/:params2/:params3', {}, {
             put: {
                 method: "PUT"
             }

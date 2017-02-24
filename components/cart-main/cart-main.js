@@ -1,7 +1,7 @@
 angular.module('app')
     .component('cartMain', {
         templateUrl: "components/cart-main/cart-main.html",
-        controller: ['Cart', 'User', 'Product', '$timeout', '$anchorScroll', function(Cart, User, Product, $timeout, $anchorScroll) {
+        controller: ['Cart', 'User', 'Product', '$timeout', '$anchorScroll', 'Conf', function(Cart, User, Product, $timeout, $anchorScroll, Conf) {
             var self = this;
             self.user = User;
             self.cart = Cart;

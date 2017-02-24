@@ -1,12 +1,13 @@
 angular.module('admin')
     .component('orderDetale', {
         templateUrl: "admin/components/orders/order-detale.html",
-        controller: ['RequestService', 'HttpResource', '$location', 'Goods', '$timeout', function(RequestService, HttpResource, $location, Goods, $timeout) {
+        controller: ['RequestService', 'HttpResource', '$location', 'Goods', '$timeout', 'Conf', function(RequestService, HttpResource, $location, Goods, $timeout, Conf) {
             var self = this;
             var orderID = $location.$$path.split('/').pop();
 
             self.editUserInfo = false;
             self.editOrderInfo = false;
+            self.Conf = Conf;
 
             RequestService.getOneOrder(orderID, function (err, res) {
                 self.order = res;
@@ -70,15 +71,17 @@ angular.module('admin')
             self.searchProduct = function(txt) {
                 txt = txt.toLowerCase();
                 if (!txt) return self.searchProducts= null;
-                console.log(txt);
                 if (!disabled) {
                     disabled = true;
                     Goods.list({article: txt}, function (products) {
                         self.searchProducts = products;
-                        console.log(self.searchProducts)
                         disabled = false;
                     });
                 }
+            }
+
+            self.newOrderProd = function(product){
+                console.log(product)
             }
 
         }]

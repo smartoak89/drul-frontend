@@ -23,7 +23,7 @@
             <tbody>
             <tr ng-repeat="slider in $ctrl.sliders">
                 <td>
-                    <img style="object-fit: cover;" class="product-photo" ng-src="/api/file/{{slider.image}}" alt="" width="100" height="80" no-image>
+                    <img style="object-fit: cover;" class="product-photo" ng-src="{{$ctrl.Conf.api_path}}/file/{{slider.image}}" alt="" width="100" height="80" no-image>
                 </td>
                 <td>{{slider.link}}</td>
                 <td>{{slider.header}}</td>

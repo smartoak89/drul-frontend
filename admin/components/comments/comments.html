@@ -16,7 +16,7 @@
             <tr ng-repeat="comm in $ctrl.comments" ng-click="$ctrl.goToProduct(comm.product.uuid)">
                 {{comm}}
                 <td>
-                    <img style="object-fit: cover; width: 60px; height: 60px;" ng-src="/api/file/{{comm.photo[0].uuid}}" alt="">
+                    <img style="object-fit: cover; width: 60px; height: 60px;" ng-src="{{$ctrl.Conf.api_path}}/file/{{comm.photo[0].uuid}}" alt="">
                 </td>
                 <td>{{comm.product.name}}</td>
                 <td>{{comm.body}}</td>

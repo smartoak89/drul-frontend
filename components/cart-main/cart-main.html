@@ -24,7 +24,7 @@
                 <tr ng-repeat-start="product in $ctrl.cart.cartList">
                     <td>
                         <div class="marker red">sale</div>
-                        <img ng-src="{{'/api/file/' + product.image}}" class="img-responsive cover" alt=""></td>
+                        <img ng-src="{{$ctrl.Conf.api_path + '/file/' + product.image}}" class="img-responsive cover" alt=""></td>
                     <td>
                         <div class="namePrice">
                             <div>Артикул {{product.article}}</div>

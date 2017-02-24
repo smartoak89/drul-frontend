@@ -6,6 +6,7 @@ angular.module('admin')
 
             self.slider = {};
             self.error;
+            self.Conf = Conf;
             self.sliders = [];
             var uploader;
             var newSlider = false;

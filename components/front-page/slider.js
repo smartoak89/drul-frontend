@@ -1,8 +1,9 @@
 angular.module('app')
     .component('slider', {
         templateUrl: "components/front-page/slider-show.html",
-        controller: ['$rootScope', 'SliderService', function($rootScope, SliderService) {
+        controller: ['$rootScope', 'SliderService', 'Conf', function($rootScope, SliderService, Conf) {
             var self = this;
+            self.Conf = Conf;
             self.myInterval = 5000;
             self.noWrapSlides = false;
             self.active = 0;
