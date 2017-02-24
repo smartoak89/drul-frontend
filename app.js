@@ -31,7 +31,6 @@ app.run(['$location', '$state', '$rootScope', '$anchorScroll', 'User', 'Cart', '
         $rootScope.URL = $location.url().split('/').pop();
         $anchorScroll(0);
     });
-    // Product.changeCurrency();
 }]);
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
