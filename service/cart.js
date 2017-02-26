@@ -23,6 +23,7 @@ angular.module('app')
                 }).then(function (res) {
                     console.info('res', res);
                     self.defList.push(product);
+                    product.def = true;
                 }, function(err) {
                     console.info('error', err);
                 });
@@ -41,6 +42,7 @@ angular.module('app')
                     console.log(res);
                     _.remove(self.defList, {uuid: product.uuid});
                     // self.defList.splice(_.findIndex(self.defList, {uuid: product.uuid}),1);
+                    product.def = false;
                 }, function(err){
                     console.log(err);
                 });

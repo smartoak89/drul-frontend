@@ -517,6 +517,18 @@ section {
 .goodsBlock:hover > .goodsBlockHover {
     opacity: 1;
 }
+.likesWrap{
+    display: flex;
+    justify-content: flex-end;
+    float: right;
+}
+.likesWrap > i:before{
+    color: #000;
+    font-size: 20px;
+}
+.likesWrap > .fa-heart:before{
+    color: #ad2020;
+}
 .butWrappProd > .wrapB{
      border: 1px solid #000;
      display: flex;
@@ -1179,7 +1191,7 @@ input[type=radio]:checked + label:before {
 }
 .close-window:active,
 .close-window:active {
-    box-shadow: 0 1px 10px #464646;
+    /*box-shadow: 0 1px 10px #464646;*/
     border-radius: 50%;
 }
 .butWrapp{
