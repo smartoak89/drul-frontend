@@ -1,8 +1,11 @@
 angular.module('app')
-    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', 'Cart', 'User',
-        function (Httpquery, $http, $cookies, $q, Cart, User) {
+    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', 'Cart', 'User','$location', 'queryParams',
+        function (Httpquery, $http, $cookies, $q, Cart, User, $location, queryParams) {
 
             var skip = 0;
+            var queryStr = {
+                params1: 'products'
+            };
             return {
                 products: null,
                 stocksList: null,
@@ -10,22 +13,35 @@ angular.module('app')
                 getList: function (criteria, category) {
                     var self = this;
 
-                    var request = {
-                        params1: 'products'
-                    };
+                    if (!criteria) queryStr = { params1: 'products' };
 
                     if (category) {
-                        request.params2 = 'category';
-                        request.params3 = category;
+                        queryStr.params2 = 'category';
+                        queryStr.params3 = category;
                     }
+
                     criteria = criteria || {sort: 'created.desk'};
 
                     for (var key in criteria) {
-                        request[key] = criteria[key];
+                        queryStr[key] = criteria[key];
                     }
 
+                    // for (var key in queryStr) {
+                    //     request[key] = queryStr[key];
+                    // }
+
+                    // if (queryStr) {
+                    //
+                    // } else {
+                    //     for (var key in criteria) {
+                    //         request[key] = criteria[key];
+                    //         queryStr[key] = criteria[key];
+                    //     }
+                    // }
+
                     var promise = $q(function (resolve, reject) {
-                        Httpquery.query(request, function (res) {
+                        Httpquery.query(queryStr, function (res) {
+                            console.log('res', res);
                             resolve(res)
                         }, function (err) {
                             console.error('Get products response', err);

@@ -4,19 +4,28 @@ angular.module('app')
             category: "<"
         },
         templateUrl: "components/filter-page/filter-sidebar.html",
-        controller: ['FilterService', 'queryParams', 'Product','$cookies', function(FilterService, queryParams, Product, $cookies) {
+        controller: ['FilterService', 'Product','$cookies', function(FilterService, Product, $cookies) {
             var self = this;
+
             this.$onInit = function () {
                 self.FilterService = FilterService;
                 FilterService.getFilter(self.category, function (res) {
                     self.criteries = res;
                 });
             };
-            // var match = {};
-            // this.filterBy = function (key, value) {
-            //     if (!match['combo' + '.' + key]) match['combo' + '.' + key] = [];
-            //     match['combo' + '.' + key].push(value);
-            //     Product.getList({match: match})
-            // }
+
+            var params = [];
+
+            this.query = function (criteria) {
+                var str = criteria.slug + '.' + criteria.value;
+
+                var has = params.indexOf(str);
+
+                has == -1
+                    ? params.push(str)
+                    : params.splice(has, 1);
+
+                Product.getList({combo: params}, self.category);
+            };
         }]
     });
