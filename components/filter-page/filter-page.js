@@ -8,11 +8,13 @@ angular.module('app')
 
             this.$onInit = function () {
                 self.category = $location.$$path.split('/').pop();
-                Product.getList(null, self.category);
+                Product.getList({skip: 0}, self.category);
             };
 
+            var skip = 0;
             this.showMore = function () {
-                Product.showMore();
+                skip += 1;
+                Product.getList({skip: skip});
             }
         }]
     });

@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('auth', ['$uibModalInstance', '$scope', 'Httpquery', 'User','$location', 'Cart', function ($uibModalInstance, $scope, Httpquery, User, $location, Cart) {
+    .controller('auth', ['$uibModalInstance', '$scope', 'Httpquery', 'User', 'Cart', function ($uibModalInstance, $scope, Httpquery, User, Cart) {
         $scope.user = {};
         $scope.savePro = {
             image: '',
@@ -8,23 +8,24 @@ angular.module('app')
         $scope.login = function () {
             if (isValid() == true) {
                 Httpquery.save({params1: 'user', params2: 'auth'}, $scope.user, function (res) {
-                    console.log('success', res);
-                    User.set(res);
-                    if(Cart.cartList != null && Cart.cartList != []){
-                        angular.forEach(Cart.cartList, function(prod){
-                            console.log(prod);
-                            $scope.savePro.image = prod.image;
-                            $scope.savePro.combo = prod.combo;
-                            Cart.save(prod, $scope.savePro)
-                        });
-                        Cart.cartList = null;
-                        Cart.list().then(function(){
-                            angular.forEach(Cart.cartList, function(prod){
-                                prod.counter = 1;
-                            })
-                        });
 
-                    }
+                    User.set(res);
+
+                    // if(Cart.cartList != null && Cart.cartList != []){
+                    //     angular.forEach(Cart.cartList, function(prod){
+                    //         console.log(prod);
+                    //         $scope.savePro.image = prod.image;
+                    //         $scope.savePro.combo = prod.combo;
+                    //         Cart.save(prod, $scope.savePro)
+                    //     });
+                    //     Cart.cartList = null;
+                    //     Cart.list().then(function(){
+                    //         angular.forEach(Cart.cartList, function(prod){
+                    //             prod.counter = 1;
+                    //         })
+                    //     });
+                    //
+                    // }
                     $scope.close();
                 }, function (ex) {
                     $scope.error = ex.data.message;
