@@ -5,7 +5,7 @@ angular.module('app')
             function ($rootScope, $location, Cart, Category, Product, $q, $timeout, $cookies, User, ReviewsService, Conf) {
             var self = this;
             self.cart = Cart;
-            self.user = User;
+            self.user = User.get();
             self.Conf = Conf;
             //console.log(self.user);
             self.Product = Product;
@@ -19,7 +19,7 @@ angular.module('app')
             };
             self.$onInit = function() {
                 var self = this;
-                if (User.active) self.admin = User.active.permission == 'administrator' ? true : false;
+                if (self.user) self.admin = self.user.permission == 'administrator' ? true : false;
                 if(self.Product.products === null){
                     self.Product.getCurProd($location.url().split('/').pop()).then(function(){
                         self.Product.changeCurrency([self.Product.curProd]).then(function(){
@@ -48,7 +48,7 @@ angular.module('app')
                         });
 
                         self.Product.curProd.currency = $cookies.get('currency');
-                        if (User.active) accessFormReviews();
+                        if (self.user) accessFormReviews();
                     });
                 }else{
                     self.Product.curProd = _.find(self.Product.products, {uuid: $location.url().split('/').pop()});
@@ -65,7 +65,7 @@ angular.module('app')
                             val: null
                         });
                     }
-                    if (User.active) accessFormReviews();
+                    if (self.user) accessFormReviews();
                 }
 
             };
@@ -109,7 +109,7 @@ angular.module('app')
                 }
                 console.log(self.curProdCheck);
                 console.log(angular.isArray(self.cart.cartList));
-                if(self.user.active == null && self.cart.cartList == null){
+                if(self.user == null && self.cart.cartList == null){
                     self.curProdCheck.name = self.Product.curProd.name;
                     self.curProdCheck.article = self.Product.curProd.article;
                     self.curProdCheck.price = self.Product.curProd.price;
@@ -117,7 +117,7 @@ angular.module('app')
                     self.curProdCheck.currency = self.Product.curProd.currency;
                     self.cart.cartList = [];
                     self.cart.cartList.push(self.curProdCheck);
-                }else if(self.user.active == null && angular.isArray(self.cart.cartList)){
+                }else if(self.user == null && angular.isArray(self.cart.cartList)){
                     self.curProdCheck.name = self.Product.curProd.name;
                     self.curProdCheck.article = self.Product.curProd.article;
                     self.curProdCheck.price = self.Product.curProd.price;
