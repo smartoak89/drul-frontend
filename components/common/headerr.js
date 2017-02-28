@@ -1,9 +1,9 @@
 angular.module('app')
     .component('headerr', {
         templateUrl: "components/common/headerr.html",
-        controller: ['User', 'Cart', 'angularPlayer', '$rootScope', 'HttpResource', function(User, Cart, angularPlayer, $rootScope, HttpResource) {
+        controller: ['User', 'Cart', 'angularPlayer', '$rootScope', 'HttpResource', '$location', function(User, Cart, angularPlayer, $rootScope, HttpResource, $location) {
             var self = this;
-
+            this.User = User;
             this.user = User.get();
             this.Cart = Cart;
             this.Cart.list();
@@ -11,6 +11,7 @@ angular.module('app')
             this.logout = function () {
                 User.deactivate();
                 self.user = null;
+                $location.path('/');
             };
 
             $rootScope.$on('userActivate', function () {

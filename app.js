@@ -25,7 +25,7 @@ app.constant('Conf', {
 
 app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', function(User, $location, $state, $rootScope, $anchorScroll) {
 
-    $rootScope.$on('$stateChangeStart', function () {
+    $rootScope.$on('$stateChangeStart', function (event, toState) {
         var adminPermission;
         var adminSection = $rootScope.adminSection = ($location.path().search('admin') == -1) == false;
 
@@ -34,10 +34,16 @@ app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', function(
         if (activeUser !== null && activeUser.permission) {
             adminPermission = (activeUser.permission.indexOf('administrator') == -1) == false;
         }
-        //
-        // if (adminSection && !adminPermission) {
-        //     $location.path('/not-allowed');
-        // }
+
+        var forbidden;
+
+        if (toState.url == 'privat-office'  && !activeUser) forbidden = true;
+
+        if (adminSection && !adminPermission || forbidden) {
+            $rootScope.toUrl = toState.url;
+            $location.path('/not-allowed');
+        }
+
     });
 
     $rootScope.$on('$locationChangeSuccess', function(event, toUrl) {
@@ -112,11 +118,11 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         //     }]
         // }
     });
-    $stateProvider.state('not-allowed', {
-        url: "/not-allowed",
+    $stateProvider.state('index.not-allowed', {
+        url: "not-allowed",
         views: {
             '': {template: "<template-common></template-common>"},
-            'content@index': {template: "<front-content></front-content>"}
+            'content': {template: "<not-allowed></not-allowed>"}
         }
     });
 }]);
