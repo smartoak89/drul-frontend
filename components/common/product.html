@@ -55,9 +55,9 @@
             <div>Артикул {{$ctrl.product.article}}</div>
             <p>{{$ctrl.product.name}}</p>
             <hr class="line"/>
-            <span ng-if="$ctrl.product.stockCost">{{$ctrl.product.stockCost + " " + $ctrl.product.currency}}</span>
-            <span ng-if="!$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
-            <strike ng-show="$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</strike>
+            <!--<span ng-if="$ctrl.product.stockCost">{{$ctrl.product.stockCost + " " + $ctrl.product.currency}}</span>-->
+            <span>{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
+            <strike ng-show="$ctrl.product.oldPrice">{{$ctrl.product.oldPrice + " " + $ctrl.product.currency}}</strike>
             <div class="likesWrap">
                 <i class="fa fa-heart" ng-show="$ctrl.user&&$ctrl.product.def" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.cart.delFromDeferred($ctrl.product)"
