@@ -1,5 +1,5 @@
 angular.module('app')
-    .controller('auth', ['$uibModalInstance', '$scope', 'Httpquery', 'User', 'Cart', function ($uibModalInstance, $scope, Httpquery, User, Cart) {
+    .controller('auth', ['$uibModalInstance', '$scope', '$rootScope', '$location', 'Httpquery', 'User', 'Cart', function ($uibModalInstance, $scope, $rootScope, $location, Httpquery, User, Cart) {
         $scope.user = {};
         $scope.savePro = {
             image: '',
@@ -27,6 +27,11 @@ angular.module('app')
 
                     }
                     $scope.close();
+                    if ($rootScope.toUrl) {
+                        $location.path($rootScope.toUrl);
+                    } else {
+                        $location.path('/');
+                    }
                 }, function (ex) {
                     $scope.error = ex.data.message;
                     console.log('error', ex);

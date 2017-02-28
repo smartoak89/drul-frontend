@@ -1,9 +1,9 @@
 angular.module('app')
     .component('headerr', {
         templateUrl: "components/common/headerr.html",
-        controller: ['User', 'Cart', 'angularPlayer', '$rootScope', 'HttpResource', function(User, Cart, angularPlayer, $rootScope, HttpResource) {
+        controller: ['User', 'Cart', 'angularPlayer', '$rootScope', 'HttpResource', '$location', function(User, Cart, angularPlayer, $rootScope, HttpResource, $location) {
             var self = this;
-
+            this.User = User;
             this.user = User.get();
             this.Cart = Cart;
             this.Cart.list();
@@ -11,6 +11,7 @@ angular.module('app')
             this.logout = function () {
                 User.deactivate();
                 self.user = null;
+                $location.path('/');
             };
 
             $rootScope.$on('userActivate', function () {
@@ -20,35 +21,12 @@ angular.module('app')
 
             self.songs = [];
             this.$onInit = function () {
-<<<<<<< HEAD
 
                  HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
                      self.songs = res;
                      self.showPlayer = true;
                  })
 
-=======
-                HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
-                    // self.songs = res.map(function (el){
-                    //         return {
-                    //             id: el.uuid,
-                    //             title: el.uuid,
-                    //             artist: el.name,
-                    //             url: 'http://95.46.99.177/api/file/' + el.uuid
-                    //         }
-                    // })
-                    // res.forEach(function (el) {
-                    //
-                    //     self.songs.push({
-                    //         id: el.uuid,
-                    //         title: el.type,
-                    //         artist: el.name,
-                    //         url: 'http://95.46.99.177/api/file/' + el.uuid
-                    //     })
-                    // });
-                     self.showPlayer = true;
-                })
->>>>>>> 44dcb387f6e632abb9511aea0f39e868f0b8e7ad
             };
             self.volume = 's-21';
             self.volumeSlider = {
