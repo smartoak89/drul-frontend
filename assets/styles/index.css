@@ -11,6 +11,10 @@ button:focus{
 a {
     cursor: pointer;
 }
+.content-wrapper {
+    -webkit-transition: none !important;
+    transition: none !important;
+}
 .prevs{
     height: 60px;
     background: transparent;

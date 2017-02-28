@@ -20,12 +20,14 @@ angular.module('app')
             self.$onInit = function() {
                 var self = this;
                 if (User.active) self.admin = User.active.permission == 'administrator' ? true : false;
-                if(self.Product.products === null){
+                if(self.Product.products.length == 0){
+                    console.log('+')
                     self.Product.getCurProd($location.url().split('/').pop()).then(function(){
                         self.Product.changeCurrency([self.Product.curProd]).then(function(){
                             self.Product.countStock(self.Product.curProd).then(function(){
 
                             });
+
                             if(_.find(self.cart.defList, {uuid: self.Product.curProd.uuid})){
                                 self.Product.curProd.def = true;
                             }else{
@@ -52,6 +54,7 @@ angular.module('app')
                     });
                 }else{
                     self.Product.curProd = _.find(self.Product.products, {uuid: $location.url().split('/').pop()});
+                    console.log(self.Product.curProd);
                     self.Product.curProd.currency = $cookies.get('currency');
                     self.curProdCheck = {
                         image: self.Product.curProd.photo.uuid,

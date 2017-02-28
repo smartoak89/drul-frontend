@@ -41,7 +41,7 @@
                             <p id="goodNameCard">{{$ctrl.Product.curProd.name}}</p>
                         </div>
                         <div class="descriptionCard">{{$ctrl.Product.curProd.description}}</div>
-                        <div class="priceCard"><span>{{ctrl.Product.curProd.price + ' ' + $ctrl.Product.curProd.currency}}</span>
+                        <div class="priceCard"><span>{{$ctrl.Product.curProd.price + ' ' + $ctrl.Product.curProd.currency}}</span>
                             <strike ng-if="$ctrl.Product.curProd.oldPrice">{{$ctrl.Product.curProd.oldPrice + ' ' + $ctrl.Product.curProd.currency}}</strike>
                         </div>
                         <hr class="marCard"/>

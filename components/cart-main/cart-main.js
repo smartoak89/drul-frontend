@@ -43,5 +43,18 @@ angular.module('app')
                     }
                 }
             }
+            self.$onInit = function() {
+                if (self.cart.cartList == null){
+                    self.cart.list().then(function(){
+                        Product.getGallery(self.cart.cartList);
+                        Product.countStock(self.cart.cartList);
+                        console.log(self.cart.cartList);
+                    });
+                }else{
+                    Product.countStock(self.cart.cartList);
+                    console.log(self.cart.cartList);
+                }
+
+            }
         }]
     });
