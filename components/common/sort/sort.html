@@ -5,10 +5,10 @@
         по цене
         <i class="fa fa-caret-{{$ctrl.orders.price == 'ask' ? 'up' : 'down'}}" ng-if="$ctrl.orders.price"></i>
     </a>
-    <a ng-click="$ctrl.orderBy('reviews')">
-        по отзывам
-        <i class="fa fa-caret-{{$ctrl.orders.reviews == 'ask' ? 'up' : 'down'}}" ng-if="$ctrl.orders.reviews"></i>
-    </a>
+    <!--<a ng-click="$ctrl.orderBy('reviews')">-->
+        <!--по отзывам-->
+        <!--<i class="fa fa-caret-{{$ctrl.orders.reviews == 'ask' ? 'up' : 'down'}}" ng-if="$ctrl.orders.reviews"></i>-->
+    <!--</a>-->
     <a ng-click="$ctrl.orderBy('created')">
         по новизне
         <i class="fa fa-caret-{{$ctrl.orders.created == 'ask' ? 'up' : 'down'}}" ng-if="$ctrl.orders.created"></i>

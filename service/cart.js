@@ -65,7 +65,7 @@ angular.module('app')
             list: function () {
                 var self = this;
                 var defer = $q.defer();
-                var user = User.checkUser();
+                var user = User.get();
                 if (user) {
                     console.info('user defined', user);
                     if (self.cartList === null) {
@@ -86,7 +86,7 @@ angular.module('app')
             listDef: function () {
                 var self = this;
                 var defer = $q.defer();
-                var user = User.checkUser()
+                var user = User.get();
                 if (user) {
                     if (self.defList === null) {
                         Httpquery.query({params1: 'deferred', params2: user.uuid}, function (res) {
@@ -108,7 +108,7 @@ angular.module('app')
                 console.log('UserActive', User);
 
                 $http({
-                    url: Conf.api_path + '/cart/' + User.active.uuid + '/' + product.uuid,
+                    url: Conf.api_path + '/cart/' + User.get().uuid + '/' + product.uuid,
                     method: 'PUT',
                     data: data
                 }).then(function (res) {

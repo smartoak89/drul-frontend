@@ -23,15 +23,32 @@ app.constant('Conf', {
    api_path: 'http://95.46.99.177/api'
 });
 
-app.run(['$location', '$state', '$rootScope', '$anchorScroll', 'User', 'Cart', 'Product', function($location, $state, $rootScope, $anchorScroll, User, Cart, Product) {
-    User.init(function () {
+app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', function(User, $location, $state, $rootScope, $anchorScroll) {
 
+    $rootScope.$on('$stateChangeStart', function (ev, toState) {
+        var adminPermission;
+        var adminSection = $rootScope.adminSection = ($location.path().search('admin') == -1) == false;
+
+        var activeUser = User.get();
+
+        console.log('userssss', activeUser);
+
+        // if (activeUser !== null) {
+        //     adminPermission = (activeUser.permission.indexOf('administrator') == -1) == false;
+        //     console.log('adminPerm', adminPermission);
+        // }
+        //
+        // if (adminSection && !adminPermission) {
+        //     // $location.path('/not-allowed');
+        // }
     });
+
     $rootScope.$on('$locationChangeSuccess', function(event, toUrl) {
         $rootScope.URL = $location.url().split('/').pop();
         $anchorScroll(0);
     });
 }]);
+
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
 
     $urlRouterProvider.otherwise('/');
@@ -90,12 +107,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
             '': {template: "<template-common></template-common>"},
             'content': {template: "<privat-office></privat-office>"}
         },
-        resolve: {
-            checkUserPermission: ['$location', 'User', function($location, User){
-                if(!User.checkUser()){
-                    $location.path('/');
-                }
-            }]
-        }
+        // resolve: {
+        //     checkUserPermission: ['$location', 'User', function($location, User){
+        //         if(!User.checkUser()){
+        //             $location.path('/');
+        //         }
+        //     }]
+        // }
     });
 }]);

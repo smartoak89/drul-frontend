@@ -1,15 +1,14 @@
 angular.module('app')
     .factory('Product', ['Httpquery', '$http', '$cookies', '$q', 'Cart', 'User','$location', 'queryParams',
         function (Httpquery, $http, $cookies, $q, Cart, User, $location, queryParams) {
-
-            var skip = 0;
             var queryStr = {
                 params1: 'products'
             };
             return {
-                products: null,
+                products: [],
                 stocksList: null,
                 curProd: null,
+                skip:0,
                 getList: function (criteria, category) {
                     var self = this;
 
@@ -26,18 +25,7 @@ angular.module('app')
                         queryStr[key] = criteria[key];
                     }
 
-                    // for (var key in queryStr) {
-                    //     request[key] = queryStr[key];
-                    // }
-
-                    // if (queryStr) {
-                    //
-                    // } else {
-                    //     for (var key in criteria) {
-                    //         request[key] = criteria[key];
-                    //         queryStr[key] = criteria[key];
-                    //     }
-                    // }
+                   if (queryStr.skip == 0) delete queryStr.skip;
 
                     var promise = $q(function (resolve, reject) {
                         Httpquery.query(queryStr, function (res) {
@@ -50,10 +38,14 @@ angular.module('app')
                     });
 
                     self.configurableProducts(promise, function (products) {
-                        // if (request.skip !== 0) return self.products = self.products.concat(products);
-                        self.products = products;
+                        if (self.skip == 0) self.products = [];
+                        self.products = self.products.concat(products);
                     });
 
+                },
+                showMore: function () {
+                    this.skip += 1;
+                    this.getList({skip: this.skip});
                 },
                 configurableProducts: function (products, callback) {
                     var self = this;
@@ -75,10 +67,6 @@ angular.module('app')
 
                         })
                     })
-                },
-                showMore: function () {
-                    skip += 1;
-                    this.getList();
                 },
                 listStocks: function () {
                     var self = this;

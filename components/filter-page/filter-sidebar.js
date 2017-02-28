@@ -11,6 +11,8 @@ angular.module('app')
                 self.FilterService = FilterService;
                 FilterService.getFilter(self.category, function (res) {
                     self.criteries = res;
+                    initSlider(res.splice(0, 1)[0].max_price);
+
                 });
             };
 
@@ -27,5 +29,26 @@ angular.module('app')
 
                 Product.getList({combo: params}, self.category);
             };
+
+            function initSlider (maxVal) {
+                self.slider = {
+                    minValue: 0,
+                    maxValue: maxVal,
+                    options: {
+                        floor: 0,
+                        ceil: maxVal,
+                        onEnd: sortByPrice
+                    }
+                };
+            }
+
+            function sortByPrice() {
+                var price = [];
+                price.push('min' + '.' + self.slider.minValue);
+                price.push('max' + '.' + self.slider.maxValue);
+                Product.skip = 0;
+                Product.getList({price: price, skip: 0}, self.category);
+
+            }
         }]
     });

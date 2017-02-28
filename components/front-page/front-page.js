@@ -7,12 +7,15 @@ angular.module('app')
             self.Product = Product;
 
             this.$onInit = function () {
-                Product.getList();
+                Product.skip = 0;
+                Product.getList({skip: 0});
             };
 
-            this.showMore = function () {
-                Product.showMore();
-            }
+            // var skip = 0;
+            // this.showMore = function () {
+            //     skip += 1;
+            //     Product.getList({skip: skip});
+            // }
         }]
 
     });

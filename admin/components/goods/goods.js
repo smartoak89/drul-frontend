@@ -7,7 +7,7 @@ angular.module('admin')
             self.Conf = Conf;
             self.search = {};
 
-            Goods.list({}, function (res) {
+            Goods.list({sort: 'created.desk', limit: 30}, function (res) {
                 Goods.products = self.products = res;
             });
 
@@ -24,11 +24,13 @@ angular.module('admin')
             var disabled = null;
 
             self.searchProducts= function(params) {
+                params.sort = 'created.desk';
+                params.limit = 30;
 
                 if (!disabled) {
                     disabled = true;
                     Goods.list(params, function (products) {
-                        self.products = products;
+                        Goods.products = self.products = products;
                         disabled = false;
                     });
                 }
@@ -44,15 +46,16 @@ angular.module('admin')
                     selectedArr.push(product);
                     product.selected = true;
                 }
-            }
+            };
 
-            // self.commonBehavior = {
-            //     delete: function () {
-            //         _.each(selectedArr, function (item) {
-            //             Goods.
-            //         })
-            //     }
-            // }
+            var skip = 0;
+            self.showMore = function () {
+
+                skip += 1;
+                Goods.list({skip: skip, sort: 'created.desk', limit: 30}, function (res) {
+                    Goods.products = self.products = self.products.concat(res);
+                });
+            };
 
         }]
     });

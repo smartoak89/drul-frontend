@@ -18,6 +18,8 @@ angular.module('app')
                 var criteria = {};
                 if (category !== '') criteria['category.slug'] = category;
                 criteria.sort = type + '.' + self.orders[type];
+                criteria.skip = 0;
+                Product.skip = 0;
                 // criteria.skip = 0;
                 Product.getList(criteria);
             };

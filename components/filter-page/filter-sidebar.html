@@ -2,14 +2,19 @@
     <div class="minMaxCost">
         <h1>Цена({{$ctrl.FilterService.currency}})</h1>
         <div class="minMaxWrapper">
-            <div class="minMaxInputWrapper">
-                <label>от</label>
-                <input type="text" value="" placeholder="100"/>
-            </div>
-            <div class="minMaxInputWrapper">
-                <label>до</label>
-                <input type="text" value="" placeholder="12111"/>
-            </div>
+
+            <rzslider ng-if='$ctrl.slider' rz-slider-model="$ctrl.slider.minValue"
+                      rz-slider-high="$ctrl.slider.maxValue"
+                      rz-slider-options="$ctrl.slider.options"></rzslider>
+
+            <!--<div class="minMaxInputWrapper">-->
+                <!--<label>от</label>-->
+                <!--<input type="text" value="" placeholder="10" ng-pattern-restrict="^[0-9]*$" ng-model="$ctrl.price.min" ng-blur="$ctrl.sortByPrice()"/>-->
+            <!--</div>-->
+            <!--<div class="minMaxInputWrapper">-->
+                <!--<label>до</label>-->
+                <!--<input type="text" value="" placeholder="5000" ng-pattern-restrict="^[0-9]*$" ng-model="$ctrl.price.max" ng-blur="$ctrl.sortByPrice()"/>-->
+            <!--</div>-->
         </div>
         <!--<div class="checkbo">-->
             <!--<input type="checkbox" id="123" name="option" value="a"/>-->
