@@ -2,7 +2,7 @@ angular.module('app')
     .service('User', ['Httpquery', '$cookies', '$rootScope',  function (Httpquery, $cookies, $rootScope) {
             if (!$cookies.get('currency')) $cookies.put('currency', 'UAH');
 
-            // this.activeMenu =  0;
+            this.activeMenu =  0;
 
             var active = null;
 

@@ -20,7 +20,6 @@ angular.module('app')
 
             self.songs = [];
             this.$onInit = function () {
-<<<<<<< HEAD
                 HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
                     // self.songs = res.map(function (el){
                     //         return {
@@ -41,17 +40,6 @@ angular.module('app')
                     // });
                      self.showPlayer = true;
                 })
-=======
-                // HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
-                //     angularPlayer.addTrack({
-                //         id: res[0].uuid,
-                //         title: res[0].uuid,
-                //         artist: res[0].name,
-                //         url: 'http://95.46.99.177/api/file/' + res[0].uuid
-                //     });
-                //     self.showPlayer = true;
-                // })
->>>>>>> 091bc593bfdd91e0bf5162d4ab7b2eb5711aad87
             };
             self.volume = 's-21';
             self.volumeSlider = {

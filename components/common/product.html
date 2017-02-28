@@ -59,13 +59,13 @@
             <span ng-if="!$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
             <strike ng-show="$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</strike>
             <div class="likesWrap">
-                <i class="fa fa-heart" ng-show="$ctrl.User.active&&$ctrl.product.def" aria-hidden="true"
+                <i class="fa fa-heart" ng-show="$ctrl.user&&$ctrl.product.def" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.cart.delFromDeferred($ctrl.product)"
                    modal="delDef"></i>
-                <i class="fa fa-heart-o" ng-show="$ctrl.User.active&&!$ctrl.product.def" aria-hidden="true"
+                <i class="fa fa-heart-o" ng-show="$ctrl.user&&!$ctrl.product.def" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.cart.addToDeferred($ctrl.product)"
                    modal="doneDef"></i>
-                <i class="fa fa-heart-o" ng-show="!$ctrl.User.active" aria-hidden="true"
+                <i class="fa fa-heart-o" ng-show="!$ctrl.user" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();"
                    modal="cancelAdd"></i>
             </div>

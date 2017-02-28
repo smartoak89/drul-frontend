@@ -25,21 +25,18 @@ app.constant('Conf', {
 
 app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', function(User, $location, $state, $rootScope, $anchorScroll) {
 
-    $rootScope.$on('$stateChangeStart', function (ev, toState) {
+    $rootScope.$on('$stateChangeStart', function () {
         var adminPermission;
         var adminSection = $rootScope.adminSection = ($location.path().search('admin') == -1) == false;
 
         var activeUser = User.get();
 
-        console.log('userssss', activeUser);
-
-        // if (activeUser !== null) {
-        //     adminPermission = (activeUser.permission.indexOf('administrator') == -1) == false;
-        //     console.log('adminPerm', adminPermission);
-        // }
+        if (activeUser !== null && activeUser.permission) {
+            adminPermission = (activeUser.permission.indexOf('administrator') == -1) == false;
+        }
         //
         // if (adminSection && !adminPermission) {
-        //     // $location.path('/not-allowed');
+        //     $location.path('/not-allowed');
         // }
     });
 
@@ -114,5 +111,12 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         //         }
         //     }]
         // }
+    });
+    $stateProvider.state('not-allowed', {
+        url: "/not-allowed",
+        views: {
+            '': {template: "<template-common></template-common>"},
+            'content@index': {template: "<front-content></front-content>"}
+        }
     });
 }]);
