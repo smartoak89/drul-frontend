@@ -18,7 +18,7 @@ angular.module('app')
                 console.log(User);
                 var self = this;
                 $http({
-                    url: Conf.api_path + '/deferred/' + User.active.uuid + '/' + product.uuid,
+                    url: Conf.api_path + '/deferred/' + User.get().uuid + '/' + product.uuid,
                     method: 'PUT'
                 }).then(function (res) {
                     console.info('res', res);
@@ -38,7 +38,7 @@ angular.module('app')
             },
             delFromDeferred: function(product) {
                 var self = this;
-                Httpquery.delete({params1:'deferred', params2: User.active.uuid, params3: product.uuid}, function(res){
+                Httpquery.delete({params1:'deferred', params2: User.get().uuid, params3: product.uuid}, function(res){
                     console.log(res);
                     _.remove(self.defList, {uuid: product.uuid});
                     // self.defList.splice(_.findIndex(self.defList, {uuid: product.uuid}),1);
@@ -49,7 +49,7 @@ angular.module('app')
             },
             delFromCart: function(product) {
                 var self = this;
-                Httpquery.delete({params1:'cart', params2: User.active.uuid, params3: product.uuid}, function(res){
+                Httpquery.delete({params1:'cart', params2: User.get().uuid, params3: product.uuid}, function(res){
                     console.log(res);
                     self.cartList.splice(_.findIndex(self.cartList, {uuid: product.uuid}),1);
                 }, function(err){
@@ -67,18 +67,18 @@ angular.module('app')
                 var defer = $q.defer();
                 var user = User.get();
                 if (user) {
-                    console.info('user defined', user);
-                    if (self.cartList === null) {
+                    // if (self.cartList === null) {
                         //console.log(user.uuid);
                         Httpquery.query({params1: 'cart', params2: user.uuid}, function (res) {
                             //$log.info('response cartList ', res);
                             defer.resolve(res);
+                            console.log('resolve', res);
                             self.cartList = res;
                         }, function (err) {
                             console.log(err);
                             defer.reject(err);
-                        })
-                    }
+                        });
+                    // }
                     return defer.promise;
                 }
                 //TODO: user is not active
@@ -88,9 +88,8 @@ angular.module('app')
                 var defer = $q.defer();
                 var user = User.get();
                 if (user) {
-                    if (self.defList === null) {
+                    // if (self.defList === null) {
                         Httpquery.query({params1: 'deferred', params2: user.uuid}, function (res) {
-                            //$log.info('response defList ', res);
                             defer.resolve(res);
                             self.defList = res;
                         }, function (err) {
@@ -98,7 +97,7 @@ angular.module('app')
                             defer.reject(err);
                         });
                         return defer.promise;
-                    }
+                    // }
                 }
                 //TODO: user is not active
             },
@@ -128,11 +127,11 @@ angular.module('app')
             },
             replace: function(product, data){
                 var self =this;
-                Httpquery.delete({params1:'deferred', params2: User.active.uuid, params3: product.uuid}, function(res){
+                Httpquery.delete({params1:'deferred', params2: User.get().uuid, params3: product.uuid}, function(res){
                     console.log(res);
                     self.defList.splice(_.findIndex(self.defList, {uuid: product.uuid}),1);
                     $http({
-                        url: Conf.api_path + '/cart/' + User.active.uuid + '/' + product.uuid,
+                        url: Conf.api_path + '/cart/' + User.get().uuid + '/' + product.uuid,
                         method: 'PUT',
                         data: data
                     }).then(function (res) {

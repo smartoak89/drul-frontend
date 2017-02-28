@@ -8,22 +8,22 @@
     </tr>
     <tr>
         <td>Имя</td>
-        <td>{{$ctrl.User.active.firstname}}</td>
+        <td>{{$ctrl.User.firstname}}</td>
         <td></td>
     </tr>
     <tr>
         <td>Фамилия</td>
-        <td>{{$ctrl.User.active.lastname}}</td>
+        <td>{{$ctrl.User.lastname}}</td>
         <td></td>
     </tr>
     <tr>
         <td>Моб. номер</td>
-        <td>{{$ctrl.User.active.phone}}</td>
+        <td>{{$ctrl.User.phone}}</td>
         <td></td>
     </tr>
     <tr>
         <td>Эл. почта</td>
-        <td>{{$ctrl.User.active.email}}</td>
+        <td>{{$ctrl.User.email}}</td>
         <td></td>
     </tr>
     <tr>
@@ -54,7 +54,7 @@
         <td>Имя</td>
         <td>
             <div class="form-group">
-                <input class="form-control" placeholder="Имя" value="{{$ctrl.User.active.firstname}}" ng-model="$ctrl.user.firstname">
+                <input class="form-control" placeholder="Имя" value="{{$ctrl.user.firstname}}" ng-model="$ctrl.user.firstname">
             </div>
         </td>
         <td></td>
@@ -63,7 +63,7 @@
         <td>Фамилия</td>
         <td>
             <div class="form-group">
-                <input class="form-control" placeholder="Фамилия" value="{{$ctrl.User.active.lastname}}" ng-model="$ctrl.user.lastname">
+                <input class="form-control" placeholder="Фамилия" value="{{$ctrl.user.lastname}}" ng-model="$ctrl.user.lastname">
             </div>
         </td>
         <td></td>
@@ -72,7 +72,7 @@
         <td>Моб. номер</td>
         <td>
             <div class="form-group">
-                <input data-mask="phone_us" class="form-control" placeholder="Моб. номер" value="{{$ctrl.User.active.phone}}" ng-model="$ctrl.user.phone">
+                <input data-mask="phone_us" class="form-control" placeholder="Моб. номер" value="{{$ctrl.user.phone}}" ng-model="$ctrl.user.phone">
             </div>
         </td>
         <td></td>
@@ -81,7 +81,7 @@
         <td>Эл. почта</td>
         <td>
             <div class="form-group">
-                <input class="form-control" placeholder="Эл. почта" value="{{$ctrl.User.active.email}}" ng-model="$ctrl.user.email">
+                <input class="form-control" placeholder="Эл. почта" value="{{$ctrl.user.email}}" ng-model="$ctrl.user.email">
             </div>
         </td>
         <td></td>

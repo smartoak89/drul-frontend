@@ -14,11 +14,11 @@ angular.module('app')
             this.class3 = 'wrapB';
             this.class1 = 's-2';
             this.class2 = 's-3';
-            self.User = User;
+            self.user = User.get();
             self.Conf = Conf;
             this.addToCart = function () {
                 var self = this;
-                if (User.checkUser()) {
+                if (self.user) {
                     return Cart.save(self.product.uuid);
                 }
                 Cart.addToCart(this.product);

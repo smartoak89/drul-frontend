@@ -8,18 +8,18 @@ angular.module('app')
         },
         controller: ['Cart', 'User','OrderService', '$cookies', '$anchorScroll', function(Cart, User, OrderService, $cookies, $anchorScroll) {
             var self = this;
-            self.user = User;
+            var user = User.get();
             self.cart = Cart;
             self.error = '';
 
             this.$onInit = function () {
                 self.orderSuccess = false;
                 self.orderMake = {
-                    firstname: self.user.active.firstname,
-                    lastname: self.user.active.lastname,
-                    state: self.user.active.state,
-                    phone: self.user.active.phone,
-                    email: self.user.active.email,
+                    firstname: user.firstname,
+                    lastname: user.lastname,
+                    state: user.state,
+                    phone: user.phone,
+                    email: user.email,
                     currency:  $cookies.get('currency') || 'UAH',
                     products: []
                 }
@@ -30,8 +30,9 @@ angular.module('app')
                     var price = 0;
                     _.each(self.order, function (product, index) {
                         price = price + (product.price * product.counter);
+                        console.log('productMake', product);
                         self.orderMake.products[index] = {
-                            productID: product.product_uuid,
+                            productID: product.uuid,
                             combo: product.combo,
                             count: product.counter,
                             price: product.price

@@ -30,7 +30,7 @@ angular.module('app')
                 });
             };
             self.makeOrder = function() {
-                if (self.user.active == null) {
+                if (User.get() == null) {
                     self.clickToMod();
                 } else {
                     $anchorScroll(0);

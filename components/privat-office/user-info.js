@@ -3,8 +3,7 @@ angular.module('app')
         templateUrl: "components/privat-office/user-info.html",
         controller: ['User', 'Httpquery', function(User, Httpquery) {
             var self = this;
-            this.User = User;
-            this.user = {};
+            this.User = User.get();
             this.error = null;
             this.editmode = false;
 
@@ -15,7 +14,8 @@ angular.module('app')
                     if (err) return self.error = err;
 
                     Httpquery.put({params1: 'user', params2: self.user.uuid}, self.user, function (res) {
-                        User.active = res;
+                        User.set(res);
+                        self.User = res;
                         self.editmode = false;
                         self.error = null;
                     }, function (err) {
@@ -26,7 +26,7 @@ angular.module('app')
             };
 
             this.copy = function () {
-                self.user = angular.copy(self.User.active);
+                self.user = angular.copy(self.User);
             };
 
 

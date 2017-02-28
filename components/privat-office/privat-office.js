@@ -7,6 +7,7 @@ angular.module('app')
             self.cart = Cart;
             self.orders = [];
             self.Conf = Conf;
+
             this.$onInit = function () {
                 self.OrderServ = OrderService;
                 OrderService.getListHistoryOrders(function (err, res) {
@@ -18,17 +19,9 @@ angular.module('app')
                 })
             };
 
-            //self.countPlus = function(){
-            //    self.counter++;
-            //};
-            //
-            //self.countMinus = function(){
-            //    self.counter--;
-            //};
             self.goToProduct = function (product) {
                 $location.path('/product/' + product.uuid);
             };
-            //this.cartList = Cart.list();
 
         }]
     });

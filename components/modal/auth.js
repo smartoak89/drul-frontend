@@ -11,21 +11,21 @@ angular.module('app')
 
                     User.set(res);
 
-                    // if(Cart.cartList != null && Cart.cartList != []){
-                    //     angular.forEach(Cart.cartList, function(prod){
-                    //         console.log(prod);
-                    //         $scope.savePro.image = prod.image;
-                    //         $scope.savePro.combo = prod.combo;
-                    //         Cart.save(prod, $scope.savePro)
-                    //     });
-                    //     Cart.cartList = null;
-                    //     Cart.list().then(function(){
-                    //         angular.forEach(Cart.cartList, function(prod){
-                    //             prod.counter = 1;
-                    //         })
-                    //     });
-                    //
-                    // }
+                    if(Cart.cartList != null && Cart.cartList != []){
+                        angular.forEach(Cart.cartList, function(prod){
+                            console.log(prod);
+                            $scope.savePro.image = prod.image;
+                            $scope.savePro.combo = prod.combo;
+                            Cart.save(prod, $scope.savePro)
+                        });
+                        Cart.cartList = null;
+                        Cart.list().then(function(){
+                            angular.forEach(Cart.cartList, function(prod){
+                                prod.counter = 1;
+                            })
+                        });
+
+                    }
                     $scope.close();
                 }, function (ex) {
                     $scope.error = ex.data.message;

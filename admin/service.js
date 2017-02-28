@@ -442,7 +442,6 @@ angular.module('admin')
             getOneOrder: function (id, callback) {
                 HttpResource.get({params1: 'order', params2: id}, function (res) {
                     getAllProducts(res, callback)
-                    // console.log(res);
                 }, function (err) {
                     callback(err);
                 })
@@ -451,28 +450,18 @@ angular.module('admin')
 
         function getAllProducts(order, callback) {
             var promises = [];
-            // console.log(order);
             _.each(order.products, function (product) {
                 promises.push($q(function (resolve, reject) {
                     HttpResource.get({params1: 'product', params2: product.productID}, function (res) {
-                        // console.log(res);
-                        res.count = product.count;
                         var allCombos = angular.copy(res.combo);
+                        res.count = product.count;
                         res.combo = product.combo;
-                        // res.price = product.price;
                         product = res;
                         product.allCombos = allCombos;
 
-                        //delete product._id;
-                        //delete product.category;
-                        //delete product.created;
-                        //delete product.description;
-                        //delete product.show;
-                        //delete product.sublines;
-
                         HttpResource.query({params1: 'files', params2: res.uuid, type: "main"}, function (image) {
                             product.image = image[0].uuid;
-                            product.productID = res.uuid
+                            product.productID = res.uuid;
                             resolve(product);
                         });
                     }, function (err) {
