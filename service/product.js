@@ -130,14 +130,16 @@ angular.module('app')
                             if(!Array.isArray(products)){
                                 var stock = _.find(self.stocksList, {uuid: products.stock});
                                 if (stock) {
-                                    products.stockCost = Math.round(products.price - ( products.price * stock.percent / 100 ));
+                                    products.oldPrice = angular.copy(products.price);
+                                    products.price = Math.round(products.oldPrice - ( products.oldPrice * stock.percent / 100 ));
                                 } else products.stockCost = null
                             }else {
                                 _.each(products, function (el) {
                                     var stock = _.find(self.stocksList, {uuid: el.stock});
                                     if (stock) {
-                                        el.stockCost = Math.round(el.price - ( el.price * stock.percent / 100 ));
-                                    } else el.stockCost = null
+                                        el.oldPrice = angular.copy(el.price);
+                                        el.price = Math.round(el.oldPrice - ( el.oldPrice * stock.percent / 100 ));
+                                    } else el.oldPrice = null
                                 });
                             }
                             resolve(products);

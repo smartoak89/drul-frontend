@@ -19,14 +19,18 @@ angular.module('app')
             };
             self.$onInit = function() {
                 var self = this;
+
                 if (self.user) self.admin = self.user.permission == 'administrator' ? true : false;
                 if(self.Product.products === null){
+
+                if(self.Product.products.length == 0){
                     self.Product.getCurProd($location.url().split('/').pop()).then(function(){
                         self.Product.changeCurrency([self.Product.curProd]).then(function(){
                             self.Product.countStock(self.Product.curProd).then(function(){
 
                             });
-                            if(_.find(self.cart.defList, {uuid: self.Product.curProd.uuid})){
+
+                            if (_.find(self.cart.defList, {uuid: self.Product.curProd.uuid})){
                                 self.Product.curProd.def = true;
                             }else{
                                 self.Product.curProd.def = false;
@@ -52,6 +56,7 @@ angular.module('app')
                     });
                 }else{
                     self.Product.curProd = _.find(self.Product.products, {uuid: $location.url().split('/').pop()});
+                    console.log(self.Product.curProd);
                     self.Product.curProd.currency = $cookies.get('currency');
                     self.curProdCheck = {
                         image: self.Product.curProd.photo.uuid,
@@ -68,7 +73,7 @@ angular.module('app')
                     if (self.user) accessFormReviews();
                 }
 
-            };
+            }
             self.zoomOptionsGallery01 = {
                 scrollZoom: false,
                 zoomWindowWidth: 400,

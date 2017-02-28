@@ -166,6 +166,7 @@ angular.module('app')
                 })
                 }
                 function addGal () {
+                    console.log('addgal')
                     _.forEach(products, function(elem){
                         if(_.find(self.defList, {uuid: elem.uuid})){
                             self.defList[_.findIndex(self.defList, {uuid: elem.uuid})].gallery = elem.gallery;

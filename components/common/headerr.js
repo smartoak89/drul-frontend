@@ -71,8 +71,8 @@ angular.module('app')
                         self.songs[i].id = '' + i;
                         angularPlayer.addTrack(newSong);
                     }
-                    angularPlayer.play()
-                })
+                    angularPlayer.play();
+                });
 
             });
 
