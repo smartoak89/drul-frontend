@@ -3,7 +3,7 @@ angular.module('admin')
         function($uibModalInstance, $scope, Goods, HttpResource, modalData){
             $scope.curProd = modalData.product;
             console.log($scope.curProd);
-            $scope.curProd.count = 0;
+            $scope.curProd.count = 1;
             if(!$scope.curProd.image){
                 $scope.curProd.image = angular.copy($scope.curProd.photo.uuid);
             }

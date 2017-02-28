@@ -59,9 +59,15 @@
             <span ng-if="!$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
             <strike ng-show="$ctrl.product.stockCost">{{$ctrl.product.price + " " + $ctrl.product.currency}}</strike>
             <div class="likesWrap">
-                <i class="fa " ng-class="$ctrl.product.def?'fa-heart':'fa-heart-o'" aria-hidden="true"
-                   ng-click="$ctrl.product.def?$ctrl.cart.delFromDeferred($ctrl.product):$ctrl.cart.addToDeferred($ctrl.product); $event.preventDefault(); $event.stopPropagation();"
-                   modal="{{$ctrl.User.active?$ctrl.product.def?'delDef':'doneDef':'cancelAdd'}}"></i>
+                <i class="fa fa-heart" ng-show="$ctrl.User.active&&$ctrl.product.def" aria-hidden="true"
+                   ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.cart.delFromDeferred($ctrl.product)"
+                   modal="delDef"></i>
+                <i class="fa fa-heart-o" ng-show="$ctrl.User.active&&!$ctrl.product.def" aria-hidden="true"
+                   ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.cart.addToDeferred($ctrl.product)"
+                   modal="doneDef"></i>
+                <i class="fa fa-heart-o" ng-show="!$ctrl.User.active" aria-hidden="true"
+                   ng-click="$event.preventDefault(); $event.stopPropagation();"
+                   modal="cancelAdd"></i>
             </div>
         </div>
     </div>

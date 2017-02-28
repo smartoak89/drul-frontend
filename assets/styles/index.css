@@ -8,6 +8,9 @@ body{
 button:focus{
     outline: none !important;
 }
+a {
+    cursor: pointer;
+}
 .prevs{
     height: 60px;
     background: transparent;
@@ -526,7 +529,8 @@ section {
     color: #000;
     font-size: 20px;
 }
-.likesWrap > .fa-heart:before{
+.likesWrap > .fa-heart:before,
+.buttonsCard > button > .fa-heart:before{
     color: #ad2020;
 }
 .butWrappProd > .wrapB{
@@ -1345,6 +1349,7 @@ input[type=radio]:checked + label:before {
 .office .tab-content>.tab-pane,
 .cartMain .tab-content>.tab-pane{
     padding: 45px 35px;
+    min-height: calc(100vh - 270px);
 }
 .office .nav>li>a,
 .cartMain .nav>li>a{
@@ -1486,6 +1491,7 @@ input[type=radio]:checked + label:before {
 .custom1 tbody>tr>td:nth-child(5)>div,
 .custom2 tbody>tr>td:nth-child(6)>div{
     margin:0 15px;
+    cursor: pointer;
 }
 .custom tbody>tr:nth-child(2n)>td,
 .custom1 tbody>tr:nth-child(2n)>td,
@@ -1504,6 +1510,12 @@ input::-webkit-inner-spin-button {
     display: flex;
     margin-top: 22px;
     margin-left: 10px;
+}
+.replaceWrap .counter,
+.modal-body .counter{
+    display: flex;
+    margin-top: 0;
+    margin-left: 0;
 }
 .counter > input{
     width: 35px;
@@ -2351,4 +2363,7 @@ order-detale table>tbody>tr>td>div>span{
 }
 admin-navigation .sidebar {
     position: fixed;
+}
+.replaceWrap{
+    margin: 0 30px;
 }

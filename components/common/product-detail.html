@@ -56,7 +56,15 @@
                         <!--$ctrl.cart.save($ctrl.Product.curProd)-->
                         <div class="buttonsCard">
                             <button type="button" class="btn btn-drul dark" ng-click="$ctrl.valueChecked()">Добавить в корзину</button>
-                            <button type="button" class="btn btn-drul" ng-click="$ctrl.cart.addToDeferred($ctrl.Product.curProd)" modal="doneDef">
+                            <button type="button" class="btn btn-drul" ng-show="$ctrl.user.active&&!$ctrl.Product.curProd.def" ng-click="$ctrl.cart.addToDeferred($ctrl.Product.curProd)" modal="doneDef">
+                                <div class="fa fa-heart-o"></div>
+                                отложить
+                            </button>
+                            <button type="button" class="btn btn-drul" ng-show="$ctrl.user.active&&$ctrl.Product.curProd.def" ng-click="$ctrl.cart.delFromDeferred($ctrl.Product.curProd)" modal="delDef">
+                                <div class="fa fa-heart"></div>
+                                отложено
+                            </button>
+                            <button type="button" class="btn btn-drul" ng-show="!$ctrl.user.active" modal="cancelAdd">
                                 <div class="fa fa-heart-o"></div>
                                 отложить
                             </button>

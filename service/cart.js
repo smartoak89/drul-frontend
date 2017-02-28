@@ -105,7 +105,7 @@ angular.module('app')
             save: function (product, data) {
                 var self = this;
                 //var userID = User.active.uuid;
-                console.log('UserActive', User);
+                console.log('Data', data);
 
                 $http({
                     url: Conf.api_path + '/cart/' + User.active.uuid + '/' + product.uuid,
@@ -126,18 +126,22 @@ angular.module('app')
                 //    console.log('errAddToCart', err);
                 //})
             },
-            replace: function(product){
+            replace: function(product, data){
                 var self =this;
                 Httpquery.delete({params1:'deferred', params2: User.active.uuid, params3: product.uuid}, function(res){
                     console.log(res);
-                    self.cartList.splice(_.findIndex(self.cartList, {uuid: product.uuid}),1);
-                    Httpquery.put({params1: 'cart', params2: User.active.uuid, params3: product.uuid}, function (res) {
-                        console.log('successAddToCart', res);
-                        console.log(self.cartList);
-                        self.cartList.push(res);
-                    }, function (err) {
-                        console.log('errAddToCart', err);
-                    })
+                    self.defList.splice(_.findIndex(self.defList, {uuid: product.uuid}),1);
+                    $http({
+                        url: Conf.api_path + '/cart/' + User.active.uuid + '/' + product.uuid,
+                        method: 'PUT',
+                        data: data
+                    }).then(function (res) {
+                        console.info('res', res);
+                        res.data.counter = 0;
+                        self.cartList.push(res.data);
+                    }, function(err) {
+                        console.info('error', err);
+                    });
                 }, function(err){
                     console.log(err);
                 });

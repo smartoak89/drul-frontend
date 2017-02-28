@@ -3,10 +3,10 @@
 
 <div class="cartMain">
     <div class="container-fluid" ng-if="!$ctrl.orderInfo">
-        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="$ctrl.cart.cartList.length == 0" style="height: 400px;">
-            <h1 class="text-center"><i class="fa fa-shopping-cart"></i></h1>
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="$ctrl.cart.cartList.length == 0" style="height: 400px; margin-top: 100px;">
+            <h1 class="text-center"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size: 45px"></i></h1>
             <h1 class="text-center">Ваша корзина пуста</h1>
-            <h4 class="text-center"><a href="#/" style="color: silver">Перейти на главную</a></h4>
+            <h4 class="text-center"><a href="#/" style="color: silver;font-weight: 300">Перейти на главную</a></h4>
         </div>
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="$ctrl.cart.cartList.length != 0">
             <h1>Корзина</h1>
@@ -24,7 +24,7 @@
                 <tr ng-repeat-start="product in $ctrl.cart.cartList">
                     <td>
                         <div class="marker red">sale</div>
-                        <img ng-src="{{$ctrl.Conf.api_path + '/file/' + product.image}}" class="img-responsive cover" alt=""></td>
+                        <img ng-src="{{$ctrl.Conf.api_path + 'api/file/' + product.image}}" class="img-responsive cover" alt=""></td>
                     <td>
                         <div class="namePrice">
                             <div>Артикул {{product.article}}</div>

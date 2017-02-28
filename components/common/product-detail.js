@@ -7,7 +7,7 @@ angular.module('app')
             self.cart = Cart;
             self.user = User;
             self.Conf = Conf;
-            console.log(self.user);
+            //console.log(self.user);
             self.Product = Product;
             self.curProdCheck = {};
             self.mesSuc = false;
@@ -25,18 +25,26 @@ angular.module('app')
                         self.Product.changeCurrency([self.Product.curProd]).then(function(){
                             self.Product.countStock(self.Product.curProd).then(function(){
 
-                            })
-                            self.curProdCheck = {
-                                image: self.Product.curProd.photo.uuid,
-                                combo: []
-                            };
-                            for (var i=0; i<self.Product.curProd.combo.length;i++) {
-                                self.curProdCheck.combo.push({
-                                    name: self.Product.curProd.combo[i].name,
-                                    slug: self.Product.curProd.combo[i].slug,
-                                    val: null
-                                });
+                            });
+                            if(_.find(self.cart.defList, {uuid: self.Product.curProd.uuid})){
+                                self.Product.curProd.def = true;
+                            }else{
+                                self.Product.curProd.def = false;
                             }
+                            if(self.Product.curProd.photo){
+                                self.curProdCheck = {
+                                    image: self.Product.curProd.photo.uuid,
+                                    combo: []
+                                };
+                                for (var i=0; i<self.Product.curProd.combo.length;i++) {
+                                    self.curProdCheck.combo.push({
+                                        name: self.Product.curProd.combo[i].name,
+                                        slug: self.Product.curProd.combo[i].slug,
+                                        val: null
+                                    });
+                                }
+                            }
+
                         });
 
                         self.Product.curProd.currency = $cookies.get('currency');

@@ -30,12 +30,12 @@ angular.module('app')
                     //         url: 'http://95.46.99.177/api/file/' + el.uuid
                     //     })
                     // });
-                    // self.showPlayer = true;
+                     self.showPlayer = true;
                 })
             };
             self.volume = 's-21';
             self.volumeSlider = {
-                value: 100,
+                value: 30,
                 options: {
                     showSelectionBar: true,
                     onChange: function () {
