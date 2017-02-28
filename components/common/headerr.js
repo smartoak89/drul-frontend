@@ -20,42 +20,16 @@ angular.module('app')
 
             self.songs = [];
             this.$onInit = function () {
-<<<<<<< HEAD
-                HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
-                    // self.songs = res.map(function (el){
-                    //         return {
-                    //             id: el.uuid,
-                    //             title: el.uuid,
-                    //             artist: el.name,
-                    //             url: 'http://95.46.99.177/api/file/' + el.uuid
-                    //         }
-                    // })
-                    // res.forEach(function (el) {
-                    //
-                    //     self.songs.push({
-                    //         id: el.uuid,
-                    //         title: el.type,
-                    //         artist: el.name,
-                    //         url: 'http://95.46.99.177/api/file/' + el.uuid
-                    //     })
-                    // });
+
+                 HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
+                     self.songs = res;
                      self.showPlayer = true;
-                })
-=======
-                // HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
-                //     angularPlayer.addTrack({
-                //         id: res[0].uuid,
-                //         title: res[0].uuid,
-                //         artist: res[0].name,
-                //         url: 'http://95.46.99.177/api/file/' + res[0].uuid
-                //     });
-                //     self.showPlayer = true;
-                // })
->>>>>>> 091bc593bfdd91e0bf5162d4ab7b2eb5711aad87
+                 })
+
             };
             self.volume = 's-21';
             self.volumeSlider = {
-                value: 30,
+                value: 100,
                 options: {
                     showSelectionBar: true,
                     onChange: function () {
@@ -85,55 +59,21 @@ angular.module('app')
 
             $rootScope.$on('angularPlayer:ready', function(event, data) {
 
-                // angularPlayer.addToPlaylist(
-                //     {
-                //         id: 'l.uuid',
-                //         title: 'el.uuid',
-                //         artist: 'el.name',
-                //         url: 'http://95.46.99.177/api/file/98e57600-acdc-4e08-bb2e-e8f3ceb80e3f'
-                //     }
-                // );
+                angularPlayer.clearPlaylist(function(data) {
+                    for (var i = 0; i < self.songs.length; i++) {
+                        var newSong = {
+                            id: '' + i,
+                            title: self.songs[i].name,
+                            artist: self.songs[i].type,
+                            url: 'http://95.46.99.177/api/file/' + self.songs[i].uuid
+                        }
+                        self.songs[i].id = '' + i;
+                        angularPlayer.addTrack(newSong);
+                    }
+                    angularPlayer.play()
+                })
 
-                // angularPlayer.addToPlaylist(
-                //     {
-                //         id: 'l.uuid',
-                //         title: 'el.uuid',
-                //         artist: 'el.name',
-                //         url: 'http://95.46.99.177/api/file/98e57600-acdc-4e08-bb2e-e8f3ceb80e3f'
-                //     }
-                // );
-
-                // angularPlayer.addTrack({
-                //     id: 'l.uuid',
-                //     title: 'el.uuid',
-                //     artist: 'el.name',
-                //     url: 'http://95.46.99.177/api/file/98e57600-acdc-4e08-bb2e-e8f3ceb80e3f'
-                // });
-
-                // angularPlayer.addToPlaylist({
-                //     id: 'l.uuid',
-                //     title: 'el.uuid',
-                //     artist: 'el.name',
-                //     url: 'http://95.46.99.177/api/file/98e57600-acdc-4e08-bb2e-e8f3ceb80e3f'
-                // });
-                // angularPlayer.playTrack(1)
-                angularPlayer.play()
-                // angularPlayer.repeatToggle();
-                // self.repeat = angularPlayer.getRepeatStatus();
             });
-            // $rootScope.$on('track:progress', function (t, d) {
-            //     console.log('d',d)
-            //     if(d >= 5) {
-            //        angularPlayer.initPlayTrack();
-            //         // angularPlayer.addTrack({
-            //         //     id: 'l.uuids',
-            //         //     title: 'el.uuisd',
-            //         //     artist: 'el.namse',
-            //         //     url: 'http://95.46.99.177/api/file/2c861042-53eb-4873-979d-0124e82f4e25'
-            //         // });
-            //         angularPlayer.play();
-            //     }
-            // })
 
         }]
     });
