@@ -149,10 +149,6 @@ angular.module('admin')
                 comb.value.splice(indexChild, 1);
                 self.updateComb(comb, parentIndex, callback);
             },
-            applyStock: function (product){
-                var stock = _.find(Stocks.stocksList, {uuid: product.stock});
-                product.stockCost = Math.round(product.price - ( product.price * stock.percent / 100 ));
-            },
             getCom: function(product){
                 HttpResource.query({params1: 'reviews', params2:product.uuid}, function(res){
                     product.comments = res;

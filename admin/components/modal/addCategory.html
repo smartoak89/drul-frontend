@@ -5,15 +5,15 @@
     <div class="modal-body">
         <div class="form-group">
             <label for="name">Название категории</label>
-            <input class="form-control" id="name" autocomplete="off" ng-model="category.name">
+            <input class="form-control" id="name" autocomplete="off" ng-model="category.name" ng-change="transliterate(category.name, 'link')">
         </div>
-        <div class="form-group">
-            <label for="link">Ссылка</label>
-            <input class="form-control" id="link" autocomplete="off" ng-model="category.link" ng-pattern-restrict="^[a-z0-9-]*$">
-            <small>Вы можете сгенерировать это поле автоматически (Вначале, заполните 'Название категории')</small>
-            <br>
-            <button type="button" ng-click="transliterate(category.name, 'link')" ng-disabled="!category.name" class="btn btn-default" data-dismiss="modal">Сгенерировать</button>
-        </div>
+        <!--<div class="form-group">-->
+            <!--<label for="link">Ссылка</label>-->
+            <!--<input class="form-control" id="link" autocomplete="off" ng-model="category.link" ng-pattern-restrict="^[a-z0-9-]*$">-->
+            <!--<small>Вы можете сгенерировать это поле автоматически (Вначале, заполните 'Название категории')</small>-->
+            <!--<br>-->
+            <!--<button type="button" ng-click="transliterate(category.name, 'link')" ng-disabled="!category.name" class="btn btn-default" data-dismiss="modal">Сгенерировать</button>-->
+        <!--</div>-->
         <div class="form-group">
             <label for="art">Артикль</label>
             <input class="form-control" id="art" autocomplete="off" ng-model="category.article">

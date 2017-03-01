@@ -23,8 +23,8 @@ angular.module('admin')
                 Stocks.list(function (stocks) {
                     self.stocks = stocks;
                     if (self.product.stock){
-                        self.currentStock = _.find(Stocks.stocksList, {uuid: self.product.stock});
-                        self.applyStock();
+                        self.currentStock = _.find(Stocks.stocksList, {uuid: self.product.stock.stock_id});
+                        // self.applyStock();
                     }
                 });
                 if(self.product.article)
@@ -76,13 +76,18 @@ angular.module('admin')
             };
 
             this.applyStock = function () {
-                if (!self.currentStock) {
-                    self.product.stock = '';
-                    delete self.product.stockCost;
+                if (!self.currentStock && self.product.stock) {
+                    self.product.price = self.product.stock.old_price;
+                    delete self.product.stock;
+                    // self.product.stock = {};
                     return;
                 }
-                self.product.stock = self.currentStock.uuid;
-                Goods.applyStock(self.product);
+                self.product.stock = {
+                    stock_id: self.currentStock.uuid,
+                    old_price: self.product.price
+                };
+                console.log('self.product', self.product);
+                applyStock(self.product);
             };
 
             this.addCategory = function (category, parent) {
@@ -113,6 +118,7 @@ angular.module('admin')
             };
 
             this.save = function () {
+                console.log('self.product', self.product);
                 if (isValid() !== true) return;
                 changeArticle();
                 delete self.product.gallery;
@@ -137,6 +143,12 @@ angular.module('admin')
                     i.alias = (ind === index) ? 'main' : 'gallery';
                 });
             };
+
+            function applyStock (product){
+                var stock = _.find(Stocks.stocksList, {uuid: product.stock.stock_id});
+                product.price = Math.round(product.stock.old_price - ( product.stock.old_price * stock.percent / 100 ));
+            }
+
             function changeArticle () {
                 self.product.article = self.categoryArticle.toLowerCase() + '_' + self.product.article.split('_').pop();
             }

@@ -1,0 +1,41 @@
+<div class="comment-content" ng-repeat="comm in $ctrl.product.comments" ng-if="comm.publish || $ctrl.isAdmin">
+    <h5 class="comment-author font-alt">
+        <a>{{comm.owner_name}}</a>
+        <div class="comment-meta font-alt">{{comm.created | date:'dd.MM.yyyy, H:mm'}}</div>
+    </h5>
+    <div class="comment-body">
+        <p>{{comm.body}}</p>
+        <div class="text-right" ng-if="$ctrl.isAdmin">
+            <button class="btn" modal-admin="review-remove">
+                <i class="fa fa-trash"></i>
+                Удалить
+            </button>
+            <button class="btn" ng-if="!comm.publish" modal-admin="review-publish">Опубликовать</button>
+        </div>
+        <hr class="">
+    </div>
+
+</div>
+
+<div class="comment-form" ng-if="$ctrl.accessFormReview || $ctrl.isAdmin">
+    <div class="row" style="margin: 0">
+        <form>
+            <div class="col-md-12">
+                <div class="form-group">
+                    <textarea id="message" name="message" ng-model="$ctrl.commBody.body" class="form-control" placeholder="Ваш отзыв..." rows="8"></textarea>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <div ng-if="$ctrl.error" class="callout callout-danger">
+                    <p>{{$ctrl.error}}</p>
+                </div>
+                <div ng-if="$ctrl.message" class="callout callout-success">
+                    <p>{{$ctrl.message}}</p>
+                </div>
+            </div>
+            <div class="col-md-12">
+                <button class="btn btn-drul dark" ng-click="$ctrl.sendComm()">Отправить</button>
+            </div>
+        </form>
+    </div>
+</div>
