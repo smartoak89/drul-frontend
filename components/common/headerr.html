@@ -42,18 +42,21 @@
                     <button type="button" class="btn btn-drul" data-modal="register">регистрация</button>
                 </li>
 
-                <li class="icon iconRig pull-right">
+                <li class="icon iconRig firstIcon pull-right">
                     <div class="s-3" ui-sref="index.cartMain" tooltip-placement="left" uib-tooltip="Корзина"></div>
                     <div class="countProd" ng-if="$ctrl.Cart.cartList.length > 0">{{$ctrl.Cart.cartList.length}}</div>
                 </li>
 
-                <li class="icon iconRig pull-right" ng-show="$ctrl.user" >
+                <li class="icon iconRig secondIcon pull-right" ng-show="$ctrl.user" >
                     <div class="s-2" ui-sref="index.privat-office" ng-click="$ctrl.User.activeMenu = 1" tooltip-placement="left" uib-tooltip="Избранное"></div>
                     <div class="countProd" ng-if="$ctrl.Cart.defList.length>0">{{$ctrl.Cart.defList.length}}</div>
                 </li>
 
                 <li class="icon iconRig pull-right" tooltip-placement="left" uib-tooltip="Поиск">
-                    <div class="s-1"></div>
+                    <div class="s-1" ng-click="$ctrl.search = !$ctrl.search"></div>
+                </li>
+                <li class="icon iconRig searchInputWrap pull-right">
+                    <input class="searchInput" ng-show="$ctrl.search">
                 </li>
             </ul>
         </div>

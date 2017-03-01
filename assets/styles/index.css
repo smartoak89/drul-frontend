@@ -67,6 +67,129 @@ a {
 .ui-select-container {
     min-width: 68px;
 }
+.searchInputWrap{
+    padding: 8px 0 !important;
+    margin-right: 20px !important;
+}
+
+.searchInput{
+    height: 29px;
+    width: 150px;
+    padding: 3px 5px;
+    font-size: 14px;
+}
+
+.searchInput:focus{
+    outline: none;
+    border: 1px solid #000;
+}
+
+.searchInput.ng-hide-add {
+    -webkit-animation:0.5s fadeOutLeft ease;
+    animation:0.5s fadeOutLeft ease;
+}
+
+.searchInput.ng-hide-remove {
+    -webkit-animation:0.5s flipInX ease;
+    animation:0.5s flipInX ease;
+}
+
+/* flip in */
+@-webkit-keyframes flipInX {
+    0% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+        opacity: 0;
+    }
+
+    40% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+    }
+
+    60% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        opacity: 1;
+    }
+
+    80% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    }
+
+    100% {
+        -webkit-transform: perspective(400px);
+        transform: perspective(400px);
+    }
+}
+
+@keyframes flipInX {
+    0% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        -ms-transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 90deg);
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+        opacity: 0;
+    }
+
+    40% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        -ms-transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -20deg);
+        -webkit-transition-timing-function: ease-in;
+        transition-timing-function: ease-in;
+    }
+
+    60% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        -ms-transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, 10deg);
+        opacity: 1;
+    }
+
+    80% {
+        -webkit-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        -ms-transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+        transform: perspective(400px) rotate3d(1, 0, 0, -5deg);
+    }
+
+    100% {
+        -webkit-transform: perspective(400px);
+        -ms-transform: perspective(400px);
+        transform: perspective(400px);
+    }
+}
+
+/* light speed out */
+@-webkit-keyframes fadeOutLeft {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+}
+
+@keyframes fadeOutLeft {
+    from {
+        opacity: 1;
+    }
+
+    to {
+        opacity: 0;
+        -webkit-transform: translate3d(-100%, 0, 0);
+        transform: translate3d(-100%, 0, 0);
+    }
+}
 
 .current i.caret:before {
     content: '';
@@ -146,7 +269,7 @@ a {
     margin: 0;
 }
 .placeTime{
-    padding: 17px 0 11px 0;
+    padding: 17px 0 21px 0;
     font-size: 16px;
 }
 .btn-drul{
@@ -164,14 +287,22 @@ a {
 }
 .singIn{
     padding: 7px 0;
+    margin-bottom: 3px;
 }
 .singUp{
     padding: 7px 0;
     margin-right: 5px;
+    margin-bottom: 3px;
 }
 .iconRig{
     margin-right: 25px;
     margin-left: 0;
+}
+.firstIcon{
+    padding: 18px 0 6px 0;
+}
+.secondIcon{
+    padding: 19px 0 20px 0
 }
 .na{
     height: 250px;
@@ -243,7 +374,7 @@ a {
     padding: 22px 20px;
 }
 .navigation > li:last-child{
-    border-right: 0px solid rgb(30,30,30);
+    border-right: 0 solid rgb(30,30,30);
 }
 
 .navigation > li:hover{
@@ -258,20 +389,21 @@ a {
     text-decoration: none;
 }
 section {
-    width: 100px;
+    width: 110px;
     height: auto;
     /*margin: 100px auto 0;*/
-    position: absolute;
+    position: relative;
     /*right: 20px;*/
+    margin-bottom: 16px;
 }
 
 #slider{
     width: 65px;
-    position: absolute;
+    position: relative;
 }
 #slider .rzslider {
     height: 1px;
-    margin: 28px 0 15px 25px;
+    margin: 28px 0 15px 15px;
 }
 #slider .rzslider .rz-bar{
     height: 1px;
@@ -295,9 +427,10 @@ section {
 }
 .volume {
     display: inline-block;
-    right: -25px;
+    right: 0;
+    top: 0;
     position: absolute;
-    margin-top: 18px;
+    margin-top: 19px;
     color: #fff;
     font-size: 20px;
 }
@@ -382,7 +515,7 @@ section {
 .bigBlock > a > div > img, .littleBlock > img{
     height: 100%;
     width:100%;
-    object-position: 0 30%;
+    object-position: 50% 50%;
 }
 .bigBlock > a > div > h2{
     color: #fff;
@@ -2370,4 +2503,9 @@ admin-navigation .sidebar {
 }
 .replaceWrap{
     margin: 0 30px;
+}
+@media screen and (max-width: 875px) {
+    .prevs{
+        height: 120px;
+    }
 }

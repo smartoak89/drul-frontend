@@ -1,7 +1,9 @@
 angular.module('app')
     .service('OrderService', ['Httpquery', 'User', function (Httpquery, User) {
 
-        var userId = User.get().uuid;
+        if(User.get()){
+            var userId = User.get().uuid;
+        }
 
         return {
             listHistoryOrders: [],
