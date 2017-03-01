@@ -8,14 +8,19 @@ angular.module('app')
             this.Cart = Cart;
             this.Cart.list();
             this.Cart.listDef();
+            self.search = false;
             this.logout = function () {
                 User.deactivate();
                 self.user = null;
+                self.Cart.cartList = null;
+                self.Cart.defList = null;
                 $location.path('/');
             };
 
             $rootScope.$on('userActivate', function () {
                 self.user = User.get();
+                self.Cart.list();
+                self.Cart.listDef();
             });
 
 

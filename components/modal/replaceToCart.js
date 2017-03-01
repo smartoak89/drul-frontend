@@ -21,18 +21,18 @@ angular.module('app')
         }
 
         $scope.error = null;
-        $scope.countPlus = function(){
-            $scope.curProd.count++;
-        };
-        $scope.countMinus = function(){
-            $scope.curProd.count--;
-            $scope.checkMinus();
-        };
-        $scope.checkMinus = function(){
-            if($scope.curProd.count < 1) {
-                $scope.curProd.count = 1;
-            }
-        };
+        //$scope.countPlus = function(){
+        //    $scope.curProd.count++;
+        //};
+        //$scope.countMinus = function(){
+        //    $scope.curProd.count--;
+        //    $scope.checkMinus();
+        //};
+        //$scope.checkMinus = function(){
+        //    if($scope.curProd.count < 1) {
+        //        $scope.curProd.count = 1;
+        //    }
+        //};
         $scope.change = function(){
             $scope.curProdCheck.counter = $scope.curProd.count;
             $scope.Cart.replace($scope.curProd, $scope.curProdCheck);

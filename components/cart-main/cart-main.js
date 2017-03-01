@@ -57,5 +57,21 @@ angular.module('app')
                     }
                 }
             }
+<<<<<<< HEAD
+            //self.$onInit = function() {
+            //    if (self.cart.cartList == null){
+            //        self.cart.list().then(function(){
+            //            Product.getGallery(self.cart.cartList);
+            //            Product.countStock(self.cart.cartList);
+            //            console.log(self.cart.cartList);
+            //        });
+            //    }else{
+            //        Product.countStock(self.cart.cartList);
+            //        console.log(self.cart.cartList);
+            //    }
+            //
+            //}
+=======
+>>>>>>> d70e2c72df128464105e9145117cc2c95b0b86a5
         }]
     });

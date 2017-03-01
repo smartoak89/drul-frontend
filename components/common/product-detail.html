@@ -51,6 +51,30 @@
                                 <label for="{{val + key}}"></label><span>{{val}}</span>
                             </div>
                         </div>
+<<<<<<< HEAD
+                        <!--$ctrl.cart.save($ctrl.Product.curProd)-->
+                        <div class="buttonsCard">
+                            <button type="button" class="btn btn-drul dark" ng-click="$ctrl.valueChecked()">Добавить в корзину</button>
+                            <button type="button" class="btn btn-drul" ng-show="$ctrl.user&&!$ctrl.Product.curProd.def" ng-click="$ctrl.cart.addToDeferred($ctrl.Product.curProd)" modal="doneDef">
+                                <div class="fa fa-heart-o"></div>
+                                отложить
+                            </button>
+                            <button type="button" class="btn btn-drul" ng-show="$ctrl.user&&$ctrl.Product.curProd.def" ng-click="$ctrl.cart.delFromDeferred($ctrl.Product.curProd)" modal="delDef">
+                                <div class="fa fa-heart"></div>
+                                отложено
+                            </button>
+                            <button type="button" class="btn btn-drul" ng-show="!$ctrl.user" modal="cancelAdd">
+                                <div class="fa fa-heart-o"></div>
+                                отложить
+                            </button>
+                        </div>
+                        <div class="alert alert-warning optCheckMes" ng-if="$ctrl.mesWar">
+                            Не все опции выбраны!
+                        </div>
+                        <div class="alert alert-success optCheckMes" ng-if="$ctrl.mesSuc">
+                            Товар добавлен в <a ui-sref="index.cartMain">корзину</a>!
+                        </div>
+=======
                     </div>
                     <!--$ctrl.cart.save($ctrl.product)-->
                     <div class="buttonsCard">
@@ -76,6 +100,7 @@
                     </div>
                     <div class="alert alert-success optCheckMes" ng-if="$ctrl.mesSuc">
                         Товар добавлен в <a ui-sref="index.cartMain">корзину</a>!
+>>>>>>> d70e2c72df128464105e9145117cc2c95b0b86a5
                     </div>
                 </div>
             </div>
