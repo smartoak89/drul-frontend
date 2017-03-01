@@ -19,14 +19,14 @@ angular.module('admin')
                 field: 'name',
                 titleClass:  'text-center',
                 cellClass:   'v-middle',
-                displayName: 'Name'
+                displayName: 'Название'
             };
             self.col_defs = [
                 {
                     field: 'link',
-                    displayName: 'Link'
+                    displayName: 'Ссылка'
                 },  {
-                    displayName:  'Function',
+                    displayName:  '',
                     cellTemplate: '<button ng-if="!row.branch.parent_uid" modal-admin="addCategory" ng-click="cellTemplateScope.add(row.branch)" class="btn btn-default btn-sm">Добавать подкатегорию</button>',
                     cellTemplateScope: {
                         add: function(obj) {
@@ -34,7 +34,7 @@ angular.module('admin')
                             self.categ.curIndex = _.findIndex(self.categ.categories, {uuid: obj.uuid});
                         }}
                 }, {
-                    displayName:  'Remove',
+                    displayName:  '',
                     cellTemplate: '<button ng-click="cellTemplateScope.delete(row.branch, tree_rows)" modal-admin="delCategory" class="btn btn-default btn-sm">Удалить</button>',
                     cellTemplateScope: {
                         delete: function(obj, tree){

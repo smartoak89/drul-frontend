@@ -8,8 +8,6 @@ angular.module('app')
 
             var self = this;
             this.cart = Cart;
-            this.product.currency = $cookies.get('currency');
-            this.stocks = Product.stocksList;
             this.class = 'wrapB';
             this.class3 = 'wrapB';
             this.class1 = 's-2';

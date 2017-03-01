@@ -1,8 +1,13 @@
 angular.module('app')
     .service('ReviewsService', ['Httpquery', 'User', 'OrderService', function (Httpquery, User, OrderService) {
         return {
+            list: function (product) {
+                Httpquery.query({params1: 'reviews', params2:product.uuid}, function(res){
+                    product.comments = res;
+                });
+            },
             addReviews: function (productId, reviews, callback) {
-                var userId = User.active.uuid;
+                var userId = User.get().uuid;
                 var self = this;
 
                 Httpquery.save({params1: 'reviews', params2: productId, params3: userId}, reviews, function (res) {

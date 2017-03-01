@@ -23,7 +23,7 @@
                 <tbody>
                 <tr ng-repeat-start="product in $ctrl.cart.cartList">
                     <td>
-                        <div class="marker red">sale</div>
+                        <div class="marker red" ng-if="product.stock">sale</div>
                         <img ng-src="{{$ctrl.Conf.api_path + 'api/file/' + product.image}}" class="img-responsive cover" alt=""></td>
                     <td>
                         <div class="namePrice">
@@ -45,8 +45,8 @@
                     </td>
                     <td>
                         <div class="namePrice">
-                            <span>{{product.price}} грн</span>
-                            <strike ng-if="product.oldPrice">{{product.oldPrice}} грн</strike>
+                            <span>{{product.price}} {{product.currency}}</span>
+                            <strike ng-if="product.stock">{{product.stock.old_price}} грн</strike>
                             <div class="marCustom1">Цена указана без учета доставки</div>
                         </div>
                     </td>

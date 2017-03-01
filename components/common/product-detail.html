@@ -1,58 +1,57 @@
 <!--Navigator-->
 <nav-cus></nav-cus>
 
-    <div class="container-fluid">
-        <div class="row pad15">
-            <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
-                <!--<zoom mark-height="100" mark-width="100" src="{{'/api/file/' + product.photo.uuid}}" zoom-lvl="4"></zoom>-->
+<div class="container-fluid">
+    <div class="row pad15">
+        <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
+            <!--<zoom mark-height="100" mark-width="100" src="{{'/api/file/' + product.photo.uuid}}" zoom-lvl="4"></zoom>-->
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <img dynamic class="cover img-responsive" id="zoom_03"
+                         ng-src="{{$ctrl.Conf.api_path + '/file/' + $ctrl.product.photo.uuid}}"
+                         data-zoom-image="{{$ctrl.Conf.api_path + '/file/' + $ctrl.product.photo.uuid}}"
+                         ng-init="$ctrl.initImg()"
+                         ng-if="$ctrl.product.photo.uuid"
+                         no-image
+                         ez-plus
+                         ezp-model="$ctrl.zoomModelGallery01"
+                         ezp-options="$ctrl.zoomOptionsGallery01"/>
 
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <img dynamic class="cover img-responsive" id="zoom_03"
-                             ng-src="{{$ctrl.Conf.api_path + '/file/' + $ctrl.Product.curProd.photo.uuid}}"
-                             data-zoom-image="{{$ctrl.Conf.api_path + '/file/' + $ctrl.Product.curProd.photo.uuid}}"
-                             ng-init="$ctrl.initImg()"
-                             ng-if="$ctrl.Product.curProd.photo.uuid"
-                             no-image
-                             ez-plus
-                             ezp-model="$ctrl.zoomModelGallery01"
-                             ezp-options="$ctrl.zoomOptionsGallery01"
-                        />
-                        <div id="gallery_01" class="galleryWrap">
-                            <a class="imageWrap"
-                               ng-repeat="photo in $ctrl.Product.curProd.gallery"
-                               ng-click="$ctrl.setActiveImageInGallery('zoomModelGallery01', photo.uuid);"
+                    <div id="gallery_01" class="galleryWrap">
+                        <a class="imageWrap"
+                           ng-repeat="photo in $ctrl.product.gallery"
+                           ng-click="$ctrl.setActiveImageInGallery('zoomModelGallery01', photo.uuid);"
 
-                               data-image="{{$ctrl.Conf.api_path + '/file/' + photo.uuid}}"
-                               data-zoom-image="{{$ctrl.Conf.api_path + '/file/' + photo.uuid}}">
-                                <img class="cover img-responsive img-thumbnail" ng-src="{{$ctrl.Conf.api_path}}/file/{{photo.uuid}}"/>
-                            </a>
-                        </div>
+                           data-image="{{$ctrl.Conf.api_path + '/file/' + photo.uuid}}"
+                           data-zoom-image="{{$ctrl.Conf.api_path + '/file/' + photo.uuid}}">
+                            <img class="cover img-responsive img-thumbnail" ng-src="{{$ctrl.Conf.api_path}}/file/{{photo.uuid}}"/>
+                        </a>
                     </div>
                 </div>
             </div>
-            <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
-                <div class="row">
-                    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                        <p class="categCard" ng-repeat="cat in $ctrl.Product.curProd.category.name">{{cat}}</p>
+        </div>
+        <div class="col-lg-7 col-md-7 col-sm-7 col-xs-12">
+            <div class="row">
+                <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <p class="categCard" ng-repeat="cat in $ctrl.product.category.name">{{cat}}</p>
 
-                        <div class="artNameCard">
-                            <div>Артикул {{$ctrl.Product.curProd.article}}</div>
-                            <p id="goodNameCard">{{$ctrl.Product.curProd.name}}</p>
-                        </div>
-                        <div class="descriptionCard">{{$ctrl.Product.curProd.description}}</div>
-                        <div class="priceCard"><span>{{$ctrl.Product.curProd.price + ' ' + $ctrl.Product.curProd.currency}}</span>
-                            <strike ng-if="$ctrl.Product.curProd.oldPrice">{{$ctrl.Product.curProd.oldPrice + ' ' + $ctrl.Product.curProd.currency}}</strike>
-                        </div>
-                        <hr class="marCard"/>
-                        <div class="sizeCard" ng-repeat="value in $ctrl.Product.curProd.combo">{{value.name}}
-                            <div class="sizeCardDis">
-                                <div class="checkbo" ng-repeat="(key, val) in value.values">
-                                    <input type="radio" id="{{val + key}}" name="{{value.name}}" value="{{val}}" ng-model="$ctrl.curProdCheck.combo[$parent.$index].val"/>
-                                    <label for="{{val + key}}"></label><span>{{val}}</span>
-                                </div>
+                    <div class="artNameCard">
+                        <div>Артикул {{$ctrl.product.article}}</div>
+                        <p id="goodNameCard">{{$ctrl.product.name}}</p>
+                    </div>
+                    <div class="descriptionCard">{{$ctrl.product.description}}</div>
+                    <div class="priceCard"><span>{{$ctrl.product.price + ' ' + $ctrl.product.currency}}</span>
+                        <strike ng-if="$ctrl.product.oldPrice">{{$ctrl.product.oldPrice + ' ' + $ctrl.productcurrency}}</strike>
+                    </div>
+                    <hr class="marCard"/>
+                    <div class="sizeCard" ng-repeat="value in $ctrl.product.combo">{{value.name}}
+                        <div class="sizeCardDis">
+                            <div class="checkbo" ng-repeat="(key, val) in value.values">
+                                <input type="radio" id="{{val + key}}" name="{{value.name}}" value="{{val}}" ng-model="$ctrl.curProdCheck.combo[$parent.$index].val"/>
+                                <label for="{{val + key}}"></label><span>{{val}}</span>
                             </div>
                         </div>
+<<<<<<< HEAD
                         <!--$ctrl.cart.save($ctrl.Product.curProd)-->
                         <div class="buttonsCard">
                             <button type="button" class="btn btn-drul dark" ng-click="$ctrl.valueChecked()">Добавить в корзину</button>
@@ -75,98 +74,66 @@
                         <div class="alert alert-success optCheckMes" ng-if="$ctrl.mesSuc">
                             Товар добавлен в <a ui-sref="index.cartMain">корзину</a>!
                         </div>
+=======
+                    </div>
+                    <!--$ctrl.cart.save($ctrl.product)-->
+                    <div class="buttonsCard">
+                        <button type="button" class="btn btn-drul dark" ng-click="$ctrl.valueChecked()">Добавить в корзину</button>
+                        <button type="button" class="btn btn-drul" ng-show="$ctrl.user.active&&!$ctrl.product.def" ng-click="$ctrl.cart.addToDeferred($ctrl.product)" modal="doneDef">
+                            <div class="fa fa-heart-o"></div>
+                            отложить
+                        </button>
+                        <button type="button" class="btn btn-drul" ng-show="$ctrl.user.active&&$ctrl.product.def" ng-click="$ctrl.cart.delFromDeferred($ctrl.product)" modal="delDef">
+                            <div class="fa fa-heart"></div>
+                            отложено
+                        </button>
+                        <button type="button" class="btn btn-drul" ng-show="!$ctrl.user.active" modal="cancelAdd">
+                            <div class="fa fa-heart-o"></div>
+                            отложить
+                        </button>
+                    </div>
+                    <div class="alert alert-warning optCheckMes" ng-if="$ctrl.mesWar">
+                        Не все опции выбраны!
+                    </div>
+                    <div class="alert alert-success optCheckMes" ng-if="$ctrl.mesSuc">
+                        Товар добавлен в <a ui-sref="index.cartMain">корзину</a>!
+>>>>>>> d70e2c72df128464105e9145117cc2c95b0b86a5
                     </div>
                 </div>
             </div>
         </div>
-        <div class="row">
-            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                <ul id="myTab" role="tablist" class="nav nav-tabs">
-                    <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab"
-                                                              data-toggle="tab">О товаре</a></li>
-                    <li role="presentation"><a href="#comm" aria-controls="comm" role="tab" data-toggle="tab">Отзывы</a>
-                    </li>
-                </ul>
-                <div class="tab-content">
-                    <div id="about" role="tabpanel" class="tab-pane active">
-                        <div class="row" style="margin: 0">
-                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                                <table class="table">
-                                    <tbody>
-                                    <tr ng-repeat="sub in $ctrl.Product.curProd.sublines" >
-                                        <td>{{sub.name}}</td>
-                                        <td>{{sub.value}}</td>
-                                    </tr>
-                                    </tbody>
-                                </table>
-                            </div>
-                        </div>
-                    </div>
-                    <div id="comm" role="tabpanel" class="tab-pane">
-                        <div class="comment-content" ng-repeat="comm in $ctrl.Product.curProd.comments" ng-if="comm.publish || $ctrl.admin">
-                            <h5 class="comment-author font-alt">
-                                <a>{{comm.owner_name}}</a>
-                                <div class="comment-meta font-alt">{{comm.created | date:'dd.MM.yyyy, H:mm'}}</div>
-
-                            </h5>
-                            <div class="comment-body">
-                                <p>{{comm.body}}</p>
-                                <div class="text-right" ng-if="$ctrl.admin">
-                                    <button class="btn" modal-admin="review-remove">
-                                        <i class="fa fa-trash"></i>
-                                        Удалить
-                                    </button>
-                                    <button class="btn" ng-if="!comm.publish" modal-admin="review-publish">Опубликовать</button>
-                                </div>
-                                <hr class="">
-                            </div>
-
-                        </div>
-
-                        <div class="comment-form" ng-if="$ctrl.accessFormReview || $ctrl.admin">
-                            <div class="row" style="margin: 0">
-                                <form>
-                                    <div class="col-md-12">
-                                        <div class="form-group">
-                                            <textarea id="message" name="message" ng-model="$ctrl.commBody.body" class="form-control" placeholder="Ваш отзыв..." rows="8"></textarea>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <div ng-if="$ctrl.error.reviews" class="callout callout-danger">
-                                            <p>{{$ctrl.error.reviews}}</p>
-                                        </div>
-                                        <div ng-if="$ctrl.message.reviews" class="callout callout-success">
-                                            <p>{{$ctrl.message.reviews}}</p>
-                                        </div>
-                                    </div>
-                                    <div class="col-md-12">
-                                        <button class="btn btn-drul dark" ng-click="$ctrl.sendComm()">Отправить</button>
-                                    </div>
-                                </form>
-                            </div>
-                        </div>
-                    </div>
-                </div>
-            </div>
-        </div>
-        <!--<div class="row">-->
-            <!--<div class="similar">-->
-                <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
-                    <!--<p>вам также могут понравиться</p>-->
-                        <!--<div ng-repeat="n in [0, 1, 2, 3, 4, 5]" class="col-lg-2 col-md-2 col-sm-2 col-xs-12">-->
-                            <!--<div class="goodsBlock">-->
-                                <!--&lt;!&ndash;<img ng-src="/api/file/430ee8b4-be27-40b2-a16e-fdecedccf34a" class="img-responsive cover" no-image/>&ndash;&gt;-->
-                                <!--<div class="namePrice">-->
-                                    <!--<p>хрень {{n}}</p>-->
-                                    <!--<hr class="line"/>-->
-                                    <!--<span>1111</span>-->
-                                <!--</div>-->
-                            <!--</div>-->
-                        <!--</div>-->
-                <!--</div>-->
-            <!--</div>-->
-        <!--</div>-->
     </div>
+    <div class="row">
+        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+            <ul id="myTab" role="tablist" class="nav nav-tabs">
+                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab"
+                                                          data-toggle="tab">О товаре</a></li>
+                <li role="presentation"><a href="#comm" aria-controls="comm" role="tab" data-toggle="tab">Отзывы</a>
+                </li>
+            </ul>
+            <div class="tab-content">
+                <div id="about" role="tabpanel" class="tab-pane active">
+                    <div class="row" style="margin: 0">
+                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                            <table class="table">
+                                <tbody>
+                                <tr ng-repeat="sub in $ctrl.product.sublines" >
+                                    <td>{{sub.name}}</td>
+                                    <td>{{sub.value}}</td>
+                                </tr>
+                                </tbody>
+                            </table>
+                        </div>
+                    </div>
+                </div>
+                <div id="comm" role="tabpanel" class="tab-pane">
+                    <reviews ng-if="$ctrl.product" product="$ctrl.product"></reviews>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
 <script>
     $('#myTab a').click(function (e) {
         e.preventDefault()

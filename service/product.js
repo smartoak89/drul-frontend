@@ -1,6 +1,6 @@
 angular.module('app')
-    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', 'Cart', 'User','$location', 'queryParams',
-        function (Httpquery, $http, $cookies, $q, Cart, User, $location, queryParams) {
+    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', 'Cart', 'User','$location', 'queryParams', 'ReviewsService', 'FileService',
+        function (Httpquery, $http, $cookies, $q, Cart, User, $location, queryParams, ReviewsService, FileService) {
             var queryStr = {
                 params1: 'products'
             };
@@ -54,7 +54,7 @@ angular.module('app')
                         $q.all([self.getGallery(res), self.changeCurrency(res)]).then(function (result) {
                             self.countStock(result[1]).then(function(result2){
                                 _.forEach(result2, function (elem) {
-                                   self.getCom(elem);
+                                   // self.getCom(elem);
                                 });
                                 if(self.curProd){
                                     var curren = _.find(result2, {uuid: self.curProd.uuid});
@@ -88,11 +88,6 @@ angular.module('app')
                     }, function(err){
                         console.log(err);
                     })
-                },
-                getCom: function(elem){
-                    Httpquery.query({params1: 'reviews', params2:elem.uuid}, function(resss){
-                        elem.comments = resss;
-                    });
                 },
                 getAll: function () {
                     var self = this;
@@ -203,6 +198,15 @@ angular.module('app')
                     });
                     return defer.promise;
 
+                },
+                getProduct: function (id, callback) {
+                    Httpquery.get({params1: 'product', params2: id}, function (res) {
+                        ReviewsService.list(res);
+                        FileService.listGallery(res);
+                        callback(res);
+                    }, function (err) {
+                        console.error('Can\'t get one product =>', err);
+                    });
                 }
             }
         }]);

@@ -3,13 +3,27 @@ angular.module('app')
         templateUrl: "components/cart-main/cart-main.html",
         controller: ['Cart', 'User', 'Product', '$timeout', '$anchorScroll', 'Conf', function(Cart, User, Product, $timeout, $anchorScroll, Conf) {
             var self = this;
-            self.user = User;
+            self.user = User.get();
             self.cart = Cart;
             self.orderInfo = false;
-            if(self.user.active == null){
+            if(self.user == null){
                 if(self.cart.cartList == null){
                     self.cart.cartList = [];
                 }
+            }
+
+            self.$onInit = function() {
+                if (self.cart.cartList == null){
+                    self.cart.list().then(function(){
+                        Product.getGallery(self.cart.cartList);
+                        // Product.countStock(self.cart.cartList);
+                        console.log('cartList', self.cart.cartList);
+                    });
+                }else{
+                    Product.countStock(self.cart.cartList);
+                    console.log(self.cart.cartList);
+                }
+
             }
 
             self.countPlus = function(i){
@@ -43,6 +57,7 @@ angular.module('app')
                     }
                 }
             }
+<<<<<<< HEAD
             //self.$onInit = function() {
             //    if (self.cart.cartList == null){
             //        self.cart.list().then(function(){
@@ -56,5 +71,7 @@ angular.module('app')
             //    }
             //
             //}
+=======
+>>>>>>> d70e2c72df128464105e9145117cc2c95b0b86a5
         }]
     });
