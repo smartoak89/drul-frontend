@@ -68,8 +68,17 @@ a {
     min-width: 68px;
 }
 .searchInputWrap{
-    padding: 8px 0 !important;
-    margin-right: 20px !important;
+    position: relative;
+    width: 195px;
+    text-align: right;
+}
+
+.searchInputWrap > .fa-search:before {
+     color: #626262;
+ }
+
+.searchInputWrap > .fa-search:hover:before {
+    color: #fff;
 }
 
 .searchInput{
@@ -77,11 +86,20 @@ a {
     width: 150px;
     padding: 3px 5px;
     font-size: 14px;
+    position: absolute;
+    left: 0;
+    top: 17px;
 }
 
 .searchInput:focus{
     outline: none;
     border: 1px solid #000;
+}
+.searchBord > .tooltip-inner{
+    border: 1px solid #fff;
+}
+.searchBord > .tooltip-arrow{
+    border-right-color: #fff !important;
 }
 
 .searchInput.ng-hide-add {
@@ -260,10 +278,10 @@ a {
 
 }
 .compact1 .logoWrapper, .fixed .logoWrapper{
-    margin-top: 12px !important;
+    margin-top: 14px !important;
 }
 .compact .logoWrapper{
-    margin-top: 2px;
+    margin-top: 0;
 }
 .compact .logoWrapper > .logo, .compact1 .logoWrapper > .logo{
     margin: 0;
@@ -359,17 +377,17 @@ a {
 .compact .navigation, .compact1 .navigation{
     width: auto;
     position: relative;
-    top: 30px;
+    /*top: 30px;*/
     /*right: 120px;*/
     display: inline;
     float: right;
     margin-top: 0;
 }
 .fixed .navigation{
-    top: 39px !important;
+    top: 17px !important;
 }
 .navigation > li{
-    display: inline;
+    display: inline-block;
     border-right: 1px solid rgb(30,30,30);
     padding: 22px 20px;
 }
@@ -381,7 +399,7 @@ a {
     cursor: pointer;
 }
 .navigation > li> a{
-    color:#4b4b4b;
+    color:#626262;
 }
 .navigation > li > a:hover{
     cursor: pointer;
@@ -2507,5 +2525,14 @@ admin-navigation .sidebar {
 @media screen and (max-width: 875px) {
     .prevs{
         height: 120px;
+    }
+    .searchInputWrap{
+        width: 145px;
+    }
+    .searchInput{
+        width: 100px;
+    }
+    .aboutTopText{
+        font-size: 120px;
     }
 }
