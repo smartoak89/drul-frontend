@@ -8,6 +8,7 @@ angular.module('app')
                 products: [],
                 stocksList: null,
                 curProd: null,
+                searchValue: null,
                 skip:0,
                 getList: function (criteria, category) {
                     var self = this;
@@ -17,6 +18,10 @@ angular.module('app')
                     if (category) {
                         queryStr.params2 = 'category';
                         queryStr.params3 = category;
+                    }
+
+                    if(self.searchValue){
+                        queryStr.name = self.searchValue;
                     }
 
                     criteria = criteria || {sort: 'created.desk'};
@@ -176,6 +181,23 @@ angular.module('app')
                         });
                     })
 
+                },
+                search: function(val){
+                    var self = this;
+                    var promise = $q(function (resolve, reject) {
+                        Httpquery.query({params1: 'products', name: val}, function (res) {
+                            console.log('res', res);
+                            resolve(res)
+                        }, function (err) {
+                            console.error('Get products response', err);
+                            reject(err);
+                        })
+                    });
+
+                    self.configurableProducts(promise, function (products) {
+                        if (self.skip == 0) self.products = [];
+                        self.products = self.products.concat(products);
+                    });
                 },
                 getCurProd: function (id) {
                     var self = this;

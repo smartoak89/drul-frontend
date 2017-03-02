@@ -6,7 +6,7 @@
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
                 <label>Галерея</label>
                 <div ng-include="'admin/components/common/upload-template.html'" ng-init="uploader = $ctrl.uploader"></div>
-                <table class="table" ng-hide="$ctrl.addingGallery || !product.gallery && !product.photo">
+                <table class="table table-responsive" ng-hide="$ctrl.addingGallery || !product.gallery && !product.photo">
                     <thead>
                         <tr>
                             <th>Имя</th>

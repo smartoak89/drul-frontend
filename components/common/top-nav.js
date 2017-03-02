@@ -1,8 +1,11 @@
 angular.module('app')
     .component('topNav', {
         templateUrl: "components/common/top-nav.html",
-        controller: [ function () {
+        controller: [ 'Product', function (Product) {
             var self = this;
+            self.search = false;
+            self.Product = Product;
+
             $(window).scroll(function () {
                 var scrollh = $(this).scrollTop();
                     if (scrollh > 310) {
