@@ -18,7 +18,7 @@
                     <uib-tab-heading>
                         Отложенные
                     </uib-tab-heading>
-                    <div class="row" ng-if="$ctrl.cart.defList.length == 0 || $ctrl.cart.defList == null">
+                    <div class="row" ng-if="$ctrl.deferredList.length == 0">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height: 400px; margin-top: 55px">
                             <h1 class="text-center"><i class="fa fa-heart-o" style="font-size: 45px"></i></h1>
                             <h1 class="text-center">У вас нет отложенных товаров</h1>
@@ -26,7 +26,7 @@
                         </div>
                     </div>
 
-                    <table class="table custom" ng-if="$ctrl.cart.defList.length > 0">
+                    <table class="table custom" ng-if="$ctrl.deferredList.length > 0">
                         <thead>
                         <tr>
                             <td>Товар</td>
@@ -36,7 +36,7 @@
                         </tr>
                         </thead>
                         <tbody>
-                        <tr ng-repeat-start="defProd in $ctrl.cart.defList">
+                        <tr ng-repeat-start="defProd in $ctrl.deferredList">
                             <td>
                                 <div class="marker red">sale</div>
                                 <img ng-src="{{$ctrl.Conf.api_path + '/file/' + defProd.photo.uuid}}" class="img-responsive cover" alt=""></td>
