@@ -9,23 +9,27 @@ angular.module('app')
             if (isValid() == true) {
                 Httpquery.save({params1: 'user', params2: 'auth'}, $scope.user, function (res) {
 
-                    User.set(res);
+                    User.token(res.token);
 
-                    if(Cart.cartList != null && Cart.cartList != []){
-                        angular.forEach(Cart.cartList, function(prod){
-                            console.log(prod);
-                            $scope.savePro.image = prod.image;
-                            $scope.savePro.combo = prod.combo;
-                            Cart.save(prod, $scope.savePro)
-                        });
-                        Cart.cartList = null;
-                        Cart.list().then(function(){
-                            angular.forEach(Cart.cartList, function(prod){
-                                prod.counter = 1;
-                            })
-                        });
-
-                    }
+                    Httpquery.get({params1: 'user'}, function (user) {
+                       User.set(user);
+                       console.info('User login', user);
+                    });
+                    // if(Cart.cartList != null && Cart.cartList != []){
+                    //     angular.forEach(Cart.cartList, function(prod){
+                    //         console.log(prod);
+                    //         $scope.savePro.image = prod.image;
+                    //         $scope.savePro.combo = prod.combo;
+                    //         Cart.save(prod, $scope.savePro)
+                    //     });
+                    //     Cart.cartList = null;
+                    //     Cart.list().then(function(){
+                    //         angular.forEach(Cart.cartList, function(prod){
+                    //             prod.counter = 1;
+                    //         })
+                    //     });
+                    //
+                    // }
                     $scope.close();
                     if ($rootScope.toUrl) {
                         $location.path($rootScope.toUrl);

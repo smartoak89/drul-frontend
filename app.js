@@ -20,8 +20,12 @@ var app = angular.module('app', [
 
 ]);
 app.constant('Conf', {
-   api_path: 'http://95.46.99.177/api'
+   api_path: 'http://localhost/api'
 });
+
+app.config(['$httpProvider', function($httpProvider) {
+    $httpProvider.interceptors.push('RequestIntercepror');
+}]);
 
 app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainService', function(User, $location, $state, $rootScope, $anchorScroll, MainService) {
 
