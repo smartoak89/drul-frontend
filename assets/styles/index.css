@@ -1276,6 +1276,17 @@ input[type=radio]:checked + label:before {
     padding: 8px 10px;
 }
 
+.inputRegLogWrap > p{
+    font-size: 1.2em;
+    color: #fff;
+    text-align: center;
+}
+
+.inputRegLogWrap > a {
+    text-align: center;
+    color: #fff;
+}
+
 @media screen and (min-width: 1292px) {
     .modal-product {
         width: 1220px;
@@ -1317,6 +1328,7 @@ input[type=radio]:checked + label:before {
     border-left: 3px solid #48CFAD;
 }
 .modal-auth .modal-content,
+.modal-reset .modal-content,
 .modal-register .modal-content{
     background: transparent;
     border: 0;
@@ -2045,7 +2057,7 @@ uib-accordion .panel-body > a:hover{
     background-position: center center;
 }
 
-.modal-register, .modal-auth, .modal-cancelAdd, .modal-doneCart, .modal-doneDef{
+.modal-register, .modal-auth, .modal-reset, .modal-cancelAdd, .modal-doneCart, .modal-doneDef{
     margin-top: 50px;
 }
 
