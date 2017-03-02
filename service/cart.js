@@ -4,6 +4,26 @@ angular.module('app')
         return {
             cartList: null,
             defList: null,
+            add: function (product, option, callback) {
+                var user = User.get();
+
+                var forAdd = {
+                    name: product.name,
+                    article: product.article,
+                    price: product.price,
+                    combo: option,
+                    stock: product.stock,
+                    image: product.photo.uuid
+                };
+
+                if (user) {
+
+                }
+
+                console.log('fora', forAdd);
+            },
+
+
             addToCart: function (product) {
                 if (!product.inCart) {
                     product.inCart = true;

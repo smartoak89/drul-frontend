@@ -1,7 +1,7 @@
 angular.module('app')
     .component('privatOffice', {
         templateUrl: "components/privat-office/privat-office.html",
-        controller: ['Cart', 'User', 'OrderService', 'RequestService','$location', 'Conf', 'Product', function(Cart, User, OrderService, RequestService, $location, Conf, Product) {
+        controller: ['Cart', 'User', 'OrderService', 'RequestService','$location', 'Conf', 'Product', 'DeferredService', 'FileService', function(Cart, User, OrderService, RequestService, $location, Conf, Product, DeferredService, FileService) {
             var self = this;
             self.user = User;
             self.cart = Cart;
@@ -9,12 +9,12 @@ angular.module('app')
             self.Conf = Conf;
 
             this.$onInit = function () {
-                self.cart.listDef().then(function(){
-                    Product.getGallery(self.cart.defList);
-                    Product.countStock(self.cart.defList);
-                    console.log(self.cart.defList);
+
+                DeferredService.list(function (res) {
+                    _.each(res, function (product) { FileService.listGallery(product) });
+                    self.deferredList = res;
                 });
-                self.OrderServ = OrderService;
+
                 OrderService.getListHistoryOrders(function (err, res) {
                     _.each(res, function (order) {
                         RequestService.getOneOrder(order.uuid, function (err, res) {

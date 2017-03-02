@@ -23,7 +23,9 @@ app.constant('Conf', {
    api_path: 'http://95.46.99.177/api'
 });
 
-app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', function(User, $location, $state, $rootScope, $anchorScroll) {
+app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainService', function(User, $location, $state, $rootScope, $anchorScroll, MainService) {
+
+    MainService.init();
 
     $rootScope.$on('$stateChangeStart', function (event, toState) {
         var adminPermission;
