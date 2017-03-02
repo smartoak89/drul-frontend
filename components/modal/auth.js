@@ -30,6 +30,7 @@ angular.module('app')
                     //     });
                     //
                     // }
+
                     $scope.close();
                     if ($rootScope.toUrl) {
                         $location.path($rootScope.toUrl);
