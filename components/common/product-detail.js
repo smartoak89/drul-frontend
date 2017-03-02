@@ -1,14 +1,19 @@
 angular.module('app')
     .component('productDetail', {
         templateUrl: "components/common/product-detail.html",
-        controller: ['$rootScope', '$location','Cart', 'Category', 'Product', '$q', '$timeout', '$cookies', 'User', 'Conf', 'DeferredService',
-            function ($rootScope, $location, Cart, Category, Product, $q, $timeout, $cookies, User, Conf, DeferredService) {
 
-                var self = this;
-                self.user = User.get();
-                self.Conf = Conf;
-                self.curProdCheck = {};
-                self.zoomOptionsGallery01 = {
+        controller: ['$rootScope', '$location','Cart', 'Category', 'Product', '$q', '$timeout', '$cookies', 'User', 'Conf',
+            function ($rootScope, $location, Cart, Category, Product, $q, $timeout, $cookies, User, Conf) {
+            var self = this;
+            self.cart = Cart;
+            self.user = User.get();
+            self.Conf = Conf;
+            self.Product = Product;
+            self.curProdCheck = {};
+            self.error = {};
+
+            self.zoomOptionsGallery01 = {
+
                     scrollZoom: false,
                     zoomWindowWidth: 400,
                     zoomWindowHeight: 400,
@@ -137,6 +142,7 @@ angular.module('app')
                 //     self.mesSuc = true;
                 //     return
                 // }
+
 
                 self.setActiveImageInGallery = function (prop, img) {
                     self[prop] = img;
