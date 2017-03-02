@@ -10,7 +10,7 @@ angular.module('app')
                 Httpquery.save({params1: 'user', params2: 'auth'}, $scope.user, function (res) {
 
                     User.set(res);
-
+                    console.log('userresp', res);
                     if(Cart.cartList != null && Cart.cartList != []){
                         angular.forEach(Cart.cartList, function(prod){
                             console.log(prod);

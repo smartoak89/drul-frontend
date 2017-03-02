@@ -1,6 +1,7 @@
 angular.module('app')
     .service('Cart', ['Httpquery', 'User', 'Currency', '$log', '$q', '$http', 'Conf', function (Httpquery, User, Currency, $log, $q, $http, Conf) {
         var cart = [];
+        var cartList;
         return {
             cartList: null,
             defList: null,
@@ -17,7 +18,11 @@ angular.module('app')
                 };
 
                 if (user) {
-
+                    Httpquery.put({params1: 'cart', params2: user.uuid, params2: product.uuid}, function (res) {
+                        cartList.push(res);
+                    }, function (err) {
+                        console.error('can\'t add to deferred', err);
+                    })
                 }
 
                 console.log('fora', forAdd);
