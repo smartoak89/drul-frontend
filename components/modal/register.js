@@ -6,22 +6,28 @@ angular.module('app')
             image: '',
             combo: []
         }
-        console.log(Cart);
+
         $scope.register = function () {
             isValid($scope.user, function (err) {
                 if (err) return $scope.error = err;
 
                 Httpquery.save({params1: 'user', params2: 'register'}, $scope.user, function (res) {
                     console.log('Register success', res);
-                    User.set(res);
-                    if(Cart.cartList != null && Cart.cartList != []){
-                        angular.forEach(Cart.cartList, function(prod){
-                            console.log(prod);
-                            $scope.savePro.image = prod.image;
-                            $scope.savePro.combo = prod.combo;
-                            Cart.save(prod, $scope.savePro)
-                        })
-                    }
+
+                    User.token(res.token);
+
+                    Httpquery.get({params1: 'user'}, function (user) {
+                        User.set(user);
+                    });
+
+                    // if(Cart.cartList != null && Cart.cartList != []){
+                    //     angular.forEach(Cart.cartList, function(prod){
+                    //         console.log(prod);
+                    //         $scope.savePro.image = prod.image;
+                    //         $scope.savePro.combo = prod.combo;
+                    //         Cart.save(prod, $scope.savePro)
+                    //     })
+                    // }
                     $scope.close();
                 }, function (ex) {
                     $scope.error = ex.data.message;

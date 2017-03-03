@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('Cart', ['Httpquery', 'User', 'Currency', '$log', '$q', '$http', 'Conf', function (Httpquery, User, Currency, $log, $q, $http, Conf) {
+    .service('Cart', ['$rootScope', 'Httpquery', 'User', 'Currency', '$log', '$q', '$http', 'Conf', '$timeout', function ($rootScope, Httpquery, User, Currency, $log, $q, $http, Conf, $timeout) {
         var cart = [];
         var cartList;
         return {
@@ -8,27 +8,53 @@ angular.module('app')
             add: function (product, option, callback) {
                 var user = User.get();
 
-                var forAdd = {
-                    name: product.name,
-                    article: product.article,
-                    price: product.price,
+                var productToAdd = {
                     combo: option,
-                    stock: product.stock,
                     image: product.photo.uuid
                 };
 
                 if (user) {
-                    Httpquery.put({params1: 'cart', params2: user.uuid, params2: product.uuid}, function (res) {
+                    Httpquery.put({params1: 'cart', params2: product.uuid}, productToAdd, function (res) {
                         cartList.push(res);
+
+                        $rootScope.$broadcast('changeCart', cartList);
+
+                        callback();
                     }, function (err) {
                         console.error('can\'t add to deferred', err);
+                        callback(err);
                     })
+                } else {
+
+                    if (!cartList) cartList = [];
+                    cartList.push(productToAdd);
+
+                    $rootScope.$broadcast('changeCart', cartList);
                 }
 
-                console.log('fora', forAdd);
+                console.info('added to cart', productToAdd);
             },
+            list: function () {
+                console.log('queryCart')
+                var user = User.get();
 
+                if (user) {
 
+                    Httpquery.query({params1: 'cart'}, function (res) {
+                        $timeout(function () { $rootScope.$broadcast('changeCart', res); }, 50);
+
+                        if (!cartList) return cartList = res;
+
+                        cartList = cartList.concat(res);
+
+                    }, function (err) {
+                        console.error('can\'t get cart list', err);
+                    });
+                }
+            },
+            getList: function () {
+                return cartList;
+            },
             addToCart: function (product) {
                 if (!product.inCart) {
                     product.inCart = true;
@@ -86,27 +112,6 @@ angular.module('app')
                 _.each(self.cartList, function (i) {
                     self.delFromCart(i);
                 })
-            },
-            list: function () {
-                var self = this;
-                var defer = $q.defer();
-                var user = User.get();
-                if (user) {
-                    // if (self.cartList === null) {
-                        //console.log(user.uuid);
-                        Httpquery.query({params1: 'cart', params2: user.uuid}, function (res) {
-                            //$log.info('response cartList ', res);
-                            defer.resolve(res);
-                            console.log('resolve', res);
-                            self.cartList = res;
-                        }, function (err) {
-                            console.log(err);
-                            defer.reject(err);
-                        });
-                    // }
-                    return defer.promise;
-                }
-                //TODO: user is not active
             },
             listDef: function () {
                 var self = this;

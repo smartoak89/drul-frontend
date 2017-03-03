@@ -47,7 +47,7 @@
                     <div class="sizeCard" ng-repeat="value in $ctrl.product.combo">{{value.name}}
                         <div class="sizeCardDis">
                             <div class="checkbo" ng-repeat="(key, val) in value.values">
-                                <input type="radio" id="{{val + key}}" name="{{value.name}}" value="{{val}}" ng-model="$ctrl.curProdCheck.combo[$parent.$index].val" ng-click="$ctrl.chooseCombo($index, value, val)"/>
+                                <input type="radio" id="{{val + key}}" name="{{value.name}}" value="{{val}}" ng-click="$ctrl.chooseCombo($parent.$index, value, val)"/>
                                 <label for="{{val + key}}"></label><span>{{val}}</span>
                             </div>
                         </div>

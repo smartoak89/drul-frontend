@@ -15,28 +15,9 @@ angular.module('app')
                        User.set(user);
                        console.info('User login', user);
                     });
-                    // if(Cart.cartList != null && Cart.cartList != []){
-                    //     angular.forEach(Cart.cartList, function(prod){
-                    //         console.log(prod);
-                    //         $scope.savePro.image = prod.image;
-                    //         $scope.savePro.combo = prod.combo;
-                    //         Cart.save(prod, $scope.savePro)
-                    //     });
-                    //     Cart.cartList = null;
-                    //     Cart.list().then(function(){
-                    //         angular.forEach(Cart.cartList, function(prod){
-                    //             prod.counter = 1;
-                    //         })
-                    //     });
-                    //
-                    // }
 
                     $scope.close();
-                    if ($rootScope.toUrl) {
-                        $location.path($rootScope.toUrl);
-                    } else {
-                        $location.path('/');
-                    }
+                    $location.path('/');
                 }, function (ex) {
                     $scope.error = ex.data.message;
                     console.log('error', ex);

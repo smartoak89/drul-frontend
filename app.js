@@ -29,8 +29,6 @@ app.config(['$httpProvider', function($httpProvider) {
 
 app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainService', function(User, $location, $state, $rootScope, $anchorScroll, MainService) {
 
-    MainService.init();
-
     $rootScope.$on('$stateChangeStart', function (event, toState) {
         var adminPermission;
         var adminSection = $rootScope.adminSection = ($location.path().search('admin') == -1) == false;
@@ -56,6 +54,9 @@ app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainServ
         $rootScope.URL = $location.url().split('/').pop();
         $anchorScroll(0);
     });
+
+
+    MainService.init();
 }]);
 
 app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {

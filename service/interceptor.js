@@ -10,7 +10,7 @@ angular.module('app')
                 if (toApiUrl && token) {
                     req.headers['authorization'] = token;
                 }
-                console.log(toApiUrl, token);
+
                 return req;
             },
 

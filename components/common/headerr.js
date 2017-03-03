@@ -1,28 +1,24 @@
 angular.module('app')
     .component('headerr', {
         templateUrl: "components/common/headerr.html",
-        controller: ['User', 'Cart', 'angularPlayer', '$rootScope', 'HttpResource', '$location', function(User, Cart, angularPlayer, $rootScope, HttpResource, $location) {
+        controller: ['$rootScope', 'User', 'Cart', 'angularPlayer', 'HttpResource', '$location', function($rootScope, User, Cart, angularPlayer, HttpResource, $location) {
             var self = this;
-            this.User = User;
             this.user = User.get();
-            this.Cart = Cart;
-            this.Cart.list();
-            this.Cart.listDef();
             self.search = false;
+
             this.logout = function () {
                 User.deactivate();
-                self.user = null;
-                self.Cart.cartList = null;
-                self.Cart.defList = null;
                 $location.path('/');
             };
 
             $rootScope.$on('userActivate', function () {
                 self.user = User.get();
-                self.Cart.list();
-                self.Cart.listDef();
             });
 
+            $rootScope.$on('changeCart', function (event, cartList) {
+                self.cartList = cartList.length;
+                console.log('changeCart')
+            });
 
             self.songs = [];
             this.$onInit = function () {

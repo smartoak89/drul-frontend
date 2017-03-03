@@ -4,38 +4,21 @@ angular.module('app')
         controller: ['Cart', 'User', 'Product', '$timeout', '$anchorScroll', 'Conf', function(Cart, User, Product, $timeout, $anchorScroll, Conf) {
             var self = this;
             self.user = User.get();
-            self.cart = Cart;
-            self.orderInfo = false;
-            if(self.user == null){
-                if(self.cart.cartList == null){
-                    self.cart.cartList = [];
-                }
-            }
 
             self.$onInit = function() {
-                if (self.cart.cartList == null){
-                    self.cart.list().then(function(){
-                        Product.getGallery(self.cart.cartList);
-                        // Product.countStock(self.cart.cartList);
-                        console.log('cartList', self.cart.cartList);
-                    });
-                }else{
-                    Product.countStock(self.cart.cartList);
-                    console.log(self.cart.cartList);
-                }
-
-            }
+                self.cartList = Cart.getList();
+            };
 
             self.countPlus = function(i){
-                self.cart.cartList[i].counter++;
+                self.cartList[i].counter++;
             };
             self.countMinus = function(i){
-                    self.cart.cartList[i].counter--;
+                    self.cartList[i].counter--;
                     self.checkMinus(i);
             };
             self.checkMinus = function(i){
-                if(self.cart.cartList[i].counter < 1) {
-                    self.cart.cartList[i].counter = 1;
+                if(self.cartList[i].counter < 1) {
+                    self.cartList[i].counter = 1;
                 }
 
             };
@@ -58,19 +41,5 @@ angular.module('app')
                     }
                 }
             }
-
-            //self.$onInit = function() {
-            //    if (self.cart.cartList == null){
-            //        self.cart.list().then(function(){
-            //            Product.getGallery(self.cart.cartList);
-            //            Product.countStock(self.cart.cartList);
-            //            console.log(self.cart.cartList);
-            //        });
-            //    }else{
-            //        Product.countStock(self.cart.cartList);
-            //        console.log(self.cart.cartList);
-            //    }
-            //
-            //}
         }]
     });

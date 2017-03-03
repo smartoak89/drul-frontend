@@ -1,8 +1,15 @@
 angular.module('app')
-    .service('MainService', ['Httpquery', 'User', 'DeferredService', function (Httpquery, User, DeferredService) {
+    .service('MainService', ['$rootScope', 'DeferredService', 'Cart', function ($rootScope, DeferredService, Cart) {
+        var self = this;
 
         this.init = function () {
-            DeferredService.list(function () {})
-        }
+            console.log('initService')
+            DeferredService.list(function () {});
+            Cart.list();
+        };
+
+        $rootScope.$on('userActivate', function () {
+            self.init();
+        })
 
     }]);

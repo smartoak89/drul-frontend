@@ -7,7 +7,9 @@ angular.module('app')
             var token = null;
 
             try {
+                token = $cookies.get('token');
                 active = JSON.parse($cookies.get('user'));
+                console.log('token', token);
             } catch (ex) {
                 active = null;
             }
@@ -30,7 +32,10 @@ angular.module('app')
             };
 
             this.token = function(value) {
-                if (value) return token = value;
+                if (value) {
+                    $cookies.put('token', value);
+                    return token = value;
+                }
 
                 return token;
             };

@@ -96,7 +96,7 @@ angular.module('app')
                 },
                 getAll: function () {
                     var self = this;
-                    $q.all([Cart.listDef(), Cart.list(), self.getList()]).then(function () {
+                    $q.all([Cart.listDef(), self.getList()]).then(function () {
                         _.forEach(self.products, function (elem) {
                             if (_.find(Cart.defList, {uuid: elem.uuid})) {
                                 elem.def = true;

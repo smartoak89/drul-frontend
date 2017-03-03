@@ -2,8 +2,8 @@ angular.module('app')
     .component('productDetail', {
         templateUrl: "components/common/product-detail.html",
 
-        controller: ['$rootScope', '$location','Cart', 'Category', 'Product', '$q', '$timeout', '$cookies', 'User', 'Conf',
-            function ($rootScope, $location, Cart, Category, Product, $q, $timeout, $cookies, User, Conf) {
+        controller: ['$location','Cart', 'Category', 'Product', 'User', 'Conf', 'DeferredService', '$timeout',
+            function ($location, Cart, Category, Product, User, Conf, DeferredService, $timeout) {
             var self = this;
             self.cart = Cart;
             self.user = User.get();
@@ -32,7 +32,7 @@ angular.module('app')
                     initialPanY:-300,
                     disableZoomAnimation: false
                 };
-                self.message = {}
+                self.message = {};
 
                 self.$onInit = function() {
 
@@ -88,6 +88,7 @@ angular.module('app')
 
                 };
                 var choosedCombo = [];
+
                 self.chooseCombo = function (index, combo, value) {
                     choosedCombo[index] = {
                         name: combo.name,
@@ -103,58 +104,24 @@ angular.module('app')
                         if (err) return showMsg('warning', 'Произошла ошибка при добавление товара в корзину!');
                         showMsg('success', 'Товар добавлен в корзину!');
                     });
-
-
                 };
 
-                function showMsg (type, msg) {
-                    self.message.type = type;
-                    self.message.msg = msg;
-                }
-
-                // self.valueChecked = function() {
-                //     for (var i = 0; i < self.curProdCheck.combo.length; i++) {
-                //         if (self.curProdCheck.combo[i].val == null) {
-                //             self.mesWar = true;
-                //             self.mesSuc = false;
-                //             return
-                //         }
-                //     }
-                //     if (self.user == null && self.cart.cartList == null) {
-                //         self.curProdCheck.name = self.Product.curProd.name;
-                //         self.curProdCheck.article = self.Product.curProd.article;
-                //         self.curProdCheck.price = self.Product.curProd.price;
-                //         self.curProdCheck.uuid = self.Product.curProd.uuid;
-                //         self.curProdCheck.currency = self.Product.curProd.currency;
-                //         self.cart.cartList = [];
-                //         self.cart.cartList.push(self.curProdCheck);
-                //     } else if (self.user == null && angular.isArray(self.cart.cartList)) {
-                //         self.curProdCheck.name = self.Product.curProd.name;
-                //         self.curProdCheck.article = self.Product.curProd.article;
-                //         self.curProdCheck.price = self.Product.curProd.price;
-                //         self.curProdCheck.uuid = self.Product.curProd.uuid;
-                //         self.curProdCheck.currency = self.Product.curProd.currency;
-                //         self.cart.cartList.push(self.curProdCheck);
-                //     } else {
-                //         self.cart.save(self.Product.curProd, self.curProdCheck);
-                //     }
-                //     self.mesWar = false;
-                //     self.mesSuc = true;
-                //     return
-                // }
-
-
-                self.setActiveImageInGallery = function (prop, img) {
-                    self[prop] = img;
-                };
+                self.setActiveImageInGallery = function (prop, img) { self[prop] = img; };
 
                 self.initImg = function(){
                     self.setActiveImageInGallery('zoomModelGallery01', self.product.photo.uuid)
                 };
 
-                self.$onDestroy = function() {
-                    $('.zoomContainer').remove();
-                };
+                self.$onDestroy = function() { $('.zoomContainer').remove(); };
+
+                function showMsg (type, msg) {
+                    self.message.type = type;
+                    self.message.msg = msg;
+
+                    $timeout(function () {
+                        self.message = {};
+                    }, 2000)
+                }
 
                 function getProduct() {
                     var id = $location.url().split('/').pop();

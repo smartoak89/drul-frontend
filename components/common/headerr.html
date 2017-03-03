@@ -44,7 +44,7 @@
 
                 <li class="icon iconRig firstIcon pull-right">
                     <div class="s-3" ui-sref="index.cartMain" tooltip-placement="left" uib-tooltip="Корзина"></div>
-                    <div class="countProd" ng-if="$ctrl.Cart.cartList.length > 0">{{$ctrl.Cart.cartList.length}}</div>
+                    <div class="countProd" ng-if="$ctrl.cartList">{{$ctrl.cartList}}</div>
                 </li>
 
                 <li class="icon iconRig secondIcon pull-right" ng-show="$ctrl.user" >
