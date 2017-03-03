@@ -20,7 +20,7 @@ var app = angular.module('app', [
 
 ]);
 app.constant('Conf', {
-   api_path: 'http://localhost/api'
+   api_path: 'http://95.46.99.177/api'
 });
 
 app.config(['$httpProvider', function($httpProvider) {
@@ -54,7 +54,6 @@ app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainServ
         $rootScope.URL = $location.url().split('/').pop();
         $anchorScroll(0);
     });
-
 
     MainService.init();
 }]);

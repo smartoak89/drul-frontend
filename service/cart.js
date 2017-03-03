@@ -35,7 +35,7 @@ angular.module('app')
                 console.info('added to cart', productToAdd);
             },
             list: function () {
-                console.log('queryCart')
+                console.log('queryCart service')
                 var user = User.get();
 
                 if (user) {
@@ -55,6 +55,12 @@ angular.module('app')
             getList: function () {
                 return cartList;
             },
+            remove: function () {
+
+            },
+
+
+
             addToCart: function (product) {
                 if (!product.inCart) {
                     product.inCart = true;
@@ -181,12 +187,12 @@ angular.module('app')
                 if (self.defList && self.cartList) {
                     return [find(), addGal()]
                 }
-
-                $q.all([self.listDef(), self.list()]).then(function(){
-                    console.log('stop');
-                    find();
-                    addGal();
-                });
+                //
+                // $q.all([self.listDef(), self.list()]).then(function(){
+                //     console.log('stop');
+                //     find();
+                //     addGal();
+                // });
 
                 function find () {
                     _.forEach(products, function(elem){

@@ -22,6 +22,12 @@ angular.module('app')
                 }
 
             };
+            self.remove = function (product) {
+              Cart.remove(product.uuid, function (err, res) {
+                  if (err) return console.error(err);
+                  _.remove(self.cartList, product);
+              })
+            };
             self.clickToMod = function () {
                 $timeout(function() {
                     angular.element('#toMod').triggerHandler('click');
