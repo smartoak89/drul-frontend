@@ -1,7 +1,7 @@
 angular.module('app')
     .component('headerr', {
         templateUrl: "components/common/headerr.html",
-        controller: ['$rootScope', 'User', 'Cart', 'angularPlayer', 'HttpResource', '$location', function($rootScope, User, Cart, angularPlayer, HttpResource, $location) {
+        controller: ['$rootScope', 'User', 'Cart', 'DeferredService', 'angularPlayer', 'HttpResource', '$location', function($rootScope, User, Cart, DeferredService, angularPlayer, HttpResource, $location) {
             var self = this;
             this.user = User.get();
             self.search = false;
@@ -16,8 +16,12 @@ angular.module('app')
             });
 
             $rootScope.$on('changeCart', function (event, cartList) {
-                self.cartList = cartList.length;
-                console.log('changeCart')
+                self.cartList = Cart.getList().length;
+            });
+
+            $rootScope.$on('changeDeferred', function (event, cartList) {
+                console.log('changeDeferred')
+                self.deferredList = DeferredService.getList().length;
             });
 
             self.songs = [];

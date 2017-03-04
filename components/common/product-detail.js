@@ -57,6 +57,14 @@ angular.module('app')
                     });
                 };
 
+                self.addToDeferred = function () {
+                    DeferredService.add(self.product, function () {});
+                };
+
+                self.delFromDeferred = function () {
+                    DeferredService.remove(self.product, function () {})
+                };
+
                 self.setActiveImageInGallery = function (prop, img) { self[prop] = img; };
 
                 self.initImg = function(){

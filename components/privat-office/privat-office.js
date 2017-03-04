@@ -11,7 +11,7 @@ angular.module('app')
             this.$onInit = function () {
 
                 DeferredService.list(function (res) {
-                    _.each(res, function (product) { FileService.listGallery(product) });
+                    _.each(res, function (product) { FileService.mainPhoto(product) });
                     self.deferredList = res;
                 });
 
@@ -22,6 +22,12 @@ angular.module('app')
                         })
                     })
                 })
+            };
+
+            this.removeDeferred = function (deferred) {
+                DeferredService.remove(deferred, function (err) {
+                    if (err) return console.error(err);
+                });
             };
 
             self.goToProduct = function (product) {

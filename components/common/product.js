@@ -4,7 +4,7 @@ angular.module('app')
         bindings: {
             product: '='
         },
-        controller: ['$cookies', 'Cart', 'User','Product','Conf', function($cookies, Cart, User, Product, Conf) {
+        controller: ['Cart', 'User','Product','Conf', 'DeferredService', function(Cart, User, Product, Conf, DeferredService) {
 
             var self = this;
             this.cart = Cart;
@@ -15,22 +15,15 @@ angular.module('app')
             self.user = User.get();
             self.Conf = Conf;
             this.addToCart = function () {
-                var self = this;
-                if (self.user) {
-                    return Cart.save(self.product.uuid);
-                }
-                Cart.addToCart(this.product);
-            }
-            // this.preview = this.product.photo || '';
 
-            // if(self.product.stock){
-            //     if(_.find(self.stocks, {uuid: self.product.stock})) {
-            //         self.curStock = _.find(self.stocks, {uuid: self.product.stock});
-            //         console.log(self.curStock);
-            //         this.stockFun(self.curStock.percent, self.product.price);
-            //     }
-            // }else{
-            //     self.curStock = null;
-            // }
+            };
+
+            self.addToDeferred = function () {
+                DeferredService.add(self.product, function () {});
+            };
+
+            self.delFromDeferred = function () {
+                DeferredService.remove(self.product, function () {})
+            };
         }]
     });

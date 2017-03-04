@@ -50,13 +50,13 @@
                                 <div class="namePrice">
                                     <span>{{defProd.price}} грн</span>
                                     <strike ng-if="defProd.oldPrice">{{defProd.oldPrice}} грн</strike>
-                                    <button type="button" ng-click="" modal="replaceToCart" class="btn btn-drul">переместить в
+                                    <button type="button" modal="replaceToCart" class="btn btn-drul">переместить в
                                         <div class="s-3"></div>
                                     </button>
                                 </div>
                             </td>
                             <td>
-                                <div class="s-15" ng-click="$ctrl.cart.delFromDeferred(defProd)"></div>
+                                <div class="s-15" ng-click="$ctrl.removeDeferred(defProd)"></div>
                             </td>
                         </tr>
                         <tr ng-repeat-end>

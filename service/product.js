@@ -55,7 +55,6 @@ angular.module('app')
                 configurableProducts: function (products, callback) {
                     var self = this;
                     products.then(function (res) {
-                        Cart.getCartAndDeferred(res);
                         $q.all([self.getGallery(res), self.changeCurrency(res)]).then(function (result) {
                             self.countStock(result[1]).then(function(result2){
                                 _.forEach(result2, function (elem) {
@@ -96,7 +95,7 @@ angular.module('app')
                 },
                 getAll: function () {
                     var self = this;
-                    $q.all([Cart.listDef(), self.getList()]).then(function () {
+                    $q.all([self.getList()]).then(function () {
                         _.forEach(self.products, function (elem) {
                             if (_.find(Cart.defList, {uuid: elem.uuid})) {
                                 elem.def = true;

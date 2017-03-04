@@ -1,27 +1,17 @@
 angular.module('app')
-    .controller('auth', ['$uibModalInstance', '$scope', '$rootScope', '$location', 'Httpquery', 'User', 'Cart', function ($uibModalInstance, $scope, $rootScope, $location, Httpquery, User, Cart) {
+    .controller('auth', ['$uibModalInstance', '$scope', '$location', 'AuthService',  function ($uibModalInstance, $scope, $location, AuthService) {
         $scope.user = {};
-        $scope.savePro = {
-            image: '',
-            combo: []
-        }
+
         $scope.login = function () {
             if (isValid() == true) {
-                Httpquery.save({params1: 'user', params2: 'auth'}, $scope.user, function (res) {
 
-                    User.token(res.token);
+                AuthService.post($scope.user, function (err) {
 
-                    Httpquery.get({params1: 'user'}, function (user) {
-                       User.set(user);
-                       console.info('User login', user);
-                    });
+                    if(err) return  $scope.error = err.data.message;
 
                     $scope.close();
                     $location.path('/');
-                }, function (ex) {
-                    $scope.error = ex.data.message;
-                    console.log('error', ex);
-                })
+                });
             }
         };
 

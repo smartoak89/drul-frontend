@@ -18,7 +18,7 @@ angular.module('app')
                 })
             },
             doOrder: function (order, callback) {
-                Httpquery.save({params1: 'order', params3: userId}, order, function (res) {
+                Httpquery.save({params1: 'order'}, order, function (res) {
                     callback(null, res);
                 }, function (err) {
                     callback(err);

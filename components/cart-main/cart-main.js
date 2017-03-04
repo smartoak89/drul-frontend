@@ -1,7 +1,7 @@
 angular.module('app')
     .component('cartMain', {
         templateUrl: "components/cart-main/cart-main.html",
-        controller: ['Cart', 'User', 'Product', '$timeout', '$anchorScroll', 'Conf', function(Cart, User, Product, $timeout, $anchorScroll, Conf) {
+        controller: ['Cart', 'User', '$timeout', '$anchorScroll', 'Conf', function(Cart, User, $timeout, $anchorScroll, Conf) {
             var self = this;
             self.user = User.get();
 
@@ -23,9 +23,8 @@ angular.module('app')
 
             };
             self.remove = function (product) {
-              Cart.remove(product.uuid, function (err, res) {
+              Cart.remove(product, function (err, res) {
                   if (err) return console.error(err);
-                  _.remove(self.cartList, product);
               })
             };
             self.clickToMod = function () {
@@ -34,17 +33,15 @@ angular.module('app')
                 });
             };
             self.makeOrder = function() {
-                if (User.get() == null) {
-                    self.clickToMod();
-                } else {
-                    $anchorScroll(0);
-                    self.orderInfo = true;
-                    self.count = 0;
-                    self.cost = 0;
-                    for (var i = 0; i < self.cart.cartList.length; i++) {
-                        self.count = self.count + self.cart.cartList[i].counter;
-                        self.cost = self.cost + self.cart.cartList[i].price * self.cart.cartList[i].counter;
-                    }
+                if (!self.user) return self.clickToMod();
+
+                $anchorScroll(0);
+                self.orderInfo = true;
+                self.count = 0;
+                self.cost = 0;
+                for (var i = 0; i < self.cartList.length; i++) {
+                    self.count = self.count + self.cartList[i].counter;
+                    self.cost = self.cost + self.cartList[i].price * self.cartList[i].counter;
                 }
             }
         }]

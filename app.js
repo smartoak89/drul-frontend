@@ -20,7 +20,7 @@ var app = angular.module('app', [
 
 ]);
 app.constant('Conf', {
-   api_path: 'http://95.46.99.177/api'
+   api_path: 'http://localhost/api'
 });
 
 app.config(['$httpProvider', function($httpProvider) {
