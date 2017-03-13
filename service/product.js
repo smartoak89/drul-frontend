@@ -1,15 +1,18 @@
 angular.module('app')
-    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', 'Cart', 'User','$location', 'queryParams', 'ReviewsService', 'FileService', 'DeferredService',
-        function (Httpquery, $http, $cookies, $q, Cart, User, $location, queryParams, ReviewsService, FileService, DeferredService) {
+    .factory('Product', ['Httpquery', '$http', '$cookies', '$q', 'Cart', 'User','$location', 'CurrencyService', 'ReviewsService', 'FileService', 'DeferredService',
+        function (Httpquery, $http, $cookies, $q, Cart, User, $location, CurrencyService, ReviewsService, FileService, DeferredService) {
+
             var queryStr = {
                 params1: 'products'
             };
+
             return {
                 products: [],
                 stocksList: null,
                 curProd: null,
                 searchValue: null,
                 skip:0,
+
                 getList: function (criteria, category) {
                     var self = this;
 
@@ -36,6 +39,7 @@ angular.module('app')
 
                         _.each(res, function (product) {
                             DeferredService.wasDeferred(product);
+                            CurrencyService.changePrice(product);
                         });
 
                         if (self.skip == 0) self.products = [];

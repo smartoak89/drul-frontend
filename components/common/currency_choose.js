@@ -9,26 +9,20 @@
                             '<span ng-bind="item.name"></span>' +
                         '</ui-select-choices>' +
                     '</ui-select>',
-        controller: ['$cookies', 'Product', '$location', 'FilterService', function($cookies, Product, $location, FilterService) {
-            var self = this;
-            self.itemArray = [
-                {id: 1, name: 'UAH'},
-                {id: 2, name: 'RUR'},
-                {id: 3, name: 'USD'}
-            ];
+        controller: ['$cookies', '$rootScope', 'CurrencyService',
+            function($cookies, $rootScope, CurrencyService) {
+                var self = this;
+                self.itemArray = [
+                    {id: 1, name: 'UAH'},
+                    {id: 2, name: 'RUR'},
+                    {id: 3, name: 'USD'}
+                ];
 
-            var currency = $cookies.get('currency');
+                self.selectedItem = {name: CurrencyService.cy} || self.itemArray[0];
 
-            self.selectedItem = {name: currency} || self.itemArray[0];
-
-            this.changeCurrency = function (value) {
-                $cookies.put('currency', value);
-                Product.getList();
-                FilterService.currency = value;
-                if(Product.curProd != null){
-                    Product.curProd.currency = value;
+                this.changeCurrency = function (value) {
+                    CurrencyService.currency(value);
+                    $rootScope.$broadcast('currencyChanged');
                 }
-
-            }
         }]
     });

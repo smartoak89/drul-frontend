@@ -1,92 +1,123 @@
 angular.module('app')
-    .service('Cart', ['$rootScope', 'Httpquery', 'User', 'Currency', '$log', '$q', '$http', 'Conf', '$timeout', function ($rootScope, Httpquery, User, Currency, $log, $q, $http, Conf, $timeout) {
-        var cartList;
+    .service('Cart', ['$rootScope', 'Httpquery', 'User', '$log', '$q', '$http', 'Conf', '$timeout', 'CurrencyService',
+        function ($rootScope, Httpquery, User, $log, $q, $http, Conf, $timeout, CurrencyService) {
+            var cartList = [];
 
-        return {
-            add: function (product, option, callback) {
-                var user = User.get();
+            return {
+                init: function () {
 
-                var productToAdd = {
-                    combo: option,
-                    image: product.photo.uuid
-                };
+                    var self = this;
 
-                if (user) {
-                    Httpquery.put({params1: 'cart', params2: product.uuid}, productToAdd, function (res) {
-                        cartList.push(res);
-                        console.log('res', res);
-                        $rootScope.$broadcast('changeCart');
+                    if (cartList.length > 0) {
 
-                        callback();
-                    }, function (err) {
-                        console.error('can\'t add to cart', err);
-                        callback(err);
-                    })
-                } else {
+                        var promises = cartList.map(function (product) {
 
-                    if (!cartList) cartList = [];
-                    cartList.push(productToAdd);
+                            return $q(function (resolve, reject) {
+                                self.add(product, product.combo, function (err) {
 
-                    $rootScope.$broadcast('changeCart');
-                }
-            },
-            list: function () {
+                                    if (err) return reject(err);
+                                    return resolve();
+                                })
+                            })
+                        });
 
-                var user = User.get();
+                        $q.all(promises).then(function () {
+                            self.list(function () {});
+                        })
+                    } else {
+                        self.list(function () {});
+                    }
+                },
+                add: function (product, option, callback) {
+                    var user = User.get();
 
-                if (user) {
-
-                    Httpquery.query({params1: 'cart'}, function (res) {
-                        $timeout(function () { $rootScope.$broadcast('changeCart'); }, 50);
-
-                        if (!cartList) return cartList = res;
-
-                        cartList = cartList.concat(res);
-
-                    }, function (err) {
-                        console.error('can\'t get cart list', err);
-                    });
-                }
-            },
-            getList: function () {
-                return cartList;
-            },
-            remove: function (product, callback) {
-                var self = this;
-                var user = User.get();
-
-                if (user) {
-                    console.log('product', product);
-                    var qwe = {
-                        params1:'cart',
-                        params2: product.uuid
+                    var productToAdd = {
+                        combo: option,
+                        image: product.photo.uuid
                     };
 
-                    Httpquery.delete(qwe, function(){
-                        self.removeFromCartList(product);
-                        callback();
-                    }, function(err){
-                        callback(err);
-                    });
-                }
-            },
-            removeFromCartList: function (product) {
-                _.remove(cartList, product);
-                $rootScope.$broadcast('changeCart');
-            },
-            clear: function () {
-                var self = this;
+                    if (user) {
+                        Httpquery.put({params1: 'cart', params2: product.uuid}, productToAdd, function (res) {
+                            CurrencyService.changePrice(res);
+                            cartList.push(res);
+                            $rootScope.$broadcast('changeCart');
 
-                _.each(cartList, function(product) {
-                    self.remove(product, function () {
-                        self.removeFromCartList(product);
+                            callback();
+                        }, function (err) {
+                            console.error('can\'t add to cart', err);
+                            callback(err);
+                        })
+                    } else {
+                        var copy = angular.copy(product);
+
+                        copy.combo = option;
+                        copy.image = product.photo.uuid;
+                        CurrencyService.changePrice(copy);
+                        cartList.push(copy);
+                        callback();
                         $rootScope.$broadcast('changeCart');
-                    })
-                });
-            },
-            out: function () {
-                cartList = [];
-                $rootScope.$broadcast('changeCart');
-            }
+                    }
+                },
+                list: function (callback) {
+
+                    var user = User.get();
+
+                    if (user) {
+
+                        Httpquery.query({params1: 'cart'}, function (res) {
+                            $timeout(function () { $rootScope.$broadcast('changeCart'); }, 50);
+
+                            _.each(res, function (product) {
+                                CurrencyService.changePrice(product);
+                            });
+
+                            cartList = res;
+                            callback(cartList);
+                        }, function (err) {
+                            console.error('can\'t get cart list', err);
+                        });
+                    }
+                },
+                getList: function () {
+                    return cartList;
+                },
+                remove: function (product, callback) {
+                    var self = this;
+                    var user = User.get();
+
+                    if (user) {
+                        var qwe = {
+                            params1:'cart',
+                            params2: product.uuid
+                        };
+
+                        Httpquery.delete(qwe, function(){
+                            self.removeFromCartList(product);
+                            callback();
+                        }, function(err){
+                            callback(err);
+                        });
+                    } else {
+                        self.removeFromCartList(product);
+                    }
+                },
+                removeFromCartList: function (product) {
+                    _.remove(cartList, product);
+                    $rootScope.$broadcast('changeCart');
+                },
+                clear: function () {
+                    var self = this;
+
+                    _.each(cartList, function(product) {
+                        self.remove(product, function () {
+                            self.removeFromCartList(product);
+                            $rootScope.$broadcast('changeCart');
+                        })
+                    });
+                },
+                out: function () {
+                    cartList = [];
+                    $rootScope.$broadcast('changeCart');
+                }
         };
     }]);

@@ -6,7 +6,6 @@ angular.module('app')
             if (isValid() == true) {
 
                 AuthService.post($scope.user, function (err) {
-                    console.log('err', err);
                     if(err) return  $scope.error = err.data.message;
 
                     $scope.close();

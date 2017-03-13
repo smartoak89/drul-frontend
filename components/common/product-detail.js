@@ -2,13 +2,14 @@ angular.module('app')
     .component('productDetail', {
         templateUrl: "components/common/product-detail.html",
 
-        controller: ['$location','Cart', 'Category', 'Product', 'User', 'Conf', 'DeferredService', '$timeout', 'FileService',
-            function ($location, Cart, Category, Product, User, Conf, DeferredService, $timeout, FileService) {
+        controller: ['$location','Cart', 'Product', 'User', 'Conf', 'DeferredService', '$timeout', 'FileService', 'CurrencyService',
+            function ($location, Cart, Product, User, Conf, DeferredService, $timeout, FileService, CurrencyService) {
             var self = this;
             self.cart = Cart;
             self.user = User.get();
             self.Conf = Conf;
             self.Product = Product;
+            self.currencyService = CurrencyService;
             self.error = {};
 
             self.zoomOptionsGallery01 = {

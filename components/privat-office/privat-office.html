@@ -48,8 +48,8 @@
                             </td>
                             <td>
                                 <div class="namePrice">
-                                    <span>{{defProd.price}} грн</span>
-                                    <strike ng-if="defProd.oldPrice">{{defProd.oldPrice}} грн</strike>
+                                    <span>{{defProd.price}} {{$ctrl.currencyService.cy}}</span>
+                                    <strike ng-if="defProd.oldPrice">{{defProd.oldPrice}} {{$ctrl.currencyService.cy}}</strike>
                                     <button type="button" modal="replaceToCart" class="btn btn-drul">переместить в
                                         <div class="s-3"></div>
                                     </button>

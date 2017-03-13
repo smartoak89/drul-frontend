@@ -1,5 +1,5 @@
 angular.module('app')
-    .service('DeferredService', ['$rootScope', 'Httpquery', 'User', '$timeout', function ($rootScope, Httpquery, User, $timeout) {
+    .service('DeferredService', ['$rootScope', 'Httpquery', 'User', '$timeout', 'CurrencyService', function ($rootScope, Httpquery, User, $timeout, CurrencyService) {
         var self = this;
         var defferedList;
 
@@ -9,6 +9,10 @@ angular.module('app')
             if (user) {
 
                 Httpquery.query({params1: 'deferred'}, function (res) {
+                    _.each(res, function (product) {
+                        CurrencyService.changePrice(product);
+                    });
+
                     defferedList = res;
                     callback(defferedList);
                     $timeout(function () { $rootScope.$broadcast('changeDeferred'); }, 50);
@@ -87,4 +91,5 @@ angular.module('app')
         this.out = function () {
             defferedList = null;
         }
+
     }]);

@@ -45,8 +45,8 @@
                     </td>
                     <td>
                         <div class="namePrice">
-                            <span>{{product.price}} {{product.currency}}</span>
-                            <strike ng-if="product.stock">{{product.stock.old_price}} грн</strike>
+                            <span>{{product.price}} {{$ctrl.currencyService.cy}}</span>
+                            <strike ng-if="product.stock">{{product.stock.old_price}} {{$ctrl.currencyService.cy}}</strike>
                             <div class="marCustom1">Цена указана без учета доставки</div>
                         </div>
                     </td>
