@@ -12,27 +12,6 @@ angular.module('app')
                 }
 
                 return req;
-            },
-
-            // optional method
-            'requestError': function(rejection) {
-                // do something on error
-
-                return rejection;
-            },
-
-
-
-            // optional method
-            'response': function(response) {
-                // do something on success
-                return response;
-            },
-
-            // optional method
-            'responseError': function(rejection) {
-                // do something on error
-               return rejection;
             }
         };
     });

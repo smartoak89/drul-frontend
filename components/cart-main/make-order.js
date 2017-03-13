@@ -32,7 +32,7 @@ angular.module('app')
                         price = price + (product.price * product.counter);
                         console.log('productMake', product);
                         self.orderMake.products[index] = {
-                            productID: product.uuid,
+                            productID: product.product_uuid,
                             combo: product.combo,
                             count: product.counter,
                             price: product.price
@@ -45,7 +45,7 @@ angular.module('app')
 
                     OrderService.doOrder(self.orderMake, function (err, res) {
                         if (err) return self.error = err.data.message;
-                        Cart.clearCart();
+                        Cart.clear();
                         $anchorScroll(0);
                         self.orderSuccess = true;
                     })

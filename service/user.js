@@ -1,8 +1,6 @@
 angular.module('app')
     .service('User', ['$cookies', '$rootScope',  function ($cookies, $rootScope) {
 
-            this.activeMenu =  0;
-
             var active = null;
             var token = null;
 

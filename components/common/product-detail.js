@@ -2,14 +2,13 @@ angular.module('app')
     .component('productDetail', {
         templateUrl: "components/common/product-detail.html",
 
-        controller: ['$location','Cart', 'Category', 'Product', 'User', 'Conf', 'DeferredService', '$timeout',
-            function ($location, Cart, Category, Product, User, Conf, DeferredService, $timeout) {
+        controller: ['$location','Cart', 'Category', 'Product', 'User', 'Conf', 'DeferredService', '$timeout', 'FileService',
+            function ($location, Cart, Category, Product, User, Conf, DeferredService, $timeout, FileService) {
             var self = this;
             self.cart = Cart;
             self.user = User.get();
             self.Conf = Conf;
             self.Product = Product;
-            self.curProdCheck = {};
             self.error = {};
 
             self.zoomOptionsGallery01 = {
@@ -87,6 +86,8 @@ angular.module('app')
 
                     Product.getProduct(id, function (product) {
                         DeferredService.wasDeferred(product);
+
+                        FileService.listGallery(product);
 
                         self.product = product;
                     })

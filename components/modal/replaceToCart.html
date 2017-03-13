@@ -6,7 +6,7 @@
                 <form role="form">
                     <div class="form-group" ng-repeat="combo in curProd.combo">
                         <label>{{combo.name}}</label>
-                        <select class="form-control" ng-model="combos[$index].values" >
+                        <select class="form-control" ng-model="combos[$index].value" >
                             <option ng-repeat="val in combo.values" value="{{val}}">{{val}}</option>
                         </select>
                     </div>

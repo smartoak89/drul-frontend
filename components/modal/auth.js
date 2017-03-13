@@ -1,16 +1,16 @@
 angular.module('app')
-    .controller('auth', ['$uibModalInstance', '$scope', '$location', 'AuthService',  function ($uibModalInstance, $scope, $location, AuthService) {
+    .controller('auth', ['$uibModalInstance', '$scope', '$location', 'AuthService', '$state',  function ($uibModalInstance, $scope, $location, AuthService, $state) {
         $scope.user = {};
 
         $scope.login = function () {
             if (isValid() == true) {
 
                 AuthService.post($scope.user, function (err) {
-
+                    console.log('err', err);
                     if(err) return  $scope.error = err.data.message;
 
                     $scope.close();
-                    $location.path('/');
+                    $state.go('index', {reload:true});
                 });
             }
         };

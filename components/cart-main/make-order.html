@@ -38,7 +38,7 @@
                                 <td>Моб. номер</td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="text" ng-model="$ctrl.orderMake.phone">
+                                        <input type="text" ng-model="$ctrl.orderMake.phone" ng-pattern-restrict="^[0-9]*$">
                                     </div>
                                 </td>
                             </tr>
