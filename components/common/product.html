@@ -7,16 +7,16 @@
             <p>{{$ctrl.product.name}}</p>
             <hr class="line"/>
             <!--<span ng-if="$ctrl.product.stockCost">{{$ctrl.product.stockCost + " " + $ctrl.product.currency}}</span>-->
-            <span>{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
-            <strike ng-if="$ctrl.product.stock">{{$ctrl.product.stock.old_price + " " + $ctrl.product.currency}}</strike>
+            <span>{{$ctrl.product.price + " " + $ctrl.currencyService.cy}}</span>
+            <strike ng-if="$ctrl.product.stock">{{$ctrl.product.stock.old_price + " " + $ctrl.currencyService.cy}}</strike>
             <div class="likesWrap">
-                <i class="fa fa-heart" ng-show="$ctrl.user && $ctrl.product.def" aria-hidden="true"
+                <i class="fa fa-heart" ng-show="$ctrl.mainService.activeUser && $ctrl.product.def" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.delFromDeferred()"
                    modal="delDef"></i>
-                <i class="fa fa-heart-o" ng-show="$ctrl.user&&!$ctrl.product.def" aria-hidden="true"
+                <i class="fa fa-heart-o" ng-show="$ctrl.mainService.activeUser&&!$ctrl.product.def" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.addToDeferred()"
                    modal="doneDef"></i>
-                <i class="fa fa-heart-o" ng-show="!$ctrl.user" aria-hidden="true"
+                <i class="fa fa-heart-o" ng-show="!$ctrl.mainService.activeUser" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();"
                    modal="cancelAdd"></i>
             </div>

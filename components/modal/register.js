@@ -30,7 +30,7 @@ angular.module('app')
                     // }
                     $scope.close();
                 }, function (ex) {
-                    $scope.error = ex.data.message;
+                    $scope.error = ex.data;
                     console.log('error', ex);
                 })
             });

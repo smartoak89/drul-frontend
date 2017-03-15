@@ -4,26 +4,23 @@ angular.module('app')
         bindings: {
             product: '='
         },
-        controller: ['Cart', 'User','Product','Conf', 'DeferredService', function(Cart, User, Product, Conf, DeferredService) {
+        controller: ['FileService', 'Cart', 'MainService','Product','Conf', 'DeferredService', 'CurrencyService',
+            function(FileService, Cart, MainService, Product, Conf, DeferredService, CurrencyService) {
 
-            var self = this;
-            this.cart = Cart;
-            this.class = 'wrapB';
-            this.class3 = 'wrapB';
-            this.class1 = 's-2';
-            this.class2 = 's-3';
-            self.user = User.get();
-            self.Conf = Conf;
-            this.addToCart = function () {
+                var self = this;
+                this.cart = Cart;
+                this.mainService = MainService;
+                this.currencyService = CurrencyService;
+                this.Conf = Conf;
 
-            };
+                this.addToDeferred = function () {
+                    DeferredService.add(self.product, function () {});
+                };
 
-            self.addToDeferred = function () {
-                DeferredService.add(self.product, function () {});
-            };
+                this.delFromDeferred = function () {
+                    DeferredService.remove(self.product, function () {})
+                };
 
-            self.delFromDeferred = function () {
-                DeferredService.remove(self.product, function () {})
-            };
+                FileService.mainPhoto(self.product);
         }]
     });

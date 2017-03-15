@@ -27,18 +27,18 @@
                 </li>
 
                 <li class="singIn pull-right">
-                    <button type="button" class="btn btn-drul dark" data-modal="auth" ng-if="!$ctrl.user">войти</button>
-                    <button type="button" class="btn btn-drul dark" ng-click="$ctrl.logout()" ng-if="$ctrl.user">выйти</button>
+                    <button type="button" class="btn btn-drul dark" data-modal="auth" ng-if="!$ctrl.mainService.activeUser">войти</button>
+                    <button type="button" class="btn btn-drul dark" ng-click="$ctrl.logout()" ng-if="$ctrl.mainService.activeUser">выйти</button>
                 </li>
 
-                <li class="singUp pull-right" ng-if="$ctrl.user"  tooltip-placement="left" uib-tooltip="Личный кабинет">
-                    <a class="activeUser" ui-sref="index.privat-office"  ng-click="$ctrl.User.activeMenu = 0"><i class="bi_user-alt"></i>
-                        {{$ctrl.user.email}}
+                <li class="singUp pull-right" ng-if="$ctrl.mainService.activeUser"  tooltip-placement="left" uib-tooltip="Личный кабинет">
+                    <a class="activeUser" ui-sref="index.privat-office"  ng-click="$ctrl.mainService.activeMenu = 0"><i class="bi_user-alt"></i>
+                        {{$ctrl.mainService.activeUser.email}}
                     </a>
 
                 </li>
 
-                <li class="singUp pull-right" ng-if="!$ctrl.user">
+                <li class="singUp pull-right" ng-if="!$ctrl.mainService.activeUser">
                     <button type="button" class="btn btn-drul" data-modal="register">регистрация</button>
                 </li>
 
@@ -47,8 +47,8 @@
                     <div class="countProd" ng-if="$ctrl.cartList">{{$ctrl.cartList}}</div>
                 </li>
 
-                <li class="icon iconRig secondIcon pull-right" ng-show="$ctrl.user" >
-                    <div class="s-2" ui-sref="index.privat-office" ng-click="$ctrl.User.activeMenu = 1" tooltip-placement="left" uib-tooltip="Избранное"></div>
+                <li class="icon iconRig secondIcon pull-right" ng-show="$ctrl.mainService.activeUser" >
+                    <div class="s-2" ui-sref="index.privat-office" ng-click="$ctrl.mainService.activeMenu = 1" tooltip-placement="left" uib-tooltip="Избранное"></div>
 
                     <div class="countProd" ng-if="$ctrl.deferredList">{{$ctrl.deferredList}}</div>
                 </li>

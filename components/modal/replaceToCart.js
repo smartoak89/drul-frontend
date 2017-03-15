@@ -11,7 +11,7 @@ angular.module('app')
             $scope.combos.push({
                 name: $scope.curProd.combo[i].name,
                 slug: $scope.curProd.combo[i].slug,
-                values: $scope.curProd.combo[i].values[0]
+                value: $scope.curProd.combo[i].values[0]
             });
         }
 

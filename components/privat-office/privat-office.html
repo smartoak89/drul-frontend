@@ -5,7 +5,7 @@
     <div class="container-fluid">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <h1>личный кабинет</h1>
-            <uib-tabset active="$ctrl.user.activeMenu">
+            <uib-tabset active="$ctrl.mainService.activeMenu">
                 <uib-tab>
                     <uib-tab-heading>
                         Профиль
@@ -38,7 +38,7 @@
                         <tbody>
                         <tr ng-repeat-start="defProd in $ctrl.deferredList">
                             <td>
-                                <div class="marker red">sale</div>
+                                <div class="marker red" ng-if="defProd.stock">sale</div>
                                 <img ng-src="{{$ctrl.Conf.api_path + '/file/' + defProd.photo.uuid}}" class="img-responsive cover" alt=""></td>
                             <td>
                                 <div class="namePrice">
@@ -48,8 +48,8 @@
                             </td>
                             <td>
                                 <div class="namePrice">
-                                    <span>{{defProd.price}} грн</span>
-                                    <strike ng-if="defProd.oldPrice">{{defProd.oldPrice}} грн</strike>
+                                    <span>{{defProd.price}} {{$ctrl.currencyService.cy}}</span>
+                                    <strike ng-if="defProd.oldPrice">{{defProd.oldPrice}} {{$ctrl.currencyService.cy}}</strike>
                                     <button type="button" modal="replaceToCart" class="btn btn-drul">переместить в
                                         <div class="s-3"></div>
                                     </button>
@@ -69,14 +69,14 @@
                     <uib-tab-heading>
                         История покупок
                     </uib-tab-heading>
-                    <div class="row" ng-if="$ctrl.orders == 0">
+                    <div class="row" ng-if="$ctrl.orders.length == 0">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" style="height: 400px; margin-top: 55px">
                             <h1 class="text-center"><i class="fa fa-book" style="font-size: 45px"></i></h1>
                             <h1 class="text-center">Вы еще не совершали покупок</h1>
                             <h4 class="text-center"><a href="#/" style="color: silver; font-weight: 300">Перейти на главную</a></h4>
                         </div>
                     </div>
-                    <div class="main" ng-if="$ctrl.orders > 0">
+                    <div class="main" ng-if="$ctrl.orders.length > 0">
                         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                             <div class="accordion">
                                 <uib-accordion close-others="true">
@@ -95,12 +95,12 @@
                                                 <tbody ng-repeat="product in order.products">
                                                     <tr ng-click="$ctrl.goToProduct(product)">
                                                         <td>
-                                                            <img class="img-responsive" ng-src="{{$ctrl.Conf.api_path}}/file/{{product.image}}" alt="">
+                                                            <img class="img-responsive" ng-src="{{$ctrl.Conf.api_path}}/file/{{product.photo.uuid}}" alt="">
                                                         </td>
                                                         <td>
                                                             <div>Артикул: {{product.article}}</div>
                                                             <div>{{product.name}}</div>
-                                                            <div ng-repeat="combo in product.combo">{{combo.name}}:<span>{{combo.val}}</span></div>
+                                                            <div ng-repeat="combo in product.combo">{{combo.name}}:<span>{{combo.value}}</span></div>
                                                             <div>Кол-во: {{product.count}}</div>
                                                         </td>
                                                         <td>{{product.price + ' ' + order.currency}}</td>

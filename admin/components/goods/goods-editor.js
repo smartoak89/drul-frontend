@@ -1,8 +1,8 @@
 angular.module('admin')
     .component('goodsEditor', {
     templateUrl: "admin/components/goods/goods-editor.html",
-    controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', 'Stocks', '$q', '$location',
-        function (Goods, FileUploader, Conf, File, Categories, $state, Stocks, $q, $location) {
+    controller: ['Goods', 'FileUploader', 'Conf', 'File', 'Categories', '$state', 'Stocks', '$q', '$location', 'User',
+        function (Goods, FileUploader, Conf, File, Categories, $state, Stocks, $q, $location, User) {
             var self = this;
             // this.editMode = true;
             this.product = Goods.editprod;
@@ -164,7 +164,8 @@ angular.module('admin')
 
             // Uploader
             var uploader = this.uploader = new FileUploader({
-                url: Conf.api_path + '/file/product/' + Goods.editprod.uuid
+                url: Conf.api_path + '/file/product/' + Goods.editprod.uuid,
+                headers: {Authorization: User.token()}
             });
             uploader.onAfterAddingAll = function () {
                 self.addingGallery = true;

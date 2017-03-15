@@ -426,10 +426,10 @@ angular.module('admin')
 
         }
     }])
-    .factory('RequestService',['HttpResource', '$q', function (HttpResource, $q) {
+    .factory('RequestService',['HttpResource', '$q', 'FileService', function (HttpResource, $q, FileService) {
         return {
             list: function (callback) {
-                HttpResource.query({params1: 'orders'}, function (res) {
+                HttpResource.query({params1: 'orders', params2: 'all'}, function (res) {
                     callback(null, res);
                 }, function (err) {
                     callback(err);
@@ -446,6 +446,7 @@ angular.module('admin')
 
         function getAllProducts(order, callback) {
             var promises = [];
+            console.log('order', order);
             _.each(order.products, function (product) {
                 promises.push($q(function (resolve, reject) {
                     HttpResource.get({params1: 'product', params2: product.productID}, function (res) {
@@ -454,12 +455,12 @@ angular.module('admin')
                         res.combo = product.combo;
                         product = res;
                         product.allCombos = allCombos;
-
-                        HttpResource.query({params1: 'files', params2: res.uuid, type: "main"}, function (image) {
-                            product.image = image[0].uuid;
+                        FileService.mainPhoto(res);
+                        // HttpResource.query({params1: 'files', params2: res.uuid, type: "main"}, function (image) {
+                        //     product.image = image[0].uuid;
                             product.productID = res.uuid;
                             resolve(product);
-                        });
+                        // });
                     }, function (err) {
                         reject(err);
                     })
