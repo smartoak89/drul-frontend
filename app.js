@@ -124,6 +124,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         //     }]
         // }
     });
+    $stateProvider.state('index.reset', {
+        url: "reset/:id",
+        views: {
+            '': {template: "<template-common></template-common>"},
+            'content': {template: "<reset-page></reset-page>"}
+        }
+    });
     $stateProvider.state('index.not-allowed', {
         url: "not-allowed",
         views: {

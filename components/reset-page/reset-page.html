@@ -1,0 +1,24 @@
+<!--Navigator-->
+<nav-cus></nav-cus>
+
+<div class="container-fluid">
+    <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12 middle" >
+        <div class="panel" ng-switch="$ctrl.var">
+            <form ng-switch-when="true">
+                <div class="form-group">
+                    <label>Новый пароль</label>
+                    <input type="password" class="form-control" placeholder="Новый пароль">
+                </div>
+                <div class="form-group">
+                    <label>Подтверждение пароля</label>
+                    <input type="password" class="form-control" placeholder="Подтверждение пароля">
+                </div>
+                <button type="submit" class="btn btn-drul dark">Сохранить</button>
+            </form>
+            <div ng-switch-when="false">
+                <p>Время действие ссылки истекло!</p>
+                <button type="submit" class="btn btn-drul dark" ui-sref="index">Главная страница</button>
+            </div>
+        </div>
+    </div>
+</div>
