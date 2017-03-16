@@ -38,54 +38,6 @@ angular.module('app')
 
                     getProduct();
 
-                    // if(self.Product.products === null){
-                    //
-                    //     if(self.Product.products.length == 0) {
-                    //         // self.Product.getCurProd($location.url().split('/').pop()).then(function () {
-                    //         //
-                    //         //     self.Product.changeCurrency([self.Product.curProd]).then(function () {
-                    //         //
-                    //         //         if (_.find(self.cart.defList, {uuid: self.Product.curProd.uuid})) {
-                    //         //             self.Product.curProd.def = true;
-                    //         //         } else {
-                    //         //             self.Product.curProd.def = false;
-                    //         //         }
-                    //         //         if (self.Product.curProd.photo) {
-                    //         //             self.curProdCheck = {
-                    //         //                 image: self.Product.curProd.photo.uuid,
-                    //         //                 combo: []
-                    //         //             };
-                    //         //             for (var i = 0; i < self.Product.curProd.combo.length; i++) {
-                    //         //                 self.curProdCheck.combo.push({
-                    //         //                     name: self.Product.curProd.combo[i].name,
-                    //         //                     slug: self.Product.curProd.combo[i].slug,
-                    //         //                     val: null
-                    //         //                 });
-                    //         //             }
-                    //         //         }
-                    //         //
-                    //         //     });
-                    //         // });
-                    //     }
-                    //
-                    // }else{
-                    //     self.Product.curProd = _.find(self.Product.products, {uuid: $location.url().split('/').pop()});
-                    //
-                    //     self.curProdCheck = {
-                    //         image: self.Product.curProd.photo.uuid,
-                    //         counter: 1,
-                    //         combo: []
-                    //     };
-                    //
-                    //     for (var i=0; i<self.Product.curProd.combo.length;i++) {
-                    //         self.curProdCheck.combo.push({
-                    //             name: self.Product.curProd.combo[i].name,
-                    //             slug: self.Product.curProd.combo[i].slug,
-                    //             val: null
-                    //         });
-                    //     }
-                    // }
-
                 };
                 var choosedCombo = [];
 
