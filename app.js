@@ -55,7 +55,6 @@ app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainServ
         $anchorScroll(0);
     });
 
-
     MainService.init();
 }]);
 
@@ -124,6 +123,13 @@ app.config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $ur
         //         }
         //     }]
         // }
+    });
+    $stateProvider.state('index.reset', {
+        url: "reset/:id",
+        views: {
+            '': {template: "<template-common></template-common>"},
+            'content': {template: "<reset-page></reset-page>"}
+        }
     });
     $stateProvider.state('index.not-allowed', {
         url: "not-allowed",

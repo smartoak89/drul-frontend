@@ -15,8 +15,11 @@
     <div class="col-lg-9 col-md-9 col-sm-9 col-xs-12">
 
         <div class="row">
+
             <!--Product-->
-            <a class="blackCol" ng-repeat="product in $ctrl.Product.products" href="{{'#/product/' + product.uuid}}" ng-if="product.show"><product  product="product"></product></a>
+            <a class="blackCol" ng-repeat="product in $ctrl.Product.products" href="{{'#/product/' + product.uuid}}" ng-if="product.show">
+                <product  product="product"></product>
+            </a>
 
         </div>
         <div class="row">

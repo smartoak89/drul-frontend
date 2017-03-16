@@ -2,7 +2,7 @@
 <nav-cus></nav-cus>
 
 <div class="cartMain">
-    <div class="container-fluid">
+    <div class="container-fluid" ng-if="!$ctrl.orderInfo">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12" ng-if="$ctrl.cartList.length == 0" style="height: 400px; margin-top: 100px;">
             <h1 class="text-center"><i class="fa fa-shopping-bag" aria-hidden="true" style="font-size: 45px"></i></h1>
             <h1 class="text-center">Ваша корзина пуста</h1>
@@ -32,7 +32,7 @@
 
                             <div class="params" ng-repeat="value in product.combo">
                                 <div>{{value.name}}</div>
-                                <div>{{value.val}}</div>
+                                <div>{{value.value}}</div>
                             </div>
                         </div>
                     </td>
@@ -45,16 +45,16 @@
                     </td>
                     <td>
                         <div class="namePrice">
-                            <span>{{product.price}} {{product.currency}}</span>
-                            <strike ng-if="product.stock">{{product.stock.old_price}} грн</strike>
+                            <span>{{product.price}} {{$ctrl.currencyService.cy}}</span>
+                            <strike ng-if="product.stock">{{product.stock.old_price}} {{$ctrl.currencyService.cy}}</strike>
                             <div class="marCustom1">Цена указана без учета доставки</div>
                         </div>
                     </td>
                     <td>
-                        <div class="s-15" ng-click="$ctrl.cart.delFromCart(product)"></div>
+                        <div class="s-15" ng-click="$ctrl.remove(product)"></div>
                     </td>
                 </tr>
-                <tr ng-repeat-end="product in $ctrl.cartList">
+                <tr ng-repeat-end>
                     <td></td>
                 </tr>
                 <tr>

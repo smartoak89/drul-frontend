@@ -1,16 +1,12 @@
 angular.module('app')
     .service('OrderService', ['Httpquery', 'User', function (Httpquery, User) {
 
-        if(User.get()){
-            var userId = User.get().uuid;
-        }
-
         return {
             listHistoryOrders: [],
             getListHistoryOrders: function (callback) {
-                var self = this;;
-                console.log(userId)
-                Httpquery.query({params1: 'orders', params2: userId}, function (res) {
+                var self = this;
+
+                Httpquery.query({params1: 'orders'}, function (res) {
                     self.listHistoryOrders = res;
                     callback(null, res);
                 }, function (err) {
@@ -18,7 +14,7 @@ angular.module('app')
                 })
             },
             doOrder: function (order, callback) {
-                Httpquery.save({params1: 'order', params3: userId}, order, function (res) {
+                Httpquery.save({params1: 'order'}, order, function (res) {
                     callback(null, res);
                 }, function (err) {
                     callback(err);

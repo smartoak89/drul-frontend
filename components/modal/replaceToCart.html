@@ -6,18 +6,10 @@
                 <form role="form">
                     <div class="form-group" ng-repeat="combo in curProd.combo">
                         <label>{{combo.name}}</label>
-                        <select class="form-control" ng-model="curProdCheck.combo[$index].val" ng-init="curProdCheck.combo[$index].val = combo.values[0]">
+                        <select class="form-control" ng-model="combos[$index].value" >
                             <option ng-repeat="val in combo.values" value="{{val}}">{{val}}</option>
                         </select>
                     </div>
-                    <!--<div class="form-group">-->
-                        <!--<label>Количество</label>-->
-                        <!--<div class="counter">-->
-                            <!--<button ng-click="countMinus()">‒ </button>-->
-                            <!--<input ng-model="curProd.count" ng-pattern-restrict="^[0-9]*$" ng-change="checkMinus()" type="number"/>-->
-                            <!--<button ng-click="countPlus()">+</button>-->
-                        <!--</div>-->
-                    <!--</div>-->
                 </form>
                 <div ng-if="error" class="callout callout-danger">
                     <h4>{{error.statusText}}</h4>

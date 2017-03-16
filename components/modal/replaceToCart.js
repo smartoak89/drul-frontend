@@ -1,43 +1,34 @@
 angular.module('app')
-    .controller('replaceToCart', ['$uibModalInstance', '$scope', 'User', 'modalData', 'Cart',  function ($uibModalInstance, $scope, User, modalData, Cart) {
-        $scope.User = User;
+    .controller('replaceToCart', ['$uibModalInstance', '$scope', 'modalData', 'Cart', 'DeferredService',  function ($uibModalInstance, $scope, modalData, Cart, DeferredService) {
         $scope.Cart = Cart;
-        console.log(modalData);
+
         $scope.curProd = angular.copy(modalData.defProd);
-        console.log($scope.curProd);
+        $scope.curProd.product = $scope.curProd.uuid;
         $scope.curProd.count = 1;
 
-        $scope.curProdCheck = {
-            image: $scope.curProd.photo.uuid,
-            counter: 1,
-            combo: []
-        };
+        $scope.combos = [];
         for (var i=0; i<$scope.curProd.combo.length;i++) {
-            $scope.curProdCheck.combo.push({
+            $scope.combos.push({
                 name: $scope.curProd.combo[i].name,
                 slug: $scope.curProd.combo[i].slug,
-                val: null
+                value: $scope.curProd.combo[i].values[0]
             });
         }
 
         $scope.error = null;
-        //$scope.countPlus = function(){
-        //    $scope.curProd.count++;
-        //};
-        //$scope.countMinus = function(){
-        //    $scope.curProd.count--;
-        //    $scope.checkMinus();
-        //};
-        //$scope.checkMinus = function(){
-        //    if($scope.curProd.count < 1) {
-        //        $scope.curProd.count = 1;
-        //    }
-        //};
+
         $scope.change = function(){
-            $scope.curProdCheck.counter = $scope.curProd.count;
-            $scope.Cart.replace($scope.curProd, $scope.curProdCheck);
-            $uibModalInstance.dismiss();
-        }
+            // $scope.Cart.replace($scope.curProd, $scope.curProdCheck);
+            DeferredService.remove($scope.curProd, function (err) {
+                if (err) return console.error('can\'t remove from deferred', err);
+
+                Cart.add($scope.curProd, $scope.combos, function (err) {
+                    if (err) return console.error('can\'t add to cart', err);
+
+                    $uibModalInstance.dismiss();
+                })
+            })
+        };
         $scope.close = function () {
             $uibModalInstance.dismiss();
         }

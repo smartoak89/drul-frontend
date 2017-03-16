@@ -2,14 +2,14 @@ angular.module('app')
     .component('productDetail', {
         templateUrl: "components/common/product-detail.html",
 
-        controller: ['$location','Cart', 'Category', 'Product', 'User', 'Conf', 'DeferredService', '$timeout',
-            function ($location, Cart, Category, Product, User, Conf, DeferredService, $timeout) {
+        controller: ['$location','Cart', 'Product', 'User', 'Conf', 'DeferredService', '$timeout', 'FileService', 'CurrencyService',
+            function ($location, Cart, Product, User, Conf, DeferredService, $timeout, FileService, CurrencyService) {
             var self = this;
             self.cart = Cart;
             self.user = User.get();
             self.Conf = Conf;
             self.Product = Product;
-            self.curProdCheck = {};
+            self.currencyService = CurrencyService;
             self.error = {};
 
             self.zoomOptionsGallery01 = {
@@ -37,10 +37,9 @@ angular.module('app')
                 self.$onInit = function() {
 
                     getProduct();
-
                 };
-                var choosedCombo = [];
 
+                var choosedCombo = [];
                 self.chooseCombo = function (index, combo, value) {
                     choosedCombo[index] = {
                         name: combo.name,
@@ -56,6 +55,14 @@ angular.module('app')
                         if (err) return showMsg('warning', 'Произошла ошибка при добавление товара в корзину!');
                         showMsg('success', 'Товар добавлен в корзину!');
                     });
+                };
+
+                self.addToDeferred = function () {
+                    DeferredService.add(self.product, function () {});
+                };
+
+                self.delFromDeferred = function () {
+                    DeferredService.remove(self.product, function () {})
                 };
 
                 self.setActiveImageInGallery = function (prop, img) { self[prop] = img; };
@@ -80,6 +87,8 @@ angular.module('app')
 
                     Product.getProduct(id, function (product) {
                         DeferredService.wasDeferred(product);
+
+                        FileService.listGallery(product);
 
                         self.product = product;
                     })

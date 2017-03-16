@@ -40,8 +40,8 @@
                         <p id="goodNameCard">{{$ctrl.product.name}}</p>
                     </div>
                     <div class="descriptionCard">{{$ctrl.product.description}}</div>
-                    <div class="priceCard"><span>{{$ctrl.product.price + ' ' + $ctrl.product.currency}}</span>
-                        <strike ng-if="$ctrl.product.oldPrice">{{$ctrl.product.oldPrice + ' ' + $ctrl.productcurrency}}</strike>
+                    <div class="priceCard"><span>{{$ctrl.product.price + ' ' + $ctrl.currencyService.cy}}</span>
+                        <strike ng-if="$ctrl.product.oldPrice">{{$ctrl.product.oldPrice + ' ' + $ctrl.currencyService.cy}}</strike>
                     </div>
                     <hr class="marCard"/>
                     <div class="sizeCard" ng-repeat="value in $ctrl.product.combo">{{value.name}}
@@ -56,14 +56,8 @@
                     <div class="buttonsCard">
                         <button type="button" class="btn btn-drul dark" ng-click="$ctrl.addToCart()">Добавить в корзину</button>
 
-                        <button type="button" class="btn btn-drul" ng-show="$ctrl.user && !$ctrl.product.def" ng-click="$ctrl.cart.addToDeferred($ctrl.product)" modal="doneDef">
-                            <div class="fa fa-heart-o"></div>
-                            отложить
-                        </button>
-
-                        <button type="button" class="btn btn-drul" ng-show="$ctrl.user && $ctrl.product.def" ng-click="$ctrl.cart.delFromDeferred($ctrl.product)" modal="delDef">
-                            <div class="fa fa-heart"></div>
-                            отложено
+                        <button type="button" class="btn btn-drul"  modal="buyNow">
+                            Купить сейчас
                         </button>
 
                         <button type="button" class="btn btn-drul" ng-show="!$ctrl.user" modal="cancelAdd">

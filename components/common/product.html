@@ -1,54 +1,5 @@
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <div class="goodsBlock">
-        <!--<div class="goodsBlockHover">-->
-            <!--<div class="butWrappProd">-->
-
-                <!--<div class="{{$ctrl.class}}"-->
-                     <!--ng-show="$ctrl.User.active"-->
-                     <!--ng-mouseover="$ctrl.class='wrapW';-->
-                     <!--$ctrl.class1='s-11'"-->
-                     <!--ng-mouseleave="$ctrl.class='wrapB';-->
-                     <!--$ctrl.class1='s-2'"-->
-                     <!--ng-click="$ctrl.cart.addToDeferred($ctrl.product); $event.preventDefault(); $event.stopPropagation(); "-->
-                     <!--modal="doneDef">-->
-                    <!--<i class="{{$ctrl.class1}}"></i>-->
-                <!--</div>-->
-
-                <!--<div class="{{$ctrl.class}}"-->
-                     <!--ng-hide="$ctrl.User.active"-->
-                     <!--ng-mouseover="$ctrl.class='wrapW';-->
-                     <!--$ctrl.class1='s-11'"-->
-                     <!--ng-mouseleave="$ctrl.class='wrapB';-->
-                     <!--$ctrl.class1='s-2'"-->
-                     <!--ng-click="$event.preventDefault(); $event.stopPropagation(); "-->
-                     <!--modal="cancelAdd">-->
-                    <!--<i class="{{$ctrl.class1}}"></i>-->
-                <!--</div>-->
-
-
-                <!--&lt;!&ndash;<div class="{{$ctrl.class3}}"&ndash;&gt;-->
-                     <!--&lt;!&ndash;ng-show="$ctrl.User.active"&ndash;&gt;-->
-                     <!--&lt;!&ndash;ng-click="$event.preventDefault(); $event.stopPropagation();&ndash;&gt;-->
-                     <!--&lt;!&ndash;$ctrl.cart.save($ctrl.product)"&ndash;&gt;-->
-                     <!--&lt;!&ndash;ng-mouseover="$ctrl.class3='wrapW';&ndash;&gt;-->
-                     <!--&lt;!&ndash;$ctrl.class2='s-12'"&ndash;&gt;-->
-                     <!--&lt;!&ndash;ng-mouseleave="$ctrl.class3='wrapB';&ndash;&gt;-->
-                     <!--&lt;!&ndash;$ctrl.class2='s-3'" modal="doneCart">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<i class="{{$ctrl.class2}}"></i>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-                <!--&lt;!&ndash;<div class="{{$ctrl.class3}}"&ndash;&gt;-->
-                     <!--&lt;!&ndash;ng-hide="$ctrl.User.active"&ndash;&gt;-->
-                     <!--&lt;!&ndash;ng-click="$event.preventDefault(); $event.stopPropagation()"&ndash;&gt;-->
-                     <!--&lt;!&ndash;ng-mouseover="$ctrl.class3='wrapW';&ndash;&gt;-->
-                     <!--&lt;!&ndash;$ctrl.class2='s-12'"&ndash;&gt;-->
-                     <!--&lt;!&ndash;ng-mouseleave="$ctrl.class3='wrapB';&ndash;&gt;-->
-                     <!--&lt;!&ndash;$ctrl.class2='s-3'" modal="cancelAdd">&ndash;&gt;-->
-                    <!--&lt;!&ndash;<i class="{{$ctrl.class2}}"></i>&ndash;&gt;-->
-                <!--&lt;!&ndash;</div>&ndash;&gt;-->
-
-            <!--</div>-->
-        <!--</div>-->
         <div class="marker red" ng-if="$ctrl.product.stock">sale</div>
         <img ng-src="{{$ctrl.Conf.api_path}}/file/{{$ctrl.product.photo.uuid}}" class="img-responsive cover" no-image/>
         <div class="namePrice">
@@ -56,16 +7,16 @@
             <p>{{$ctrl.product.name}}</p>
             <hr class="line"/>
             <!--<span ng-if="$ctrl.product.stockCost">{{$ctrl.product.stockCost + " " + $ctrl.product.currency}}</span>-->
-            <span>{{$ctrl.product.price + " " + $ctrl.product.currency}}</span>
-            <strike ng-if="$ctrl.product.stock">{{$ctrl.product.stock.old_price + " " + $ctrl.product.currency}}</strike>
+            <span>{{$ctrl.product.price + " " + $ctrl.currencyService.cy}}</span>
+            <strike ng-if="$ctrl.product.stock">{{$ctrl.product.stock.old_price + " " + $ctrl.currencyService.cy}}</strike>
             <div class="likesWrap">
-                <i class="fa fa-heart" ng-show="$ctrl.user&&$ctrl.product.def" aria-hidden="true"
-                   ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.cart.delFromDeferred($ctrl.product)"
+                <i class="fa fa-heart" ng-show="$ctrl.mainService.activeUser && $ctrl.product.def" aria-hidden="true"
+                   ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.delFromDeferred()"
                    modal="delDef"></i>
-                <i class="fa fa-heart-o" ng-show="$ctrl.user&&!$ctrl.product.def" aria-hidden="true"
-                   ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.cart.addToDeferred($ctrl.product)"
+                <i class="fa fa-heart-o" ng-show="$ctrl.mainService.activeUser&&!$ctrl.product.def" aria-hidden="true"
+                   ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.addToDeferred()"
                    modal="doneDef"></i>
-                <i class="fa fa-heart-o" ng-show="!$ctrl.user" aria-hidden="true"
+                <i class="fa fa-heart-o" ng-show="!$ctrl.mainService.activeUser" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();"
                    modal="cancelAdd"></i>
             </div>
