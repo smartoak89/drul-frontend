@@ -1,7 +1,7 @@
 angular.module('admin')
     .component('slideshow', {
         templateUrl: "admin/components/settings/slideshow.html",
-        controller: ['FileUploader', 'Conf', 'SlideshowService', '$timeout', function(FileUploader, Conf, SlideshowService, $timeout) {
+        controller: ['FileUploader', 'Conf', 'SlideshowService', 'User', function(FileUploader, Conf, SlideshowService, User) {
             var self = this;
 
             self.slider = {};
@@ -68,6 +68,7 @@ angular.module('admin')
             function uploaderInit () {
                 uploader = self.uploader = new FileUploader({
                     url: Conf.api_path + '/file/slider/' + self.slider.uuid,
+                    headers: {Authorization: User.token()},
                     queueLimit: 1
                 });
 

@@ -1,9 +1,10 @@
 angular.module('admin')
     .component('music', {
         templateUrl: "admin/components/settings/music.html",
-        controller: ['FileUploader', 'Conf', 'MusicService', function(FileUploader, Conf, MusicService) {
+        controller: ['FileUploader', 'Conf', 'MusicService', 'User', function(FileUploader, Conf, MusicService, User) {
             var self = this;
             this.musics = [];
+
             self.$onInit = function () {
                 MusicService.list(function (err, res) {
                     if (err) return self.error = err.data.message;
@@ -22,6 +23,9 @@ angular.module('admin')
             function uploaderInit () {
                 uploader = self.uploader = new FileUploader({
                     url: Conf.api_path + '/file/music/music',
+                    headers: {
+                        'Authorization': User.token()
+                    },
                     autoUpload: true
                 });
 
@@ -35,8 +39,8 @@ angular.module('admin')
 
                 uploader.onAfterAddingAll = function () {
                     self.showUploadBtn = true;
-                    _.each(uploader.queue, function(img){
-                        img.alias = 'music';
+                    _.each(uploader.queue, function(file){
+                        file.alias = 'music';
                     });
 
                 };
