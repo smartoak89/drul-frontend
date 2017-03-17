@@ -54,7 +54,7 @@
                     </div>
                     <!--$ctrl.cart.save($ctrl.product)-->
 
-                    <div class="alert alert-{{$ctrl.message.type}} optCheckMes" ng-if="$ctrl.message">
+                    <div class="alert alert-{{$ctrl.message.type}} optCheckMes" ng-show="$ctrl.message">
                         {{$ctrl.message.msg}}
                     </div>
 
@@ -73,6 +73,11 @@
                             <div class="fa fa-heart"></div>
                             отложено
                         </button>
+                        <button type="button" class="btn btn-drul" ng-show="!$ctrl.user" modal="cancelAdd">
+                            <div class="fa fa-heart-o"></div>
+                            отложить
+                        </button>
+
                     </div>
                     <!--<div class="alert alert-success optCheckMes" ng-if="$ctrl.mesSuc">-->
                         <!--Товар добавлен в <a ui-sref="index.cartMain">корзину</a>!-->
