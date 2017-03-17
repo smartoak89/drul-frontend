@@ -2585,6 +2585,7 @@ admin-navigation .sidebar {
     font-size: 15px;
     font-weight: 300;
     color: #bfbfbf;
+    text-align: center;
 }
 .middle{
     display: flex;

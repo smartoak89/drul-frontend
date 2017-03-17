@@ -131,7 +131,7 @@
                     </form>
                 </div>
 
-                <ul role="tablist" class="nav nav-tabs">
+                <ul  id="myTabAdmin" role="tablist" class="nav nav-tabs">
                     <li role="presentation" class="active"><a href="#aboutt" aria-controls="aboutt" role="tab" data-toggle="tab">О товаре</a></li>
                     <li role="presentation" ng-show="product.comments"><a href="#commm" aria-controls="commm" role="tab" data-toggle="tab">Отзывы ({{product.comments.length}})</a></li>
                 </ul>
@@ -184,3 +184,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#myTabAdmin a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>
