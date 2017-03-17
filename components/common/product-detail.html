@@ -53,10 +53,15 @@
                         </div>
                     </div>
                     <!--$ctrl.cart.save($ctrl.product)-->
+
+                    <div class="alert alert-{{$ctrl.message.type}} optCheckMes" ng-if="$ctrl.message">
+                        {{$ctrl.message.msg}}
+                    </div>
+
                     <div class="buttonsCard">
                         <button type="button" class="btn btn-drul dark" ng-click="$ctrl.addToCart()">Добавить в корзину</button>
 
-                        <button type="button" class="btn btn-drul"  modal="buyNow">
+                        <button type="button" class="btn btn-drul"  ng-click="$ctrl.buyNow($event)">
                             Купить сейчас
                         </button>
 
@@ -64,9 +69,6 @@
                             <div class="fa fa-heart-o"></div>
                             отложить
                         </button>
-                    </div>
-                    <div class="alert alert-{{$ctrl.message.type}} optCheckMes" ng-if="$ctrl.message">
-                        {{$ctrl.message.msg}}
                     </div>
                     <!--<div class="alert alert-success optCheckMes" ng-if="$ctrl.mesSuc">-->
                         <!--Товар добавлен в <a ui-sref="index.cartMain">корзину</a>!-->
