@@ -2,8 +2,8 @@ angular.module('app')
     .component('productDetail', {
         templateUrl: "components/common/product-detail.html",
 
-        controller: ['$location','Cart', 'Product', 'User', 'Conf', 'DeferredService', '$timeout', 'FileService', 'CurrencyService',
-            function ($location, Cart, Product, User, Conf, DeferredService, $timeout, FileService, CurrencyService) {
+        controller: ['$location','Cart', 'Product', 'User', 'Conf', 'DeferredService', '$timeout', 'FileService', 'CurrencyService', '$uibModal',
+            function ($location, Cart, Product, User, Conf, DeferredService, $timeout, FileService, CurrencyService, $uibModal) {
             var self = this;
             self.cart = Cart;
             self.user = User.get();
@@ -73,6 +73,15 @@ angular.module('app')
 
                 self.$onDestroy = function() { $('.zoomContainer').remove(); };
 
+                self.buyNow = function (e) {
+
+                    if (choosedCombo < self.product.combo) {
+                        return showMsg('warning', 'Не все опции выбраны!');
+                    }
+
+                    openModalBuyNow();
+                };
+
                 function showMsg (type, msg) {
                     self.message.type = type;
                     self.message.msg = msg;
@@ -92,6 +101,19 @@ angular.module('app')
 
                         self.product = product;
                     })
+                }
+
+                function openModalBuyNow () {
+                    var product = angular.copy(self.product);
+                    product.combo = choosedCombo;
+
+                    $uibModal.open({
+                        templateUrl: 'components/modal/buy-now.html',
+                        controller: 'buyNow',
+                        resolve: {
+                            product: product
+                        }
+                    });
                 }
 
             }]
