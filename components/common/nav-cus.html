@@ -5,9 +5,9 @@
                 <div class="logo" style="cursor: pointer" ui-sref="index"></div>
             </div>
             <ul class="navigation">
-                <li class="searchInputWrap" tooltip-placement="right" tooltip-class="searchBord" uib-tooltip="Поиск">
+                <li class="searchInputWrap">
                     <input class="searchInput searchBord" ng-change="$ctrl.Product.search($ctrl.Product.searchValue)" ng-model="$ctrl.Product.searchValue" ng-show="$ctrl.search">
-                    <div class="fa fa-search" style="color: #fff" ng-click="$ctrl.search = !$ctrl.search"></div>
+                    <div class="fa fa-search" tooltip-placement="right" tooltip-class="searchBord" uib-tooltip="Поиск" style="color: #fff" ng-click="$ctrl.search = !$ctrl.search"></div>
                 </li>
                 <li><a href="#/">Главная</a></li>
                 <li ><a ui-sref="index.about">о нас</a></li>

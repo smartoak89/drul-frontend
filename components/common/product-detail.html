@@ -57,12 +57,16 @@
                         <button type="button" class="btn btn-drul dark" ng-click="$ctrl.addToCart()">Добавить в корзину</button>
 
                         <button type="button" class="btn btn-drul"  modal="buyNow">
-                            Купить сейчас
+                            Купить в один клик
                         </button>
 
-                        <button type="button" class="btn btn-drul" ng-show="!$ctrl.user" modal="cancelAdd">
+                        <button type="button" class="btn btn-drul" ng-show="$ctrl.user && !$ctrl.product.def" ng-click="$ctrl.addToDeferred()" modal="doneDef">
                             <div class="fa fa-heart-o"></div>
                             отложить
+                        </button>
+                        <button type="button" class="btn btn-drul" ng-show="$ctrl.user && $ctrl.product.def" ng-click="$ctrl.delFromDeferred()" modal="delDef">
+                            <div class="fa fa-heart"></div>
+                            отложено
                         </button>
                     </div>
                     <div class="alert alert-{{$ctrl.message.type}} optCheckMes" ng-if="$ctrl.message">
