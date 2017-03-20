@@ -20,7 +20,7 @@ var app = angular.module('app', [
 
 ]);
 app.constant('Conf', {
-   api_path: 'https://today.net.ua/api'
+   api_path: 'https://today.net.ua'
 });
 
 app.config(['$httpProvider', function($httpProvider) {
