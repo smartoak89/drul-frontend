@@ -1268,24 +1268,24 @@ input[type=radio]:checked + label:before {
 .logRegBut:first-child{
     margin-right: 10px;
 }
-.inputRegLogWrap{
+.inputRegLogWrap > form{
     display: flex;
     margin-top: 10em;
     flex-direction:column;
     padding:0 110px;
 }
-.inputRegLogWrap > input{
+.inputRegLogWrap > form > input{
     margin-bottom: 15px;
     padding: 8px 10px;
 }
 
-.inputRegLogWrap > p{
+.inputRegLogWrap > form > p{
     font-size: 1.2em;
     color: #fff;
     text-align: center;
 }
 
-.inputRegLogWrap > a {
+.inputRegLogWrap > form > a {
     text-align: center;
     color: #fff;
 }

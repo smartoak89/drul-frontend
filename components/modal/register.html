@@ -10,30 +10,32 @@
                 <div class="inputRegLogWrap">
                     <!--<input placeholder="Имя" ng-model="user.firstname"/>-->
                     <!--<input placeholder="Фамилия" ng-model="user.lastname"/>-->
-                    <input placeholder="Эл. почта" ng-model="user.email"/>
-                    <!--<div class="form-group state-register" ng-init="user.state = 'Украина'">-->
-                        <!--<span uib-dropdown on-toggle="toggled(open)">-->
-                          <!--<a href id="simple-dropdown" uib-dropdown-toggle>-->
-                            <!--{{user.state}}-->
-                          <!--</a>-->
-                          <!--<ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">-->
-                            <!--<li>-->
-                            <!--<li>-->
-                              <!--<a href ng-click="user.state = 'Украина'">Украина</a>-->
-                            <!--</li>-->
-                              <!--<li>-->
-                              <!--<a href ng-click="user.state = 'Россия'">Россия</a>-->
-                            <!--</li>-->
-                          <!--</ul>-->
-                        <!--</span>-->
-                    <!--</div>-->
-                    <!--<input placeholder="Моб. номер" ng-model="user.phone"/>-->
-                    <input type="password" placeholder="Пароль" ng-model="user.password"/>
-                    <input type="password" placeholder="Повторите пароль" ng-model="user.repassword"/>
-                    <div class="callout callout-danger" ng-show="error">
-                        <p>{{error}}</p>
-                    </div>
-                    <button class="btn-drul dark" ng-click="register()">Зарегистрироваться</button>
+                    <form name="auth">
+                        <input placeholder="Эл. почта" ng-model="user.email"/>
+                        <!--<div class="form-group state-register" ng-init="user.state = 'Украина'">-->
+                            <!--<span uib-dropdown on-toggle="toggled(open)">-->
+                              <!--<a href id="simple-dropdown" uib-dropdown-toggle>-->
+                                <!--{{user.state}}-->
+                              <!--</a>-->
+                              <!--<ul class="dropdown-menu" uib-dropdown-menu aria-labelledby="simple-dropdown">-->
+                                <!--<li>-->
+                                <!--<li>-->
+                                  <!--<a href ng-click="user.state = 'Украина'">Украина</a>-->
+                                <!--</li>-->
+                                  <!--<li>-->
+                                  <!--<a href ng-click="user.state = 'Россия'">Россия</a>-->
+                                <!--</li>-->
+                              <!--</ul>-->
+                            <!--</span>-->
+                        <!--</div>-->
+                        <!--<input placeholder="Моб. номер" ng-model="user.phone"/>-->
+                        <input type="password" placeholder="Пароль" ng-model="user.password"/>
+                        <input type="password" placeholder="Повторите пароль" ng-model="user.repassword"/>
+                        <div class="callout callout-danger" ng-show="error">
+                            <p>{{error}}</p>
+                        </div>
+                        <button class="btn-drul dark" ng-click="register()">Зарегистрироваться</button>
+                    </form>
                 </div>
             </div>
         </div>

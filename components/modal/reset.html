@@ -8,15 +8,17 @@
                     <button id="toRegis" class="logRegBut" modal="register">регистрация</button>
                 </div>
                 <div class="inputRegLogWrap">
-                    <p>Для сброса пароля введите свою эл. почту</p>
-                    <input placeholder="Эл.почта" ng-model="email"/>
-                    <div class="callout callout-danger" ng-show="error">
-                        <p>{{error}}</p>
-                    </div>
-                    <button class="btn-drul dark" ng-click="reset()">Сбросить</button>
-                    <div class="callout callout-info" ng-show="success">
-                        <p>Наш вашу эл. почту выслано письмо с инструкциями</p>
-                    </div>
+                    <form name="auth">
+                        <p>Для сброса пароля введите свою эл. почту</p>
+                        <input placeholder="Эл.почта" ng-model="email"/>
+                        <div class="callout callout-danger" ng-show="error">
+                            <p>{{error}}</p>
+                        </div>
+                        <button class="btn-drul dark" ng-click="reset()">Сбросить</button>
+                        <div class="callout callout-info" ng-show="success">
+                            <p>Наш вашу эл. почту выслано письмо с инструкциями</p>
+                        </div>
+                    </form>
                 </div>
             </div>
         </div>
