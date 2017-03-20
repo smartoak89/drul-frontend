@@ -90,23 +90,23 @@
                                 <small>Зажмите кнопку 'Ctrl' для выбора нескольких пунктов</small>
                             </div>
                         </div>
-                        <div class="form-group">
-                            <label style="width: 100%">Комментарии ({{product.comments.length}}) <i class="fa viewCombo pull-right" ng-class="$ctrl.viewComments?'fa-minus':'fa-plus'" ng-click="$ctrl.viewComments = !$ctrl.viewComments"></i></label>
-                            <div class="comment" ng-repeat="comm in product.comments" ng-show="$ctrl.viewComments">
-                                <span class="comment-meta">{{comm.created | date: short}}</span>
-                                <div class="comment-body">
-                                    <p>{{comm.body}}</p>
-                                    <div class="text-right">
-                                        <button class="btn btn-default btn-sm" modal-admin="review-remove">
-                                            <i class="fa fa-trash"></i>
-                                            Удалить
-                                        </button>
-                                        <button class="btn btn-default btn-sm" ng-if="!comm.publish" modal-admin="review-publish">Опубликовать</button>
-                                    </div>
-                                    <hr class="">
-                                </div>
-                            </div>
-                        </div>
+                        <!--<div class="form-group">-->
+                            <!--<label style="width: 100%">Комментарии ({{product.comments.length}}) <i class="fa viewCombo pull-right" ng-class="$ctrl.viewComments?'fa-minus':'fa-plus'" ng-click="$ctrl.viewComments = !$ctrl.viewComments"></i></label>-->
+                            <!--<div class="comment" ng-repeat="comm in product.comments" ng-show="$ctrl.viewComments">-->
+                                <!--<span class="comment-meta">{{comm.created | date: short}}</span>-->
+                                <!--<div class="comment-body">-->
+                                    <!--<p>{{comm.body}}</p>-->
+                                    <!--<div class="text-right">-->
+                                        <!--<button class="btn btn-default btn-sm" modal-admin="review-remove">-->
+                                            <!--<i class="fa fa-trash"></i>-->
+                                            <!--Удалить-->
+                                        <!--</button>-->
+                                        <!--<button class="btn btn-default btn-sm" ng-if="!comm.publish" modal-admin="review-publish">Опубликовать</button>-->
+                                    <!--</div>-->
+                                    <!--<hr class="">-->
+                                <!--</div>-->
+                            <!--</div>-->
+                        <!--</div>-->
                     </div>
                 </div>
             </div>
@@ -131,9 +131,9 @@
                     </form>
                 </div>
 
-                <ul role="tablist" class="nav nav-tabs">
-                    <li role="presentation" class="active"><a href="#" aria-controls="home" role="tab" data-toggle="tab">О товаре</a></li>
-                    <li role="presentation"><a href="#" aria-controls="profile" role="tab" data-toggle="tab">Отзывы</a></li>
+                <ul  id="myTabAdmin" role="tablist" class="nav nav-tabs">
+                    <li role="presentation" class="active"><a href="#aboutt" aria-controls="aboutt" role="tab" data-toggle="tab">О товаре</a></li>
+                    <li role="presentation" ng-show="product.comments"><a href="#commm" aria-controls="commm" role="tab" data-toggle="tab">Отзывы ({{product.comments.length}})</a></li>
                 </ul>
                 <div class="tab-content">
                     <div id="aboutt" role="tabpanel" class="tab-pane active">
@@ -150,7 +150,26 @@
                             </div>
                         </div>
                     </div>
-                    <div id="commm" role="tabpanel" class="tab-pane">222</div>
+                    <div id="commm" role="tabpanel" class="tab-pane" ng-show="product.comments">
+                        <div class="row">
+                            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                                <div class="comment" ng-repeat="comm in product.comments" ng-show="$ctrl.viewComments">
+                                    <span class="comment-meta">{{comm.created | date: short}}</span>
+                                    <div class="comment-body">
+                                        <p>{{comm.body}}</p>
+                                        <div class="text-right">
+                                            <button class="btn btn-default btn-sm" modal-admin="review-remove">
+                                                <i class="fa fa-trash"></i>
+                                                Удалить
+                                            </button>
+                                            <button class="btn btn-default btn-sm" ng-if="!comm.publish" modal-admin="review-publish">Опубликовать</button>
+                                        </div>
+                                        <hr class="">
+                                    </div>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
                 </div>
             </div>
         </div>
@@ -165,3 +184,10 @@
         </div>
     </div>
 </div>
+
+<script>
+    $('#myTabAdmin a').click(function (e) {
+        e.preventDefault()
+        $(this).tab('show')
+    })
+</script>

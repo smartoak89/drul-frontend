@@ -2343,10 +2343,12 @@ make-order hr{
 }
 .optCheckMes{
     margin-top: 20px;
+    margin-bottom: 0;
     width: 342px;
     font-size: 15px;
     font-weight: 300;
     text-align: center;
+    height: 50px;
 }
 .optCheckMes > a{
     font-weight: 500;
@@ -2551,10 +2553,10 @@ admin-navigation .sidebar {
         font-size: 120px;
     }
 }
-.modal-buyNow .modal-dialog {
+.modal-buy-now .modal-dialog {
     margin: 0 auto;
 }
-.modal-buyNow .modal-dialog > h4{
+.modal-buy-now .modal-dialog > h4{
     background: #000;
     color: #fff;
     text-align: center;
@@ -2564,6 +2566,9 @@ admin-navigation .sidebar {
     letter-spacing: 0.1em;
     text-transform: uppercase;
 }
+.modal-buy-now .modal-title{
+    text-align: center;
+}
 .buyWrap{
     margin: 30px 50px;
 }
@@ -2572,11 +2577,15 @@ admin-navigation .sidebar {
     padding: 8px 10px;
     width: 100%;
 }
+.buyWrap button{
+    width: 100%;
+}
 .buyText {
     margin-bottom: 20px;
     font-size: 15px;
     font-weight: 300;
     color: #bfbfbf;
+    text-align: center;
 }
 .middle{
     display: flex;
@@ -2596,5 +2605,4 @@ admin-navigation .sidebar {
 }
 .middle > .panel .btn-drul{
     width: 100%;
-
 }

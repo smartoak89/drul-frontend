@@ -110,6 +110,7 @@ angular.module('app')
                     $uibModal.open({
                         templateUrl: 'components/modal/buy-now.html',
                         controller: 'buyNow',
+                        size: 'buy-now',
                         resolve: {
                             product: product
                         }
