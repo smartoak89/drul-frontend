@@ -10,7 +10,7 @@
                     <div class="fa fa-search" tooltip-placement="right" tooltip-class="searchBord" uib-tooltip="Поиск" style="color: #fff" ng-click="$ctrl.search = !$ctrl.search"></div>
                 </li>
                 <li><a href="#/">Главная</a></li>
-                <li><a href="#/admin" ng-show="$ctrl.adminPermission">Админка</a></li>
+                <li ng-show="$ctrl.adminPermission"><a href="#/admin">Админка</a></li>
                 <li><a ui-sref="index.about">о нас</a></li>
 
             </ul>
