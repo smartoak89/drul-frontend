@@ -41,6 +41,28 @@ angular.module('app')
                 }
             });
 
+        };
+        this.calculatePrice = function (currency, price, callback) {
+            currency = currency || null;
+            
+            self.getCourses().then(function (res) {
+                var cur = _.find(res, {ccy: self.cy});
+
+                if (currency && currency != 'UAH') {
+
+                    price.min = Math.round(price.min * cur.sale);
+                    price.max = Math.round(price.max * cur.sale) + 9;
+
+                    return callback(price);
+                }
+
+                if (!currency && self.cy !== 'UAH') {
+                    price = Math.round(price / cur.sale);
+
+                }
+
+                return callback(price);
+            });
         }
 
 
