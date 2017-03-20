@@ -4,14 +4,27 @@ angular.module('app')
             category: "<"
         },
         templateUrl: "components/filter-page/filter-sidebar.html",
-        controller: ['FilterService', 'Product','$cookies', function(FilterService, Product, $cookies) {
+        controller: ['FilterService', 'Product','CurrencyService', '$rootScope', '$timeout', '$state', function(FilterService, Product, CurrencyService, $rootScope, $timeout, $state) {
             var self = this;
+            this.currencyService = CurrencyService;
 
             this.$onInit = function () {
                 self.FilterService = FilterService;
                 FilterService.getFilter(self.category, function (res) {
                     self.criteries = res;
-                    initSlider(res.splice(0, 1)[0].max_price);
+
+                    var maxPrice = res.splice(0, 1)[0].max_price;
+
+                    if (self.currencyService.cy != 'UAH') {
+
+                        self.currencyService.calculatePrice(null, maxPrice, function (price) {
+                            initSlider(price);
+                        });
+                    } else {
+                        initSlider(maxPrice);
+                    }
+
+
 
                 });
             };
@@ -30,6 +43,10 @@ angular.module('app')
                 Product.getList({combo: params}, self.category);
             };
 
+            $rootScope.$on('currencyChanged', function () {
+                $state.reload();
+            });
+
             function initSlider (maxVal) {
                 self.slider = {
                     minValue: 0,
@@ -44,10 +61,14 @@ angular.module('app')
 
             function sortByPrice() {
                 var price = [];
-                price.push('min' + '.' + self.slider.minValue);
-                price.push('max' + '.' + self.slider.maxValue);
-                Product.skip = 0;
-                Product.getList({price: price, skip: 0}, self.category);
+
+                self.currencyService.calculatePrice(self.currencyService.cy, {min: self.slider.minValue, max: self.slider.maxValue} , function (res) {
+
+                    price.push('min' + '.' + res.min);
+                    price.push('max' + '.' + res.max);
+                    Product.skip = 0;
+                    Product.getList({price: price, skip: 0}, self.category);
+                });
 
             }
         }]

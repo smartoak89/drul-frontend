@@ -5,7 +5,7 @@ angular.module('admin')
             var self = this;
             self.categs = [
                 {name: 'Категории', url: 'admin.categoriesAdmin'},
-                {name: 'Торвары', url: 'admin.goodsAdmin'},
+                {name: 'Товары', url: 'admin.goodsAdmin'},
                 {name: 'Пользователи', url: 'admin.usersAdmin'},
                 {name: 'Заказы', url: 'admin.ordersAdmin'},
                 {name: 'Акции', url: 'admin.stocksAdmin'},
