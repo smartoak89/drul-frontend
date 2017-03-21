@@ -7,7 +7,7 @@
         <form role="form">
             <div class="form-group" ng-repeat="combo in curProd.allCombos">
                 <label>{{combo.name}}</label>
-                <select class="form-control" ng-model="curProd.combo[$index].val">
+                <select class="form-control" ng-model="curProd.combo[$index].value">
                     <option ng-repeat="val in combo.values" value="{{val}}">{{val}}</option>
                 </select>
             </div>

@@ -4,18 +4,22 @@ angular.module('admin')
             $scope.curProd = modalData.product;
             console.log($scope.curProd);
             $scope.curProd.count = 1;
-            if(!$scope.curProd.image){
-                $scope.curProd.image = angular.copy($scope.curProd.photo.uuid);
-            }
+            //if(!$scope.curProd.photo){
+            //    $scope.curProd.photo = angular.copy($scope.curProd.photo);
+            //}
             if(!$scope.curProd.allCombos){
                 $scope.curProd.allCombos = angular.copy($scope.curProd.combo);
             }
-            $scope.curProd.combo = null;
+            angular.forEach($scope.curProd.combo, function(val){
+                console.log(val);
+                delete val.values;
+            });
+            //$scope.curProd.combo = null;
             if($scope.curProd.uuid){
                 $scope.curProd.productID = $scope.curProd.uuid;
                 delete $scope.curProd.uuid;
             }
-            delete $scope.curProd.photo;
+            //delete $scope.curProd.photo;
             delete $scope.curProd.gallery;
             $scope.error = null;
             $scope.countPlus = function(){

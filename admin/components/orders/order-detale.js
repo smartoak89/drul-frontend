@@ -1,7 +1,7 @@
 angular.module('admin')
     .component('orderDetale', {
         templateUrl: "admin/components/orders/order-detale.html",
-        controller: ['RequestService', 'HttpResource', '$location', 'Goods', '$timeout', 'Conf', function(RequestService, HttpResource, $location, Goods, $timeout, Conf) {
+        controller: ['RequestService', 'HttpResource', '$location', 'Goods', '$timeout', 'Conf', 'CurrencyService', function(RequestService, HttpResource, $location, Goods, $timeout, Conf, CurrencyService) {
             var self = this;
             var orderID = $location.$$path.split('/').pop();
 
@@ -11,12 +11,6 @@ angular.module('admin')
 
             RequestService.getOneOrder(orderID, function (err, res) {
                 self.order = res;
-                //delete res._id;
-                //delete res.category;
-                ////delete res.created;
-                //delete res.description;
-                //delete res.show;
-                //delete res.sublines;
 
                 self.newInfo = {
                     currency: res.currency,

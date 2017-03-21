@@ -441,7 +441,14 @@ angular.module('admin')
                 }, function (err) {
                     callback(err);
                 })
-            }
+            },
+            deleteOrder: function (id, callback) {
+            HttpResource.delete({params1: 'order', params2: id}, function (res) {
+                callback(res)
+            }, function (err) {
+                callback(err);
+            })
+        }
         };
 
         function getAllProducts(order, callback) {
