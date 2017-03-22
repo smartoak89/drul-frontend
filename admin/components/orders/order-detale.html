@@ -171,7 +171,7 @@
                                     <li ng-repeat="product in $ctrl.searchProducts" ng-click="$ctrl.pushProduct($ctrl.order, $index)" modal-admin="addOrderProd">{{product.name}}</li>
                                 </ul>
                             </span>
-                            <i class="fa fa-{{$ctrl.showAddProduct ? 'minus' : 'plus'}}" tooltip-placement="top" uib-tooltip="{{$ctrl.showAddProduct ? 'Отмена' : 'Добавить товар'}}" ng-click="$ctrl.showAddProduct = !$ctrl.showAddProduct"></i>
+                            <i class="fa fa-{{$ctrl.showAddProduct ? 'minus' : 'plus'}}" style="margin-right: 10px; cursor: pointer" tooltip-placement="top" uib-tooltip="{{$ctrl.showAddProduct ? 'Отмена' : 'Добавить товар'}}" ng-click="$ctrl.showAddProduct = !$ctrl.showAddProduct"></i>
                         </div>
                     </div>
 
@@ -205,7 +205,8 @@
                                 <td>{{product.price}}</td>
                                 <td>
                                     <button class="btn btn-default btn-sm" ng-click="$ctrl.pushProduct($ctrl.order, $index)" modal-admin="editOrderProd">Edit</button>
-                                    <button class="btn btn-default btn-sm" ng-click="$ctrl.pushProduct($ctrl.order, $index)" modal-admin="delOrderProd">Remove</button>
+                                    <button ng-show="$ctrl.order.products.length > 1" class="btn btn-default btn-sm" ng-click="$ctrl.pushProduct($ctrl.order, $index)" modal-admin="delOrderProd">Remove</button>
+                                    <button ng-show="$ctrl.order.products.length === 1" class="btn btn-default btn-sm" ng-click="$ctrl.removeOrder($ctrl.order.uuid, $index)" modal-admin="delOrder">Remove</button>
                                 </td>
                             </tr>
                             </tbody>

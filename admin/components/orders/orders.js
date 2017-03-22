@@ -8,12 +8,14 @@ angular.module('admin')
                 self.orderList = list;
             })
 
-            self.removeOrder  = function(index){
+            self.removeOrder  = function(id, index){
                 RequestService.indexOrder = index;
+                RequestService.idOrder = id;
             }
 
             self.goToDetale = function (id, index) {
                 RequestService.indexOrder = index;
+                RequestService.idOrder = id;
                 $location.path('/admin/order/' + id);
             }
 

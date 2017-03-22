@@ -1,6 +1,6 @@
 angular.module('admin')
-    .controller('editOrderProd',['$uibModalInstance', '$scope', 'Goods', 'HttpResource',
-        function($uibModalInstance, $scope, Goods, HttpResource){
+    .controller('editOrderProd',['$uibModalInstance', '$scope', 'Goods', 'HttpResource', '$state',
+        function($uibModalInstance, $scope, Goods, HttpResource, $state){
             //$scope.name = Goods.product.products[Goods.productIndex].name;
             $scope.curProd = angular.copy(Goods.product.products[Goods.productIndex]);
             $scope.curProd.productID = $scope.curProd.uuid;
@@ -35,6 +35,7 @@ angular.module('admin')
                 HttpResource.put({params1: 'order', params2: Goods.product.uuid}, Goods.product, function(res){
                     console.log(res);
                     $uibModalInstance.dismiss('cancel');
+                    $state.reload();
                     Goods.product = null;
                     Goods.productIndex = null;
                 }, function(err){

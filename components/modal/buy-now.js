@@ -2,6 +2,7 @@ angular.module('app')
     .controller('buyNow', ['$uibModalInstance', '$scope', 'Httpquery', 'User', 'product', 'CurrencyService',
         function ($uibModalInstance, $scope, Httpquery, User, product, CurrencyService) {
         console.log(product);
+        $scope.done = false;
         var order = {
             price: product.price,
             currency:  CurrencyService.cy,
@@ -17,6 +18,7 @@ angular.module('app')
             console.log('$scope.number',order);
             Httpquery.save({params1: 'order', params2: 'now'}, order, function (res) {
                 console.log('res', res);
+                $scope.done = true;
             }, function (err) {
                 console.log('err', err);
             });
