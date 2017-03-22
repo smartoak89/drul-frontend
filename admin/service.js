@@ -428,12 +428,21 @@ angular.module('admin')
     }])
     .factory('RequestService',['HttpResource', '$q', 'FileService', function (HttpResource, $q, FileService) {
         return {
+            listOrders: null,
+            indexOrder: null,
             list: function (callback) {
-                HttpResource.query({params1: 'orders', params2: 'all'}, function (res) {
-                    callback(null, res);
-                }, function (err) {
-                    callback(err);
-                })
+                var self = this;
+                if(self.listOrders === null){
+                    HttpResource.query({params1: 'orders', params2: 'all'}, function (res) {
+                        self.listOrders = res;
+                        callback(null, self.listOrders);
+                    }, function (err) {
+                        callback(err);
+                    })
+                }else{
+                    callback(null, self.listOrders);
+                }
+
             },
             getOneOrder: function (id, callback) {
                 HttpResource.get({params1: 'order', params2: id}, function (res) {
@@ -444,7 +453,7 @@ angular.module('admin')
             },
             deleteOrder: function (id, callback) {
             HttpResource.delete({params1: 'order', params2: id}, function (res) {
-                callback(res)
+                callback(null, res)
             }, function (err) {
                 callback(err);
             })
