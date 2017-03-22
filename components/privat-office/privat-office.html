@@ -95,7 +95,7 @@
                                                 <tbody ng-repeat="product in order.products">
                                                     <tr ng-click="$ctrl.goToProduct(product)">
                                                         <td>
-                                                            <img class="img-responsive" ng-src="{{$ctrl.Conf.api_path}}/file/{{product.photo.uuid}}" alt="">
+                                                            <img class="img-responsive" ng-src="{{$ctrl.Conf.api_path + '/file/' + product.photo.uuid}}" alt="">
                                                         </td>
                                                         <td>
                                                             <div>Артикул: {{product.article}}</div>

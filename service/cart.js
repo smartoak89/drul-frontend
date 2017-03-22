@@ -76,6 +76,8 @@ angular.module('app')
                         }, function (err) {
                             console.error('can\'t get cart list', err);
                         });
+                    }else{
+                        callback(cartList);
                     }
                 },
                 getList: function () {

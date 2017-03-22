@@ -1,9 +1,10 @@
 angular.module('app')
     .component('headerr', {
         templateUrl: "components/common/headerr.html",
-        controller: ['$rootScope', 'User', 'Cart', 'DeferredService', 'angularPlayer', 'HttpResource', '$location', 'MainService', '$state',
-            function($rootScope, User, Cart, DeferredService, angularPlayer, HttpResource, $location, MainService, $state) {
+        controller: ['$rootScope', 'User', 'Cart', 'DeferredService', 'angularPlayer', 'HttpResource', '$location', 'MainService', '$state', 'Conf',
+            function($rootScope, User, Cart, DeferredService, angularPlayer, HttpResource, $location, MainService, $state, Conf) {
                 var self = this;
+                self.Conf = Conf;
                 this.mainService = MainService;
                 self.search = false;
 
@@ -77,7 +78,7 @@ angular.module('app')
                                 id: '' + i,
                                 title: self.songs[i].name,
                                 artist: self.songs[i].type,
-                                url: 'http://95.46.99.177/api/file/' + self.songs[i].uuid
+                                url: self.Conf.api_path + '/file/' + self.songs[i].uuid
                             }
                             self.songs[i].id = '' + i;
                             angularPlayer.addTrack(newSong);

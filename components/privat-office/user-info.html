@@ -3,7 +3,7 @@
     <tbody>
     <tr>
         <td>Страна</td>
-        <td> Украина </td>
+        <td>{{$ctrl.User.country}}</td>
         <td></td>
     </tr>
     <tr>
@@ -42,10 +42,10 @@
         <td>Страна</td>
         <td>
             <div class="checkbo">
-                <label for="111">Украина</label>
-                <input type="radio" id="111" name="state" ng-model="$ctrl.user.country"/>
-                <label for="11"><span>Россия</span></label>
-                <input type="radio" id="11" name="state" ng-model="$ctrl.user.country"/>
+                <input type="radio" id="ukr" name="ukr" value="Украина" ng-model="$ctrl.user.country"/>
+                <label style="margin-right: 10px" for="ukr">Украина</label>
+                <input type="radio" id="rus" name="rus" value="Россия" ng-model="$ctrl.user.country"/>
+                <label for="rus"><span>Россия</span></label>
             </div>
         </td>
         <td></td>

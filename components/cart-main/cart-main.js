@@ -1,9 +1,10 @@
 angular.module('app')
     .component('cartMain', {
         templateUrl: "components/cart-main/cart-main.html",
-        controller: ['$rootScope', 'Cart', 'User', '$timeout', '$anchorScroll', 'CurrencyService',
-            function($rootScope, Cart, User, $timeout, $anchorScroll, CurrencyService) {
+        controller: ['$rootScope', 'Cart', 'User', '$timeout', '$anchorScroll', 'CurrencyService', 'Conf',
+            function($rootScope, Cart, User, $timeout, $anchorScroll, CurrencyService, Conf) {
                 var self = this;
+                self.Conf = Conf;
 
                 self.currencyService = CurrencyService;
                 self.user = User.get();
