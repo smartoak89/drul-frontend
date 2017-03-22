@@ -19,7 +19,7 @@ var app = angular.module('app', [
     'ngPatternRestrict'
 
 ]);
-app.constant('Conf', { api_path: 'http://today.net.ua/api' });
+app.constant('Conf', { api_path: 'https://today.net.ua/api' });
 
 app.config(['$httpProvider', function($httpProvider) {
     $httpProvider.interceptors.push('RequestIntercepror');
