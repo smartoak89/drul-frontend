@@ -35,9 +35,9 @@ angular.module('app')
                 var cur = _.find(res, {ccy: self.cy});
 
                 if (self.cy !== 'UAH') {
-                    product.price = Math.round(product.price / cur.sale);
+                    product.price = (product.price / cur.sale).toFixed(2);
                     if(product.stock)
-                        product.stock.old_price = Math.round(product.stock.old_price / cur.sale);
+                        product.stock.old_price = (product.stock.old_price / cur.sale).toFixed(2);
                 }
             });
 
@@ -67,35 +67,3 @@ angular.module('app')
 
 
     }]);
-
-// return {
-//     getCurrentCourse: function () {
-//         var url = 'https://api.privatbank.ua/p24api/pubinfo?json&exchange&coursid=5';
-//         return $http.get(url).then(function (res) {
-//             return res;
-//         });
-//     },
-//     refresh: function (products, currency) {
-//         var self = this;
-//         this.getCurrentCourse().then(function (cources) {
-//             //TODO: change currency
-//         });
-//     }
-// };
-//
-// function changePrice (curr) {
-//     if (curr == undefined) {
-//         return _.each(self.products, function (el, i) {
-//             el.price = prod[i].price;
-//             el.currency = 'UAH';
-//         })
-//     }
-//     var currentPrice = curr.sale;
-//
-//     _.each(self.products, function (el, i) {
-//         if (el.old_price) {
-//             el.old_price =  (prod[i].old_price / currentPrice).toFixed(2);
-//         }
-//         el.price = (prod[i].price / currentPrice).toFixed(2);
-//         el.currency = curr.ccy;
-//     })

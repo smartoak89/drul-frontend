@@ -15,11 +15,9 @@ angular.module('app')
 
                     getDeferred();
 
-                    OrderService.getListHistoryOrders(function (err, res) {
-                        console.log('orders', res);
-                        _.each(res, function (order) {
+                    OrderService.getListHistoryOrders(function (err, list) {
+                        _.each(list, function (order) {
                             RequestService.getOneOrder(order.uuid, function (err, res) {
-                                console.log('one order', res);
                                 self.orders.push(res);
                             })
                         })

@@ -453,13 +453,13 @@ angular.module('admin')
 
         function getAllProducts(order, callback) {
             var promises = [];
-            console.log('order', order);
             _.each(order.products, function (product) {
                 promises.push($q(function (resolve, reject) {
                     HttpResource.get({params1: 'product', params2: product.productID}, function (res) {
                         var allCombos = angular.copy(res.combo);
                         res.count = product.count;
                         res.combo = product.combo;
+                        res.price = product.price;
                         product = res;
                         product.allCombos = allCombos;
                         FileService.mainPhoto(res);
