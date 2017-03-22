@@ -1,17 +1,19 @@
 angular.module('admin')
-    .controller('delOrder',['$uibModalInstance', '$scope', 'RequestService',
-        function($uibModalInstance, $scope, RequestService){
-            $scope.name = Goods.product.name;
+    .controller('delOrder',['$uibModalInstance', '$scope', 'RequestService', '$location',
+        function($uibModalInstance, $scope, RequestService, $location){
             $scope.error = null;
             $scope.delete = function(){
-                RequestService.delete({params1:'product', params2:Goods.product.uuid}, function(resp){
-                    console.log(resp);
-                    Goods.products.splice(Goods.productIndex, 1);
+                RequestService.deleteOrder(RequestService.idOrder, function(err, resp){
+                    if(RequestService.returnToList){
+                        $location.path('/admin/orders');
+                    }else{
+                        RequestService.listOrders.splice(RequestService.indexOrder, 1);
+                    }
+                    RequestService.returnToList = false;
+                    RequestService.indexOrder = null;
+                    RequestService.idOrder = null;
+
                     $uibModalInstance.dismiss('cancel');
-                    Goods.product = null;
-                    Goods.productIndex = null;
-                }, function(err){
-                    $scope.error = err;
                 })
             }
         }]);

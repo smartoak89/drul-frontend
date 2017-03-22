@@ -1,6 +1,6 @@
 angular.module('admin')
-    .controller('addOrderProd',['$uibModalInstance', '$scope', 'Goods', 'HttpResource', 'modalData',
-        function($uibModalInstance, $scope, Goods, HttpResource, modalData){
+    .controller('addOrderProd',['$uibModalInstance', '$scope', 'Goods', 'HttpResource', 'modalData', '$state',
+        function($uibModalInstance, $scope, Goods, HttpResource, modalData, $state){
             $scope.curProd = modalData.product;
             console.log($scope.curProd);
             $scope.curProd.count = 1;
@@ -48,6 +48,7 @@ angular.module('admin')
                 HttpResource.put({params1: 'order', params2: Goods.product.uuid}, Goods.product, function(res){
                     console.log(res);
                     $uibModalInstance.dismiss('cancel');
+                    $state.reload();
                     Goods.product = null;
                     Goods.productIndex = null;
                 }, function(err){

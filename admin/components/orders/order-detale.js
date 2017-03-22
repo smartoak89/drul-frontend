@@ -1,7 +1,7 @@
 angular.module('admin')
     .component('orderDetale', {
         templateUrl: "admin/components/orders/order-detale.html",
-        controller: ['RequestService', 'HttpResource', '$location', 'Goods', '$timeout', 'Conf', 'CurrencyService', function(RequestService, HttpResource, $location, Goods, $timeout, Conf, CurrencyService) {
+        controller: ['RequestService', 'HttpResource', '$location', 'Goods', '$timeout', 'Conf', 'CurrencyService', '$state', function(RequestService, HttpResource, $location, Goods, $timeout, Conf, CurrencyService, $state) {
             var self = this;
             var orderID = $location.$$path.split('/').pop();
 
@@ -38,18 +38,19 @@ angular.module('admin')
 
             self.saveChanges = function(type){
                 HttpResource.put({params1: 'order', params2: self.order.uuid}, self.newInfo, function(res){
-                    if(type == 'user'){
-                        self.order.firstname = res.firstname;
-                        self.order.lastname = res.lastname;
-                        self.order.email = res.email;
-                        self.order.state = res.state;
-                        self.order.phone = res.phone;
-                        self.editUserInfo = false;
-                    }else if (type=='order'){
-                        self.order.currency = res.currency;
-                        self.order.status = res.status;
-                        self.editOrderInfo = false;
-                    }
+                    //if(type == 'user'){
+                    //    self.order.firstname = res.firstname;
+                    //    self.order.lastname = res.lastname;
+                    //    self.order.email = res.email;
+                    //    self.order.state = res.state;
+                    //    self.order.phone = res.phone;
+                    //    self.editUserInfo = false;
+                    //}else if (type=='order'){
+                    //    self.order.currency = res.currency;
+                    //    self.order.status = res.status;
+                    //    self.editOrderInfo = false;
+                    //}
+                    $state.reload();
                 }, function(err){
                     console.log(err)
                 });
@@ -58,7 +59,13 @@ angular.module('admin')
             self.pushProduct = function(prod, index){
                 Goods.product = prod;
                 Goods.productIndex = index;
-            }
+            };
+
+            self.removeOrder  = function(id, index){
+                RequestService.indexOrder = index;
+                RequestService.idOrder = id;
+                RequestService.returnToList = true;
+            };
 
             var disabled = null;
 
