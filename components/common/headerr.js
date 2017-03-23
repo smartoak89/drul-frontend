@@ -35,7 +35,7 @@ angular.module('app')
                 this.$onInit = function () {
 
                      HttpResource.query({params1: 'files', params2: 'music'}, function (res) {
-                         self.songs = res;
+                         self.songs = _.shuffle(res);
                          self.showPlayer = true;
                      })
 
@@ -72,7 +72,7 @@ angular.module('app')
 
                 $rootScope.$on('angularPlayer:ready', function(event, data) {
 
-                    angularPlayer.clearPlaylist(function(data) {
+                    angularPlayer.clearPlaylist(function() {
                         for (var i = 0; i < self.songs.length; i++) {
                             var newSong = {
                                 id: '' + i,

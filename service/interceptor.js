@@ -15,12 +15,13 @@ angular.module('app')
                     return req;
                 },
                 responseError: function(error) {
+                    console.log('error', error);
                     var responseFromAPI = (error.config.url.search(Conf.api_path) !== -1);
 
                     if (responseFromAPI) {
 
                         if (error.status == 401) {
-                            // $templateCache.removeAll();
+                            $templateCache.removeAll();
                             User.deactivate();
                             $location.url('/index');
                         }
