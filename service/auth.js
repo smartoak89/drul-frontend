@@ -23,5 +23,29 @@ angular.module('app')
 
                 callback();
             });
+        };
+
+        this.reset = function(email, callback) {
+            Httpquery.save({params1: 'reset'}, {email: email}, function(res){
+                callback(null, res);
+            }, function(err){
+                callback(err)
+            })
+        };
+
+        this.resetGet = function(token, callback) {
+            Httpquery.get({params1: 'reset', params2: token}, function(res){
+                callback(null, res);
+            }, function(err){
+                callback(err)
+            })
+        };
+
+        this.resetPass = function (pass, token, callback) {
+            Httpquery.save({params1: 'reset', params2: token}, {password: pass}, function(res){
+                callback(null, res);
+            }, function(err){
+                callback(err)
+            })
         }
     }]);

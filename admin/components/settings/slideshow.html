@@ -74,7 +74,7 @@
                     <i class="fa fa-ban"></i>
                     Отмена
                 </button>
-                <button class="btn btn-default mar10" ng-click="$ctrl.save()" ng-show="$ctrl.addSliderMode">
+                <button class="btn btn-default mar10" ng-disabled="!$ctrl.showUploadBtn" ng-click="$ctrl.save()" ng-show="$ctrl.addSliderMode">
                     <i class="fa fa-check"></i>
                     Сохранить
                 </button>

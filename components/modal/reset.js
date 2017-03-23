@@ -1,14 +1,23 @@
 angular.module('app')
-    .controller('reset', ['$uibModalInstance', '$scope', '$rootScope', '$location',  function ($uibModalInstance, $scope, $rootScope, $location) {
+    .controller('reset', ['$uibModalInstance', '$scope', '$rootScope', '$location',  'AuthService', '$timeout', function ($uibModalInstance, $scope, $rootScope, $location, AuthService, $timeout) {
 
         $scope.success = false;
         $scope.email = null;
 
-        $scope.reset = function () {
+        $scope.reset = function (email) {
             if (isValid() == true) {
                 console.log('reset');
-                $scope.error = null;
-                $scope.success = true;
+                AuthService.reset(email, function(err, res){
+                    if(err){
+                        $scope.error = err;
+                    }else{
+                        console.log(res);
+                        $scope.error = null;
+                        $scope.message = res.message;
+                        $scope.success = true;
+                        $timeout(function(){$uibModalInstance.dismiss()}, 4000);
+                    }
+                })
             }
         };
 

@@ -56,6 +56,7 @@ angular.module('admin')
 
             self.newSlider = function () {
                 newSlider = true;
+                self.showUploadBtn = false;
                 SlideshowService.save({}, function(err, res) {
                     if (err) return self.error = err.message;
                     self.slider = res;
