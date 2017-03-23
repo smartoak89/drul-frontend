@@ -2,8 +2,8 @@ angular.module('app')
     .component('productDetail', {
         templateUrl: "components/common/product-detail.html",
 
-        controller: ['$location','Cart', 'Product', 'User', 'Conf', 'DeferredService', '$timeout', 'FileService', 'CurrencyService', '$uibModal',
-            function ($location, Cart, Product, User, Conf, DeferredService, $timeout, FileService, CurrencyService, $uibModal) {
+        controller: ['$rootScope', '$location','Cart', 'Product', 'User', 'Conf', 'DeferredService', '$timeout', 'FileService', 'CurrencyService', '$uibModal',
+            function ($rootScope, $location, Cart, Product, User, Conf, DeferredService, $timeout, FileService, CurrencyService, $uibModal) {
             var self = this;
             self.cart = Cart;
             self.user = User.get();
@@ -96,13 +96,15 @@ angular.module('app')
 
                     Product.getProduct(id, function (product) {
                         DeferredService.wasDeferred(product);
-
                         FileService.listGallery(product);
+                        CurrencyService.changePrice(product);
 
                         self.product = product;
                     })
                 }
-
+                $rootScope.$on('currencyChanged', function () {
+                    CurrencyService.changePrice(self.product);
+                });
                 function openModalBuyNow () {
                     var product = angular.copy(self.product);
                     product.combo = choosedCombo;
