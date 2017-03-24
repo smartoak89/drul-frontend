@@ -54,7 +54,7 @@ angular.module('app')
                 };
 
                 function isValid() {
-                    if (!self.orderMake.state) return self.error = 'Укажите страну получателя!';
+                    if (!self.orderMake.country) return self.error = 'Укажите страну получателя!';
                     if (!self.orderMake.firstname) return self.error = 'Укажите имя получателя!';
                     if (!self.orderMake.lastname) return self.error = 'Укажите фамилию получателя!';
                     if (!self.orderMake.phone) return self.error = 'Укажите мобильный номер получателя!';

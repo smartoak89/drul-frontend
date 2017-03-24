@@ -1,4 +1,4 @@
-<div class="comment-content" ng-repeat="comm in $ctrl.product.comments" ng-if="comm.publish || $ctrl.isAdmin">
+<div class="comment-content" ng-repeat="comm in $ctrl.product.comments | orderBy: '-created'">
     <h5 class="comment-author font-alt">
         <a>{{comm.owner_name}}</a>
         <div class="comment-meta font-alt">{{comm.created | date:'dd.MM.yyyy, H:mm'}}</div>

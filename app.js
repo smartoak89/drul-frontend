@@ -33,9 +33,7 @@ app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainServ
 
         var activeUser = User.get();
 
-        if (activeUser !== null && activeUser.permission) {
-            adminPermission = (activeUser.permission.indexOf('administrator') == -1) == false;
-        }
+        adminPermission = User.isAdmin();
 
         var forbidden;
 

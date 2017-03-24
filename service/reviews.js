@@ -2,7 +2,12 @@ angular.module('app')
     .service('ReviewsService', ['Httpquery', 'User', 'OrderService', function (Httpquery, User, OrderService) {
         return {
             list: function (product) {
-                Httpquery.query({params1: 'reviews', params2:product.uuid}, function(res){
+
+                var criteria = {params1: 'reviews', params2:product.uuid};
+
+                if (User.isAdmin()) criteria.params3 = 'all';
+
+                Httpquery.query(criteria, function(res){
                     product.comments = res;
                 });
             },
@@ -19,7 +24,8 @@ angular.module('app')
             accessFormReviews: function (productId, callback) {
                 OrderService.getListHistoryOrders(function (err, res) {
                     var order = _.find(res, {products: [{productID: productId}] });
-                    callback(order);
+                    if (order && order.status != 'Новый заказ') return callback(true);
+                    callback(false);
                 })
             }
         };

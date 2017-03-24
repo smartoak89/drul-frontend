@@ -9,7 +9,7 @@ angular.module('admin')
                 {name: 'Пользователи', url: 'admin.usersAdmin'},
                 {name: 'Заказы', url: 'admin.ordersAdmin'},
                 {name: 'Акции', url: 'admin.stocksAdmin'},
-                {name: 'Комментарии', url: 'admin.commentsAdmin'},
+                {name: 'Отзывы', url: 'admin.commentsAdmin'},
                 {name: 'Комбинации', url: 'admin.combination'},
                 {name: 'Настройки', url: 'admin.settingsAdmin'}
             ]

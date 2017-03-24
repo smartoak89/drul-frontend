@@ -26,7 +26,7 @@ angular.module('app')
                 ReviewsService.addReviews(product.uuid, self.commBody, function (err, res) {
                     if (err) return self.error = err.data.message;
                     self.commBody.body = '';
-                    product.comments.push(res);
+                    if (self.isAdmin) product.comments.push(res);
                     self.message = 'Отзыв будет опубликован после проверки администратором!';
                 })
             };
@@ -39,11 +39,12 @@ angular.module('app')
 
             $rootScope.$on('reviewRemoved', function (event, reviewId) {
                 _.remove(product.comments, {uuid: reviewId});
-            })
+            });
 
-            $rootScope.$on('reviewPublished', function (event, reviewId) {
-                _.find(product.comments, {uuid: reviewId}).publish = true;
-            })
+            // $rootScope.$on('reviewPublished', function (event, reviewId) {
+            //     _.find(product.comments, {uuid: reviewId}).publish = true;
+            // });
+
 
         }]
     });
