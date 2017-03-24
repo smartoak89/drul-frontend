@@ -5,7 +5,6 @@ angular.module('admin')
             $scope.curProd = angular.copy(Goods.product.products[Goods.productIndex]);
             $scope.curProd.productID = $scope.curProd.uuid;
             delete $scope.curProd.uuid;
-            console.log($scope.curProd);
             $scope.error = null;
             //Goods.listComb(function (combinations) {
             //    _.each(combinations, function(elem){
@@ -29,11 +28,8 @@ angular.module('admin')
             $scope.change = function(){
                 Goods.product.products[Goods.productIndex] = $scope.curProd;
                 _.each(Goods.product.products, function(elem){
-                    //elem.productID = elem.uuid;
-                    console.log(elem);
                 })
                 HttpResource.put({params1: 'order', params2: Goods.product.uuid}, Goods.product, function(res){
-                    console.log(res);
                     $uibModalInstance.dismiss('cancel');
                     $state.reload();
                     Goods.product = null;

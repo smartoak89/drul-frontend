@@ -9,9 +9,7 @@ angular.module('admin')
             if ($scope.new.newValue) delete $scope.new.newValue;
 
             $scope.create = function () {
-                console.log($scope.new);
                 if (isValid() === true) {
-                    console.log('new val', $scope.new);
                     concat();
                     Goods.updateComb($scope.new, index, function (err) {
                         if (err) return $scope.error = err.error_message;

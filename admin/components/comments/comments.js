@@ -20,9 +20,7 @@ angular.module('admin')
 
             function getComm(){
                 ReviewsAdmin.getCom(function(err, res){
-                    if (err) return console.log(err);
                     self.comments = res;
-                    console.log(self.comments);
                     _.forEach(self.comments, function(elem){
                         elem.product = Goods.getThisProd(elem.product_id);
                         elem.photo = Goods.getMainPhoto(elem.product_id);

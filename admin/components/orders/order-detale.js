@@ -52,7 +52,6 @@ angular.module('admin')
                     //}
                     $state.reload();
                 }, function(err){
-                    console.log(err)
                 });
             }
 

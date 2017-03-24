@@ -5,7 +5,7 @@ angular.module('app')
 
         this.post = function (userData, callback){
             Httpquery.save({params1: 'user', params2: 'auth'}, userData, function (res) {
-                console.log('re auth', res)
+                console.log('re auth', res);
                 User.token(res.token);
 
                 self.get(callback)

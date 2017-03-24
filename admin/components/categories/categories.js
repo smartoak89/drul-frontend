@@ -38,7 +38,6 @@ angular.module('admin')
                     cellTemplate: '<button ng-click="cellTemplateScope.delete(row.branch, tree_rows)" modal-admin="delCategory" class="btn btn-default btn-sm">Удалить</button>',
                     cellTemplateScope: {
                         delete: function(obj, tree){
-                            console.log(obj)
                             if(!obj.parent_uid){
                                 self.categ.curCategory = obj;
                                 self.categ.curIndex = _.findIndex(self.categ.categories, {uuid: obj.uuid});
@@ -49,21 +48,6 @@ angular.module('admin')
                                 self.categ.curIndex = _.findIndex(self.categ.curParent.children, {uid: obj.uid});
                             }
                         }
-
-                        //    function(data, row) {
-                        //    console.log(data)
-                        //    if(!row.parent_uid){
-                        //        console.log('+')
-                        //        data.splice(_.findIndex(data, {branch: {Name: row.Name}}), 1)
-                        //    }else{
-                        //        var parent = _.find(data, {branch: {uid: row.parent_uid}});
-                        //        var parentId = _.findIndex(data, {branch: {uid: row.parent_uid}});
-                        //        //console.log(parent.branch.children)
-                        //        //console.log(data[0].branch);
-                        //        data[parentId].branch.children.splice(_.findIndex(parent.branch.children, {Name: row.Name}), 1);
-                        //    }
-                        //
-                        //}
                     }
                 }];
 

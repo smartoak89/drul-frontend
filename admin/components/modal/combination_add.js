@@ -5,7 +5,6 @@ angular.module('admin')
             $scope.error = null;
 
             $scope.create = function () {
-                console.log($scope.new);
                 if (isValid() === true) {
                     $scope.new.slug = Categories.translite($scope.new.name);
                     Goods.addComb($scope.new, function (err) {

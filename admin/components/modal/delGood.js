@@ -5,7 +5,6 @@ angular.module('admin')
             $scope.error = null;
             $scope.delete = function(){
                     HttpResource.delete({params1:'product', params2:Goods.product.uuid}, function(resp){
-                        console.log(resp);
                         Goods.products.splice(Goods.productIndex, 1);
                         $uibModalInstance.dismiss('cancel');
                         Goods.product = null;

@@ -10,13 +10,11 @@ angular.module('admin')
                 comb.show = !comb.show;
             };
             this.remove = function (comb) {
-                console.info('Combination remove => ', comb);
                 Goods.removeComb(comb, function (err) {
                     if (err) return showError(err);
                 })
             };
             this.removeChild = function (comb, index) {
-                console.info('Remove child => ', index);
                 Goods.removeCombChild(comb, index, function (err) {
                     if (err) return showError(err);
                 })
@@ -38,7 +36,7 @@ angular.module('admin')
             };
 
             function showError (err) {
-                console.error('Response error', err)
+
             }
 
         }]

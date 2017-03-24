@@ -13,9 +13,7 @@ angular.module('app')
             uploader.onAfterAddingAll = function () {
                 _.each(uploader.queue, function(img){
                     img.alias = 'slide';
-                    console.log(img);
                 });
-                console.log(uploader);
 
             };
             uploader.onCompleteAll = function () {
@@ -25,7 +23,6 @@ angular.module('app')
             };
             uploader.uploadSlide = function(){
                 self.uploading = true;
-                console.log(self.uploading);
                 uploader.uploadAll();
             };
 

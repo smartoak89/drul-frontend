@@ -15,13 +15,16 @@
             <thead>
             <tr>
                 <th>Название</th>
+                <th class="text-center">Удалить</th>
             </tr>
             </thead>
             <tbody>
             <tr ng-repeat="music in $ctrl.musics">
                 <td>{{music.name}}</td>
-                <td>
-                    <button class="btn btn-default btn-sm" ng-click="$ctrl.remove(music)">Remove</button>
+                <td class="text-center">
+                    <button class="btn btn-default btn-sm" ng-click="$ctrl.remove(music)">
+                        <i class="fa fa-trash-o"></i>
+                    </button>
                 </td>
             </tr>
             </tbody>

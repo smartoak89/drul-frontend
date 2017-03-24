@@ -7,10 +7,8 @@ angular.module('admin')
                 $scope.category[value] = Categories.translite(text);
                 };
             $scope.parent = Categories.curCategory;
-            console.log('Parent', $scope.parent);
             $scope.addCategory = function(){
                 $scope.transliterate($scope.category.name, 'slug');
-                console.log($scope.category);
                 if(!$scope.parent) {
                     $scope.category.level = 1;
                     HttpResource.save({params1: 'category'}, $scope.category, function (resp) {
@@ -18,7 +16,6 @@ angular.module('admin')
                         Categories.categories.push($scope.category);
                         $uibModalInstance.dismiss('cancel');
                     }, function (err) {
-                        console.log(err);
                         $scope.error = err;
                     })
                 }else{
@@ -29,7 +26,6 @@ angular.module('admin')
                         Categories.curCategory = null;
                         Categories.curIndex = null;
                     }, function (err) {
-                        console.log(err);
                         $scope.error = err;
                     })
                 }

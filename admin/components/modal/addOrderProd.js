@@ -2,7 +2,6 @@ angular.module('admin')
     .controller('addOrderProd',['$uibModalInstance', '$scope', 'Goods', 'HttpResource', 'modalData', '$state',
         function($uibModalInstance, $scope, Goods, HttpResource, modalData, $state){
             $scope.curProd = modalData.product;
-            console.log($scope.curProd);
             $scope.curProd.count = 1;
             //if(!$scope.curProd.photo){
             //    $scope.curProd.photo = angular.copy($scope.curProd.photo);
@@ -11,7 +10,6 @@ angular.module('admin')
                 $scope.curProd.allCombos = angular.copy($scope.curProd.combo);
             }
             angular.forEach($scope.curProd.combo, function(val){
-                console.log(val);
                 delete val.values;
             });
             //$scope.curProd.combo = null;
@@ -41,12 +39,7 @@ angular.module('admin')
             };
             $scope.change = function(){
                 Goods.product.products.push($scope.curProd)
-                // _.each(Goods.product.products, function(elem){
-                //     //elem.productID = elem.uuid;
-                //     console.log(elem);
-                // })
                 HttpResource.put({params1: 'order', params2: Goods.product.uuid}, Goods.product, function(res){
-                    console.log(res);
                     $uibModalInstance.dismiss('cancel');
                     $state.reload();
                     Goods.product = null;

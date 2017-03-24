@@ -5,7 +5,6 @@ angular.module('admin')
             $scope.error = null;
 
             $scope.createStocks = function () {
-                console.log($scope.stocks);
                 if (isValid() === true) {
                     Stocks.create($scope.stocks, function (err) {
                         if (err) return $scope.error = err;

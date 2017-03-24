@@ -47,7 +47,6 @@ angular.module('admin')
                 }, $scope.categories[0]);
             }
             $scope.$on('$destroy', function () {
-                console.log('destroy');
                 _.each($scope.categories, function (item) {
                     item.show = false;
                 })

@@ -12,7 +12,6 @@ angular.module('admin')
             self.viewComments = false;
 
             this.$onInit = function () {
-                console.log('Product => ', self.product);
                 Categories.list(function (categories) {
                     self.categories = categories;
                 });
@@ -66,9 +65,7 @@ angular.module('admin')
             this.remove = function (file) {
                 File.remove(file.uuid, function (err, res) {
                     if (err) return self.error = err;
-                    console.info('file was removed', res);
                     if (file.type == 'main') {
-                        console.log('type, main');
                         self.product.photo = null;
                     }
                     _.remove(self.product.gallery, file);
@@ -86,7 +83,6 @@ angular.module('admin')
                     stock_id: self.currentStock.uuid,
                     old_price: self.product.price
                 };
-                console.log('self.product', self.product);
                 applyStock(self.product);
             };
 
@@ -105,7 +101,6 @@ angular.module('admin')
                     this.product.category.slug[1] = parent.slug;
 
                 }
-                console.log(this.product.category);
 
             };
 
@@ -118,7 +113,6 @@ angular.module('admin')
             };
 
             this.save = function () {
-                console.log('self.product', self.product);
                 if (isValid() !== true) return;
                 changeArticle();
                 delete self.product.gallery;
@@ -135,7 +129,6 @@ angular.module('admin')
                         self.product.sublines = [];
                     }
                     self.product.sublines.push({name: n, value: v})
-                    console.log(self.product);
                 }
             };
             this.chooseMain = function (index) {

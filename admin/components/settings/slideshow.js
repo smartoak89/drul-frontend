@@ -90,7 +90,6 @@ angular.module('admin')
                 };
 
                 uploader.onCompleteItem = function () {
-                    console.log('arguments', arguments);
                 };
 
                 uploader.onCompleteAll = function () {
@@ -104,7 +103,7 @@ angular.module('admin')
 
             function listSliders () {
                 SlideshowService.list(function (err, sliders) {
-                    if (err) return console.log(err);
+                    if (err) return;
                     _.each(sliders, function (slide) {
                         SlideshowService.getImage(slide, function (res) {
                             self.sliders.push(res);

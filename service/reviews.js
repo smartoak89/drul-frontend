@@ -10,8 +10,7 @@ angular.module('app')
                 var userId = User.get().uuid;
                 var self = this;
 
-                Httpquery.save({params1: 'reviews', params2: productId, params3: userId}, reviews, function (res) {
-                    console.log('res reviews', res);
+                Httpquery.save({params1: 'reviews', params2: productId}, reviews, function (res) {
                     callback(null, res);
                 }, function (err) {
                     callback(err);
@@ -19,10 +18,7 @@ angular.module('app')
             },
             accessFormReviews: function (productId, callback) {
                 OrderService.getListHistoryOrders(function (err, res) {
-                    console.log('getlistHist', res)
-                    console.log('productId', productId)
                     var order = _.find(res, {products: [{productID: productId}] });
-                    console.log('res find', order);
                     callback(order);
                 })
             }

@@ -17,7 +17,7 @@
                 <th>Ссылка</th>
                 <th>Заголовок</th>
                 <th>Описание</th>
-                <th>Edit/Delete</th>
+                <th class="text-center">Реда-вать/Удалить</th>
             </tr>
             </thead>
             <tbody>
@@ -28,9 +28,9 @@
                 <td>{{slider.link}}</td>
                 <td>{{slider.header}}</td>
                 <td>{{slider.description}}</td>
-                <td>
-                    <button class="btn btn-default btn-sm" ng-click="$ctrl.update(slider)">Edit</button>
-                    <button class="btn btn-default btn-sm" ng-click="$ctrl.remove(slider)">Remove</button>
+                <td class="text-center">
+                    <button class="btn btn-default btn-sm" ng-click="$ctrl.update(slider)"><i class="fa fa-pencil"></i></button>
+                    <button class="btn btn-default btn-sm" ng-click="$ctrl.remove(slider)"><i class="fa fa-trash-o"></i></button>
                 </td>
             </tr>
             </tbody>
