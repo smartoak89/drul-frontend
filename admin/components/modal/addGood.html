@@ -33,13 +33,12 @@
             </div>
         </div>
         <div ng-if="error" class="callout callout-danger">
-            <p>{{error.data.message}}</p>
+            <p>{{error}}</p>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" ng-click="$dismiss()" class="btn btn-default" data-dismiss="modal">Отмена</button>
         <button type="button"
-                ng-disabled="!newProduct.name"
                 ng-click="addProduct()" class="btn btn-primary">Создать
         </button>
     </div>

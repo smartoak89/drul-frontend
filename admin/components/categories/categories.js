@@ -25,6 +25,9 @@ angular.module('admin')
                 {
                     field: 'link',
                     displayName: 'Ссылка'
+                },{
+                    field: 'article',
+                    displayName: 'Артикул'
                 },  {
                     displayName:  '',
                     cellTemplate: '<button ng-if="!row.branch.parent_uid" modal-admin="addCategory" ng-click="cellTemplateScope.add(row.branch)" class="btn btn-default btn-sm">Добавать подкатегорию</button>',

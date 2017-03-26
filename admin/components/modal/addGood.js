@@ -5,15 +5,17 @@ angular.module('admin')
             $scope.newProduct = {};
 
             Categories.list(function(categories){
+                if (!categories) return $scope.error = 'Для добавления товара нужно добавить категорию';
                 $scope.categories = categories;
-                console.log('categoryList', $scope.categories)
             });
 
             $scope.addProduct = function(){
-                Goods.add($scope.newProduct, function (err) {
-                    if (err) return $scope.error = err;
-                    $uibModalInstance.dismiss();
-                })
+                if (isValid() == true) {
+                    Goods.add($scope.newProduct, function (err) {
+                        if (err) return $scope.error = err.data.message;
+                        $uibModalInstance.dismiss();
+                    })
+                }
             };
 
             $scope.addCategory = function (category, parent) {
@@ -35,6 +37,13 @@ angular.module('admin')
                 }
 
             };
+
+            function isValid () {
+                if (!$scope.newProduct.name) return $scope.error = 'Введите название товара';
+                if (!$scope.newProduct.category) return $scope.error = 'Выберите категорию для товара';
+                $scope.error = null;
+                return true;
+            }
 
             function disableCheck() {
                 $scope.categories.reduce(function (arr, category) {

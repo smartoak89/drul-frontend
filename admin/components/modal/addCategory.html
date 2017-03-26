@@ -19,12 +19,11 @@
             <input class="form-control" id="art" autocomplete="off" ng-model="category.article">
         </div>
         <div ng-if="error" class="callout callout-danger">
-            <h4>{{error.statusText}}</h4>
-            <p>{{error.data.message}}</p>
+            <p>{{error}}</p>
         </div>
     </div>
     <div class="modal-footer">
         <button type="button" ng-click="$dismiss()" class="btn btn-default" data-dismiss="modal">Отмена</button>
-        <button type="button" ng-disabled="!category.name||!category.link||!category.article" ng-click="addCategory()" class="btn btn-primary">Создать</button>
+        <button type="button" ng-click="addCategory()" class="btn btn-primary">Создать</button>
     </div>
 </div>
