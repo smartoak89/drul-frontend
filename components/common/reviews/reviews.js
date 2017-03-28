@@ -9,7 +9,7 @@ angular.module('app')
             var self = this;
             this.commBody = { body: null };
             var product = this.product;
-
+            this.commentsExists = _.find(product.comments, {publish: true});
             this.$onInit = function () {
 
                 this.activeUser = User.get();

@@ -3,7 +3,7 @@
         <h4 class="modal-title" id="modalBasicLabel">Удаление заказа</h4>
     </div>
     <div class="modal-body">
-        <p>Вы уверены, что хотите удалить текущий заказ?</p>
+        <p>Вы уверены, что хотите удалить заказ № {{modalData.order.order_num}}?</p>
         <div ng-if="error" class="callout callout-danger">
             <h4>{{error.statusText}}</h4>
         </div>

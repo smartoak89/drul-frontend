@@ -166,14 +166,19 @@
                         <form role="form">
                             <div class="form-group">
                                 <label>Тема сообщения</label>
-                                <input type="text" class="form-control">
+                                <input type="text" class="form-control" ng-model="$ctrl.mail.subject">
                             </div>
                             <div class="form-group">
                                 <label for="inputTextarea">Сообщение</label>
-                                <textarea rows="5" class="form-control" style="resize: vertical" id="inputTextarea"></textarea>
+                                <textarea rows="5" class="form-control" style="resize: vertical" id="inputTextarea" ng-model="$ctrl.mail.text"></textarea>
                             </div>
+
+                            <div class="error" ng-show="$ctrl.error">
+                                {{$ctrl.error}}
+                            </div>
+
                             <div class="form-group">
-                                <button type="submit" class="btn btn-default">Отправить</button>
+                                <button type="submit" class="btn btn-default" ng-click="$ctrl.sendMail()">Отправить</button>
                             </div>
                         </form>
                     </div>

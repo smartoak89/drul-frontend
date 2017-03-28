@@ -24,7 +24,7 @@ angular.module('app')
                     }
 
                     if(self.searchValue){
-                        queryStr.name = self.searchValue;
+                        queryStr.article = self.searchValue;
                     }
 
                     criteria = criteria || {sort: 'created.desk'};

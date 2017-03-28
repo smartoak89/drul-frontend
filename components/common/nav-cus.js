@@ -5,11 +5,7 @@ angular.module('app')
             var self = this;
             self.search = false;
             self.Product = Product;
-            var activeUser = User.get();
-
-            if (activeUser !== null && activeUser.permission) {
-                self.adminPermission = (activeUser.permission.indexOf('administrator') == -1) == false;
-            }
+            this.adminPermission = User.isAdmin();
 
             $(window).scroll(function () {
                 var scrollh = $(this).scrollTop();

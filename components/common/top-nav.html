@@ -22,6 +22,7 @@
                         <div class="fa fa-search" style="color: #fff" ng-click="$ctrl.search = !$ctrl.search"></div>
                     </li>
                     <li><a href="#/">Главная</a></li>
+                    <li ng-if="$ctrl.adminPermission"><a href="#/admin">Админка</a></li>
                     <li ><a ui-sref="index.about">о нас</a></li>
                 </ul>
             </div>

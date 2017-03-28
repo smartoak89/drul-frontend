@@ -3,10 +3,11 @@ angular.module('app')
         function ($uibModalInstance, $scope, Httpquery, User, product, CurrencyService, $timeout) {
         console.log(product);
         $scope.done = false;
+        var user = angular.copy(User.get());
         $scope.order = {
             price: product.price,
             currency:  CurrencyService.cy,
-            phone: null,
+            phone: user.phone || null,
             products:[{
                 productID: product.uuid,
                 combo: product.combo,

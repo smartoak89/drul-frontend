@@ -150,7 +150,7 @@ angular.module('admin')
                 self.updateComb(comb, parentIndex, callback);
             },
             getCom: function(product){
-                HttpResource.query({params1: 'reviews', params2:product.uuid}, function(res){
+                HttpResource.query({params1: 'reviews', params2:product.uuid, params3: 'all'}, function(res){
                     product.comments = res;
                 });
             },
@@ -487,6 +487,17 @@ angular.module('admin')
                 order.products = res;
                 return callback(null, order);
             })
+        }
+    }])
+    .factory('mailService',['HttpResource', function (HttpResource) {
+        return {
+            send: function (mail, callback) {
+                HttpResource.save({params1: 'mail'}, mail, function (res) {
+                    callback(null, res);
+                }, function(err) {
+                    callback(err);
+                })
+            }
         }
     }]);
 

@@ -9,7 +9,7 @@ angular.module('app')
                 console.log('reset');
                 AuthService.reset(email, function(err, res){
                     if(err){
-                        $scope.error = err;
+                        $scope.error = err.data.message;
                     }else{
                         console.log(res);
                         $scope.error = null;
