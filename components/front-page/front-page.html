@@ -17,7 +17,7 @@
         <div class="row">
 
             <!--Product-->
-            <a class="blackCol" ng-repeat="product in $ctrl.Product.products" href="{{'#/product/' + product.uuid}}" ng-if="product.show">
+            <a class="blackCol" ng-repeat="product in $ctrl.Product.products" href="{{'/product/' + product.uuid}}" ng-if="product.show">
                 <product  product="product"></product>
             </a>
 

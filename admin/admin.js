@@ -2,18 +2,18 @@
 
 angular.module('admin', [
     'treeGrid',
-    'ngResource',
-    'ngPatternRestrict',
+    // 'ngResource',
+    // 'ngPatternRestrict',
     'ngScrollbars',
     'treeControl'
 ])
-    .config(['$stateProvider', '$urlRouterProvider', function($stateProvider, $urlRouterProvider) {
+.config(['$stateProvider', function($stateProvider) {
 
         $stateProvider.state('admin', {
-            url: "/admin",
+            url: "/admin-panel",
             views: {
                 '': {template: "<template-admin></template-admin>"},
-                'content': {template: "<main-admin-content></main-admin-content>"}
+                'content@admin': {template: "<main-admin-content></main-admin-content>"}
             }
         });
         $stateProvider.state('admin.categoriesAdmin', {
@@ -40,7 +40,6 @@ angular.module('admin', [
                 checkProductEditor: function (Goods, $location) {
                     if (Goods.editprod == null) {
                         Goods.get($location.url().split('/').pop())
-                        // $location.url('/admin/goods');
                     }
                 }
             }
