@@ -16,7 +16,7 @@ angular.module('admin')
             self.goToDetale = function (id, index) {
                 RequestService.indexOrder = index;
                 RequestService.idOrder = id;
-                $location.path('/admin/order/' + id);
+                $location.path('/admin-panel/order/' + id);
             }
 
         }]

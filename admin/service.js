@@ -68,7 +68,7 @@ angular.module('admin')
             },
             editLocal: function (product) {
                 this.editprod = product;
-                $location.url('/admin/goods/' + product.uuid)
+                $location.url('/admin-panel/product/' + product.uuid)
             },
             update: function (product, callback) {
                 HttpResource.put({params1: 'product', params2: product.uuid}, product, function (res) {

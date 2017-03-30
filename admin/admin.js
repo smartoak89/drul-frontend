@@ -24,14 +24,14 @@ angular.module('admin', [
             }
         });
         $stateProvider.state('admin.goodsAdmin', {
-            url: "/goods",
+            url: "/products",
             views: {
                 '': {template: "<template-admin></template-admin>"},
                 'content': {template: "<goods></goods>"}
             }
         });
         $stateProvider.state('admin.goodsEditor', {
-            url: "/goods/:id",
+            url: "/product/:id",
             views: {
                 '': {template: "<template-admin></template-admin>"},
                 'content': {template: "<goods-editor></goods-editor>"}
