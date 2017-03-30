@@ -20,7 +20,7 @@ var app = angular.module('app', [
 
 ]);
 
-app.constant('Conf', { api_path: 'http://localhost/api' });
+app.constant('Conf', { api_path: 'https://today.net.ua/api' });
 
 app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainService', function(User, $location, $state, $rootScope, $anchorScroll, MainService) {
 
