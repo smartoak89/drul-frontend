@@ -9,13 +9,8 @@ angular.module('admin')
                 });
             };
             self.categ = Categories;
-            //self.dalCategory = function(obj, index){
-            //    self.categ.curCategory = obj;
-            //    self.categ.cutIndex = index;
-            //}
             self.my_tree = {};
             self.expanding_property = {
-                /*template: "<td>OK All</td>",*/
                 field: 'name',
                 titleClass:  'text-center',
                 cellClass:   'v-middle',

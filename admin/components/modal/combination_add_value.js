@@ -19,14 +19,14 @@ angular.module('admin')
             };
             function concat () {
                 var common = $scope.new.value.concat(parse());
-                common.sort(function(a, b){
-                    a = a.toLowerCase();
-                    b = b.toLowerCase();
-
-                    if(a < b) return -1;
-                    if(a > b) return 1;
-                    return 0;
-                });
+                // common.sort(function(a, b){
+                //     a = a.toLowerCase();
+                //     b = b.toLowerCase();
+                //
+                //     if(a < b) return -1;
+                //     if(a > b) return 1;
+                //     return 0;
+                // });
                 return $scope.new.value = common;
             }
             function parse () {

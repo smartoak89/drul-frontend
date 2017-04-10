@@ -29,7 +29,9 @@ angular.module('admin')
                 if(self.product.article)
                     self.product.article = self.product.article.split('_').pop();
             };
-
+            self.descriptionCange = function () {
+                console.log(self.product.description)
+            }
             this.searchCurrentCategory = function () {
 
                 var category = _.find(self.categories, {slug: self.product.category.slug[0]});

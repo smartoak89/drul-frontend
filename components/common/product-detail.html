@@ -39,7 +39,7 @@
                         <div>Артикул {{$ctrl.product.article}}</div>
                         <p id="goodNameCard">{{$ctrl.product.name}}</p>
                     </div>
-                    <div class="descriptionCard">{{$ctrl.product.description}}</div>
+                    <div class="descriptionCard" style="white-space: pre">{{$ctrl.product.description}}</div>
                     <div class="priceCard"><span>{{$ctrl.product.price + ' ' + $ctrl.currencyService.cy}}</span>
                         <strike ng-if="$ctrl.product.oldPrice">{{$ctrl.product.oldPrice + ' ' + $ctrl.currencyService.cy}}</strike>
                     </div>
