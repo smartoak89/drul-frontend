@@ -6,13 +6,14 @@ angular.module('admin')
             $scope.delete = function(){
                 RequestService.deleteOrder(RequestService.idOrder, function(err, resp){
                     if(RequestService.returnToList){
-                        $location.path('/admin/orders');
+                        $location.path('/admin-panel/orders');
                     }else{
-                        RequestService.listOrders.splice(RequestService.indexOrder, 1);
+                        // console.log(_.findIndex(RequestService.listOrders, {uuid:RequestService.idOrder}));
+                        RequestService.listOrders.splice(_.findIndex(RequestService.listOrders, {uuid:RequestService.idOrder}), 1);
                     }
-                    RequestService.returnToList = false;
-                    RequestService.indexOrder = null;
-                    RequestService.idOrder = null;
+                    // RequestService.returnToList = false;
+                    // RequestService.indexOrder = null;
+                    // RequestService.idOrder = null;
 
                     $uibModalInstance.dismiss('cancel');
                 })

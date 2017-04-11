@@ -1,6 +1,9 @@
 angular.module('app')
     .component('topNav', {
         templateUrl: "components/common/top-nav.html",
+        bindings: {
+            searchView: '='
+        },
         controller: [ 'Product', 'User', function (Product, User) {
             var self = this;
             self.search = false;

@@ -1504,6 +1504,10 @@ input[type=radio]:checked + label:before {
     font-size: 14px;
     color: #a3a3a3;
     width: 10%;
+
+}
+.office .table>tbody>tr:first-child>td{
+    padding: 2px 8px;
 }
 .office table>tbody>tr>td:nth-child(2),
 .cartMain table>tbody>tr>td:nth-child(2){
@@ -2382,13 +2386,17 @@ make-order hr{
     padding: 10px;
 }
 .orderList .orderNumb{
-    width: 65%;
+    width: 50%;
     border-right: 1px solid #000;
 }
 .orderList .orderDate,
-.orderList .orderSum,
-.orderList .orderStatus{
+.orderList .orderSum{
     width: 10%;
+    text-align: center;
+    border-right: 1px solid #000;
+}
+.orderList .orderStatus{
+    width: 25%;
     text-align: center;
     border-right: 1px solid #000;
 }
@@ -2610,4 +2618,14 @@ admin-navigation .sidebar {
 }
 .middle > .panel .btn-drul{
     width: 100%;
+}
+.curVal {
+    font-size: 1.7em !important;
+    font-weight: 500 !important;
+}
+.curVal > i {
+    font-size: 0.75em !important;
+    position: relative;
+    top: -2px;
+
 }

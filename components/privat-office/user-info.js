@@ -1,12 +1,12 @@
 angular.module('app')
     .component('userInfo', {
         templateUrl: "components/privat-office/user-info.html",
-        controller: ['User', 'Httpquery', function(User, Httpquery) {
+        controller: ['User', 'Httpquery', 'CurrencyService', function(User, Httpquery, CurrencyService) {
             var self = this;
             this.User = User.get();
             this.error = null;
             this.editmode = false;
-
+            self.curr = CurrencyService.cy;
 
             this.save = function () {
                 var self = this;

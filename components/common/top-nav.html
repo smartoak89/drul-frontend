@@ -17,9 +17,9 @@
                     <div class="logo" style="cursor: pointer" ui-sref="index"></div>
                 </div>
                 <ul class="navigation">
-                    <li class="searchInputWrap" tooltip-placement="right" tooltip-class="searchBord" uib-tooltip="Поиск">
+                    <li ng-if="$ctrl.searchView" class="searchInputWrap">
                         <input class="searchInput searchBord" ng-change="$ctrl.Product.getList()" ng-model="$ctrl.Product.searchValue" ng-show="$ctrl.search">
-                        <div class="fa fa-search" style="color: #fff" ng-click="$ctrl.search = !$ctrl.search"></div>
+                        <div class="fa fa-search" tooltip-placement="right" tooltip-class="searchBord" uib-tooltip="Поиск" style="color: #fff" ng-click="$ctrl.search = !$ctrl.search"></div>
                     </li>
                     <li><a ui-sref="index">Главная</a></li>
                     <li ng-if="$ctrl.adminPermission"><a ui-sref="admin">Админка</a></li>
