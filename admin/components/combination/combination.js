@@ -1,11 +1,12 @@
 angular.module('admin')
     .component('combination', {
         templateUrl: "admin/components/combination/combination.html",
-        controller: ['Goods', function(Goods) {
+        controller: ['Goods', 'Vendors', function(Goods, Vendors) {
             var self = this;
             Goods.listComb(function(combinations){
                 self.combinations = combinations;
             });
+            console.log(Vendors.getVendors())
             this.show = function (comb) {
                 comb.show = !comb.show;
             };

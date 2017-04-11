@@ -7,6 +7,28 @@ angular.module('admin')
             }
         });
     }])
+
+    // Vendors
+    .factory('Vendors', ['HttpResource', function(HttpResource){
+        return {
+            getVendors: function(callback){
+                HttpResource.get({params1: 'vendors'}, function(res){
+                    console.log(res);
+                    callback(null, res);
+                }, function(err){
+                    callback(err);
+                })
+            },
+            putVendor: function(value, callback){
+                HttpResource.put({params1:'vendor'}, value, function(res){
+                    callback(null, res);
+                }, function(err){
+                    callback(err);
+                })
+            }
+        }
+    }])
+
     // Product
     .factory('Goods',['HttpResource', '$location', '$q', 'Stocks', function (HttpResource, $location, $q, Stocks) {
         return {

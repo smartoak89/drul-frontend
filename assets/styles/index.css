@@ -74,11 +74,11 @@ a {
 }
 
 .searchInputWrap > .fa-search:before {
-     color: #626262;
+     color: #fff;
  }
 
 .searchInputWrap > .fa-search:hover:before {
-    color: #fff;
+    color: #626262;
 }
 
 .searchInput{
@@ -268,7 +268,7 @@ a {
 }
 .logoWrapper1{
     display: flex;
-    margin-top: 60px;
+    margin-top: 10px;
     justify-content: center;
 }
 .compact .logoWrapper, .compact1 .logoWrapper{
@@ -323,7 +323,7 @@ a {
     padding: 19px 0 20px 0
 }
 .na{
-    height: 250px;
+    height: 150px;
     position: relative;
     transition: transform .2s ease;
     background: #000;
@@ -399,11 +399,11 @@ a {
     cursor: pointer;
 }
 .navigation > li> a{
-    color:#626262;
+    color:#fff;
 }
 .navigation > li > a:hover{
     cursor: pointer;
-    color:#fff;
+    color:#626262;
     text-decoration: none;
 }
 section {
@@ -463,7 +463,7 @@ section {
     -o-background-size: cover;
     background-size: cover;
     position: relative;
-    height: 560px;
+    height: 400px;
 }
 .padScroll{
     margin-top: 100px;
@@ -497,7 +497,7 @@ section {
 }
 #sm_slider .carousel-indicators{
     bottom: 15px;
-    left: 49%;
+    left: 50%;
 }
 #sm_slider .carousel-indicators li{
     width: 17px;
@@ -511,9 +511,9 @@ section {
     background-color: #000;
     border: 1px solid #000;
 }
-.pad35{
-    padding: 35px 35px 70px 35px;
-}
+/*.pad35{*/
+    /*padding: 35px 35px 70px 35px;*/
+/*}*/
 
 .bigBlock{
     height: 455px;
