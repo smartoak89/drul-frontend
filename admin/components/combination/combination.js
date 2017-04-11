@@ -6,7 +6,14 @@ angular.module('admin')
             Goods.listComb(function(combinations){
                 self.combinations = combinations;
             });
-            console.log(Vendors.getVendors())
+            Vendors.getVendors(function(err, res){
+                if(err){
+                    console.log(err);
+                }else{
+                    console.log(res);
+                    self.vendor = res;
+                }
+            });
             this.show = function (comb) {
                 comb.show = !comb.show;
             };
@@ -35,6 +42,9 @@ angular.module('admin')
                 });
                 comb.edit = true;
             };
+            this.removeVendor = function (index) {
+                Vendors.putVendor({})
+            }
 
             function showError (err) {
 

@@ -13,14 +13,13 @@ angular.module('admin')
         return {
             getVendors: function(callback){
                 HttpResource.get({params1: 'vendors'}, function(res){
-                    console.log(res);
                     callback(null, res);
                 }, function(err){
                     callback(err);
                 })
             },
-            putVendor: function(value, callback){
-                HttpResource.put({params1:'vendor'}, value, function(res){
+            putVendor: function(index, callback){
+                HttpResource.put({params1:'vendor'}, {index:''}, function(res){
                     callback(null, res);
                 }, function(err){
                     callback(err);

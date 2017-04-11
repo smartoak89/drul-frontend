@@ -23,7 +23,7 @@
 </div>
 <div class="combinations row">
     <div class="col-md-12 table-responsive">
-        <table class="table table-grid" ng-show="$ctrl.combinations.length > 0">
+        <table class="table table-grid" >
         <thead>
         <tr>
             <th>Название</th>
@@ -32,14 +32,10 @@
             <th>Удалить</th>
         </tr>
         </thead>
-            <tbody ng-repeat="combination in [0]">
+            <tbody>
             <tr>
                 <td class="comb_name">
-                    <p ng-hide="combination.edit" ng-click="$ctrl.show(combination)"><i ng-class="combination.show ? 'fa fa-minus' : 'fa fa-plus'"></i> Поставщики</p>
-
-                    <p ng-show="combination.edit">
-                        <input type="text" ng-model="combination.name">
-                    </p>
+                    <p ng-click="$ctrl.show($ctrl.vendor)"><i ng-class="$ctrl.vendor.show ? 'fa fa-minus' : 'fa fa-plus'"></i> Поставщики</p>
                 </td>
                 <td>
                     <button class="btn btn-default btn-sm" modal-admin="combination_add_value">Добавить значение</button>
@@ -47,7 +43,7 @@
                 <td></td>
                 <td></td>
             </tr>
-            <tr ng-show="combination.show && combination.value.length > 0" ng-repeat="(key, value) in combination.value track by $index">
+            <tr ng-show="$ctrl.vendor.show && $ctrl.vendor.value.length > 0" ng-repeat="(key, value) in $ctrl.vendor.value track by $index">
                 <td class="child">
                     <p>
                         <i class="fa fa-file"></i> {{value}}
@@ -56,10 +52,10 @@
                 <td></td>
                 <td></td>
                 <td>
-                    <button class="btn btn-default btn-sm" ng-click="$ctrl.removeChild(combination, $index)">Удалить</button>
+                    <button class="btn btn-default btn-sm" ng-click="$ctrl.removeVendor($index)">Удалить</button>
                 </td>
             </tr>
-            <tr ng-show="combination.show && combination.value.length == 0">
+            <tr ng-show="$ctrl.vendor.show && $ctrl.vendor.value.length == 0">
                 <td class="child">
                     <p>Пусто...</p>
                 </td>
