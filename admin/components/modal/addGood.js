@@ -1,8 +1,16 @@
 angular.module('admin')
-    .controller('addGood',['$uibModalInstance', '$scope', 'Goods', 'Categories', 'HttpResource', '$location', '$q',
-        function($uibModalInstance, $scope, Goods, Categories, HttpResource, $location, $q){
+    .controller('addGood',['$uibModalInstance', '$scope', 'Goods', 'Vendors', 'Categories', 'HttpResource', '$location', '$q',
+        function($uibModalInstance, $scope, Goods, Vendors, Categories, HttpResource, $location, $q){
             $scope.error = null;
             $scope.newProduct = {};
+
+            Vendors.getVendors(function(err, res){
+                if(err){console.log(err)}
+                else{
+                    console.log(res);
+                    $scope.vendor = res;
+                }
+            });
 
             Categories.list(function(categories){
                 if (!categories) return $scope.error = 'Для добавления товара нужно добавить категорию';

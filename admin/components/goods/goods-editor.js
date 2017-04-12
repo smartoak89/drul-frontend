@@ -26,8 +26,8 @@ angular.module('admin')
                         // self.applyStock();
                     }
                 });
-                if(self.product.article)
-                    self.product.article = self.product.article.split('_').pop();
+                //if(self.product.article)
+                //    self.product.article = self.product.article.split('_').pop();
             };
             self.descriptionCange = function () {
                 console.log(self.product.description)
@@ -116,7 +116,7 @@ angular.module('admin')
 
             this.save = function () {
                 if (isValid() !== true) return;
-                changeArticle();
+                //changeArticle();
                 delete self.product.gallery;
                 if (uploader.queue.length > 0) {
                     self.uploading = true;
@@ -144,9 +144,9 @@ angular.module('admin')
                 product.price = Math.round(product.stock.old_price - ( product.stock.old_price * stock.percent / 100 ));
             }
 
-            function changeArticle () {
-                self.product.article = self.categoryArticle.toLowerCase() + '_' + self.product.article.split('_').pop();
-            }
+            //function changeArticle () {
+            //    self.product.article = self.categoryArticle.toLowerCase() + '_' + self.product.article.split('_').pop();
+            //}
             function updateProduct () {
                 Goods.update(self.product, function (err, res) {
                     if (err) return self.error = err.message;
@@ -176,7 +176,7 @@ angular.module('admin')
             function isValid() {
                 var p = self.product;
                 if (!p.name) return self.error = 'Введите название товара !';
-                if (!p.article) return self.error = 'Введите артикль товара !';
+                //if (!p.article) return self.error = 'Введите артикль товара !';
                 if (!p.category) return self.error = 'Выберите категорию товара !';
                 if (!p.price) return self.error = 'Введите цену товара !';
                 if (!p.gallery && self.uploader.queue.length == 0) return self.error = 'Загрузите изображение для товара !';

@@ -9,6 +9,12 @@
                     <label for="name">Название товара</label>
                     <input class="form-control" id="name" autocomplete="off" ng-model="newProduct.name">
                 </div>
+                <div class="form-group">
+                    <label for="name">Поставщик</label>
+                    <select class="form-control" id="inputMultiple" ng-model="newProduct.article">
+                        <option ng-repeat="value in vendor.value">{{value}}</option>
+                    </select>
+                </div>
                 <div class="form-inline">
                     <div class="combinations row">
                         <div class="col-md-12">

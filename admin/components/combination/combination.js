@@ -7,13 +7,19 @@ angular.module('admin')
                 self.combinations = combinations;
             });
             Vendors.getVendors(function(err, res){
-                if(err){
-                    console.log(err);
-                }else{
+                if(err){console.log(err)}
+                else{
                     console.log(res);
                     self.vendor = res;
                 }
             });
+            this.removeVendor = function(index){
+                self.vendor.value.splice(index, 1)
+                Vendors.putVendor(self.vendor, function(err){
+                    if (err) return showError(err);
+                })
+            }
+
             this.show = function (comb) {
                 comb.show = !comb.show;
             };
@@ -42,9 +48,6 @@ angular.module('admin')
                 });
                 comb.edit = true;
             };
-            this.removeVendor = function (index) {
-                Vendors.putVendor({})
-            }
 
             function showError (err) {
 

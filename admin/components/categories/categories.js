@@ -6,6 +6,7 @@ angular.module('admin')
             this.$onInit = function(){
                 Categories.list(function (categories) {
                     self.categories = categories;
+                    console.log(self.categories);
                 });
             };
             self.categ = Categories;
@@ -20,10 +21,7 @@ angular.module('admin')
                 {
                     field: 'link',
                     displayName: 'Ссылка'
-                },{
-                    field: 'article',
-                    displayName: 'Артикул'
-                },  {
+                }, {
                     displayName:  '',
                     cellTemplate: '<button ng-if="!row.branch.parent_uid" modal-admin="addCategory" ng-click="cellTemplateScope.add(row.branch)" class="btn btn-default btn-sm">Добавать подкатегорию</button>',
                     cellTemplateScope: {

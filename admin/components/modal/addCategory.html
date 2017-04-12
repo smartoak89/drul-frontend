@@ -7,10 +7,6 @@
             <label for="name">Название категории</label>
             <input class="form-control" id="name" autocomplete="off" ng-model="category.name" ng-change="transliterate(category.name, 'link')">
         </div>
-        <div class="form-group">
-            <label for="art">Артикул</label>
-            <input class="form-control" id="art" autocomplete="off" ng-model="category.article" ng-pattern-restrict="^[a-zA-Zа-яА-Я0-9_-]*$">
-        </div>
         <div ng-if="error" class="callout callout-danger">
             <p>{{error}}</p>
         </div>
