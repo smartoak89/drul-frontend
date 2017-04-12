@@ -5,11 +5,9 @@ angular.module('admin')
             $scope.newProduct = {};
 
             Vendors.getVendors(function(err, res){
-                if(err){console.log(err)}
-                else{
-                    console.log(res);
-                    $scope.vendor = res;
-                }
+                if (err) return console.log(err);
+                if (!res) return $scope.error = 'Для добавления товара нужно добавить поставщика';
+                $scope.vendor = res;
             });
 
             Categories.list(function(categories){
@@ -48,6 +46,7 @@ angular.module('admin')
 
             function isValid () {
                 if (!$scope.newProduct.name) return $scope.error = 'Введите название товара';
+                if (!$scope.newProduct.article) return $scope.error = 'Введите поставщика для товара';
                 if (!$scope.newProduct.category) return $scope.error = 'Выберите категорию для товара';
                 $scope.error = null;
                 return true;

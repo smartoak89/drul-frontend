@@ -39,7 +39,6 @@ angular.module('admin')
 
             function isValid () {
                 if (!$scope.category.name) return $scope.error = 'Введите название для категории';
-                //if (!$scope.category.article) return $scope.error = 'Введите артикул для данной категории';
                 $scope.error = null;
                 return true;
             }
