@@ -18,8 +18,8 @@ angular.module('admin')
                     callback(err);
                 })
             },
-            putVendor: function(index, callback){
-                HttpResource.put({params1:'vendor'}, {index:''}, function(res){
+            putVendor: function(value, callback){
+                HttpResource.put({params1:'vendor'}, value, function(res){
                     callback(null, res);
                 }, function(err){
                     callback(err);
