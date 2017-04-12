@@ -36,7 +36,7 @@ angular.module('admin')
 
                 var category = _.find(self.categories, {slug: self.product.category.slug[0]});
                 if (category) {
-                    self.categoryArticle = category.article.toLowerCase();
+                    self.categoryArticle = category.slug.toLowerCase();
                 } else {
                     _.each(self.categories, function (elem) {
                         // elem.show = false;
@@ -44,7 +44,7 @@ angular.module('admin')
                             var subcat = _.find(elem.children, {slug: self.product.category.slug[0]});
                             if (subcat) {
                                 // elem.show = true;
-                                self.categoryArticle = subcat.article.toLowerCase();
+                                self.categoryArticle = subcat.slug.toLowerCase();
                                 category = subcat;
                             }
                         }
