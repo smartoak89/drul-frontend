@@ -12,7 +12,7 @@ angular.module('app')
 
             $(window).scroll(function () {
                 var scrollh = $(this).scrollTop();
-                    if (scrollh > 310) {
+                    if (scrollh > 210) {
                         $(".compact1").addClass('fixed');
                     } else {
                         $(".compact1").removeClass('fixed');
