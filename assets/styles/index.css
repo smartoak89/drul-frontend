@@ -660,7 +660,7 @@ section {
 .goodsBlock{
     position: relative;
     margin-bottom: 30px;
-    border: 1px solid #afafaf;
+    border: 1px solid #ddd;
 }
 .goodsBlockHover{
     position: absolute;
@@ -681,7 +681,7 @@ section {
     float: right;
 }
 .likesWrap > i:before{
-    color: #000;
+    color: #ddd;
     font-size: 20px;
 }
 .likesWrap > .fa-heart:before,
@@ -711,7 +711,7 @@ section {
     width: 100%
 }
 .namePrice{
-    border: 1px solid #dedede;
+    /*border: 1px solid #dedede;*/
     border-top: none;
     padding: 15px;
     font-size: 15px;

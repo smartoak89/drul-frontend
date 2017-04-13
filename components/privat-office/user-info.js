@@ -37,7 +37,7 @@ angular.module('app')
                 var reg = /^(([^<>()[\]\.,;:\s@\"]+(\.[^<>()[\]\.,;:\s@\"]+)*)|(\".+\"))@(([^<>()[\]\.,;:\s@\"]+\.)+[^<>()[\]\.,;:\s@\"]{2,})$/i;
                 if (!user.email) return callback('Пожалуйста введите email!');
                 if (!reg.test(user.email)) return callback('Некоректный email!');
-                if (!user.phone) return callback('Укажите мобильный номер получателя!');
+                if (!user.phone) return callback('Укажите мобильный телефон!');
                 if (user.phone.length<10 || user.phone.length>12) return callback('Мобильный телефон введен некорректно!');
                 if (!user.password) return callback('Пожалуйста введите пароль!');
 
