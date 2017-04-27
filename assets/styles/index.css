@@ -395,16 +395,78 @@ a {
     border-right: 0 solid rgb(30,30,30);
 }
 
-.navigation > li:hover{
+.navigation li:hover{
     cursor: pointer;
 }
-.navigation > li> a{
+.navigation li > a{
     color:#fff;
 }
-.navigation > li > a:hover{
+.navigation li:hover > a{
     cursor: pointer;
     color:#626262;
     text-decoration: none;
+}
+.navigation > li > ul{
+    margin-top: 22px;
+    position: absolute;
+    background: #151515;
+    right: 0 ;
+    font-size: 10px;
+    min-width: 170px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 99;
+    transition: all .1s ease;
+}
+.navigation > li:hover > ul{
+    opacity: 1;
+    visibility: visible;
+    right: 0;
+    max-height: 250px
+}
+.navigation > li:hover > ul > li:hover > ul{
+    opacity: 1;
+    visibility: visible;
+    right: 100%;
+    max-height: 250px
+}
+.navigation > li:hover > ul > li{
+    padding: 10px 5px;
+    position: relative;
+}
+.navigation > li > ul > li:hover > ul > li{
+    padding: 10px 5px;
+}
+.navigation > li > ul > li > ul {
+    top: 0;
+    right: 90%;
+    margin: 0;
+    position: absolute;
+    background: #151515;
+    font-size: 10px;
+    min-width: 150px;
+    opacity: 0;
+    visibility: hidden;
+    z-index: 99;
+    transition: all .1s ease;
+}
+.navigation  li.arrowChild:before{
+    content: "\f053";
+    font-family: FontAwesome;
+    font-style: normal;
+    font-weight: normal;
+    text-decoration: inherit;
+    font-size: 10px;
+    color: #fff;
+    position: absolute;
+    top: 10px;
+    left: 10px;
+}
+.navigation  li.arrowChild:hover:before{
+    color: #626262;
+}
+.navigation > li > ul > li:hover > ul > li{
+    right: 100%;
 }
 section {
     width: 110px;
