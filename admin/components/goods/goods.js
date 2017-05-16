@@ -11,6 +11,17 @@ angular.module('admin')
                 Goods.products = self.products = res;
             });
 
+            this.categoryText = function(category) {
+                var text = category.path[0].name;
+
+                if (category.path.length > 1) {
+                    for (var i=1; i<category.path.length; i++) {
+                        text += ' > ' + category.path[i].name;
+                    }
+                }
+
+                return text;
+            };
 
             self.removeProd = function (obj, index) {
                 self.prodService.product = obj;

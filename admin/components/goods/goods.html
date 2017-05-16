@@ -2,7 +2,7 @@
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
 
         <div class="butWrapp pull-right">
-            <button modal-admin="addGood" size="sm" class="btn btn-default">Добавить товар</button>
+            <button modal-admin="addGood"  class="btn btn-default">Добавить товар</button>
         </div>
     </div>
     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
@@ -35,7 +35,7 @@
                             <img style="object-fit: cover;" class="product-photo" ng-src="{{$ctrl.Conf.api_path}}/file/{{product.photo.uuid}}" alt="" width="100" height="80" no-image>
                         </td>
                         <td>{{product.name}}</td>
-                        <td>{{product.category.name[0]}}</td>
+                        <td>{{$ctrl.categoryText(product.category)}}</td>
                         <td>{{product.article}}</td>
                         <td>{{product.price}}</td>
                         <td>

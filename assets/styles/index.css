@@ -963,7 +963,7 @@ section {
     border-top: 0;
 }
 .accordion .category.panel-open > .panel-heading, .accordion .category.panel-open > .panel-collapse {
-    background: #f8f8f8;
+    /*background: #f8f8f8;*/
 }
 .accordion .category.panel-open > .panel-heading{
     border-bottom: 0;
@@ -1018,6 +1018,15 @@ section {
     /*position: absolute;*/
     bottom: 3px;
 }
+.accordion .category.subcategory {
+    outline: none;
+    border: none;
+    box-shadow: none;
+}
+.accordion .category.subcategory > .panel-heading > .panel-title {
+    /*background: rgb(248, 248, 248);*/
+}
+
 .pos_rel {
     position: relative;
 }

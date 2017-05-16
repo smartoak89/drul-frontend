@@ -30,28 +30,28 @@ angular.module('admin')
                 //    self.product.article = self.product.article.split('_').pop();
             };
             self.descriptionCange = function () {
-                console.log(self.product.description)
-            }
-            this.searchCurrentCategory = function () {
 
-                var category = _.find(self.categories, {slug: self.product.category.slug[0]});
-                if (category) {
-                    self.categoryArticle = category.slug.toLowerCase();
-                } else {
-                    _.each(self.categories, function (elem) {
-                        // elem.show = false;
-                        if (elem.children.length > 0) {
-                            var subcat = _.find(elem.children, {slug: self.product.category.slug[0]});
-                            if (subcat) {
-                                // elem.show = true;
-                                self.categoryArticle = subcat.slug.toLowerCase();
-                                category = subcat;
-                            }
-                        }
-                    });
-                }
-                return category;
-            };
+            }
+            // this.searchCurrentCategory = function () {
+            //
+            //     var category = _.find(self.categories, {slug: self.product.category.slug[0]});
+            //     if (category) {
+            //         self.categoryArticle = category.slug.toLowerCase();
+            //     } else {
+            //         _.each(self.categories, function (elem) {
+            //             // elem.show = false;
+            //             if (elem.children.length > 0) {
+            //                 var subcat = _.find(elem.children, {slug: self.product.category.slug[0]});
+            //                 if (subcat) {
+            //                     // elem.show = true;
+            //                     self.categoryArticle = subcat.slug.toLowerCase();
+            //                     category = subcat;
+            //                 }
+            //             }
+            //         });
+            //     }
+            //     return category;
+            // };
 
             this.findComboModel = function (name, slug) {
                 var index = _.findIndex(self.product.combo, {name: name});
@@ -88,23 +88,44 @@ angular.module('admin')
                 applyStock(self.product);
             };
 
-            this.addCategory = function (category, parent) {
+            this.categoryText = function() {
+                var text = self.product.category.path[0].name;
 
-                this.product.category = {
-                    name: [],
-                    slug: []
-                };
-
-                this.product.category.name[0] = category.name;
-                this.product.category.slug[0] = category.slug;
-
-                if (parent) {
-                    this.product.category.name[1] = parent.name;
-                    this.product.category.slug[1] = parent.slug;
-
+                if (self.product.category.path.length > 1) {
+                    for (var i=1; i<self.product.category.path.length; i++) {
+                        text += ' > ' + self.product.category.path[i].name;
+                    }
                 }
 
+                return text;
             };
+
+            this.addCategory = function (category) {
+                disableCheck();
+                category.check = true;
+
+                self.product.category = {
+                    id: category.uuid,
+                    path: category.path
+                };
+
+            };
+
+            function disableCheck() {
+                self.categories.reduce(function (arr, category) {
+                    if (category.children.length > 0) {
+                        _.each(category.children, function (item) {
+                            if (item.children.length > 0) {
+                                _.each(item.children, function (item2) {
+                                    item2.check = false;
+                                })
+                            }
+                            item.check = false;
+                        })
+                    }
+                    return category.check = false;
+                }, self.categories[0]);
+            }
 
             this.edit = function () {
                 self.editMode = !self.editMode;

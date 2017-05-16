@@ -1,13 +1,22 @@
 <div class="main">
     <div class="col-lg-3 col-md-3 col-sm-3 col-xs-12">
         <div class="accordion">
-            <uib-accordion close-others="true">
+            <uib-accordion close-others="false">
                 <div uib-accordion-group class="panel-default category"
                      ng-class="{closed_accordion: category.children.length == 0}"
                      ng-repeat="category in $ctrl.categories" heading="{{category.name}}"
                      is-disabled="category.children.length == 0"
                      ng-click="category.children.length == 0 ? $ctrl.goTo(category.link) : ''">
-                    <a href="{{'/category/' + child.link}}" ng-repeat="child in category.children">{{child.name}}</br></a>
+                    <a href="{{'/category/' + child.link}}" ng-if="child.children.length == 0" ng-repeat="child in category.children" style="padding-left: 15px;">{{child.name}}</br></a>
+
+                    <div uib-accordion-group class="panel-default category subcategory"
+                         ng-class="{closed_accordion: category.children.length == 0}"
+                         ng-if="child.children.length > 0" ng-repeat="child in category.children" heading="{{child.name}}"
+                         is-disabled="child.children.length == 0"
+                         ng-click="child.children.length == 0 ? $ctrl.goTo(child.link) : ''">
+                        <a href="{{'/category/' + child2.link}}" style="padding-left: 15px;" ng-repeat="child2 in child.children">{{child2.name}}</br></a>
+                    </div>
+
                     <a class="pull-right" href="{{'/category/' + category.link}}">все...</br></a>
                 </div>
             </uib-accordion>

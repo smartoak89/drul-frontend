@@ -37,22 +37,51 @@
                 <div class="row">
                     <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                         <p class="categCard">
-                            <label>Категория</label>
+                            <label>Категория: " {{ $ctrl.categoryText() }} "</label>
                             <ul class="category_list">
-                                <li ng-repeat="category in $ctrl.categories">
-                                    <i class="fa fa-{{category.show ? 'minus':'plus'}}" ng-if="category.children.length > 0" ng-click="category.show = !category.show"></i>
-                                    <i class="fa fa-file" ng-if="category.children == 0"></i>
-                                    <a ng-click="$ctrl.addCategory(category)">{{category.name}}</a>
-                                    <i class="fa fa-check" ng-show="$ctrl.searchCurrentCategory() == category"></i>
-                                    <ul ng-if="category.children" ng-show="category.show" class="children">
-                                        <li ng-repeat="child in category.children">
-                                            <i class="fa fa-file"></i>
-                                            <a ng-click="$ctrl.addCategory(child, category)">{{child.name}}</a>
-                                            <i class="fa fa-check" ng-show="$ctrl.searchCurrentCategory() == child"></i>
-                                        </li>
-                                    </ul>
-                                </li>
-                            </ul>
+                            <!--level1-->
+                            <li ng-repeat="category in $ctrl.categories">
+                                <i ng-if="category.children.length > 0" class="fa fa-{{category.show ? 'minus':'plus'}}" ng-click="category.show = !category.show"></i>
+                                <i ng-if="category.children == 0" class="fa fa-file"></i>
+                                <a ng-click="$ctrl.addCategory(category)">{{category.name}}</a>
+                                <i class="fa fa-check" ng-show="category.check"></i>
+
+                                <!--level2-->
+                                <ul ng-if="category.children" ng-show="category.show" class="children">
+                                    <li ng-repeat="child in category.children">
+                                        <i ng-if="child.children.length > 0" class="fa fa-{{child.show ? 'minus':'plus'}}" ng-click="child.show = !child.show"></i>
+                                        <i ng-if="child.children == 0" class="fa fa-file"></i>
+                                        <a ng-click="$ctrl.addCategory(child)">{{child.name}}</a>
+                                        <i class="fa fa-check" ng-show="child.check"></i>
+
+                                        <!--level3-->
+                                        <ul ng-if="child.children" ng-show="child.show" class="children">
+                                            <li ng-repeat="child3 in child.children">
+                                                <i ng-if="child3.children.length > 0" class="fa fa-{{child3.show ? 'minus':'plus'}}" ng-click="child3.show = !child3.show"></i>
+                                                <i ng-if="child3.children == 0" class="fa fa-file"></i>
+                                                <a ng-click="$ctrl.addCategory(child3)">{{child3.name}}</a>
+                                                <i class="fa fa-check" ng-show="child3.check"></i>
+                                            </li>
+                                        </ul>
+                                    </li>
+                                </ul>
+                            </li>
+                        </ul>
+                            <!--<ul class="category_list">-->
+                                <!--<li ng-repeat="category in $ctrl.categories">-->
+                                    <!--<i class="fa fa-{{category.show ? 'minus':'plus'}}" ng-if="category.children.length > 0" ng-click="category.show = !category.show"></i>-->
+                                    <!--<i class="fa fa-file" ng-if="category.children == 0"></i>-->
+                                    <!--<a ng-click="$ctrl.addCategory(category)">{{category.name}}</a>-->
+                                    <!--<i class="fa fa-check" ng-show="$ctrl.searchCurrentCategory() == category"></i>-->
+                                    <!--<ul ng-if="category.children" ng-show="category.show" class="children">-->
+                                        <!--<li ng-repeat="child in category.children">-->
+                                            <!--<i class="fa fa-file"></i>-->
+                                            <!--<a ng-click="$ctrl.addCategory(child)">{{child.name}}</a>-->
+                                            <!--<i class="fa fa-check" ng-show="$ctrl.searchCurrentCategory() == child"></i>-->
+                                        <!--</li>-->
+                                    <!--</ul>-->
+                                <!--</li>-->
+                            <!--</ul>-->
                         </p>
                         <div class="form-group">
                             <label>Артикул</label>

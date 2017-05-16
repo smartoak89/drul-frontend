@@ -5,7 +5,7 @@
     <div class="modal-body">
         <div class="form-group">
             <label for="name">Название категории</label>
-            <input class="form-control" id="name" autocomplete="off" ng-model="category.name" ng-change="transliterate(category.name, 'link')">
+            <input class="form-control" id="name" autocomplete="off" ng-model="category.name">
         </div>
         <div ng-if="error" class="callout callout-danger">
             <p>{{error}}</p>

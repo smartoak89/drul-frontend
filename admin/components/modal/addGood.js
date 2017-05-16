@@ -24,25 +24,7 @@ angular.module('admin')
                 }
             };
 
-            $scope.addCategory = function (category, parent) {
-                disableCheck();
-                category.check = true;
 
-                $scope.newProduct.category = {
-                    name: [],
-                    slug: []
-                };
-
-                $scope.newProduct.category.name[0] = category.name;
-                $scope.newProduct.category.slug[0] = category.slug;
-
-                if (parent) {
-                    $scope.newProduct.category.name[1] = parent.name;
-                    $scope.newProduct.category.slug[1] = parent.slug;
-
-                }
-
-            };
 
             function isValid () {
                 if (!$scope.newProduct.name) return $scope.error = 'Введите название товара';
@@ -51,11 +33,25 @@ angular.module('admin')
                 $scope.error = null;
                 return true;
             }
+            $scope.addCategory = function (category, parent) {
+                disableCheck();
+                category.check = true;
+                $scope.newProduct.category = {
+                    id: category.uuid,
+                    path: category.path
+                };
+
+            };
 
             function disableCheck() {
                 $scope.categories.reduce(function (arr, category) {
                     if (category.children.length > 0) {
                         _.each(category.children, function (item) {
+                            if (item.children.length > 0) {
+                                _.each(item.children, function (item2) {
+                                    item2.check = false;
+                                })
+                            }
                             item.check = false;
                         })
                     }
