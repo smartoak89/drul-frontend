@@ -1,6 +1,6 @@
 angular.module('admin')
-    .controller('addCategory',['$uibModalInstance', '$scope', 'Categories', 'HttpResource', 'modalData',
-        function($uibModalInstance, $scope, Categories, HttpResource, modalData){
+    .controller('addCategory',['$uibModalInstance', '$scope', 'Categories', 'HttpResource',
+        function($uibModalInstance, $scope, Categories, HttpResource){
             $scope.category = {};
             $scope.error = null;
             $scope.parent = Categories.curCategory;
@@ -33,5 +33,9 @@ angular.module('admin')
                 $scope.error = null;
                 return true;
             }
-    }])
+
+            $scope.$on('$destroy', function () {
+                Categories.curCategory = null;
+            })
+    }]);
 

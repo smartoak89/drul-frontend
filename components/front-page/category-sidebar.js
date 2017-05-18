@@ -11,7 +11,12 @@ angular.module('app')
             };
 
             this.goTo = function (categ) {
-                $location.url('/category/' + categ);
+                console.log('categ', categ)
+                var path = categ.path.map(function (c) {
+                    return c.slug
+                }).join('/');
+
+                $location.url('/category/' + path);
             }
         }]
     });

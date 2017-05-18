@@ -12,11 +12,11 @@ angular.module('admin')
             });
 
             this.categoryText = function(category) {
-                var text = category.path[0].name;
+                var text = category.name[0];
 
-                if (category.path.length > 1) {
-                    for (var i=1; i<category.path.length; i++) {
-                        text += ' > ' + category.path[i].name;
+                if (category.name.length > 1) {
+                    for (var i=1; i<category.name.length; i++) {
+                        text += ' > ' + category.name[i];
                     }
                 }
 

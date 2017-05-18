@@ -89,11 +89,11 @@ angular.module('admin')
             };
 
             this.categoryText = function() {
-                var text = self.product.category.path[0].name;
+                var text = self.product.category.name[0];
 
-                if (self.product.category.path.length > 1) {
-                    for (var i=1; i<self.product.category.path.length; i++) {
-                        text += ' > ' + self.product.category.path[i].name;
+                if (self.product.category.name.length > 1) {
+                    for (var i=1; i<self.product.category.name.length; i++) {
+                        text += ' > ' + self.product.category.name[i];
                     }
                 }
 
@@ -106,7 +106,12 @@ angular.module('admin')
 
                 self.product.category = {
                     id: category.uuid,
-                    path: category.path
+                    slug: category.path.map(function (p) {
+                        return p.slug
+                    }),
+                    name: category.path.map(function (p) {
+                        return p.name
+                    })
                 };
 
             };

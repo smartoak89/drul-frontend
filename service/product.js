@@ -19,8 +19,9 @@ angular.module('app')
                     if (!criteria) queryStr = { params1: 'products' };
 
                     if (category) {
-                        queryStr.params2 = 'category';
-                        queryStr.params3 = category;
+                        queryStr.category = category;
+                    }else{
+                        delete queryStr.category;
                     }
 
                     if(self.searchValue){
@@ -34,6 +35,8 @@ angular.module('app')
                     }
 
                    if (queryStr.skip == 0) delete queryStr.skip;
+
+                    console.log('criteria', queryStr);
 
                     Httpquery.query(queryStr, function (res) {
 

@@ -6,6 +6,7 @@ angular.module('admin')
         function ($scope, $uibModalInstance, Vendors, modalData){
             $scope.placeholder = 'Через знак " , " можно добавить несколько значений ';
             $scope.new = angular.copy(modalData.$ctrl.vendor);
+            $scope.new.value = $scope.new.value || [];
             $scope.error = null;
             //var index = modalData.$index;
 
@@ -13,6 +14,7 @@ angular.module('admin')
 
             $scope.add = function () {
                 if (isValid() === true) {
+                    console.log('$scope.new', $scope.new)
                     concat();
                     Vendors.putVendor($scope.new, function (err) {
                         console.log($scope.new);

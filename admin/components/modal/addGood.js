@@ -38,9 +38,15 @@ angular.module('admin')
                 category.check = true;
                 $scope.newProduct.category = {
                     id: category.uuid,
-                    path: category.path
+                    slug: category.path.map(function(item) {
+                        return item.slug;
+                    }),
+                    name: category.path.map(function(item) {
+                        return item.name;
+                    })
                 };
 
+                console.log('product', $scope.newProduct)
             };
 
             function disableCheck() {
