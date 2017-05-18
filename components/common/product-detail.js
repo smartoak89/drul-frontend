@@ -100,8 +100,21 @@ angular.module('app')
                         CurrencyService.changePrice(product);
 
                         self.product = product;
+                        console.log('product', self.product)
                     })
                 }
+
+                self.categoryLink = function(ind) {
+                    var category = self.product.category;
+
+                    if (self.product && category.slug) {
+                        return category.slug.filter(function (c, i) {
+                            if (ind >= i) return c;
+                        }).join('/')
+                        // console.log(self.product.category.slug[ind]);
+                    }
+                };
+
                 $rootScope.$on('currencyChanged', function () {
                     CurrencyService.changePrice(self.product);
                 });

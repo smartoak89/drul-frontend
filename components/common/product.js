@@ -22,5 +22,7 @@ angular.module('app')
                 };
 
                 FileService.mainPhoto(self.product);
+
+
         }]
     });

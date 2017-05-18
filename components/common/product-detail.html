@@ -34,9 +34,9 @@
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                     <p class="categCard">
-                        <span ng-repeat="cat in $ctrl.product.category.path">
-                            <a href="">{{cat.name}}</a>
-                            <span ng-if="$ctrl.product.category.path.length > 1 && !$last">&#8594</span>
+                        <span ng-repeat="cat in $ctrl.product.category.name">
+                            <a ng-href="/category/{{$ctrl.categoryLink($index)}}">{{cat}}</a>
+                            <span ng-if="$ctrl.product.category.name.length > 1 && !$last">&#8594</span>
                         </span>
                     </p>
 
