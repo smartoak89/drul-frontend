@@ -8,8 +8,9 @@
                     <th>Фамилия</th>
                     <th>Телефон</th>
                     <th>Страна</th>
-                    <th>Счет</th>
+                    <th>Баланс</th>
                     <th>Удалить</th>
+                    <th>Инфо</th>
                 </tr>
             </thead>
             <tbody>
@@ -18,9 +19,10 @@
                     <td>{{user.firstname}}</td>
                     <td>{{user.lastname}}</td>
                     <td>{{user.phone}}</td>
-                    <td>{{user.state}}</td>
-                    <td>10 UAH <button class="btn btn-default btn-sm" modal-admin="replenishAcc">Изменить</button></td>
+                    <td>{{user.country}}</td>
+                    <td>{{user.ballance}}</td>
                     <td><button class="btn btn-default btn-sm" modal-admin="remove-user">Удалить</button></td>
+                    <td><button class="btn btn-default btn-sm" modal-admin="user-info"><i class="fa fa-info"></i></button></td>
                 </tr>
             </tbody>
         </table>

@@ -4,11 +4,13 @@ angular.module('app')
         bindings: {
             searchView: '='
         },
-        controller: [ 'Product', 'User', function (Product, User) {
+        controller: [ 'Product', 'User', 'Category', 'LinkService', function (Product, User, Category, LinkService) {
             var self = this;
             self.search = false;
             self.Product = Product;
             this.adminPermission = User.isAdmin();
+            this.category = Category;
+            this.linkService = LinkService;
 
             $(window).scroll(function () {
                 var scrollh = $(this).scrollTop();

@@ -36,7 +36,6 @@ angular.module('app')
 
                    if (queryStr.skip == 0) delete queryStr.skip;
 
-                    console.log('criteria', queryStr);
 
                     Httpquery.query(queryStr, function (res) {
 

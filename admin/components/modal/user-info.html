@@ -1,0 +1,50 @@
+<style>
+    .user-ballance input{
+        width: 40%;
+    }
+</style>
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modalBasicLabel">Информация о пользователе</h4>
+    </div>
+    <div class="modal-body">
+        <div class="row">
+            <div class="col-md-7">
+                 <div class="col-md-12">Пользователь: {{user.firstname}} {{user.lastname}}</div>
+                <div class="col-md-12">Email: {{user.email}}</div>
+                <div class="col-md-12">Страна: {{user.country}}</div>
+            </div>
+
+            <!--[Ballance]-->
+            <div class="col-md-5 user-ballance">
+                <div ng-if="editBallanceMode">Балланс: <span><input type="text" value="{{ballance}}" ng-model="user.ballance" ng-pattern-restrict="^[0-9]*$"></span> <button class="btn btn-default btn-sm pull-right" ng-click="editBallance(ballance)"><i class="fa fa-check"></i></button></div>
+                <div ng-hide="editBallanceMode">Балланс: {{user.ballance}} <button class="btn btn-default btn-sm pull-right" ng-click="editBallanceMode = true"><i class="fa fa-pencil"></i></button></div>
+            </div>
+        </div>
+        <div class="row">
+        </div>
+
+        <!--[Orders]-->
+        <table class="table table-grid" style="margin-top: 10px" ng-if="orders.length > 0">
+            <tr>
+                <th>Заказ №</th>
+                <th>Кол-во товаров</th>
+                <th>Сумма</th>
+                <th>Статус</th>
+            </tr>
+            <tr ng-repeat="order in orders">
+                <td>{{order.order_num}}</td>
+                <td>{{order.products.length}}</td>
+                <td>{{order.price}} {{order.currency}}</td>
+                <td>{{order.status}}</td>
+            </tr>
+        </table>
+
+    </div>
+    <div class="callout callout-danger text-center" ng-show="error">
+        {{error}}
+    </div>
+    <div class="modal-footer">
+        <button type="button" ng-click="$dismiss()" class="btn btn-default" data-dismiss="modal">Закрыть</button>
+    </div>
+</div>

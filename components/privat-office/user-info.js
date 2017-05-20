@@ -8,6 +8,10 @@ angular.module('app')
             this.editmode = false;
             self.curr = CurrencyService.cy;
 
+            Httpquery.get({params1: 'user'}, function (user) {
+                self.user = user;
+            })
+
             this.save = function () {
                 var self = this;
                 isValid(self.user, function (err) {
@@ -16,7 +20,7 @@ angular.module('app')
                     Httpquery.put({params1: 'user', params2: self.user.uuid}, self.user, function (res) {
                         User.set(res);
                         console.log(res);
-                        self.User = res;
+                        self.user = res;
                         self.editmode = false;
                         self.error = null;
                     }, function (err) {
@@ -28,7 +32,7 @@ angular.module('app')
 
             this.copy = function () {
                 var self = this;
-                self.user = angular.copy(self.User);
+                self.user = angular.copy(self.user);
                 console.log(self.user)
             };
 

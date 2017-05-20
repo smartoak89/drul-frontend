@@ -29,6 +29,7 @@ angular.module('app')
                 return active;
             };
 
+
             this.token = function(value) {
                 if (value) {
                     $cookies.put('token', value);
