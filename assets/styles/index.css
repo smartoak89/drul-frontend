@@ -995,9 +995,27 @@ section {
     position: relative;
     z-index: 100;
 }
+.accordion .category > .panel-heading > .panel-title > a > span.toggle{
+    top: 0;
+    height: 100%;
+    margin-right: -13px;
+    width: 50px;
+    /*background: red;*/
+    position: absolute;
+    right: 0;
+}
+ .category > .panel-heading > .panel-title > a > span.link{
+    display: inline-block;
+    width: 90%;
+}
+.accordion .category > .panel-heading > .panel-title > a > span.link:hover{
+    text-decoration: underline;
+}
 .accordion .category > .panel-heading > .panel-title > a:hover, .accordion .category > .panel-heading > .panel-title > a:active, .accordion .category > .panel-heading > .panel-title > a:focus{
     text-decoration: none;
 }
+
+
 .accordion .category > .panel-heading:after{
     font-family: FontAwesome;
     font-size: 18px;
@@ -1026,7 +1044,10 @@ section {
 .accordion .category.subcategory > .panel-heading > .panel-title {
     /*background: rgb(248, 248, 248);*/
 }
-
+.accordion .subcategory {
+    margin: 0 -15px;
+    padding-left: 15px;
+}
 .pos_rel {
     position: relative;
 }

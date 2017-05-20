@@ -196,19 +196,19 @@ angular.module('admin')
     // Categories
     .factory('Categories',['HttpResource', '$q', function (HttpResource, $q) {
         return {
-            categories: [],
+            // categories: [],
             list: function (callback) {
                 var self = this;
-                if (self.categories.length == 0) {
+                // if (self.categories.length == 0) {
                     HttpResource.query({params1: 'categories'}, function (res) {
-                        self.categories = res;
+                        // self.categories = res;
                         callback(res);
                     }, function (err) {
                         console.error('Load list of categories', err);
                     });
-                } else {
-                    callback(self.categories)
-                }
+                // } else {
+                //     callback(self.categories)
+                // }
             },
             curCategory: null,
             curIndex: null,

@@ -28,6 +28,7 @@ angular.module('admin')
 
             function isValid () {
                 if (!$scope.newProduct.name) return $scope.error = 'Введите название товара';
+                if ($scope.newProduct.name.length < 4) return $scope.error = 'Название товара должно содержать 3 и более символов';
                 if (!$scope.newProduct.article) return $scope.error = 'Введите поставщика для товара';
                 if (!$scope.newProduct.category) return $scope.error = 'Выберите категорию для товара';
                 $scope.error = null;

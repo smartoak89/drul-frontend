@@ -13,7 +13,7 @@
                     <div class="form-group">
                         <label for="name">Поставщик</label>
                         <select class="form-control" id="inputMultiple" ng-model="newProduct.article">
-                            <option ng-repeat="value in vendor.value">{{value}}</option>
+                            <option ng-repeat="value in vendor.value track by $index">{{value}}</option>
                         </select>
                     </div>
                 </div>
