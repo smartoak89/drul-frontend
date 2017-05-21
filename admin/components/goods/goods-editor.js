@@ -75,11 +75,13 @@ angular.module('admin')
             };
 
             this.applyStock = function () {
-                if (!self.currentStock && self.product.stock) {
+                if (!self.currentStock) {
                     self.product.price = self.product.stock.old_price;
                     delete self.product.stock;
                     // self.product.stock = {};
                     return;
+                } else if (self.product.stock) {
+                    self.product.price = self.product.stock.old_price;
                 }
                 self.product.stock = {
                     stock_id: self.currentStock.uuid,

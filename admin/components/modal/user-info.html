@@ -42,13 +42,11 @@
         <table class="table table-grid" style="margin-top: 10px" ng-if="orders.length > 0">
             <tr>
                 <th>Заказ №</th>
-                <th>Кол-во товаров</th>
                 <th>Сумма</th>
                 <th>Статус</th>
             </tr>
             <tr ng-repeat="order in orders">
                 <td>{{order.order_num}}</td>
-                <td>{{order.products.length}}</td>
                 <td>{{order.price}} {{order.currency}}</td>
                 <td>{{order.status}}</td>
             </tr>

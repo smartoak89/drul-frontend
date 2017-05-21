@@ -45,7 +45,7 @@ angular.module('admin')
                         disabled = false;
                     });
                 }
-            }
+            };
 
             var selectedArr = Goods.selectedArr;
 
@@ -54,9 +54,17 @@ angular.module('admin')
                     _.remove(selectedArr, product);
                     product.selected = false;
                 } else {
+                    if (_.find(selectedArr, {uuid: product.uuid})) return;
                     selectedArr.push(product);
                     product.selected = true;
                 }
+            };
+
+            self.cancelSelected = function () {
+                _.each(selectedArr, function (prod) {
+                    _.remove(selectedArr, prod);
+                    prod.selected = false;
+                });
             };
 
             var skip = 0;

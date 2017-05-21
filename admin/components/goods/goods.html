@@ -40,7 +40,7 @@
                         <td>{{product.price}}</td>
                         <td>
                             <div class="checkbo">
-                                <input type="checkbox" id="{{product.name}}" name="option" value="a" ng-click="$ctrl.selected(product)"/>
+                                <input type="checkbox" id="{{product.name}}" ng-checked="product.selected" value="a" ng-click="$ctrl.selected(product)"/>
                                 <label for="{{product.name}}"></label>
                             </div>
                         </td>
@@ -64,7 +64,9 @@
                         <span class="caret"></span>
                     </button>
                     <ul class="dropdown-menu" aria-labelledby="dropdownMenu2">
+                        <li ng-click="$ctrl.cancelSelected()"><a href="">Отменить</a></li>
                         <li modal-admin="remove-all-goods"><a href="">Удалить отмеченные</a></li>
+                        <li modal-admin="stocks-add-to-all-goods"><a href="">Добавить акцию к отмеченным</a></li>
                     </ul>
                 </div>
                 <button class="btn btn-default" ng-click="$ctrl.showMore()">Показать больше</button>
