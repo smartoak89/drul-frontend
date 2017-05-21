@@ -4,7 +4,7 @@
     <tr>
         <td>Страна</td>
         <td>{{$ctrl.user.country}}</td>
-        <td class="curVal">Ваш баланс: {{$ctrl.user.ballance}} {{$ctrl.curr}} <i class="fa fa-exclamation-circle" tooltip-placement="top" uib-tooltip="Для поплнения счета обратитесь к администратору"></i></td>
+        <td class="curVal">Ваш баланс: {{$ctrl.user.ballance.amount + ' ' + $ctrl.user.ballance.currency}} <i class="fa fa-exclamation-circle" tooltip-placement="top" uib-tooltip="Для поплнения счета обратитесь к администратору"></i></td>
     </tr>
     <tr>
         <td>Имя</td>

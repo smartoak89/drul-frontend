@@ -20,7 +20,7 @@
                     <td>{{user.lastname}}</td>
                     <td>{{user.phone}}</td>
                     <td>{{user.country}}</td>
-                    <td>{{user.ballance}}</td>
+                    <td>{{user.ballance.amount + ' ' + user.ballance.currency}}</td>
                     <td><button class="btn btn-default btn-sm" modal-admin="remove-user">Удалить</button></td>
                     <td><button class="btn btn-default btn-sm" modal-admin="user-info"><i class="fa fa-info"></i></button></td>
                 </tr>

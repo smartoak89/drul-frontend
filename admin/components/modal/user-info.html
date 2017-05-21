@@ -1,6 +1,13 @@
 <style>
     .user-ballance input{
-        width: 40%;
+        width: 25%;
+    }
+    .user-ballance select {
+        height: 26px;
+        width: 25%;
+    }
+    .user-ballance button.btn-default {
+        padding: 3px 10px;
     }
 </style>
 <div class="modal-content">
@@ -17,8 +24,15 @@
 
             <!--[Ballance]-->
             <div class="col-md-5 user-ballance">
-                <div ng-if="editBallanceMode">Балланс: <span><input type="text" value="{{ballance}}" ng-model="user.ballance" ng-pattern-restrict="^[0-9]*$"></span> <button class="btn btn-default btn-sm pull-right" ng-click="editBallance(ballance)"><i class="fa fa-check"></i></button></div>
-                <div ng-hide="editBallanceMode">Балланс: {{user.ballance}} <button class="btn btn-default btn-sm pull-right" ng-click="editBallanceMode = true"><i class="fa fa-pencil"></i></button></div>
+                <div ng-if="editBallanceMode">Балланс:
+                    <span><input type="text" value="{{ballance.amount}}" ng-model="user.ballance.amount" ng-pattern-restrict="^[0-9]*$"></span>
+                    <span><select value="{{ballance.currency}}" ng-model="user.ballance.currency">
+                        <option value="UAH">UAH</option>
+                        <option value="USD">USD</option>
+                        <option value="RUR">RUR</option>
+                    </select></span>
+                    <button class="btn btn-default btn-sm pull-right" ng-click="editBallance(ballance)"><i class="fa fa-check"></i></button></div>
+                <div ng-hide="editBallanceMode">Балланс: {{user.ballance.amount + ' ' + user.ballance.currency}}  <button class="btn btn-default btn-sm pull-right" ng-click="editBallanceMode = true"><i class="fa fa-pencil"></i></button></div>
             </div>
         </div>
         <div class="row">

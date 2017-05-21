@@ -10,8 +10,7 @@ angular.module('app')
             });
 
             $scope.editBallance = function () {
-                if($scope.user.ballance && $scope.user.ballance >= 0) {
-
+                if($scope.user.ballance && $scope.user.ballance.amount >= 0) {
                     Httpquery.put({params1: 'user', params2: 'admin', params3: $scope.user.uuid}, $scope.user, function (res) {
                         modalData.user = $scope.user;
                         $scope.editBallanceMode = false;
