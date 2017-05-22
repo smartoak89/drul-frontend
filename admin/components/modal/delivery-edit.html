@@ -1,0 +1,58 @@
+<style>
+    .price-currency {
+        height: 26px;
+        background: #fff;
+        outline:none;
+    }
+</style>
+
+<div class="modal-content">
+    <div class="modal-header">
+        <h4 class="modal-title" id="modalBasicLabel">Редактирование способа доставки {{data.name}}</h4>
+    </div>
+    <div class="modal-body add_goods">
+        <div class="row">
+            <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div class="col-md-12">
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="name">Название способа</label>
+                        <input class="form-control" id="name" ng-model="delivery.name" autocomplete="off" placeholder="Название способа">
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label>Страна</label>
+                        <div class="checkbo">
+                            <input type="radio" id="ukr" name="ukr" value="Украина" ng-model="delivery.country"/>
+                            <label style="margin-right: 10px" for="ukr">Украина</label>
+                            <input type="radio" id="rus" name="rus" value="Россия" ng-model="delivery.country"/>
+                            <label for="rus"><span>Россия</span></label>
+                        </div>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="price.amount">Стоимость</label>
+                        <span><input class="" id="price.amount" ng-model="delivery.price.amount" ng-pattern-restrict="^[0-9]*$"></span>
+                        <span>
+                        <select class="price-currency" ng-model="delivery.price.currency">
+                            <option selected value="UAH">UAH</option>
+                            <option value="USD">USD</option>
+                            <option value="RUR">RUR</option>
+                        </select>
+                        </span>
+                    </div>
+                    <div class="form-group col-lg-6 col-md-6 col-sm-6 col-xs-12">
+                        <label for="free">Басплатно от</label>
+                        <input class="form-control" id="free" ng-model="delivery.free" ng-pattern-restrict="^[0-9]*$">
+                    </div>
+                </div>
+            </div>
+        </div>
+        <div ng-if="error" class="callout callout-danger">
+            <p>{{error}}</p>
+        </div>
+    </div>
+    <div class="modal-footer">
+        <button type="button" ng-click="$dismiss()" class="btn btn-default" data-dismiss="modal">Отмена</button>
+        <button type="button"
+                ng-click="edit()" class="btn btn-primary">Изменить
+        </button>
+    </div>
+</div>

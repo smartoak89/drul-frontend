@@ -9,8 +9,9 @@ angular.module('admin')
                 {name: 'Пользователи', url: 'admin.usersAdmin'},
                 {name: 'Заказы', url: 'admin.ordersAdmin'},
                 {name: 'Акции', url: 'admin.stocksAdmin'},
-                {name: 'Отзывы', url: 'admin.commentsAdmin'},
                 {name: 'Комбинации', url: 'admin.combination'},
+                {name: 'Отзывы', url: 'admin.commentsAdmin'},
+                {name: 'Способы доставки', url: 'admin.deliveryAdmin'},
                 {name: 'Настройки', url: 'admin.settingsAdmin'}
             ]
         }]
