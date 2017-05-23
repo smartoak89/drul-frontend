@@ -3,16 +3,18 @@ angular.module('admin')
         templateUrl: "admin/components/settings/settings.html",
         controller: ['Conf', 'Goods', 'HttpResource', 'File', function(Conf, Goods, HttpResource, File) {
             var self = this;
-            //self.slides = [];
-             self.fields=[
-                 {name: 'Валюта', props: [
-                     {prop: 'Надбавка, %', type: 'inp'}
-                 ]}
-                 // {name: 'Доставка', props: [
-                 //     {prop: 'Цена доставки', type: 'inp'},
-                 //     {prop: 'Бесплатная доставка от', type: 'inp'}
-                 // ]}
-             ];
-            self.cur = null;
+
+            HttpResource.get({params1: 'settings'}, function (res) {
+                self.settings = res;
+            });
+
+            self.saveSetting = function () {
+                self.settings.monitoring = self.settings.monitoring || 0;
+
+                HttpResource.put({params1: 'setting'}, self.settings, function (res) {
+                    self.settings = res;
+                    self.editMode = false;
+                })
+            }
         }]
     });

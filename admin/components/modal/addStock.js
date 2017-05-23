@@ -7,7 +7,7 @@ angular.module('admin')
             $scope.createStocks = function () {
                 if (isValid() === true) {
                     Stocks.create($scope.stocks, function (err) {
-                        if (err) return $scope.error = err;
+                        if (err) return $scope.error = err.data.message;
                         $uibModalInstance.dismiss();
                     });
                 }
