@@ -16,7 +16,7 @@ angular.module('app')
                 var self = this;
                 isValid(self.user, function (err) {
                     if (err) return self.error = err;
-
+                    console.log(self.user);
                     Httpquery.put({params1: 'user', params2: self.user.uuid}, self.user, function (res) {
                         User.set(res);
                         console.log(res);
@@ -42,7 +42,7 @@ angular.module('app')
                 if (!user.email) return callback('Пожалуйста введите email!');
                 if (!reg.test(user.email)) return callback('Некоректный email!');
                 if (!user.phone) return callback('Укажите мобильный телефон!');
-                if (user.phone.length<10 || user.phone.length>12) return callback('Мобильный телефон введен некорректно!');
+                if (user.phone.length<11 || user.phone.length>14) return callback('Мобильный телефон введен некорректно!');
                 if (!user.password) return callback('Пожалуйста введите пароль!');
 
                 return callback(null);

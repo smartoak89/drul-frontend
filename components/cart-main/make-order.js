@@ -58,7 +58,7 @@ angular.module('app')
                     if (!self.orderMake.firstname) return self.error = 'Укажите имя получателя!';
                     if (!self.orderMake.lastname) return self.error = 'Укажите фамилию получателя!';
                     if (!self.orderMake.phone) return self.error = 'Укажите мобильный номер получателя!';
-                    if (self.orderMake.phone.length < 10 || self.orderMake.phone.length > 12) return self.error = 'Мобильный телефон введен некорректно!';
+                    if (self.orderMake.phone.length < 11 || self.orderMake.phone.length > 14) return self.error = 'Мобильный телефон введен некорректно!';
                     if (!self.orderMake.email) return self.error = 'Укажите email получателя!';
                     if (self.order.length <= 0) return self.error = 'Нет товаров для оформления!';
                     self.error = '';

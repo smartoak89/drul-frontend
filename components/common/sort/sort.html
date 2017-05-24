@@ -1,17 +1,180 @@
 <div class="sort">
-    <span>Сортировать:</span>
+    <!--<span style="font-weight: bold">Фильтры:</span>-->
+    <!--<div class="filterBlock" ng-class="changeMaterial?'changed':''"  style="padding-left: 10px;">-->
+        <!--<div class="filterText" ng-click="changeMaterial = !changeMaterial">Материал</div>-->
+            <!--&lt;!&ndash;<li>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="checkbo" ng-repeat="(key, val) in value.values">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="radio" id="{{val + key}}" name="{{value.name}}" value="{{val}}" ng-click="$ctrl.chooseCombo($parent.$index, value, val)"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="{{val + key}}"></label><span>{{val}}</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;</li>&ndash;&gt;-->
+        <!--<div class="filterWrapp" ng-show="changeMaterial" ng-mouseleave="changeMaterial=false">-->
+            <!--<div class="detalFilter" >-->
+                <!--<div class="checkbo">-->
+                    <!--<input type="checkbox" id="1" name="1" value="1"/>-->
+                    <!--<label for="1"></label><span>1</span>-->
+                <!--</div>-->
+                <!--<div class="checkbo">-->
+                    <!--<input type="checkbox" id="2" name="2" value="2"/>-->
+                    <!--<label for="2"></label><span>2</span>-->
+                <!--</div>-->
+                <!--<div class="checkbo">-->
+                    <!--<input type="checkbox" id="3" name="3" value="3"/>-->
+                    <!--<label for="3"></label><span>3</span>-->
+                <!--</div>-->
+                <!--<div class="checkbo">-->
+                    <!--<input type="checkbox" id="4" name="4" value="4"/>-->
+                    <!--<label for="4"></label><span>4</span>-->
+                <!--</div>-->
+                <!--<div class="checkbo">-->
+                    <!--<input type="checkbox" id="5" name="5" value="5"/>-->
+                    <!--<label for="5"></label><span>5</span>-->
+                <!--</div>-->
+                <!--<div class="checkbo">-->
+                    <!--<input type="checkbox" id="6" name="6" value="6"/>-->
+                    <!--<label for="6"></label><span>6</span>-->
+                <!--</div>-->
+                <!--<div class="checkbo">-->
+                    <!--<input type="checkbox" id="7" name="7" value="7"/>-->
+                    <!--<label for="7"></label><span>7</span>-->
+                <!--</div>-->
+
+            <!--</div>-->
+            <!--<button>Применить</button>-->
+        <!--</div>-->
+
+    <!--</div>-->
+    <!--<div class="filterBlock">-->
+        <!--<div class="filterText" ng-click="changeColor = !changeColor">Цвет</div>-->
+        <!--&lt;!&ndash;<div class="filterWrapp" ng-if="changeColor">&ndash;&gt;-->
+            <!--&lt;!&ndash;<div class="detalFilter">&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="checkbo">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="checkbox" id="11" name="1" value="1"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="11"></label><span>1</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="checkbo">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="checkbox" id="22" name="2" value="2"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="22"></label><span>2</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="checkbo">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="checkbox" id="33" name="3" value="3"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="33"></label><span>3</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="checkbo">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="checkbox" id="44" name="4" value="4"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="44"></label><span>4</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="checkbo">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="checkbox" id="55" name="5" value="5"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="55"></label><span>5</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="checkbo">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="checkbox" id="66" name="6" value="6"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="66"></label><span>6</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                <!--&lt;!&ndash;<div class="checkbo">&ndash;&gt;-->
+                    <!--&lt;!&ndash;<input type="checkbox" id="77" name="7" value="7"/>&ndash;&gt;-->
+                    <!--&lt;!&ndash;<label for="77"></label><span>7</span>&ndash;&gt;-->
+                <!--&lt;!&ndash;</div>&ndash;&gt;-->
+
+            <!--&lt;!&ndash;</div>&ndash;&gt;-->
+            <!--&lt;!&ndash;<button>123</button>&ndash;&gt;-->
+        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+    <!--</div>-->
+    <!--<div class="filterBlock">Размер</div>-->
+    <!--<div class="filterBlock">Бренд</div>-->
+    <!--<div class="filterBlock">Сезон</div>-->
+    <!--<div class="filterBlock" ng-class="changeCost?'changed':''">-->
+        <!--<div class="filterText" ng-click="changeCost = !changeCost">Цена</div>-->
+        <!--<div class="filterWrapp" style="width: 280px; height: 240px; left: -117%;" ng-show="changeCost" ng-mouseleave="changeCost=false">-->
+            <!--<div class="minMaxCost">-->
+                <!--<h1>Цена ({{$ctrl.currencyService.cy}})</h1>-->
+                <!--<div class="minMaxWrapper">-->
+
+                    <!--<rzslider ng-if='$ctrl.slider' rz-slider-model="$ctrl.slider.minValue"-->
+                              <!--rz-slider-high="$ctrl.slider.maxValue"-->
+                              <!--rz-slider-options="$ctrl.slider.options"></rzslider>-->
+
+                    <!--<div class="minMaxInputWrapper">-->
+                        <!--<label>от</label>-->
+                        <!--<input type="text" value="" placeholder="10" ng-pattern-restrict="^[0-9]*$" ng-model="$ctrl.price.min" ng-blur="$ctrl.sortByPrice()"/>-->
+                    <!--</div>-->
+                    <!--<div class="minMaxInputWrapper">-->
+                        <!--<label>до</label>-->
+                        <!--<input type="text" value="" placeholder="5000" ng-pattern-restrict="^[0-9]*$" ng-model="$ctrl.price.max" ng-blur="$ctrl.sortByPrice()"/>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <!--<div class="checkbo">-->
+                    <!--<input type="checkbox" id="123" name="option" value="a"/>-->
+                    <!--<label for="123"></label><span>Только товары со скидкой</span>-->
+                <!--</div>-->
+                <!--<div class="checkbo">-->
+                    <!--<input type="checkbox" id="1231" name="option" value="a"/>-->
+                    <!--<label for="1231"></label><span>Цена с учетом доставки</span>-->
+                <!--</div>-->
+            <!--</div>-->
+            <!--<button>Применить</button>-->
+        <!--</div></div>-->
     <!--<a ng-click="$ctrl.orderBy('popularity')">по популярности</a>-->
-    <a ng-click="$ctrl.orderBy('price')">
-        по цене
-        <i class="fa fa-caret-{{$ctrl.orders.price == 'ask' ? 'up' : 'down'}}" ng-if="$ctrl.orders.price"></i>
-    </a>
+        <!--<a ng-click="$ctrl.orderBy('price')">-->
+            <!--по цене-->
+            <!--<i class="fa fa-caret-{{$ctrl.orders.price == 'ask' ? 'up' : 'down'}}" ng-if="$ctrl.orders.price"></i>-->
+        <!--</a>-->
     <!--<a ng-click="$ctrl.orderBy('reviews')">-->
         <!--по отзывам-->
         <!--<i class="fa fa-caret-{{$ctrl.orders.reviews == 'ask' ? 'up' : 'down'}}" ng-if="$ctrl.orders.reviews"></i>-->
     <!--</a>-->
-    <a ng-click="$ctrl.orderBy('created')">
-        по новизне
-        <i class="fa fa-caret-{{$ctrl.orders.created == 'ask' ? 'up' : 'down'}}" ng-if="$ctrl.orders.created"></i>
-    </a>
+        <!--<a ng-click="$ctrl.orderBy('created')">-->
+            <!--по новизне-->
+            <!--<i class="fa fa-caret-{{$ctrl.orders.created == 'ask' ? 'up' : 'down'}}" ng-if="$ctrl.orders.created"></i>-->
+        <!--</a>-->
     <!--<a>по рейтингу</a>-->
+    <div style="font-weight: bold;float: right;width: 280px;">Сортировать:
+        <div class="dropdown">
+            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">{{$ctrl.order}}
+                <span class="caret" ng-class="$ctrl.caret == 'ask'?'ask':''"></span></button>
+            <ul class="dropdown-menu">
+                <li ng-click="$ctrl.orderBy('created'); $ctrl.order='по дате'">по дате</li>
+                <!--<li ng-click="$ctrl.orderBy('created.ask'); $ctrl.order='по новизне'">по новизне</li>-->
+                <!--<li ng-click="$ctrl.orderBy('created'); $ctrl.order='аукцион'">аукцион</li>-->
+                <li ng-click="$ctrl.orderBy('price.ask'); $ctrl.order='по цене'">по цене от меньшей к большей</li>
+                <li ng-click="$ctrl.orderBy('price.desc'); $ctrl.order='по цене'">по цене от большей к меньшей</li>
+                <div class="minMaxCost" ng-click="$event.stopPropagation()">
+                    <h1>Цена ({{$ctrl.currencyService.cy}})</h1>
+                    <div class="minMaxWrapper">
+
+                        <rzslider ng-if='$ctrl.slider' rz-slider-model="$ctrl.slider.minValue"
+                                  rz-slider-high="$ctrl.slider.maxValue"
+                                  rz-slider-options="$ctrl.slider.options"></rzslider>
+
+                        <div class="minMaxInputWrapper">
+                            <label>от</label>
+                            <input type="text" value="" placeholder="10" ng-pattern-restrict="^[0-9]*$" ng-model="$ctrl.price.min" ng-blur="$ctrl.sortByPrice()"/>
+                        </div>
+                        <div class="minMaxInputWrapper">
+                            <label>до</label>
+                            <input type="text" value="" placeholder="5000" ng-pattern-restrict="^[0-9]*$" ng-model="$ctrl.price.max" ng-blur="$ctrl.sortByPrice()"/>
+                        </div>
+                    </div>
+                    <div class="checkbo">
+                        <input type="checkbox" id="123" name="option" value="a"/>
+                        <label for="123"></label><span>Новинки</span>
+                    </div>
+                    <div class="checkbo">
+                        <input type="checkbox" id="1231" name="option" value="a"/>
+                        <label for="1231"></label><span>Аукционные</span>
+                    </div>
+                </div>
+            </ul>
+        </div>
+    </div>
 </div>
+<script>
+    $('.detalFilter').mCustomScrollbar({
+        theme:"rounded-dark",
+        scrollInertia: 600,
+        scrollButtons:{
+            enable:true
+        }
+    });
+</script>

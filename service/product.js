@@ -38,8 +38,24 @@ angular.module('app')
 
 
                     Httpquery.query(queryStr, function (res) {
-
+                        // console.log(res);
+                        // console.log(criteria.sort);
+                        // if(criteria.sort == 'created.ask'){
+                        //     var dt = new Date();
+                        //     var last;
+                        //     dt.setDate(dt.getDate() - 1);
+                        //     last = _.findIndex(res, function(prod){
+                        //         return
+                        //         new Date(prod.created).getTime() < dt.getTime();
+                        //     });
+                        //     _.each(res.splice(0,), function (product) {
+                        //
+                        //         DeferredService.wasDeferred(product);
+                        //         CurrencyService.changePrice(product);
+                        //     });
+                        // }
                         _.each(res, function (product) {
+
                             DeferredService.wasDeferred(product);
                             CurrencyService.changePrice(product);
                         });

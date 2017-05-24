@@ -70,9 +70,9 @@
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                 <div class="orderInfo">
                     <div class="checkbo">
-                        <input type="radio" id="111" name="option" value="a" class="ng-pristine ng-untouched ng-valid ng-empty">
+                        <input type="radio" id="111" name="option" value="Новая почта" ng-model="delivery.city"  class="ng-pristine ng-untouched ng-valid ng-empty">
                         <label for="111"></label><span>Новая почта</span>
-                        <input type="radio" id="11" name="option" value="a" class="ng-pristine ng-untouched ng-valid ng-empty">
+                        <input type="radio" id="11" name="option" value="Экспресс доставка" ng-model="delivery.city" class="ng-pristine ng-untouched ng-valid ng-empty">
                         <label for="11"></label><span>Экспресс доставка</span>
                     </div>
                     <table class="table">
@@ -81,15 +81,47 @@
                             <td>Город</td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text">
+                                    <input type="text" ng-model="delivery.city">
                                 </div>
                             </td>
                         </tr>
                         <tr>
-                            <td>Инф. отделения</td>
+                            <td>Номер отделения</td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text">
+                                    <input type="text" ng-model="delivery.numberPost">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr>
+                            <td>
+                                <div class="checkbo">
+                                    <input type="checkbox" id="123" name="option" ng-model="viewDeliery" ng-change="viewDeliery=!viewDeliery"/>
+                                    <label for="123"></label><span>Курьерская доставка</span>
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-show="viewDeliery">
+                            <td>Улица</td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" ng-model="delivery.street">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-show="viewDeliery">
+                            <td>Дом</td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" ng-model="delivery.house">
+                                </div>
+                            </td>
+                        </tr>
+                        <tr ng-show="viewDeliery">
+                            <td>Квартира</td>
+                            <td>
+                                <div class="form-group">
+                                    <input type="text" ng-model="delivery.flat">
                                 </div>
                             </td>
                         </tr>
