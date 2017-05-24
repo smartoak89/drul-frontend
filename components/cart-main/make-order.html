@@ -14,7 +14,10 @@
                                 <td>Страна</td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="text" ng-model="$ctrl.orderMake.country">
+                                        <select class="form-control" ng-model="$ctrl.orderMake.country">
+                                            <option value="Украина">Украина</option>
+                                            <option value="Россия">Россия</option>
+                                        </select>
                                     </div>
                                 </td>
                             </tr>
@@ -69,19 +72,24 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                 <div class="orderInfo">
-                    <div class="checkbo">
-                        <input type="radio" id="111" name="option" value="Новая почта" ng-model="delivery.city"  class="ng-pristine ng-untouched ng-valid ng-empty">
-                        <label for="111"></label><span>Новая почта</span>
-                        <input type="radio" id="11" name="option" value="Экспресс доставка" ng-model="delivery.city" class="ng-pristine ng-untouched ng-valid ng-empty">
-                        <label for="11"></label><span>Экспресс доставка</span>
+
+                    <select class="form-control" ng-model="$ctrl.orderMake.delivery.method" ng-change="$ctrl.changeMethod()">
+                        <option value="{{method.uuid}}" ng-repeat="method in $ctrl.deliveryMethods()">{{method.name}}</option>
+                    </select>
+
+                    <div ng-if="$ctrl.choosedMethod">
+                        <p style="margin-top: 12px;">Стоимость доставки: {{$ctrl.choosedMethod.price.amount + ' ' +$ctrl.currencyService.cy}}</p>
+                        <span>Бесплаткая доставка от: {{$ctrl.choosedMethod.free + ' ' +$ctrl.currencyService.cy}}</span>
+                        <!--{{$ctrl.choosedMethod}}-->
                     </div>
+
                     <table class="table">
                         <tbody>
                         <tr>
                             <td>Город</td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" ng-model="delivery.city">
+                                    <input type="text" ng-model="$ctrl.orderMake.delivery.city">
                                 </div>
                             </td>
                         </tr>
@@ -89,39 +97,40 @@
                             <td>Номер отделения</td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" ng-model="delivery.numberPost">
+                                    <input type="number" ng-model="$ctrl.orderMake.delivery.numberPost">
                                 </div>
                             </td>
                         </tr>
                         <tr>
+                            <td></td>
                             <td>
                                 <div class="checkbo">
-                                    <input type="checkbox" id="123" name="option" ng-model="viewDeliery" ng-change="viewDeliery=!viewDeliery"/>
-                                    <label for="123"></label><span>Курьерская доставка</span>
+                                    <input type="checkbox" id="123" name="option" value="true" ng-model="$ctrl.orderMake.delivery.onHome" ng-change="$ctrl.viewDeliery=!$ctrl.viewDeliery"/>
+                                    <label for="123"></label><span style="color: #000">Курьерская доставка</span>
                                 </div>
                             </td>
                         </tr>
-                        <tr ng-show="viewDeliery">
+                        <tr ng-show="$ctrl.viewDeliery">
                             <td>Улица</td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" ng-model="delivery.street">
+                                    <input type="text" ng-model="$ctrl.orderMake.delivery.street">
                                 </div>
                             </td>
                         </tr>
-                        <tr ng-show="viewDeliery">
+                        <tr ng-show="$ctrl.viewDeliery">
                             <td>Дом</td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" ng-model="delivery.house">
+                                    <input type="number" ng-model="$ctrl.orderMake.delivery.house">
                                 </div>
                             </td>
                         </tr>
-                        <tr ng-show="viewDeliery">
+                        <tr ng-show="$ctrl.viewDeliery">
                             <td>Квартира</td>
                             <td>
                                 <div class="form-group">
-                                    <input type="text" ng-model="delivery.flat">
+                                    <input type="number" ng-model="$ctrl.orderMake.delivery.flat">
                                 </div>
                             </td>
                         </tr>
@@ -130,73 +139,12 @@
                 </div>
             </div>
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                <div ng-if="$ctrl.error1" class="callout callout-danger">
+                    <p>{{$ctrl.error1}}</p>
+                </div>
                 <hr>
             </div>
         </div>
-        <!--<div class="row">-->
-        <!--<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">-->
-            <!--<div class="orderTitel">-->
-                <!--3. способ получения-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">-->
-            <!--<div class="orderInfo">-->
-                <!--<div class="checkbo">-->
-                    <!--<input type="radio" id="11111" name="option" value="a" class="ng-pristine ng-untouched ng-valid ng-empty">-->
-                    <!--<label for="11111"></label><span>Самовывоз</span>-->
-                    <!--<input type="radio" id="1111" name="option" value="a" class="ng-pristine ng-untouched ng-valid ng-empty">-->
-                    <!--<label for="1111"></label><span>Услуги курьера</span>-->
-                <!--</div>-->
-                <!--<table class="table">-->
-                    <!--<tbody>-->
-                    <!--<tr>-->
-                        <!--<td>Адрес</td>-->
-                        <!--<td>-->
-                            <!--<div class="form-group">-->
-                                <!--<input type="text">-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>Дом</td>-->
-                        <!--<td>-->
-                            <!--<div class="form-group">-->
-                                <!--<input type="text">-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>Подъезд</td>-->
-                        <!--<td>-->
-                            <!--<div class="form-group">-->
-                                <!--<input type="text">-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>Квартира</td>-->
-                        <!--<td>-->
-                            <!--<div class="form-group">-->
-                                <!--<input type="text">-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--<tr>-->
-                        <!--<td>Время доставки</td>-->
-                        <!--<td>-->
-                            <!--<div class="form-group">-->
-                                <!--<input type="text">-->
-                            <!--</div>-->
-                        <!--</td>-->
-                    <!--</tr>-->
-                    <!--</tbody>-->
-                <!--</table>-->
-            <!--</div>-->
-        <!--</div>-->
-        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
-            <!--<hr>-->
-        <!--</div>-->
-    <!--</div>-->
         <div class="row">
             <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
                 <div class="orderCost">

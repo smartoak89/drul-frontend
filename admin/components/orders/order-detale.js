@@ -8,13 +8,14 @@ angular.module('admin')
                 self.mail = {};
                 self.editUserInfo = false;
                 self.editOrderInfo = false;
+                self.editOrderDetail = false;
                 self.Conf = Conf;
                 var disabled = null;
 
                 RequestService.getOneOrder(orderID, function (err, res) {
                     if (err) return console.error(err);
                     self.order = res;
-
+                    console.log(self.order);
                     self.newInfo = {
                         currency: res.currency,
                         email: res.email,

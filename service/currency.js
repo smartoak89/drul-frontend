@@ -2,6 +2,7 @@ angular.module('app')
     .service('CurrencyService', ['$http', '$cookies', function ($http, $cookies) {
         var self = this;
         var course = null;
+        var usd, rur, uah;
 
         this.cy = $cookies.get('currency') || 'UAH';
 
@@ -23,6 +24,9 @@ angular.module('app')
 
             if (course == null) {
                 course = $http.get(url).then(function (res) {
+                    usd = _.find(res.data, {ccy: 'USD'});
+                    rur = _.find(res.data, {ccy: 'RUR'});
+                    console.log('course', res);
                     return res.data;
                 });
             }
@@ -42,28 +46,40 @@ angular.module('app')
             });
 
         };
-        this.calculatePrice = function (currency, price, callback) {
-            currency = currency || null;
-            
-            self.getCourses().then(function (res) {
-                var cur = _.find(res, {ccy: self.cy});
 
-                if (currency && currency != 'UAH') {
-
-                    price.min = Math.round(price.min * cur.sale);
-                    price.max = Math.round(price.max * cur.sale) + 9;
-
-                    return callback(price);
-                }
-
-                if (!currency && self.cy !== 'UAH') {
-                    price = Math.round(price / cur.sale);
-
-                }
-
-                return callback(price);
-            });
+        this.getCy = function (cy) {
+            switch(cy){
+                case 'rur':
+                    return Number(rur.sale);
+                    break;
+                case 'usd':
+                    return Number(usd.sale);
+                    break;
+            }
         }
+
+        // this.calculatePrice = function (currency, price, callback) {
+        //     currency = currency || null;
+        //
+        //     self.getCourses().then(function (res) {
+        //         var cur = _.find(res, {ccy: self.cy});
+        //
+        //         if (currency && currency != 'UAH') {
+        //
+        //             price.min = Math.round(price.min * cur.sale);
+        //             price.max = Math.round(price.max * cur.sale) + 9;
+        //
+        //             return callback(price);
+        //         }
+        //
+        //         if (!currency && self.cy !== 'UAH') {
+        //             price = Math.round(price / cur.sale);
+        //
+        //         }
+        //
+        //         return callback(price);
+        //     });
+        // }
 
 
     }]);

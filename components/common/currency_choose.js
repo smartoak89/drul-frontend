@@ -9,8 +9,8 @@
                             '<span ng-bind="item.name"></span>' +
                         '</ui-select-choices>' +
                     '</ui-select>',
-        controller: ['$cookies', '$rootScope', 'CurrencyService',
-            function($cookies, $rootScope, CurrencyService) {
+        controller: ['$cookies', '$rootScope', 'CurrencyService', '$state',
+            function($cookies, $rootScope, CurrencyService, $state) {
                 var self = this;
                 self.itemArray = [
                     {id: 1, name: 'UAH'},
@@ -23,6 +23,7 @@
                 this.changeCurrency = function (value) {
                     CurrencyService.currency(value);
                     $rootScope.$broadcast('currencyChanged');
+                    $state.reload();
                 }
         }]
     });
