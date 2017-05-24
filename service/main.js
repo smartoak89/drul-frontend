@@ -7,10 +7,10 @@ angular.module('app')
             this.activeMenu = 0;
 
             this.init = function () {
-                console.log('initService');
                 DeferredService.list(function () {});
                 Cart.init();
                 self.activeUser = User.get();
+
             };
 
             this.deactivate = function () {

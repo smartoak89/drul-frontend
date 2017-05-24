@@ -14,7 +14,10 @@
                                 <td>Страна</td>
                                 <td>
                                     <div class="form-group">
-                                        <input type="text" ng-model="$ctrl.orderMake.country">
+                                        <select class="form-control" ng-model="$ctrl.orderMake.country">
+                                            <option value="Украина">Украина</option>
+                                            <option value="Россия">Россия</option>
+                                        </select>
                                     </div>
                                 </td>
                             </tr>
@@ -69,12 +72,34 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                 <div class="orderInfo">
-                    <div class="checkbo">
-                        <input type="radio" id="111" name="option" value="a" class="ng-pristine ng-untouched ng-valid ng-empty">
-                        <label for="111"></label><span>Новая почта</span>
-                        <input type="radio" id="11" name="option" value="a" class="ng-pristine ng-untouched ng-valid ng-empty">
-                        <label for="11"></label><span>Экспресс доставка</span>
+
+                    <select class="form-control" ng-model="$ctrl.orderMake.delivery.method" ng-change="$ctrl.changeMethod()">
+                        <option value="{{method.uuid}}" ng-repeat="method in $ctrl.deliveryMethods()">{{method.name}}</option>
+                    </select>
+
+                    <div ng-if="$ctrl.choosedMethod">
+                        <p>Стоимость доставки: {{$ctrl.choosedMethod.price.amount + ' ' +$ctrl.currencyService.cy}}</p>
+                        <span>Бесплаткая доставка от: {{$ctrl.choosedMethod.free + ' ' +$ctrl.currencyService.cy}}</span>
+                        <!--{{$ctrl.choosedMethod}}-->
                     </div>
+
+                    <!--<div class="checkbo">-->
+                            <!--<input type="radio" id="ukr" name="delivery" value="Украина" ng-model="$ctrl.orderMake.delivery.country"/>-->
+                            <!--<label style="margin-right: 10px" for="ukr">Мисс экспресс</label>-->
+                        <!--&lt;!&ndash;<input type="radio" id="rus" name="delivery" value="Россия"/>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<label for="rus"><span>Россия</span></label>&ndash;&gt;-->
+
+                        <!--&lt;!&ndash;<div class="form-group">&ndash;&gt;-->
+                            <!--&lt;!&ndash;<label>Акция</label>&ndash;&gt;-->
+                            <!--&lt;!&ndash;<select class="form-control" ng-model="$ctrl.currentStock" ng-options="stock.name for stock in $ctrl.stocks" ng-change="$ctrl.applyStock()">&ndash;&gt;-->
+                                <!--&lt;!&ndash;<option value=""></option>&ndash;&gt;-->
+                            <!--&lt;!&ndash;</select>&ndash;&gt;-->
+                        <!--&lt;!&ndash;</div>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<input type="radio" id="111" name="option" value="a" class="ng-pristine ng-untouched ng-valid ng-empty">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<label for="111">Новая почта</label>&ndash;&gt;-->
+                        <!--&lt;!&ndash;<input type="radio" id="11" name="option" value="a" class="ng-pristine ng-untouched ng-valid ng-empty">&ndash;&gt;-->
+                        <!--&lt;!&ndash;<label for="11">Экспресс доставка</label>&ndash;&gt;-->
+                    <!--</div>-->
                     <table class="table">
                         <tbody>
                         <tr>

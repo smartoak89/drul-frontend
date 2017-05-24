@@ -19,6 +19,7 @@ angular.module('app')
 
             Httpquery.query({params1:'deliveries'}, function (res) {
                 self.methods = res;
+                console.log('methods', res)
             })
         };
 
