@@ -134,7 +134,8 @@
             <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">{{$ctrl.viewText}}
                 <span class="caret" ng-class="$ctrl.caret == 'ask'?'ask':''"></span></button>
             <ul class="dropdown-menu">
-                <li ng-style="$ctrl.order.data == 'created'?{'font-weight':'500'}:{}" ng-click="$ctrl.order.data = 'created'; $ctrl.order.text='по дате';$event.stopPropagation()">по дате</li>
+                <li ng-style="$ctrl.order.data == 'created.ask'?{'font-weight':'500'}:{}" ng-click="$ctrl.order.data = 'created.ask'; $ctrl.order.text='по дате';$event.stopPropagation()">по дате от меньшей к большей</li>
+                <li ng-style="$ctrl.order.data == 'created.desc'?{'font-weight':'500'}:{}" ng-click="$ctrl.order.data = 'created.desc'; $ctrl.order.text='по дате';$event.stopPropagation()">по дате от большей к меньшей</li>
                 <li ng-style="$ctrl.order.data == 'price.ask'?{'font-weight':'500'}:{}" ng-click="$ctrl.order.data ='price.ask'; $ctrl.order.text='по цене';$event.stopPropagation()">по цене от меньшей к большей</li>
                 <li ng-style="$ctrl.order.data == 'price.desc'?{'font-weight':'500'}:{}" ng-click="$ctrl.order.data ='price.desc'; $ctrl.order.text='по цене';$event.stopPropagation()">по цене от большей к меньшей</li>
                 <div class="minMaxCost" ng-click="$event.stopPropagation()">

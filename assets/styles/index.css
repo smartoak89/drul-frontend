@@ -268,7 +268,7 @@ a {
 }
 .logoWrapper1{
     display: flex;
-    margin-top: -3px;
+    margin-top: 10px;
     justify-content: center;
 }
 .compact .logoWrapper, .compact1 .logoWrapper{
@@ -836,7 +836,7 @@ section {
     margin-top: 15px;
     padding: 0;
     width: 280px;
-    height: 340px;
+    height: 382px;
     left: -195px;
 }
 .sort .dropdown .dropdown-menu:before{
@@ -2138,9 +2138,10 @@ uib-accordion .panel-body{
 }
 uib-accordion .panel-body > a{
     color: #757575;
-    padding: 10px 20px;
+    padding: 10px 20px 10px 10px;
     display: block;
     border-bottom: 1px solid #ddd;
+    margin-left: 15px;
 }
 uib-accordion .panel-body > a:hover{
     color: #929191;

@@ -20,6 +20,7 @@ angular.module('app')
                             self.steps.push( _.find(self.steps[index - 1].children, {slug: elem}));
                         }
                     })
+                    console.log(self.steps)
                 });
             };
 
