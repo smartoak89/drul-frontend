@@ -1147,14 +1147,14 @@ section {
     top: 0;
     height: 100%;
     margin-right: -13px;
-    width: 80%;
+    width: 20%;
     /*background: red;*/
     position: absolute;
     right: 0;
 }
  .category > .panel-heading > .panel-title > a > span.link{
     display: inline-block;
-    width: 20%;
+    width: 80%;
 }
 .accordion .category > .panel-heading > .panel-title > a > span.link:hover{
     text-decoration: underline;
