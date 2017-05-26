@@ -20,8 +20,8 @@ var app = angular.module('app', [
 ]);
 
 app.constant('Conf', {
-    api_path: 'https://today.net.ua/api',
-    site_url: 'https://today.net.ua'
+    api_path: 'http://localhost/api',
+    site_url: 'http://localhost'
 });
 
 app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainService', function(User, $location, $state, $rootScope, $anchorScroll, MainService) {
@@ -81,7 +81,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
         });
 
         $stateProvider.state('index.filterPage', {
-            url: "category/{slug:[a-z-_/]*}" ,
+            url: "category/{slug:[a-z0-9-_/]*}" ,
             views: {
                 '': {template: "<template-common></template-common>"},
                 'content': {template: "<filter-page></filter-page>"}
