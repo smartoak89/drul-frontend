@@ -81,7 +81,7 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
         });
 
         $stateProvider.state('index.filterPage', {
-            url: "category/{slug:[a-z0-9-_/]*}" ,
+            url: "category?{slug:[a-z0-9-_/]*}" ,
             views: {
                 '': {template: "<template-common></template-common>"},
                 'content': {template: "<filter-page></filter-page>"}
