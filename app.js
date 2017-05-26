@@ -88,22 +88,6 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
             }
         });
 
-        // $stateProvider.state('index.filterPage2', {
-        //     url: "category/:top/:middle",
-        //     views: {
-        //         '': {template: "<template-common></template-common>"},
-        //         'content': {template: "<filter-page></filter-page>"}
-        //     }
-        // });
-        //
-        // $stateProvider.state('index.filterPage3', {
-        //     url: "category/:top/:middle/:bottom",
-        //     views: {
-        //         '': {template: "<template-common></template-common>"},
-        //         'content': {template: "<filter-page></filter-page>"}
-        //     }
-        // });
-
         $stateProvider.state('index.product', {
             url: "product/:id",
             views: {
