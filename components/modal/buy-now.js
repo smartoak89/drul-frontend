@@ -3,7 +3,7 @@ angular.module('app')
         function ($uibModalInstance, $scope, Httpquery, User, product, CurrencyService, $timeout) {
         console.log(product);
         $scope.done = false;
-        var user = angular.copy(User.get());
+        var user = angular.copy(User.get()) || {};
         $scope.order = {
             price: product.price,
             currency:  CurrencyService.cy,

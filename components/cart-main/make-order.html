@@ -72,19 +72,24 @@
             </div>
             <div class="col-lg-5 col-md-5 col-sm-5 col-xs-5">
                 <div class="orderInfo">
-
-                    <select class="form-control" ng-model="$ctrl.orderMake.delivery.method" ng-change="$ctrl.changeMethod()">
-                        <option value="{{method.uuid}}" ng-repeat="method in $ctrl.deliveryMethods()">{{method.name}}</option>
-                    </select>
-
-                    <div ng-if="$ctrl.choosedMethod">
-                        <p style="margin-top: 12px;">Стоимость доставки: {{$ctrl.choosedMethod.price.amount + ' ' +$ctrl.currencyService.cy}}</p>
-                        <span>Бесплаткая доставка от: {{$ctrl.choosedMethod.free + ' ' +$ctrl.currencyService.cy}}</span>
-                        <!--{{$ctrl.choosedMethod}}-->
-                    </div>
-
                     <table class="table">
                         <tbody>
+                        <tr>
+                            <td>Варианты:</td>
+                            <td>
+                                <div class="form-group">
+                                    <select class="form-control" ng-model="$ctrl.orderMake.delivery.method" ng-change="$ctrl.changeMethod()">
+                                        <option value="{{method.uuid}}" ng-repeat="method in $ctrl.deliveryMethods()">{{method.name}}</option>
+                                    </select>
+
+                                    <div ng-if="$ctrl.choosedMethod">
+                                        <p style="margin-top: 12px;">Стоимость доставки: {{$ctrl.choosedMethod.price.amount + ' ' +$ctrl.currencyService.cy}}</p>
+                                        <span>Бесплаткая доставка от: {{$ctrl.choosedMethod.free + ' ' +$ctrl.currencyService.cy}}</span>
+                                        <!--{{$ctrl.choosedMethod}}-->
+                                    </div>
+                                </div>
+                            </td>
+                        </tr>
                         <tr>
                             <td>Город</td>
                             <td>

@@ -20,8 +20,8 @@ var app = angular.module('app', [
 ]);
 
 app.constant('Conf', {
-    api_path: 'https://today.net.ua/api',
-    site_url: 'https://today.net.ua'
+    api_path: 'http://localhost/api',
+    site_url: 'http://localhost.ua'
 });
 
 app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainService', function(User, $location, $state, $rootScope, $anchorScroll, MainService) {
@@ -81,28 +81,28 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
         });
 
         $stateProvider.state('index.filterPage', {
-            url: "category/:top",
+            url: "category/{slug:[a-z-_/]*}" ,
             views: {
                 '': {template: "<template-common></template-common>"},
                 'content': {template: "<filter-page></filter-page>"}
             }
         });
 
-        $stateProvider.state('index.filterPage2', {
-            url: "category/:top/:middle",
-            views: {
-                '': {template: "<template-common></template-common>"},
-                'content': {template: "<filter-page></filter-page>"}
-            }
-        });
-
-        $stateProvider.state('index.filterPage3', {
-            url: "category/:top/:middle/:bottom",
-            views: {
-                '': {template: "<template-common></template-common>"},
-                'content': {template: "<filter-page></filter-page>"}
-            }
-        });
+        // $stateProvider.state('index.filterPage2', {
+        //     url: "category/:top/:middle",
+        //     views: {
+        //         '': {template: "<template-common></template-common>"},
+        //         'content': {template: "<filter-page></filter-page>"}
+        //     }
+        // });
+        //
+        // $stateProvider.state('index.filterPage3', {
+        //     url: "category/:top/:middle/:bottom",
+        //     views: {
+        //         '': {template: "<template-common></template-common>"},
+        //         'content': {template: "<filter-page></filter-page>"}
+        //     }
+        // });
 
         $stateProvider.state('index.product', {
             url: "product/:id",
