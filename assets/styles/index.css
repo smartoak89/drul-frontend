@@ -1107,8 +1107,11 @@ section {
     border-radius: 0;
     border-top: 0;
 }
-.accordion .category.panel-open > .panel-heading, .accordion .category.panel-open > .panel-collapse {
-    /*background: #f8f8f8;*/
+.accordion .category.panel-open > .panel-heading,
+.accordion .category.panel-open > .panel-collapse,
+.accordion .category.panel-open .category .panel-heading,
+.accordion .category.panel-open .category .panel-collapse{
+    background: #f8f8f8;
 }
 .accordion .category.panel-open > .panel-heading{
     border-bottom: 0;
@@ -1144,17 +1147,27 @@ section {
     top: 0;
     height: 100%;
     margin-right: -13px;
-    width: 50px;
+    width: 80%;
     /*background: red;*/
     position: absolute;
     right: 0;
 }
  .category > .panel-heading > .panel-title > a > span.link{
     display: inline-block;
-    width: 90%;
+    width: 20%;
 }
 .accordion .category > .panel-heading > .panel-title > a > span.link:hover{
     text-decoration: underline;
+}
+.accordion .category.panel-open > .panel-heading:before {
+    content: '';
+    height: 1px;
+    background: #ddd;
+    width: 90%;
+    display: block;
+    position: absolute;
+    bottom: 0;
+    right: 15px;
 }
 .accordion .category > .panel-heading > .panel-title > a:hover, .accordion .category > .panel-heading > .panel-title > a:active, .accordion .category > .panel-heading > .panel-title > a:focus{
     text-decoration: none;
@@ -1190,8 +1203,7 @@ section {
     /*background: rgb(248, 248, 248);*/
 }
 .accordion .subcategory {
-    margin: 0 -15px;
-    padding-left: 15px;
+    margin-right: -15px;
 }
 .pos_rel {
     position: relative;
@@ -2125,9 +2137,10 @@ uib-accordion .panel-body{
     padding-top: 0;
 }
 uib-accordion .panel-body > a{
-    color: #afafaf;
+    color: #757575;
     padding: 10px 20px;
     display: block;
+    border-bottom: 1px solid #ddd;
 }
 uib-accordion .panel-body > a:hover{
     color: #929191;
@@ -2879,4 +2892,15 @@ admin-navigation .sidebar {
 }
 .stepWrap a:hover{
     color: #adadad;
+}
+.stepWrap li{
+    display: inline-block;
+}
+.stepWrap li:before{
+     content: '|';
+     margin: 0 5px;
+ }
+.stepWrap li:first-child:before{
+    content: ' ';
+    margin-left: -3px;
 }

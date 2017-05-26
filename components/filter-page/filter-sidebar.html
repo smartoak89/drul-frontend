@@ -5,6 +5,9 @@
                 <li>
                     <a href="/">Главная</a>
                 </li>
+                <li ng-repeat="step in $ctrl.steps">
+                    <a ng-click="$ctrl.goTo(step)">{{step.name}}</a>
+                </li>
             </ul>
         </div>
         <div class="accordion">
@@ -16,7 +19,7 @@
                      template-url="bootstrap-template/accordion.html"
                      is-disabled="category.children.length == 0"
                      ng-click="$ctrl.goTo(category)">
-                    <a ng-click="$ctrl.goTo(child)" ng-if="child.children.length == 0" ng-repeat="child in category.children" style="padding-left: 15px;">{{child.name}}</br></a>
+                    <a ng-click="$ctrl.goTo(child);" ng-if="child.children.length == 0" ng-repeat="child in category.children" style="padding-left: 15px;">{{child.name}}</br></a>
                     <!--ng-class="{closed_accordion: category.children.length == 0}"-->
                     <div uib-accordion-group class="panel-default category subcategory"
                          template-url="bootstrap-template/accordion.html"

@@ -13,7 +13,7 @@
             <uib-accordion close-others="false">
 
                 <div uib-accordion-group class="panel-default category"
-                     ng-class="{closed_accordion: category.children.length == 0}"
+                     ng-class="[{closed_accordion: category.children.length == 0}, panel-open]"
                      ng-repeat="category in $ctrl.categories" heading="{{category.name}}"
                      template-url="bootstrap-template/accordion.html"
                      is-disabled="category.children.length == 0"
