@@ -6,42 +6,52 @@ angular.module('app')
             var self = this;
             self.currencyService = CurrencyService;
             self.orders = {};
-            self.order = 'по дате'
+            self.viewText = 'по дате';
+            self.order = {
+                text: 'по дате',
+                data: 'created',
+            };
             self.caret = '';
+            self.findStocks = false;
+            self.price = {
+                min: '',
+                max: ''
+            }
             var typeCashe = '';
-            this.orderBy = function (type) {
-                if (typeCashe !== type) self.orders = {};
-                typeCashe = type;
+            this.orderBy = function () {
+                if (typeCashe !== self.order.data) self.orders = {};
+                typeCashe = self.order.data;
 
-                if(type == 'price.ask' || type == 'price.desc'){
-                    type == 'price.ask'?self.orders['price'] = 'ask':self.orders['price'] = 'desc';
+                if(self.order.data == 'price.ask' || self.order.data == 'price.desc'){
+                    self.order.data == 'price.ask'?self.orders['price'] = 'ask':self.orders['price'] = 'desc';
                 }else{
-                    self.orders[type] = self.orders[type] == 'ask' ? 'desc' : 'ask';
+                    self.orders[self.order.data] = self.orders[self.order.data] == 'ask' ? 'desc' : 'ask';
                 }
                 self.caret = self.orders[Object.keys(self.orders)[0]];
                 var category = $location.$$path.split('/').pop();
                 var criteria = {};
                 if (category !== '') criteria['category.slug'] = category;
-                if(type == 'price.ask' || type == 'price.desc'){
-                    criteria.sort = type;
+                if(self.order.data == 'price.ask' || self.order.data == 'price.desc'){
+                    criteria.sort = self.order.data;
                 }else{
-                    criteria.sort = type + '.' +self.orders[type];
+                    criteria.sort = self.order.data + '.' +self.orders[self.order.data];
+                }
+                self.findStocks?criteria.group = 'stocks':criteria.group = '';
+                if(self.price.min&&self.price.max){
+
+                }else{
+                    self.price.min?criteria.price = 'min.2222':criteria.price = '';
+                    self.price.max?criteria.price = 'min.1000max.2222':criteria.price = '';
                 }
                 criteria.skip = 0;
                 Product.skip = 0;
                 // criteria.skip = 0;
+                self.viewText = self.order.text;
                 Product.getList(criteria);
             };
 
             function reversOrder () {
                 order =  order == -1 ? 1 : -1;
             }
-
-            function blur(o){
-                console.log('+')
-                o = false;
-            }
-
-
         }]
     });

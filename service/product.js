@@ -28,10 +28,12 @@ angular.module('app')
                         queryStr.article = self.searchValue;
                     }
 
-                    criteria = criteria || {sort: 'created.desk'};
+                    criteria = criteria || {sort: 'created.ask'};
 
                     for (var key in criteria) {
-                        queryStr[key] = criteria[key];
+                        if(criteria[key]!=''){
+                            queryStr[key] = criteria[key];
+                        }
                     }
 
                    if (queryStr.skip == 0) delete queryStr.skip;

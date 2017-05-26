@@ -268,7 +268,7 @@ a {
 }
 .logoWrapper1{
     display: flex;
-    margin-top: 10px;
+    margin-top: -3px;
     justify-content: center;
 }
 .compact .logoWrapper, .compact1 .logoWrapper{
@@ -836,8 +836,8 @@ section {
     margin-top: 15px;
     padding: 0;
     width: 280px;
-    height: 310px;
-    left: -85px;
+    height: 340px;
+    left: -195px;
 }
 .sort .dropdown .dropdown-menu:before{
     bottom: 100%;
@@ -849,7 +849,7 @@ section {
     pointer-events: none;
     border-bottom-color: #ffffff;
     border-width: 11px;
-    left: 56%;
+    left: 82%;
     top: 2px;
     box-shadow: -3px 3px 5px -2px rgba(0,0,0,0.55);
     transform-origin: 0 0;
@@ -2867,5 +2867,16 @@ admin-navigation .sidebar {
 }
 
 .main {
-    margin-top: 35px;
+    margin-top: 15px;
+}
+.stepWrap {
+    color: #adadad;
+    font-size: 1.2rem;
+    margin-bottom: 12px;
+}
+.stepWrap a{
+    color: #adadad;
+}
+.stepWrap a:hover{
+    color: #adadad;
 }

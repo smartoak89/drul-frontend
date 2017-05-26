@@ -129,23 +129,21 @@
             <!--<i class="fa fa-caret-{{$ctrl.orders.created == 'ask' ? 'up' : 'down'}}" ng-if="$ctrl.orders.created"></i>-->
         <!--</a>-->
     <!--<a>по рейтингу</a>-->
-    <div style="font-weight: bold;float: right;width: 280px;">Сортировать:
+    <div style="font-weight: 500;float: right;">Сортировать:
         <div class="dropdown">
-            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">{{$ctrl.order}}
+            <button class="btn dropdown-toggle" type="button" data-toggle="dropdown">{{$ctrl.viewText}}
                 <span class="caret" ng-class="$ctrl.caret == 'ask'?'ask':''"></span></button>
             <ul class="dropdown-menu">
-                <li ng-click="$ctrl.orderBy('created'); $ctrl.order='по дате'">по дате</li>
-                <!--<li ng-click="$ctrl.orderBy('created.ask'); $ctrl.order='по новизне'">по новизне</li>-->
-                <!--<li ng-click="$ctrl.orderBy('created'); $ctrl.order='аукцион'">аукцион</li>-->
-                <li ng-click="$ctrl.orderBy('price.ask'); $ctrl.order='по цене'">по цене от меньшей к большей</li>
-                <li ng-click="$ctrl.orderBy('price.desc'); $ctrl.order='по цене'">по цене от большей к меньшей</li>
+                <li ng-style="$ctrl.order.data == 'created'?{'font-weight':'500'}:{}" ng-click="$ctrl.order.data = 'created'; $ctrl.order.text='по дате';$event.stopPropagation()">по дате</li>
+                <li ng-style="$ctrl.order.data == 'price.ask'?{'font-weight':'500'}:{}" ng-click="$ctrl.order.data ='price.ask'; $ctrl.order.text='по цене';$event.stopPropagation()">по цене от меньшей к большей</li>
+                <li ng-style="$ctrl.order.data == 'price.desc'?{'font-weight':'500'}:{}" ng-click="$ctrl.order.data ='price.desc'; $ctrl.order.text='по цене';$event.stopPropagation()">по цене от большей к меньшей</li>
                 <div class="minMaxCost" ng-click="$event.stopPropagation()">
                     <h1>Цена ({{$ctrl.currencyService.cy}})</h1>
                     <div class="minMaxWrapper">
 
-                        <rzslider ng-if='$ctrl.slider' rz-slider-model="$ctrl.slider.minValue"
-                                  rz-slider-high="$ctrl.slider.maxValue"
-                                  rz-slider-options="$ctrl.slider.options"></rzslider>
+                        <!--<rzslider ng-if='$ctrl.slider' rz-slider-model="$ctrl.slider.minValue"-->
+                                  <!--rz-slider-high="$ctrl.slider.maxValue"-->
+                                  <!--rz-slider-options="$ctrl.slider.options"></rzslider>-->
 
                         <div class="minMaxInputWrapper">
                             <label>от</label>
@@ -161,10 +159,11 @@
                         <label for="123"></label><span>Новинки</span>
                     </div>
                     <div class="checkbo">
-                        <input type="checkbox" id="1231" name="option" value="a"/>
-                        <label for="1231"></label><span>Аукционные</span>
+                        <input type="checkbox" id="1231" ng-model="$ctrl.findStocks" name="option" value="a"/>
+                        <label for="1231"></label><span>Акционные</span>
                     </div>
                 </div>
+                <button ng-click="$ctrl.orderBy()">Применить</button>
             </ul>
         </div>
     </div>

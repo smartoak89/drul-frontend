@@ -1,34 +1,32 @@
-<div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
-    <div class="minMaxCost">
-        <h1>Цена({{$ctrl.currencyService.cy}})</h1>
-        <div class="minMaxWrapper">
-
-            <rzslider ng-if='$ctrl.slider' rz-slider-model="$ctrl.slider.minValue"
-                      rz-slider-high="$ctrl.slider.maxValue"
-                      rz-slider-options="$ctrl.slider.options"></rzslider>
-
-            <!--<div class="minMaxInputWrapper">-->
-                <!--<label>от</label>-->
-                <!--<input type="text" value="" placeholder="10" ng-pattern-restrict="^[0-9]*$" ng-model="$ctrl.price.min" ng-blur="$ctrl.sortByPrice()"/>-->
-            <!--</div>-->
-            <!--<div class="minMaxInputWrapper">-->
-                <!--<label>до</label>-->
-                <!--<input type="text" value="" placeholder="5000" ng-pattern-restrict="^[0-9]*$" ng-model="$ctrl.price.max" ng-blur="$ctrl.sortByPrice()"/>-->
-            <!--</div>-->
+<div class="main">
+    <div class="col-lg-3 col-md-3 col-sm-3 col-xs-3">
+        <div class="stepWrap">
+            <ul>
+                <li>
+                    <a href="/">Главная</a>
+                </li>
+            </ul>
         </div>
-        <!--<div class="checkbo">-->
-            <!--<input type="checkbox" id="123" name="option" value="a"/>-->
-            <!--<label for="123"></label><span>В наличии</span>-->
-        <!--</div>-->
-    </div>
-    <div class="accordion">
-        <uib-accordion close-others="true">
-            <div uib-accordion-group class="panel-default category" ng-repeat="criteria in $ctrl.criteries" heading="{{criteria._id}}">
-                <div class="checkbo" ng-repeat="(key, value) in criteria.values">
-                    <input type="checkbox" id="{{key}}{{value}}" name="option"  value="{{value}}" ng-click="$ctrl.query({slug: criteria.slug, value: value})"/>
-                    <label for="{{key}}{{value}}"><span>{{value}}</span></label>
+        <div class="accordion">
+            <uib-accordion close-others="false">
+
+                <div uib-accordion-group class="panel-default category"
+                     ng-class="{closed_accordion: category.children.length == 0}"
+                     ng-repeat="category in $ctrl.categories" heading="{{category.name}}"
+                     template-url="bootstrap-template/accordion.html"
+                     is-disabled="category.children.length == 0"
+                     ng-click="$ctrl.goTo(category)">
+                    <a ng-click="$ctrl.goTo(child)" ng-if="child.children.length == 0" ng-repeat="child in category.children" style="padding-left: 15px;">{{child.name}}</br></a>
+                    <!--ng-class="{closed_accordion: category.children.length == 0}"-->
+                    <div uib-accordion-group class="panel-default category subcategory"
+                         template-url="bootstrap-template/accordion.html"
+                         ng-if="child.children.length > 0" ng-repeat="child in category.children" heading="{{child.name}}"
+                         is-disabled="child.children.length == 0"
+                         ng-click="child.children.length == 0 ? $ctrl.goTo(child) : ''">
+                        <a ng-click="$ctrl.goTo(child2)"  style="padding-left: 15px;" ng-repeat="child2 in child.children">{{child2.name}}</br></a>
+                    </div>
                 </div>
-            </div>
-        </uib-accordion>
+            </uib-accordion>
+        </div>
     </div>
 </div>
