@@ -38,7 +38,7 @@
                         <td>{{product.name}}</td>
                         <td>{{$ctrl.categoryText(product.category)}}</td>
                         <td>{{product.article}}</td>
-                        <td>{{product.stock.name + ' ' + '('+ product.stock.percent + '%)'}}</td>
+                        <td>{{product.stock.name?product.stock.name + ' ' + '('+ product.stock.percent + '%)':''}}</td>
                         <td>{{product.price}}</td>
                         <td>
                             <div class="checkbo">
