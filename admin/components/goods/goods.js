@@ -1,15 +1,28 @@
 angular.module('admin')
     .component('goods', {
         templateUrl: "admin/components/goods/goods.html",
-        controller: ['Goods', '$q', '$location', 'Conf', function (Goods, $q, $location, Conf) {
+        controller: ['Goods', '$q', '$location', 'Conf','Stocks', function (Goods, $q, $location, Conf, Stocks) {
             var self = this;
             self.prodService = Goods;
             self.Conf = Conf;
             self.search = {};
+            self.stocks = Stocks;
+
 
             Goods.list({sort: 'created.desk', limit: 30}, function (res) {
+                console.log(res);
+                self.stocks.list(function(stocksList){
+                    self.stocksList = stocksList;
+                    console.log(self.stocksList);
+                    _.each(res, function(elem){
+                        if(_.find(self.stocksList, {uuid: elem.stock.stock_id})){
+                            elem.stock.name = _.find(self.stocksList, {uuid: elem.stock.stock_id}).name;
+                            elem.stock.percent = _.find(self.stocksList, {uuid: elem.stock.stock_id}).percent;
+                        }
+                    })
+                    })
                 Goods.products = self.products = res;
-            });
+                });
 
             this.categoryText = function(category) {
                 var text = category.name[0];

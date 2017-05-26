@@ -64,7 +64,7 @@ angular.module('app')
                         });
 
                         self.orderMake.price = price;
-                        // console.log(self.orderMake);
+                        console.log(self.orderMake);
                         OrderService.doOrder(self.orderMake, function (err, res) {
                             if (err) return self.error = err.data.message;
                             Cart.clear();
@@ -169,7 +169,7 @@ angular.module('app')
                 function isValid1() {
                     if (!self.orderMake.delivery.method) return self.error1 = 'Выберете способ доставки!';
                     if (!self.orderMake.delivery.city) return self.error1 = 'Укажите город!';
-                    if (!self.orderMake.delivery.numberPost) return self.error1 = 'Укажите номер отделения!';
+                    if (!self.orderMake.delivery.numberPost&&!self.orderMake.delivery.onHome) return self.error1 = 'Укажите номер отделения!';
                     if (!self.orderMake.delivery.street&&self.orderMake.delivery.onHome) return self.error1 = 'Укажите улицу доставки!';
                     if (!self.orderMake.delivery.house&&self.orderMake.delivery.onHome) return self.error1 = 'Укажите номер дома!';
                     if (!self.orderMake.delivery.flat&&self.orderMake.delivery.onHome) return self.error1 = 'Укажите номер квартиры!';

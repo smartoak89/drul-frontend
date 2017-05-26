@@ -37,7 +37,7 @@
                                 Страна:
                             </div>
                             <div class="fieldValue">
-                                {{$ctrl.order.state}}
+                                {{$ctrl.order.country}}
                             </div>
                         </div>
                         <div class="field">
@@ -99,6 +99,14 @@
                             </div>
                             <div class="fieldValue">
                                 {{$ctrl.order.price}}
+                            </div>
+                        </div>
+                        <div class="field">
+                            <div class="fieldName">
+                                Доставка:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.deliveryCost?$ctrl.curMethod.price.amount:0}}
                             </div>
                         </div>
                         <div class="field">
@@ -182,7 +190,7 @@
                 </div>
             </div>
             <div class="col-lg-6 col-md-6 col-sm-6 col-xs-12">
-                <div class="panel fade in panel-default panel-fill" data-fill-color="true" data-init-panel="true" ng-switch="$ctrl.editUserInfo">
+                <div class="panel fade in panel-default panel-fill" data-fill-color="true" data-init-panel="true" ng-switch="$ctrl.editOrderDetail">
                     <div class="panel-heading">
                         <h3 class="panel-title"><i class="fa fa-user-circle"></i> Информация о доставке </h3>
                         <i class="fa fa-pencil-square-o editBut" ng-click="$ctrl.editOrderDetail = !$ctrl.editOrderDetail" aria-hidden="true"></i>
@@ -190,69 +198,101 @@
                     <div ng-switch-when="false" class="panel-body">
                         <div class="field">
                             <div class="fieldName">
-                                Имя:
+                                Способ доставки:
                             </div>
                             <div class="fieldValue">
-                                {{$ctrl.order.firstname}}
+                                {{$ctrl.curMethod.name}}
                             </div>
                         </div>
                         <div class="field">
                             <div class="fieldName">
-                                Фамилия:
+                                Город:
                             </div>
                             <div class="fieldValue">
-                                {{$ctrl.order.lastname}}
+                                {{$ctrl.order.delivery.city}}
                             </div>
                         </div>
                         <div class="field">
                             <div class="fieldName">
-                                Email:
+                                Номер отделения:
                             </div>
                             <div class="fieldValue">
-                                {{$ctrl.order.email}}
+                                {{$ctrl.order.delivery.numberPost}}
                             </div>
                         </div>
-                        <div class="field">
+                        <div class="field" ng-show="$ctrl.order.delivery.onHome">
                             <div class="fieldName">
-                                Страна:
+                                Курьрская доставка:
                             </div>
                             <div class="fieldValue">
-                                {{$ctrl.order.state}}
+                                {{$ctrl.order.delivery.onHome?'Да':'Нет'}}
                             </div>
                         </div>
-                        <div class="field">
+                        <div class="field" ng-show="$ctrl.order.delivery.onHome">
                             <div class="fieldName">
-                                Телефон:
+                                Улица:
                             </div>
                             <div class="fieldValue">
-                                {{$ctrl.order.phone}}
+                                {{$ctrl.order.delivery.street}}
+                            </div>
+                        </div>
+                        <div class="field" ng-show="$ctrl.order.delivery.onHome">
+                            <div class="fieldName">
+                                Дом:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.delivery.house}}
+                            </div>
+                        </div>
+                        <div class="field" ng-show="$ctrl.order.delivery.onHome">
+                            <div class="fieldName">
+                                Квартира:
+                            </div>
+                            <div class="fieldValue">
+                                {{$ctrl.order.delivery.flat}}
                             </div>
                         </div>
                     </div>
                     <div ng-switch-when="true" class="panel-body">
                         <form role="form">
                             <div class="form-group">
-                                <label>Имя</label>
-                                <input class="form-control" placeholder="Имя" ng-init="$ctrl.newInfo.firstname = $ctrl.order.firstname" ng-model="$ctrl.newInfo.firstname">
+                                <select class="form-control" ng-init="$ctrl.newInfo.delivery.method = $ctrl.order.delivery.method" ng-model="$ctrl.order.delivery.method" ng-change="$ctrl.changeMethod()">
+                                    <option value="{{method.uuid}}" ng-repeat="method in $ctrl.deliveryMethods()">{{method.name}}</option>
+                                </select>
+
+                                <div ng-if="$ctrl.choosedMethod">
+                                    <p style="margin-top: 12px;">Стоимость доставки: {{$ctrl.choosedMethod.price.amount + ' ' +$ctrl.order.currency}}</p>
+                                    <span>Бесплаткая доставка от: {{$ctrl.choosedMethod.free + ' ' +$ctrl.order.currency}}</span>
+                                </div>
                             </div>
                             <div class="form-group">
-                                <label>Фамилия</label>
-                                <input class="form-control" placeholder="Фамилия" ng-init="$ctrl.newInfo.lastname = $ctrl.order.lastname" ng-model="$ctrl.newInfo.lastname">
+                                <label>Город</label>
+                                <input class="form-control" placeholder="Город" ng-init="$ctrl.newInfo.delivery.city = $ctrl.order.delivery.city" ng-model="$ctrl.newInfo.delivery.city">
                             </div>
                             <div class="form-group">
-                                <label>Email</label>
-                                <input class="form-control" placeholder="Email" ng-init="$ctrl.newInfo.email = $ctrl.order.email" ng-model="$ctrl.newInfo.email">
+                                <label>Номер отделения</label>
+                                <input class="form-control" placeholder="Номер отделения" ng-init="$ctrl.newInfo.delivery.numberPost = $ctrl.order.delivery.numberPost" ng-model="$ctrl.newInfo.delivery.numberPost">
                             </div>
                             <div class="form-group">
-                                <label>Страна</label>
-                                <input class="form-control" placeholder="Страна" ng-init="$ctrl.newInfo.state = $ctrl.order.state" ng-model="$ctrl.newInfo.state">
+                                <div class="checkbo">
+                                    <input type="checkbox" id="123" name="option" value="true" ng-init="$ctrl.newInfo.delivery.onHome = $ctrl.order.delivery.onHome" ng-model="$ctrl.newInfo.delivery.onHome" ng-change="$ctrl.viewDeliery = !$ctrl.viewDeliery;"/>
+                                    <label for="123"></label><span style="color: #000">Курьерская доставка</span>
+                                </div>
+                            </div>
+                            <div class="form-group" ng-show="$ctrl.newInfo.delivery.onHome">
+                                <label>Улица</label>
+                                <input class="form-control" placeholder="Улица" ng-init="$ctrl.newInfo.delivery.street = $ctrl.order.delivery.street" ng-model="$ctrl.newInfo.delivery.street">
+                            </div>
+                            <div class="form-group" ng-show="$ctrl.newInfo.delivery.onHome">
+                                <label>Дом</label>
+                                <input class="form-control" placeholder="Дом" ng-init="$ctrl.newInfo.delivery.house = $ctrl.order.delivery.house" ng-model="$ctrl.newInfo.delivery.house">
+                            </div>
+                            <div class="form-group" ng-show="$ctrl.newInfo.delivery.onHome">
+                                <label>Квартира</label>
+                                <input class="form-control" placeholder="Квартира" ng-init="$ctrl.newInfo.delivery.flat = $ctrl.order.delivery.flat" ng-model="$ctrl.newInfo.delivery.flat">
                             </div>
                             <div class="form-group">
-                                <label>Телефон</label>
-                                <input class="form-control" placeholder="Телефон" ng-init="$ctrl.newInfo.phone = $ctrl.order.phone" ng-model="$ctrl.newInfo.phone">
-                            </div>
-                            <div class="form-group">
-                                <button type="submit" class="btn btn-default" ng-click="$ctrl.saveChanges('user')">Сохранить</button>
+                                <button type="submit" class="btn btn-default" ng-click="$ctrl.saveChanges('delivery')">Сохранить</button>
                             </div>
                         </form>
                     </div>
