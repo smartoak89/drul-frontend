@@ -14,11 +14,11 @@ angular.module('admin')
                 }
             });
             this.removeVendor = function(index){
-                self.vendor.value.splice(index, 1)
+                self.vendor.value.splice(index, 1);
                 Vendors.putVendor(self.vendor, function(err){
                     if (err) return showError(err);
                 })
-            }
+            };
 
             this.show = function (comb) {
                 comb.show = !comb.show;

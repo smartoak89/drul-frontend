@@ -10,7 +10,6 @@ angular.module('admin')
 
 
             Goods.list({sort: 'created.desk', limit: 30}, function (res) {
-                console.log(res);
                 self.stocks.list(function(stocksList){
                     self.stocksList = stocksList;
                     console.log(self.stocksList);
@@ -20,8 +19,9 @@ angular.module('admin')
                             elem.stock.percent = _.find(self.stocksList, {uuid: elem.stock.stock_id}).percent;
                         }
                     })
-                    })
-                Goods.products = self.products = res;
+                });
+
+                    Goods.products = self.products = res;
                 });
 
             this.categoryText = function(category) {
@@ -29,7 +29,7 @@ angular.module('admin')
 
                 if (category.name.length > 1) {
                     for (var i=1; i<category.name.length; i++) {
-                        text += ' > ' + category.name[i];
+                        text += ' | ' + category.name[i];
                     }
                 }
 
