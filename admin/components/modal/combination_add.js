@@ -6,7 +6,7 @@ angular.module('admin')
 
             $scope.create = function () {
                 if (isValid() === true) {
-                    $scope.new.slug = Categories.translite($scope.new.name);
+                    // $scope.new.slug = Categories.translite($scope.new.name);
                     Goods.addComb($scope.new, function (err) {
                         if (err) return $scope.error = err.error_message;
                         $uibModalInstance.dismiss();

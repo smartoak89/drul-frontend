@@ -1,6 +1,6 @@
 <div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
     <div class="goodsBlock">
-        <div class="marker red" ng-if="$ctrl.product.stock">sale</div>
+        <div class="marker red" ng-if="$ctrl.product.stock">Скидка -{{$ctrl.product.stock.percent}}%</div>
         <img ng-src="{{$ctrl.Conf.api_path}}/file/{{$ctrl.product.photo.uuid}}" class="img-responsive cover" no-image/>
         <div class="namePrice">
             <div>Артикул {{$ctrl.product.article}}</div>

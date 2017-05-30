@@ -85,7 +85,8 @@ angular.module('admin')
                 }
                 self.product.stock = {
                     stock_id: self.currentStock.uuid,
-                    old_price: self.product.price
+                    old_price: self.product.price,
+                    percent: self.currentStock.percent
                 };
                 applyStock(self.product);
             };

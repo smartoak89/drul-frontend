@@ -12,8 +12,9 @@
         </div>
         <div class="accordion">
             <uib-accordion close-others="false">
+                <!--is-open="category.slug == $ctrl.steps[0].slug&&category.children.length != 0"-->
                 <div uib-accordion-group class="panel-default category"
-                     is-open="category.slug == $ctrl.steps[0].slug&&category.children.length != 0"
+
                      ng-class="[{closed_accordion: category.children.length == 0}]"
                      ng-repeat="category in $ctrl.categories" heading="{{category.name}}"
                      template-url="bootstrap-template/accordion.html"
@@ -21,9 +22,9 @@
                      ng-click="$ctrl.goTo(category)">
                     <a ng-click="$ctrl.goTo(child);$event.stopPropagation()" ng-if="child.children.length == 0" ng-repeat="child in category.children" style="padding-left: 15px;">{{child.name}}</br></a>
                     <!--ng-class="{closed_accordion: category.children.length == 0}"-->
+                    <!--is-open="child.slug == $ctrl.steps[1].slug&&child.children.length != 0"-->
                     <div uib-accordion-group class="panel-default category subcategory"
                          template-url="bootstrap-template/accordion.html"
-                         is-open="child.slug == $ctrl.steps[1].slug&&child.children.length != 0"
                          ng-if="child.children.length > 0" ng-repeat="child in category.children" heading="{{child.name}}"
                          is-disabled="child.children.length == 0"
                          ng-click="$ctrl.goTo(child);$event.stopPropagation()">

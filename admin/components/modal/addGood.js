@@ -28,7 +28,7 @@ angular.module('admin')
 
             function isValid () {
                 if (!$scope.newProduct.name) return $scope.error = 'Введите название товара';
-                if ($scope.newProduct.name.length < 4) return $scope.error = 'Название товара должно содержать 3 и более символов';
+                if ($scope.newProduct.name.length < 4) return $scope.error = 'Название товара должно содержать более  чем 3 символов';
                 if (!$scope.newProduct.article) return $scope.error = 'Введите поставщика для товара';
                 if (!$scope.newProduct.category) return $scope.error = 'Выберите категорию для товара';
                 $scope.error = null;
@@ -39,12 +39,8 @@ angular.module('admin')
                 category.check = true;
                 $scope.newProduct.category = {
                     id: category.uuid,
-                    slug: category.path.map(function(item) {
-                        return item.slug;
-                    }),
-                    name: category.path.map(function(item) {
-                        return item.name;
-                    })
+                    name: category.path.name,
+                    slug: category.path.slug
                 };
 
                 console.log('product', $scope.newProduct)
