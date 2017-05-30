@@ -38,6 +38,7 @@ angular.module('app')
                 criteria.sort = self.order.data;
                 self.findStocks?criteria.group = 'stocks':criteria.group = '';
                 console.log('price=' + self.price.min + '&price=' +  self.price.max);
+                console.log(criteria.group);
                 criteria.price =  [self.price.min, self.price.max];
                 criteria.skip = 0;
                 Product.skip = 0;

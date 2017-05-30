@@ -33,6 +33,8 @@ angular.module('app')
                     for (var key in criteria) {
                         if(criteria[key]!=''){
                             queryStr[key] = criteria[key];
+                        }else{
+                            delete queryStr[key];
                         }
                     }
 

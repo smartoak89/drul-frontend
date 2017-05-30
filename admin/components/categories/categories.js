@@ -39,6 +39,20 @@ angular.module('admin')
                     }
                 }, {
                     displayName:  '',
+                    cellTemplate: '<button ng-click="cellTemplateScope.edit(row.branch)" modal-admin="editCategory" class="btn btn-default btn-sm">Изменить</button>',
+                    cellTemplateScope: {
+                        branch: '',
+                        edit: function(obj){
+                            this.branch = obj;
+                            self.categ.curCategory = obj;
+                        }
+                        // after: function () {
+                        //     categoriesList();
+                        //     // _.remove(_tree, {branch: {uuid: _obj.uuid}});
+                        // }
+                    }
+                }, {
+                    displayName:  '',
                     cellTemplate: '<button ng-click="cellTemplateScope.delete(row.branch, tree_rows)" modal-admin="delCategory" class="btn btn-default btn-sm">Удалить</button>',
                     cellTemplateScope: {
                         delete: function(obj, tree){

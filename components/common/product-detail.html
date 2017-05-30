@@ -102,27 +102,27 @@
     <div class="row">
         <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
             <ul id="myTab" role="tablist" class="nav nav-tabs">
-                <li role="presentation" class="active"><a href="#about" aria-controls="about" role="tab"
-                                                          data-toggle="tab">О товаре</a></li>
-                <li role="presentation"><a href="#comm" aria-controls="comm" role="tab" data-toggle="tab">Отзывы</a>
+                <!--<li role="presentation" ><a href="#about" aria-controls="about" role="tab"-->
+                                                          <!--data-toggle="tab">О товаре</a></li>-->
+                <li role="presentation" class="active"><a href="#comm" aria-controls="comm" role="tab" data-toggle="tab">Отзывы</a>
                 </li>
             </ul>
             <div class="tab-content">
-                <div id="about" role="tabpanel" class="tab-pane active">
-                    <div class="row" style="margin: 0">
-                        <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
-                            <table class="table">
-                                <tbody>
-                                <tr ng-repeat="sub in $ctrl.product.sublines" >
-                                    <td>{{sub.name}}</td>
-                                    <td>{{sub.value}}</td>
-                                </tr>
-                                </tbody>
-                            </table>
-                        </div>
-                    </div>
-                </div>
-                <div id="comm" role="tabpanel" class="tab-pane">
+                <!--<div id="about" role="tabpanel" class="tab-pane active">-->
+                    <!--<div class="row" style="margin: 0">-->
+                        <!--<div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">-->
+                            <!--<table class="table">-->
+                                <!--<tbody>-->
+                                <!--<tr ng-repeat="sub in $ctrl.product.sublines" >-->
+                                    <!--<td>{{sub.name}}</td>-->
+                                    <!--<td>{{sub.value}}</td>-->
+                                <!--</tr>-->
+                                <!--</tbody>-->
+                            <!--</table>-->
+                        <!--</div>-->
+                    <!--</div>-->
+                <!--</div>-->
+                <div id="comm" role="tabpanel" class="tab-pane active">
                     <reviews ng-if="$ctrl.product" product="$ctrl.product"></reviews>
                 </div>
             </div>
