@@ -13,14 +13,15 @@ angular.module('app')
             this.$onInit = function () {
 
                 this.activeUser = User.get();
-
+                console.log(this.activeUser);
                 self.isAdmin = User.isAdmin();
 
                 if (self.activeUser) accessFormReviews();
             };
 
             this.sendComm = function(){
-                if(!self.commBody.body || self.commBody.body.length < 4) return self.error= 'Текст отзыва должен быть не мение чем 4 символа!';
+                if(!self.commBody.owner) return self.error = 'Введите имя автора!';
+                if(!self.commBody.body || self.commBody.body.length < 4) return self.error = 'Текст отзыва должен быть не мение чем 4 символа!';
                 self.error = null;
 
                 ReviewsService.addReviews(product.uuid, self.commBody, function (err, res) {

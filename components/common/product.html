@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-md-4 col-sm-6 col-xs-12">
+<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
     <div class="goodsBlock">
         <div class="marker red" ng-if="$ctrl.product.stock">Скидка -{{$ctrl.product.stock.percent}}%</div>
         <img ng-src="{{$ctrl.Conf.api_path}}/file/{{$ctrl.product.photo.uuid}}" class="img-responsive cover" no-image/>
@@ -21,7 +21,12 @@
                    modal="cancelAdd"></i>
             </div>
             <div class="likesWrap cartWrap">
-                <i class="fa fa-cart-plus"></i>
+                <i class="fa fa-shopping-bag" ng-show="$ctrl.mainService.activeUser" aria-hidden="true"
+                   ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.addToCart()"
+                   modal="doneCart"></i>
+                <i class="fa fa-shopping-bag" ng-show="!$ctrl.mainService.activeUser" aria-hidden="true"
+                   ng-click="$event.preventDefault(); $event.stopPropagation();"
+                   modal="cancelAdd"></i>
             </div>
         </div>
     </div>

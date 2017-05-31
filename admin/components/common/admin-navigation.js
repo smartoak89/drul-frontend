@@ -12,7 +12,8 @@ angular.module('admin')
                 {name: 'Комбинации', url: 'admin.combination'},
                 {name: 'Отзывы', url: 'admin.commentsAdmin'},
                 {name: 'Способы доставки', url: 'admin.deliveryAdmin'},
-                {name: 'Настройки', url: 'admin.settingsAdmin'}
+                {name: 'Настройки', url: 'admin.settingsAdmin'},
+                {name: 'Шаблоны email', url: 'admin.tepmlatesAdmin'}
             ]
         }]
     });

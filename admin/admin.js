@@ -94,11 +94,18 @@ angular.module('admin', [
             }
         });
         $stateProvider.state('admin.commentsAdmin', {
-            url: "/comments",
-            views: {
-                '': {template: "<template-admin></template-admin>"},
-                'content': {template: "<comments></comments>"}
-            }
-        });
+        url: "/comments",
+        views: {
+            '': {template: "<template-admin></template-admin>"},
+            'content': {template: "<comments></comments>"}
+        }
+    });
+    $stateProvider.state('admin.tepmlatesAdmin', {
+        url: "/templates",
+        views: {
+            '': {template: "<template-admin></template-admin>"},
+            'content': {template: "<templates></templates>"}
+        }
+    });
 
     }]);

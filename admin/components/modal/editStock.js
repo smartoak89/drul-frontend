@@ -1,6 +1,6 @@
 angular.module('admin')
-    .controller('editStock',['$uibModalInstance', '$scope', 'Stocks', 'HttpResource', 'modalData',
-        function($uibModalInstance, $scope, Stocks, HttpResource, modalData){
+    .controller('editStock',['$uibModalInstance', '$scope', '$state', '$stateParams', 'Stocks', 'HttpResource', 'modalData',
+        function($uibModalInstance, $scope, $state, $stateParams, Stocks, HttpResource, modalData){
             $scope.curStock = {
                 name: modalData.stocks.name,
                 percent: modalData.stocks.percent
@@ -11,7 +11,8 @@ angular.module('admin')
             $scope.change = function(){
                 HttpResource.put({params1: 'stock', params2: modalData.stocks.uuid}, $scope.curStock, function(res){
                     $uibModalInstance.dismiss('cancel');
-                    $state.reload();
+                    modalData.stocks.percent = $scope.curStock.percent;
+                    modalData.stocks.name = $scope.curStock.name;
                 }, function(err){
                     $scope.error = err;
                 })

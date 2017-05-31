@@ -594,6 +594,7 @@ section {
 }
 .bigBlock > a > div > img, .littleBlock > img{
     height: auto;
+    max-height: 65vh;
     width:100%;
     object-position: 50% 50%;
 }

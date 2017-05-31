@@ -21,6 +21,10 @@ angular.module('app')
                     DeferredService.remove(self.product, function () {})
                 };
 
+                this.addToCart = function () {
+                    Cart.add(self.product, null, function () {});
+                };
+
                 FileService.mainPhoto(self.product);
 
 

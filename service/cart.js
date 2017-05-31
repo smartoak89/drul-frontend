@@ -31,12 +31,28 @@ angular.module('app')
                 add: function (product, option, callback) {
                     var user = User.get();
 
-                    var productToAdd = {
-                        combo: option,
-                        image: product.photo.uuid
-                    };
+                    if(option){
+                        var productToAdd = {
+                            combo: option,
+                            image: product.photo.uuid
+                        };
+                    }
+
 
                     if (user) {
+                        _.each(cartList, function (tov) {
+                            if(!tov.combo[0]){
+                                // console.log('+')
+                                tov.combo = [];
+                                // console.log(tov.combo.length);
+                                // console.log(product.combo.length);
+                                // console.log(tov.combo == product.combo);
+                                // console.log(tov.product_uuid == product.uuid);
+                                if (tov.product_uuid == product.uuid && tov.combo.length == product.combo.length) console.log('bl9')
+                            }
+
+                            // if (tov.product_uuid == product.uuid && tov.combo == product.combo) console.log('bl9')
+                        })
                         Httpquery.put({params1: 'cart', params2: product.uuid}, productToAdd, function (res) {
                             CurrencyService.changePrice(res);
                             cartList.push(res);

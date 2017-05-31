@@ -2,7 +2,7 @@
     <h3><center>О данном товаре отзывов пока нет</center></h3>
 </div>
 <div ng-if="!$ctrl.accessFormReview && !$ctrl.isAdmin">
-    <h6 style="padding-left: 30px">Посли покупки данного товара можно оставить отзыв</h6>
+    <h6 style="padding-left: 30px">После покупки данного товара можно оставить отзыв</h6>
 </div>
 
 <div class="comment-content" ng-repeat="comm in $ctrl.product.comments | orderBy: '-created'">
@@ -28,6 +28,9 @@
     <div class="row" style="margin: 0">
         <form>
             <div class="col-md-12">
+                <div class="form-group">
+                    <input id="owner" name="owner" ng-model="$ctrl.commBody.owner" ng-init="$ctrl.commBody.owner = $ctrl.activeUser.firstname" class="form-control" placeholder="Имя">
+                </div>
                 <div class="form-group">
                     <textarea id="message" name="message" ng-model="$ctrl.commBody.body" class="form-control" placeholder="Ваш отзыв..." rows="8"></textarea>
                 </div>
