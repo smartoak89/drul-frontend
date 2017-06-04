@@ -889,11 +889,19 @@ section {
     float: right;
 }
 .cartWrap{
-    margin-right: 10px;
-    color: #000;
-}
+      margin-right: 10px;
+      color: #000;
+  }
 .likesWrap > i:before{
     color: #ddd;
+    font-size: 20px;
+}
+product > div {
+    box-shadow: none !important;
+    outline: none !important;
+}
+.likesWrap.cartWrap > i.black:before{
+    color: #292929;
     font-size: 20px;
 }
 .likesWrap > .fa-heart:before,
@@ -2368,6 +2376,7 @@ uib-accordion .panel-body > a:hover{
 }
 .blackCol, .blackCol:hover, .blackCol:focus, .blackCol:active{
     color: #000;
+    outline: none !important;
 }
 .zoomLens{
     display: none !important;

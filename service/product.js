@@ -62,6 +62,8 @@ angular.module('app')
 
                             DeferredService.wasDeferred(product);
                             CurrencyService.changePrice(product);
+                            Cart.wasCart(product);
+                            console.log(product);
                         });
 
                         if (self.skip == 0) self.products = [];

@@ -21,9 +21,12 @@
                    modal="cancelAdd"></i>
             </div>
             <div class="likesWrap cartWrap">
-                <i class="fa fa-shopping-bag" ng-show="$ctrl.mainService.activeUser" aria-hidden="true"
+                <i class="fa fa-shopping-bag" ng-show="$ctrl.mainService.activeUser && !$ctrl.product.cart" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();$ctrl.addToCart()"
                    modal="doneCart"></i>
+                <i class="fa fa-shopping-bag black" ng-show="$ctrl.mainService.activeUser && $ctrl.product.cart" aria-hidden="true"
+                   ng-click="$event.preventDefault(); $event.stopPropagation();"
+                   modal="cancelCart"></i>
                 <i class="fa fa-shopping-bag" ng-show="!$ctrl.mainService.activeUser" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();"
                    modal="cancelAdd"></i>
