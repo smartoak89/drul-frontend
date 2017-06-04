@@ -12,6 +12,7 @@ angular.module('app')
                 this.mainService = MainService;
                 this.currencyService = CurrencyService;
                 this.Conf = Conf;
+                this.productService = Product;
 
                 this.addToDeferred = function () {
                     DeferredService.add(self.product, function () {});
@@ -27,6 +28,13 @@ angular.module('app')
 
                 FileService.mainPhoto(self.product);
 
+                this.newProductMark = function () {
+                    var today = Date.now();
 
+                    var expires = new Date(self.product.created);
+                        expires.setDate(expires.getDate() + 10);
+
+                    return (today < expires.getTime()) ? true : false;
+                }
         }]
     });
