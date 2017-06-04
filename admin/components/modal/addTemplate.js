@@ -1,12 +1,12 @@
 angular.module('admin')
-    .controller('addTemplate',['$scope', '$uibModalInstance', 'Stocks',
-        function ($scope, $uibModalInstance, Stocks){
+    .controller('addTemplate',['$scope', '$uibModalInstance', 'Templates',
+        function ($scope, $uibModalInstance, Templates){
             $scope.template = {};
             $scope.error = null;
 
             $scope.createTemplate = function () {
                 if (isValid() === true) {
-                    Stocks.create($scope.stocks, function (err) {
+                    Templates.create($scope.template, function (err) {
                         if (err) return $scope.error = err.data.message;
                         $uibModalInstance.dismiss();
                     });

@@ -1,11 +1,11 @@
 angular.module('admin')
-    .controller('delTemplate',['$uibModalInstance', '$scope', 'HttpResource', 'modalData',
-        function($uibModalInstance, $scope, HttpResource, modalData){
+    .controller('delTemplate',['$uibModalInstance', '$scope', 'HttpResource', 'modalData', 'Templates',
+        function($uibModalInstance, $scope, HttpResource, modalData, Templates){
             var id = modalData.template.uuid;
-            $scope.theme = modalData.template.theme;
+            $scope.subject = modalData.template.subject;
 
             $scope.delete = function () {
-                Stocks.remove(id, function (err) {
+                Templates.remove(id, function (err) {
                     if (err) return $scope.error = err;
                     $uibModalInstance.dismiss();
                 })

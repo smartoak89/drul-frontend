@@ -1,8 +1,8 @@
 angular.module('admin')
     .component('orderDetale', {
         templateUrl: "admin/components/orders/order-detale.html",
-        controller: ['RequestService', 'HttpResource', '$location', 'Goods', '$timeout', 'Conf', 'CurrencyService', '$state', 'mailService', 'OrderService', 'DeliveryService',
-            function(RequestService, HttpResource, $location, Goods, $timeout, Conf, CurrencyService, $state, mailService, OrderService, DeliveryService) {
+        controller: ['RequestService', 'HttpResource', '$location', 'Goods', '$timeout', 'Conf', 'CurrencyService', '$state', 'mailService', 'OrderService', 'DeliveryService', 'Templates',
+            function(RequestService, HttpResource, $location, Goods, $timeout, Conf, CurrencyService, $state, mailService, OrderService, DeliveryService, Templates) {
                 var self = this;
                 var orderID = $location.$$path.split('/').pop();
                 self.mail = {};
@@ -54,6 +54,24 @@ angular.module('admin')
                     self.checkFree();
                     prepareMail();
                 });
+
+                Templates.list(function(templatesList){
+                    self.templatesList = templatesList;
+                });
+
+                self.applyTemplate = function(){
+                    if(self.currentTemplate){
+                        self.mail = {
+                            subject: self.currentTemplate.subject,
+                            body: self.currentTemplate.body
+                        }
+                    }else{
+                        self.mail = {
+                            subject: '',
+                            body: ''
+                        }
+                    }
+                }
 
                 self.saveChanges = function(type){
                     if(type=='delivery'&&!self.newInfo.delivery.onHome){

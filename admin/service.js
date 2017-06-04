@@ -510,6 +510,44 @@ angular.module('admin')
             })
         }
     }])
+    // Templates
+    .factory('Templates', ['HttpResource','$q', function (HttpResource, $q) {
+        return {
+            templatesList: [],
+            create: function (template, callback) {
+                var self = this;
+                HttpResource.save({params1: 'template'}, template, function (res) {
+                    self.templatesList.push(template);
+                    callback();
+                }, function (err) {
+                    callback(err);
+                })
+            },
+            list: function (callback) {
+                var self = this;
+                if (self.templatesList.length == 0) {
+                    HttpResource.query({params1: 'templates'}, function (res) {
+                        self.templatesList = res;
+                        callback(res);
+                    }, function (err) {
+                        console.error('Get templates', err);
+                    })
+                } else {
+                    callback(self.templatesList)
+                }
+            },
+            remove: function (id, callback) {
+                var self = this;
+                HttpResource.delete({params1: 'template', params2: id}, function (res) {
+                    _.remove(self.templatesList, {uuid: id});
+                    console.log(res.message);
+                    callback();
+                }, function (err) {
+                    callback(err);
+                })
+            }
+        }
+    }])
     .factory('mailService',['HttpResource', function (HttpResource) {
         return {
             send: function (mail, callback) {
