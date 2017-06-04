@@ -2901,6 +2901,12 @@ admin-navigation .sidebar {
     color: #adadad;
     font-size: 1.2rem;
     margin-bottom: 12px;
+    position: relative;
+    height: 20px;
+    width: 1000px;
+}
+.stepWrap > ul {
+    position: absolute;
 }
 .stepWrap a{
     color: #adadad;

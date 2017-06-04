@@ -31,12 +31,12 @@ angular.module('app')
                 add: function (product, option, callback) {
                     var user = User.get();
 
-                    if(option){
+                    // if(option){
                         var productToAdd = {
                             combo: option,
                             image: product.photo.uuid
                         };
-                    }
+                    // }
 
 
                     if (user) {
