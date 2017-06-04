@@ -9,7 +9,7 @@ angular.module('app')
                     var self = this;
 
                     if (cartList.length > 0) {
-
+                        console.log(cartList);
                         var promises = cartList.map(function (product) {
 
                             return $q(function (resolve, reject) {
@@ -48,13 +48,14 @@ angular.module('app')
                                 // console.log(product.combo.length);
                                 // console.log(tov.combo == product.combo);
                                 // console.log(tov.product_uuid == product.uuid);
-                                if (tov.product_uuid == product.uuid && tov.combo.length == product.combo.length) console.log('bl9')
+                                // if (tov.product_uuid == product.uuid && tov.combo.length == product.combo.length) console.log('bl9')
                             }
 
                             // if (tov.product_uuid == product.uuid && tov.combo == product.combo) console.log('bl9')
                         })
                         Httpquery.put({params1: 'cart', params2: product.uuid}, productToAdd, function (res) {
                             CurrencyService.changePrice(res);
+                            product.cart = true;
                             cartList.push(res);
                             $rootScope.$broadcast('changeCart');
 
@@ -75,7 +76,7 @@ angular.module('app')
                     }
                 },
                 list: function (callback) {
-
+                    var self = this;
                     var user = User.get();
 
                     if (user) {
@@ -95,6 +96,18 @@ angular.module('app')
                     }else{
                         callback(cartList);
                     }
+                },
+                wasCart: function (product) {
+                    var id = product.uuid;
+
+                    var find = _.find(cartList, {product_uuid: id});
+
+                    if (find) {
+                        product.cart = true;
+                    } else {
+                        product.cart = false;
+                    }
+                    return false;
                 },
                 getList: function () {
                     return cartList;
