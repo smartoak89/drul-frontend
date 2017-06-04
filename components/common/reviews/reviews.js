@@ -20,13 +20,14 @@ angular.module('app')
             };
 
             this.sendComm = function(){
-                if(!self.commBody.owner) return self.error = 'Введите имя автора!';
+                if(!self.commBody.owner_name) return self.error = 'Введите имя автора!';
                 if(!self.commBody.body || self.commBody.body.length < 4) return self.error = 'Текст отзыва должен быть не мение чем 4 символа!';
                 self.error = null;
 
                 ReviewsService.addReviews(product.uuid, self.commBody, function (err, res) {
                     if (err) return self.error = err.data.message;
                     self.commBody.body = '';
+                    self.commBody.owner_name = '';
                     if (self.isAdmin) product.comments.push(res);
                     self.message = 'Отзыв будет опубликован после проверки администратором!';
                 })
