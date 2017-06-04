@@ -63,7 +63,6 @@ angular.module('app')
                             DeferredService.wasDeferred(product);
                             CurrencyService.changePrice(product);
                             Cart.wasCart(product);
-                            console.log(product);
                         });
 
                         if (self.skip == 0) self.products = [];
@@ -90,7 +89,7 @@ angular.module('app')
 
                 newProductMark: function (product) {
                     var date = new Date();
-                    date.setDate(date.getDay() + 10);
+                    date.setDate(date.getDay() + 2);
                     console.log('prod', date);
                 }
             }

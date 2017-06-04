@@ -28,6 +28,13 @@ angular.module('app')
 
                 FileService.mainPhoto(self.product);
 
+                this.newProductMark = function () {
+                    var today = Date.now();
 
+                    var expires = new Date(self.product.created);
+                        expires.setDate(expires.getDate() + 10);
+
+                    return (today < expires.getTime()) ? true : false;
+                }
         }]
     });
