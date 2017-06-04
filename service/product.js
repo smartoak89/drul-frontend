@@ -84,6 +84,12 @@ angular.module('app')
                     }, function (err) {
                         console.error('Can\'t get one product =>', err);
                     });
+                },
+
+                newProductMark: function (product) {
+                    var date = new Date();
+                    date.setDate(date.getDay() + 10);
+                    console.log('prod', date);
                 }
             }
         }]);

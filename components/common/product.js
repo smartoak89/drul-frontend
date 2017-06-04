@@ -12,6 +12,7 @@ angular.module('app')
                 this.mainService = MainService;
                 this.currencyService = CurrencyService;
                 this.Conf = Conf;
+                this.productService = Product;
 
                 this.addToDeferred = function () {
                     DeferredService.add(self.product, function () {});
