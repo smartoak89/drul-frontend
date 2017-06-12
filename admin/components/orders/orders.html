@@ -18,7 +18,7 @@
                 <tr ng-click="$ctrl.goToDetale(order.uuid, $index)" style="cursor: pointer" ng-repeat="order in $ctrl.orderList | orderBy: '-created'">
                     <td>{{$index}}</td>
                     <td>{{order.order_num}}</td>
-                    <td>{{order.state}}</td>
+                    <td>{{order.country}}</td>
                     <td><a>{{order.owner_name.indexOf('undefined')+1?order.email:order.owner_name}}</a></td>
                     <!--<td>-->
                         <!--<ul>-->
@@ -27,7 +27,7 @@
                             <!--<li>art 3</li>-->
                         <!--</ul>-->
                     <!--</td>-->
-                    <td>{{order.price }} {{order.currency}}</td>
+                    <td>{{$ctrl.Math.ceil(order.price)}} {{order.currency}}</td>
                     <td>{{order.created | date:"MM/dd/yy ' ' h:mm"}}</td>
                     <td>{{order.status}}</td>
                     <td><button class="btn btn-default btn-sm" ng-click="$ctrl.removeOrder(order.uuid, $index); $event.stopPropagation();" modal-admin="delOrder">

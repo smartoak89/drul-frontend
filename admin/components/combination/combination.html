@@ -90,9 +90,17 @@
                     <p>
                         <i class="fa fa-file"></i> {{value}}
                     </p>
+
+                    <p ng-show="combination.show && $ctrl.editChild[combination.slug][key].show">
+                        <input type="text" ng-model="$ctrl.editChild[combination.slug][key].newValue">
+                    </p>
                 </td>
                 <td></td>
-                <td></td>
+                <td>
+                    <button class="btn btn-default btn-sm" ng-click="$ctrl.changeCombChild(combination, $ctrl.editChild[combination.slug][key].newValue, key)">
+                        {{combination.show && $ctrl.editChild[combination.slug][key].show ? 'Сохранить' : 'Изменить'}}
+                    </button>
+                </td>
                 <td>
                     <button class="btn btn-default btn-sm" ng-click="$ctrl.removeChild(combination, $index)">Удалить</button>
                 </td>

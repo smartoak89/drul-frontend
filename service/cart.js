@@ -30,6 +30,7 @@ angular.module('app')
                 },
                 add: function (product, option, callback) {
                     var user = User.get();
+                    var self = this;
 
                     // if(option){
                         var productToAdd = {
@@ -38,32 +39,60 @@ angular.module('app')
                         };
                     // }
 
-
-                    if (user) {
-                        _.each(cartList, function (tov) {
-                            if(!tov.combo[0]){
-                                // console.log('+')
-                                tov.combo = [];
-                                // console.log(tov.combo.length);
-                                // console.log(product.combo.length);
-                                // console.log(tov.combo == product.combo);
-                                // console.log(tov.product_uuid == product.uuid);
-                                // if (tov.product_uuid == product.uuid && tov.combo.length == product.combo.length) console.log('bl9')
+                    Object.equals = function( firstObj, secondObject ){
+                        var keysFirstObj = Object.keys( firstObj );
+                        var keysSecondObject = Object.keys( secondObject );
+                        if ( keysFirstObj.length != keysSecondObject.length ) {return false;}
+                        return !keysFirstObj.filter(function( key ){
+                            if ( typeof firstObj[key] == "object" ||  Array.isArray( firstObj[key] ) ) {
+                                return !Object.equals(firstObj[key], secondObject[key]);
+                            } else {
+                                return firstObj[key] !== secondObject[key];
                             }
+                        }).length;
+                    }
 
-                            // if (tov.product_uuid == product.uuid && tov.combo == product.combo) console.log('bl9')
-                        })
-                        Httpquery.put({params1: 'cart', params2: product.uuid}, productToAdd, function (res) {
-                            CurrencyService.changePrice(res);
-                            product.cart = true;
-                            cartList.push(res);
-                            $rootScope.$broadcast('changeCart');
+                    if (user !== null) {
+                        if(cartList.length===0){
+                            Httpquery.put({params1: 'cart', params2: product.uuid}, productToAdd, function (res) {
+                                CurrencyService.changePrice(res);
+                                product.cart = true;
+                                cartList.push(res);
+                                $rootScope.$broadcast('changeCart');
+                                callback();
+                            }, function (err) {
+                                console.error('can\'t add to cart', err);
+                                callback(err);
+                            })
+                        }else{
+                            var i = 0;
+                            angular.forEach(cartList, function (tov) {
+                                if (tov.product_uuid === product.uuid && Object.equals(tov.combo, option)){
+                                    callback(null, 'war');
+                                }else{
+                                    i++;
+                                    if(cartList.length === i){
+                                        Httpquery.put({params1: 'cart', params2: product.uuid}, productToAdd, function (res) {
+                                            CurrencyService.changePrice(res);
+                                            product.cart = true;
+                                            cartList.push(res);
+                                            $rootScope.$broadcast('changeCart');
 
-                            callback();
-                        }, function (err) {
-                            console.error('can\'t add to cart', err);
-                            callback(err);
-                        })
+                                            callback();
+                                        }, function (err) {
+                                            console.error('can\'t add to cart', err);
+                                            callback(err);
+                                        })
+                                    }
+                                }
+
+                                if(!tov.combo[0]){
+                                    tov.combo = [];
+                                }
+                            })
+                        }
+
+
                     } else {
                         var copy = angular.copy(product);
 
@@ -99,7 +128,6 @@ angular.module('app')
                 },
                 wasCart: function (product) {
                     var id = product.uuid;
-
                     var find = _.find(cartList, {product_uuid: id});
 
                     if (find) {

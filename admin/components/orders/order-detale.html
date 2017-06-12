@@ -98,7 +98,7 @@
                                 Сумма:
                             </div>
                             <div class="fieldValue">
-                                {{$ctrl.order.price}}
+                                {{$ctrl.Math.ceil($ctrl.order.price)}}
                             </div>
                         </div>
                         <div class="field">
@@ -313,7 +313,7 @@
                         </h3>
                         <div class="order_new_product">
                             <span ng-if="$ctrl.showAddProduct">
-                                <input type="text" placeholder="Поиск по артиклю" ng-model="$ctrl.searchValue" ng-change="$ctrl.searchProduct($ctrl.searchValue)" ng-disabled="$ctrl.searchDisabled">
+                                <input type="text" placeholder="Поиск по артикулу" ng-model="$ctrl.searchValue" ng-change="$ctrl.searchProduct($ctrl.searchValue)" ng-disabled="$ctrl.searchDisabled">
 
                                 <ul>
                                     <li ng-repeat="product in $ctrl.searchProducts" ng-click="$ctrl.pushProduct($ctrl.order, $index)" modal-admin="addOrderProd">{{product.name}}</li>

@@ -5,7 +5,8 @@ angular.module('admin')
         function (Goods, FileUploader, Conf, File, Categories, $state, Stocks, $q, $location, User) {
             var self = this;
             // this.editMode = true;
-            this.product = Goods.editprod;
+            Goods.get($location.$$path.split('/').pop());
+            self.product = Goods.editprod;
             this.pror = {};
             this.categoryArticle;
             self.Conf = Conf;
@@ -18,7 +19,7 @@ angular.module('admin')
                 Goods.listComb(function (combinations) {
                     self.combinations = combinations;
                 });
-                Goods.getCom(self.product);
+                Goods.getCom({uuid: $location.$$path.split('/').pop()});
                 Stocks.list(function (stocks) {
                     self.stocks = stocks;
                     if (self.product.stock){
@@ -26,8 +27,8 @@ angular.module('admin')
                         // self.applyStock();
                     }
                 });
-                //if(self.product.article)
-                //    self.product.article = self.product.article.split('_').pop();
+
+
             };
             self.descriptionCange = function () {
 
@@ -139,13 +140,21 @@ angular.module('admin')
                 self.editMode = !self.editMode;
             };
 
-            this.delCombo = function (name) {
-                _.remove(self.product.combo, {name: name});
+            this.delCombo = function (slug) {
+                _.remove(self.product.combo, {slug: slug});
+                console.log(self.product.combo);
             };
 
             this.save = function () {
                 if (isValid() !== true) return;
                 //changeArticle();
+                console.log(self.product)
+                _.each(self.product.combo, function(combo){
+
+                    if(!combo.values){
+                        _.remove(self.product.combo, {slug: combo.slug});
+                    }
+                });
                 delete self.product.gallery;
                 if (uploader.queue.length > 0) {
                     self.uploading = true;
@@ -168,6 +177,14 @@ angular.module('admin')
                 });
             };
 
+            this.addNow = function(product){
+                if(product.group=='new'){
+                    delete product.group;
+                }else{
+                    product.group = 'new';
+                }
+            }
+
             function applyStock (product){
                 var stock = _.find(Stocks.stocksList, {uuid: product.stock.stock_id});
                 product.price = Math.round(product.stock.old_price - ( product.stock.old_price * stock.percent / 100 ));
@@ -186,9 +203,11 @@ angular.module('admin')
                 });
             }
 
+
+
             // Uploader
             var uploader = this.uploader = new FileUploader({
-                url: Conf.api_path + '/file/product/' + Goods.editprod.uuid,
+                url: Conf.api_path + '/file/product/' + $location.$$path.split('/').pop(),
                 headers: {Authorization: User.token()}
             });
             uploader.onAfterAddingAll = function () {

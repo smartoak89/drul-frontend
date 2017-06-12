@@ -23,10 +23,10 @@
                             Артикул
                             <input style="width:50%" type="text" ng-model="$ctrl.search.article" placeholder="Поиск" ng-change="$ctrl.searchProducts({article: $ctrl.search.article})">
                         </th>
+                        <th>Новинки</th>
                         <th>Акция</th>
                         <th>Цена</th>
                         <th>Отметить</th>
-                        <!--<th>Редактировать</th>-->
                         <th>Действия</th>
                     </tr>
                 </thead>
@@ -38,6 +38,7 @@
                         <td>{{product.name}}</td>
                         <td>{{$ctrl.categoryText(product.category)}}</td>
                         <td>{{product.article}}</td>
+                        <td>{{product.group}}</td>
                         <td>{{product.stock.name?product.stock.name + ' ' + '('+ product.stock.percent + '%)':''}}</td>
                         <td>{{product.price}}</td>
                         <td>
@@ -46,7 +47,6 @@
                                 <label for="{{product.name}}"></label>
                             </div>
                         </td>
-                        <!--<td><button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)">Edit</button></td>-->
                         <td>
                             <button class="btn btn-default btn-sm" ng-click="$ctrl.edit(product)" tooltip-placement="top" uib-tooltip="Редактировать">
                                 <i class="fa fa-pencil"></i>

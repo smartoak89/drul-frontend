@@ -4,6 +4,7 @@ angular.module('admin')
         controller: ['RequestService', 'HttpResource', '$location', 'Goods', '$timeout', 'Conf', 'CurrencyService', '$state', 'mailService', 'OrderService', 'DeliveryService', 'Templates',
             function(RequestService, HttpResource, $location, Goods, $timeout, Conf, CurrencyService, $state, mailService, OrderService, DeliveryService, Templates) {
                 var self = this;
+                self.Math = window.Math;
                 var orderID = $location.$$path.split('/').pop();
                 self.mail = {};
                 self.editUserInfo = false;

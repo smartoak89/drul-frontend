@@ -52,7 +52,9 @@ angular.module('app')
                     if (choosedCombo < self.product.combo) return showMsg('warning', 'Не все опции выбраны!');
 
                     Cart.add(self.product, choosedCombo, function (err, res) {
+                        console.log(res)
                         if (err) return showMsg('warning', 'Произошла ошибка при добавление товара в корзину!');
+                        if (res === 'war') return showMsg('warning', 'Товар уже добавлен в корзину!');
                         showMsg('success', 'Товар добавлен в корзину!');
                     });
                 };

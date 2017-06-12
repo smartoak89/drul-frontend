@@ -1,4 +1,4 @@
-<div class="col-lg-4 col-md-6 col-sm-6 col-xs-12">
+<div class="col-lg-4 col-md-6 col-sm-6 col-xs-6">
     <div class="goodsBlock">
         <div class="marker red" ng-if="$ctrl.product.stock">Скидка -{{$ctrl.product.stock.percent}}%</div>
         <div class="marker blue" ng-if="$ctrl.newProductMark()">Новинка</div>
@@ -28,9 +28,6 @@
                 <i class="fa fa-shopping-bag black" ng-show="$ctrl.mainService.activeUser && $ctrl.product.cart" aria-hidden="true"
                    ng-click="$event.preventDefault(); $event.stopPropagation();"
                    modal="cancelCart"></i>
-                <i class="fa fa-shopping-bag" ng-show="!$ctrl.mainService.activeUser" aria-hidden="true"
-                   ng-click="$event.preventDefault(); $event.stopPropagation();"
-                   modal="cancelAdd"></i>
             </div>
         </div>
     </div>

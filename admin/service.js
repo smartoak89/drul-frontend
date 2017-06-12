@@ -67,12 +67,13 @@ angular.module('admin')
                     callback(err);
                 })
             },
-            get: function (id) {
+            get: function (id, callback) {
                 var self = this;
                 if (self.editprod) return;
                 HttpResource.get({params1: 'product', params2: id}, function (res) {
                     self.getGallery(res);
                     self.editprod = res;
+                    callback();
                 }, function (err) {
                     console.error('Get one product => ',err);
                 })
@@ -158,6 +159,16 @@ angular.module('admin')
                 console.log('index', index);
                 HttpResource.put({params1: 'combination', params2: comb.uuid}, comb, function (res) {
                     self.combinations.splice(index, 1, comb);
+                    callback();
+                }, function (err) {
+                    console.info('Combination create error => ', err);
+                    callback(err);
+                })
+            },
+            updateCombChild: function (comb, value, index, callback) {
+                var self = this;
+                console.log(value)
+                HttpResource.put({params1: 'combination', params2: comb.uuid, params3: index}, {name: value}, function (res) {
                     callback();
                 }, function (err) {
                     console.info('Combination create error => ', err);
