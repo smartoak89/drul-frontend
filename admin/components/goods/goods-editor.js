@@ -147,7 +147,6 @@ angular.module('admin')
 
             this.save = function () {
                 if (isValid() !== true) return;
-                //changeArticle();
                 console.log(self.product)
                 _.each(self.product.combo, function(combo){
 
@@ -178,11 +177,17 @@ angular.module('admin')
             };
 
             this.addNow = function(product){
-                if(product.group=='new'){
-                    delete product.group;
+                var ind = product.groups.indexOf('new');
+
+                if(ind == -1){
+                    product.groups.push('new');
                 }else{
-                    product.group = 'new';
+                    product.groups.splice(ind, 1);
                 }
+            };
+
+            this.group = function(g) {
+                return self.product.groups.indexOf(g) != -1;
             }
 
             function applyStock (product){

@@ -38,7 +38,7 @@
                         <tbody>
                         <tr ng-repeat-start="defProd in $ctrl.deferredList">
                             <td>
-                                <div class="marker red" ng-if="defProd.stock">sale</div>
+                                <div class="marker red" ng-if="defProd.stock">-{{defProd.stock.percent}}%</div>
                                 <img ng-src="{{$ctrl.Conf.api_path + '/file/' + defProd.photo.uuid}}" class="img-responsive cover" alt=""></td>
                             <td>
                                 <div class="namePrice">
