@@ -38,7 +38,7 @@
                         <td>{{product.name}}</td>
                         <td>{{$ctrl.categoryText(product.category)}}</td>
                         <td>{{product.article}}</td>
-                        <td>{{product.group}}</td>
+                        <td><i ng-if="$ctrl.groups(product, 'new')" class="fa fa-check"></i></td>
                         <td>{{product.stock.name?product.stock.name + ' ' + '('+ product.stock.percent + '%)':''}}</td>
                         <td>{{product.price}}</td>
                         <td>

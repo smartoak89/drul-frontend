@@ -88,7 +88,7 @@
                             <input class="form-control" ng-model="product.article" disabled>
                         </div>
                         <div class="checkbo">
-                            <input type="checkbox" id="{{product.name}}" ng-checked="product.group=='new'?true:false" value="a" ng-click="$ctrl.addNow(product)"/>
+                            <input type="checkbox" id="{{product.name}}" ng-checked="$ctrl.group('new')" value="a" ng-click="$ctrl.addNow(product)"/>
                             <label for="{{product.name}}">Новинка</label>
                         </div>
                         <div class="form-group">

@@ -89,5 +89,9 @@ angular.module('admin')
                 });
             };
 
+            this.groups = function(p, g) {
+                return p.groups.indexOf(g) != -1;
+            }
+
         }]
     });
