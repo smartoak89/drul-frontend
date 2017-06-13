@@ -80,6 +80,14 @@ app.config(['$stateProvider', '$urlRouterProvider', '$httpProvider', '$locationP
             }
         });
 
+        $stateProvider.state('index.order', {
+            url: "order",
+            views: {
+                '': {template: "<template-common></template-common>"},
+                'content': {template: "<make-order></make-order>"}
+            }
+        });
+
         $stateProvider.state('index.filterPage', {
             url: "category/{slug:[a-z0-9-_/]*}" ,
             views: {

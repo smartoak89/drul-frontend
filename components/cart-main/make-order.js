@@ -1,14 +1,10 @@
 angular.module('app')
     .component('makeOrder', {
         templateUrl: "components/cart-main/make-order.html",
-        bindings: {
-            cost: '=',
-            count: '=',
-            order: '='
-        },
-        controller: ['Cart', 'User','OrderService', 'CurrencyService', '$anchorScroll', 'DeliveryService',
-            function(Cart, User, OrderService, CurrencyService, $anchorScroll, DeliveryService) {
+        controller: ['$cookies', '$rootScope', 'Cart', 'User','OrderService', 'CurrencyService', '$anchorScroll', 'DeliveryService',
+            function($cookies, $rootScope, Cart, User, OrderService, CurrencyService, $anchorScroll, DeliveryService) {
                 var self = this;
+                self.Math = window.Math;
                 var user = User.get();
                 self.cart = Cart;
                 self.error = '';
@@ -32,6 +28,11 @@ angular.module('app')
                 }
 
                 this.$onInit = function () {
+                    var self = this;
+                    self.order = JSON.parse($cookies.get('order')).order;
+                    self.count = JSON.parse($cookies.get('order')).count;
+                    self.cost = JSON.parse($cookies.get('order')).cost;
+                    self.currency = JSON.parse($cookies.get('order')).currency;
                     self.orderSuccess = false;
                     self.orderMake = {
                         firstname: user.firstname,
@@ -68,6 +69,7 @@ angular.module('app')
                         OrderService.doOrder(self.orderMake, function (err, res) {
                             if (err) return self.error = err.data.message;
                             Cart.clear();
+                            $cookies.remove('order');
                             $anchorScroll(0);
                             self.orderSuccess = true;
                         })
@@ -113,8 +115,8 @@ angular.module('app')
 
                                 if (userCurrency == 'usd'){
                                     console.log('usercur', 'usd')
-                                    method.price.amount = deliveryCache(method.uuid).amount;
-                                    method.free = deliveryCache(method.uuid).free;
+                                    method.price.amount = Math.round(deliveryCache(method.uuid).amount);
+                                    method.free = Math.round(deliveryCache(method.uuid).free);
                                 }
                             } else if (methodCurrency == 'rur') {
                                 console.log('rur')

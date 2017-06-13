@@ -2593,6 +2593,9 @@ about{
 make-order{
     display: block;
     background: #f8f7f7;
+
+}
+make-order .cartMain{
     padding: 60px 0;
 }
 .orderTitel{
