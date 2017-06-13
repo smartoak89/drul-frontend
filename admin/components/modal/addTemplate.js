@@ -14,6 +14,7 @@ angular.module('admin')
             };
 
             function isValid () {
+                if (!$scope.template.name) return $scope.error = 'Введите название шаблона';
                 if (!$scope.template.subject) return $scope.error = 'Введите тему шаблона';
                 if (!$scope.template.body) return $scope.error = 'Введите сообщение шаблона';
                 $scope.error = null;
