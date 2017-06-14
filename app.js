@@ -21,7 +21,11 @@ var app = angular.module('app', [
 
 app.constant('Conf', {
     api_path: 'https://today.net.ua/api',
+<<<<<<< HEAD
     site_url: 'http://today.net.ua'
+=======
+    site_url: 'https://today.net.ua'
+>>>>>>> 7de5a572d3d14e99da10482a20d49af74825c0ae
 });
 
 app.run(['User', '$location', '$state', '$rootScope', '$anchorScroll', 'MainService', function(User, $location, $state, $rootScope, $anchorScroll, MainService) {
