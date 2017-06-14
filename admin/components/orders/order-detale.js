@@ -46,7 +46,7 @@ angular.module('admin')
                         self.newInfo.products[index] = {
                             combo: elem.combo,
                             count: elem.count,
-                            price: elem.price,
+                            price: self.Math.ceil(elem.price),
                             productID: elem.uuid
                         }
                     })
@@ -64,12 +64,14 @@ angular.module('admin')
                     if(self.currentTemplate){
                         self.mail = {
                             subject: self.currentTemplate.subject,
-                            body: self.currentTemplate.body
+                            body: self.currentTemplate.body,
+                            email: self.order.email
                         }
                     }else{
                         self.mail = {
                             subject: '',
-                            body: ''
+                            body: '',
+                            email: ''
                         }
                     }
                 }
@@ -111,12 +113,15 @@ angular.module('admin')
 
                 self.sendMail = function() {
                     if (!self.mail.subject) return self.error = 'Укажите тему сообщения';
-                    if (!self.mail.text) return self.error = 'Укажите текст сообщения';
+                    if (!self.mail.body) return self.error = 'Укажите текст сообщения';
+                    if (!self.mail.email) return self.error = 'Укажите электронный адрес';
                     self.error = null;
                     mailService.send(self.mail, function (err, res) {
-                        if (err) return self.error = err;
+                        console.log(err);
+                        if (err) return self.error = err.json();
                         self.mail.subject = '';
                         self.mail.text = '';
+                        self.mail.email = '';
                         self.error = 'Сообщение отправлено успешно';
                     })
                 };
@@ -186,8 +191,8 @@ angular.module('admin')
 
                                 if (userCurrency == 'usd'){
                                     console.log('usercur', 'usd')
-                                    method.price.amount = deliveryCache(method.uuid).amount;
-                                    method.free = deliveryCache(method.uuid).free;
+                                    method.price.amount = Math.round(deliveryCache(method.uuid).amount);
+                                    method.free = Math.round(deliveryCache(method.uuid).free);
                                 }
                             } else if (methodCurrency == 'rur') {
                                 console.log('rur')
@@ -201,8 +206,8 @@ angular.module('admin')
                                     method.free = Math.round((deliveryCache(method.uuid).free * methodCourse) / usdCourse);
                                 }
                                 if (userCurrency == 'rur') {
-                                    method.price.amount = deliveryCache(method.uuid).amount;
-                                    method.free = deliveryCache(method.uuid).free;
+                                    method.price.amount = Math.round(deliveryCache(method.uuid).amount);
+                                    method.free = Math.round(deliveryCache(method.uuid).free);
                                 }
                             } else if (methodCurrency == 'uah') {
                                 if (userCurrency == 'usd'){
@@ -216,8 +221,8 @@ angular.module('admin')
                                     method.free = deliveryCache(method.uuid).free / rurCourse;
                                 }
                                 if (userCurrency == 'uah'){
-                                    method.price.amount = deliveryCache(method.uuid).amount;
-                                    method.free = deliveryCache(method.uuid).free;
+                                    method.price.amount = Math.round(deliveryCache(method.uuid).amount);
+                                    method.free = Math.round(deliveryCache(method.uuid).free);
                                 }
                             }
                         }
