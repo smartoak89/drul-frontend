@@ -39,9 +39,9 @@ angular.module('app')
                     getProduct();
                 };
 
-                var choosedCombo = [];
+                self.choosedCombo = [];
                 self.chooseCombo = function (index, combo, value) {
-                    choosedCombo[index] = {
+                    self.choosedCombo[index] = {
                         name: combo.name,
                         slug: combo.slug,
                         value: value
@@ -49,9 +49,9 @@ angular.module('app')
                 };
 
                 self.addToCart = function () {
-                    if (choosedCombo < self.product.combo) return showMsg('warning', 'Не все опции выбраны!');
+                    if (self.choosedCombo < self.product.combo) return showMsg('warning', 'Не все опции выбраны!');
 
-                    Cart.add(self.product, choosedCombo, function (err, res) {
+                    Cart.add(self.product, self.choosedCombo, function (err, res) {
                         console.log(res)
                         if (err) return showMsg('warning', 'Произошла ошибка при добавление товара в корзину!');
                         if (res === 'war') return showMsg('warning', 'Товар уже добавлен в корзину!');
@@ -77,7 +77,7 @@ angular.module('app')
 
                 self.buyNow = function (e) {
 
-                    if (choosedCombo < self.product.combo) {
+                    if (self.choosedCombo < self.product.combo) {
                         return showMsg('warning', 'Не все опции выбраны!');
                     }
 
@@ -103,6 +103,15 @@ angular.module('app')
 
                         self.product = product;
                         console.log('product', self.product)
+
+                        angular.forEach(self.product.combo, function(combo){
+                            self.choosedCombo.push({
+                                name: combo.name,
+                                slug: combo.slug,
+                                value: combo.values[0]
+                            });
+                            console.log(self.choosedCombo);
+                        })
                     })
                 }
 
@@ -122,7 +131,7 @@ angular.module('app')
                 });
                 function openModalBuyNow () {
                     var product = angular.copy(self.product);
-                    product.combo = choosedCombo;
+                    product.combo = self.choosedCombo;
 
                     $uibModal.open({
                         templateUrl: 'components/modal/buy-now.html',

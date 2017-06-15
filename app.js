@@ -20,6 +20,7 @@ var app = angular.module('app', [
 ]);
 
 app.constant('Conf', {
+
     api_path: 'http://localhost/api',
     site_url: 'http://localhost'
 });

@@ -1,7 +1,7 @@
 <!--Navigator-->
 <nav-cus></nav-cus>
 
-<div class="container-fluid">
+<div class="container-fluid" ng-if="$ctrl.product">
     <div class="row pad15">
         <div class="col-lg-5 col-md-5 col-sm-5 col-xs-12">
             <!--<zoom mark-height="100" mark-width="100" src="{{'/api/file/' + product.photo.uuid}}" zoom-lvl="4"></zoom>-->
@@ -59,8 +59,8 @@
                     <hr class="marCard"/>
                     <div class="sizeCard" ng-repeat="value in $ctrl.product.combo">{{value.name}}
                         <div class="sizeCardDis">
-                            <div class="checkbo" ng-repeat="(key, val) in value.values">
-                                <input type="radio" id="{{val + key}}" name="{{value.name}}" value="{{val}}" ng-click="$ctrl.chooseCombo($parent.$index, value, val)"/>
+                            <div class="checkbo" ng-repeat="(key, val) in value.values">{{$ctrl.choosedCombov[$parent.$index].name}}
+                                <input type="radio" ng-checked="$index==0?true:false" id="{{val + key}}" name="{{value.name}}" ng-click="$ctrl.chooseCombo($parent.$index, value, val)"/>
                                 <label for="{{val + key}}"></label><span>{{val}}</span>
                             </div>
                         </div>
