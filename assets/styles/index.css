@@ -2823,9 +2823,9 @@ admin-navigation .sidebar {
     margin: 0 30px;
 }
 @media screen and (max-width: 875px) {
-    .prevs{
-        height: 120px;
-    }
+    /*.prevs{*/
+        /*height: 120px;*/
+    /*}*/
     .searchInputWrap{
         width: 145px;
     }

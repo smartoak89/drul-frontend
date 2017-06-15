@@ -21,6 +21,7 @@ angular.module('admin')
 
                 RequestService.getOneOrder(orderID, function (err, res) {
                     if (err) return console.error(err);
+                    res.delivery = res.delivery || {};
                     self.order = res;
                     self.newInfo = {
                         currency: res.currency,
@@ -126,7 +127,7 @@ angular.module('admin')
                 }
 
                 self.checkFree = function(){
-                    if (self.curMethod.free > self.order.price){
+                    if (self.curMethod && self.curMethod.free > self.order.price){
                         self.deliveryCost=true;
                     }else{
                         self.deliveryCost=false;
