@@ -84,6 +84,9 @@ angular.module('admin')
                         self.newInfo.delivery.flat = null;
                     }
                     HttpResource.put({params1: 'order', params2: self.order.uuid}, self.newInfo, function(res){
+                        if (self.newInfo.status !== self.order.status && self.order.email && self.order.email !== '') {
+                            mailService.sendStatus(self.order.uuid)
+                        }
                         $state.reload();
                     }, function(err){
                     });
@@ -117,7 +120,7 @@ angular.module('admin')
                     if (!self.mail.body) return self.error = 'Укажите текст сообщения';
                     if (!self.mail.email) return self.error = 'Укажите электронный адрес';
                     self.error = null;
-                    mailService.send(self.mail, function (err, res) {
+                    mailService.sendUser(self.mail, function (err, res) {
                         console.log(err);
                         if (err) return self.error = err.json();
                         self.mail.subject = '';

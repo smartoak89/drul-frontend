@@ -561,11 +561,18 @@ angular.module('admin')
     }])
     .factory('mailService',['HttpResource', function (HttpResource) {
         return {
-            send: function (mail, callback) {
-                HttpResource.save({params1: 'mail'}, mail, function (res) {
+            sendUser: function (mail, callback) {
+                HttpResource.save({params1: 'mail', params2: 'user'}, mail, function (res) {
                     callback(null, res);
                 }, function(err) {
                     callback(err);
+                })
+            },
+            sendStatus: function (id) {
+                HttpResource.save({params1: 'mail', params2: 'status', params3: id}, {}, function (res) {
+
+                }, function(err) {
+                    console.error(err);
                 })
             }
         }
