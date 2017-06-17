@@ -10,6 +10,7 @@
         <table class="table table-grid">
             <thead>
             <tr>
+                <th>Название</th>
                 <th>Тема</th>
                 <th>Сообщение</th>
                 <th>Изменить</th>
@@ -18,6 +19,7 @@
             </thead>
             <tbody>
             <tr ng-repeat="template in $ctrl.templatesList">
+                <td>{{template.name}}</td>
                 <td>{{template.subject}}</td>
                 <td>{{template.body}}</td>
                 <td><button class="btn btn-default btn-sm" modal-admin="editTemplate">Изменить</button></td>

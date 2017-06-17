@@ -70,22 +70,13 @@ angular.module('admin')
                 } else {
                     _.remove(selectedArr, product);
                 }
-                // if (product.selected) {
-                //
-                //     product.selected = false;
-                // } else {
-                //     if (_.find(selectedArr, {uuid: product.uuid})) return;
-                //     selectedArr.push(product);
-                //     product.selected = true;
-                // }
-                console.log('productsarr', selectedArr);
             };
 
             self.cancelSelected = function () {
                 _.each(selectedArr, function (prod) {
-                    _.remove(selectedArr, prod);
                     prod.selected = false;
                 });
+                selectedArr = Goods.selectedArr = [];
             };
             this.workWithNew = function (type) {
                 var arr = angular.copy(selectedArr);

@@ -7,6 +7,7 @@
             <!--<zoom mark-height="100" mark-width="100" src="{{'/api/file/' + product.photo.uuid}}" zoom-lvl="4"></zoom>-->
             <div class="row">
                 <div class="col-lg-12 col-md-12 col-sm-12 col-xs-12">
+                    <div style=" position: absolute; z-index: 1000; width: 108px; top: 8px; left: 21px;" class="marker red" ng-if="$ctrl.product.stock">Скидка -{{$ctrl.product.stock.percent}}%</div>
                     <img dynamic class="cover img-responsive" id="zoom_03"
                          ng-src="{{$ctrl.Conf.api_path + '/file/' + $ctrl.product.photo.uuid}}"
                          data-zoom-image="{{$ctrl.Conf.api_path + '/file/' + $ctrl.product.photo.uuid}}"
