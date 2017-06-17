@@ -201,6 +201,12 @@ angular.module('admin')
                 }, function (err) {
                     callback(err);
                 })
+            },
+            updateGroupProduct: function (products) {
+                var promises = products.map(function (p) {
+                   return  HttpResource.put({params1: 'product', params2: p.uuid}, p);
+                });
+                return $q.all(promises);
             }
         }
     }])
