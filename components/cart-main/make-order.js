@@ -46,6 +46,7 @@ angular.module('app')
                     };
 
                     DeliveryService.list();
+                    self.changeCost();
                 };
 
 
@@ -154,6 +155,57 @@ angular.module('app')
                         self.choosedMethod = method;
                         // console.log('method', self.choosedMethod)
                     }
+                };
+
+                self.changeCost = function () {
+                    var self = this;
+                        var methodCurrency = self.currency.toLowerCase();
+                        var userCurrency = CurrencyService.cy.toLowerCase();
+
+
+                        if (userCurrency !== methodCurrency) {
+
+                            var methodCourse = CurrencyService.getCy(methodCurrency);
+
+                            if (methodCurrency == 'usd') {
+
+                                if (userCurrency == 'uah'){
+                                    self.cost = Math.round(self.cost * methodCourse * 100)/100;
+                                }
+
+                                if (userCurrency == 'rur') {
+                                    var rurCourse = CurrencyService.getCy('rur');
+                                    self.cost = Math.round((((self.cost * methodCourse) / rurCourse)*100)/100);
+                                }
+
+                                if (userCurrency == 'usd'){
+                                    self.cost = Math.round(self.cost*100)/100;
+                                }
+                            } else if (methodCurrency == 'rur') {
+                                if (userCurrency == 'uah'){
+                                    self.cost = Math.round(self.cost * methodCourse*100)/100;
+                                }
+                                if (userCurrency == 'usd'){
+                                    var usdCourse = CurrencyService.getCy('usd');
+                                    self.cost = Math.round((((self.cost * methodCourse) / usdCourse))*100)/100;
+                                }
+                                if (userCurrency == 'rur') {
+                                    self.cost = Math.round(self.cost*100)/100;
+                                }
+                            } else if (methodCurrency == 'uah') {
+                                if (userCurrency == 'usd'){
+                                    var usdCourse = CurrencyService.getCy('usd');
+                                    self.cost = Math.round((self.cost / usdCourse)*100)/100;
+                                }
+                                if (userCurrency == 'rur'){
+                                    var rurCourse = CurrencyService.getCy('rur');
+                                    self.cost = Math.round((self.cost/ rurCourse)*100)/100;
+                                }
+                                if (userCurrency == 'uah'){
+                                    self.cost = Math.round(self.cost*100)/100;
+                                }
+                            }
+                        }
                 };
 
                 function isValid() {

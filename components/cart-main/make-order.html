@@ -87,8 +87,8 @@
                                     </select>
 
                                     <div ng-if="$ctrl.choosedMethod">
-                                        <p style="margin-top: 12px;">Стоимость доставки: {{$ctrl.choosedMethod.price.amount + ' ' +$ctrl.currencyService.cy}}</p>
-                                        <span>Бесплаткая доставка от: {{$ctrl.choosedMethod.free + ' ' +$ctrl.currencyService.cy}}</span>
+                                        <p style="margin-top: 12px;">Стоимость доставки: {{$ctrl.Math.round($ctrl.choosedMethod.price.amount) + ' ' +$ctrl.currencyService.cy}}</p>
+                                        <span>Бесплаткая доставка от: {{$ctrl.Math.round($ctrl.choosedMethod.free) + ' ' +$ctrl.currencyService.cy}}</span>
                                         <!--{{$ctrl.choosedMethod}}-->
                                     </div>
                                 </div>
@@ -161,7 +161,7 @@
                     <!--<p>Доставка: {Цена}</p>-->
                     <!--<p>Курьерские услуги: {Цена}</p>-->
                     <!--<br>-->
-                    <p>Общая сумма: {{$ctrl.Math.round($ctrl.cost * 100) / 100 +  ' ' + $ctrl.currency}}</p>
+                    <p>Общая сумма: {{$ctrl.cost +  ' ' + $ctrl.orderMake.currency}}</p>
                 </div>
                 <button class="btn btn-drul dark" ng-click="$ctrl.orderFun()" style="overflow: hidden; float: right">Оформить заказ</button>
             </div>
