@@ -1,7 +1,7 @@
 angular.module('admin')
     .component('goods', {
         templateUrl: "admin/components/goods/goods.html",
-        controller: ['Goods', '$q', '$location', 'Conf','Stocks', function (Goods, $q, $location, Conf, Stocks) {
+        controller: ['Goods', '$q', '$location', 'Conf','Stocks','$state', function (Goods, $q, $location, Conf, Stocks, $state) {
             var self = this;
             self.prodService = Goods;
             self.Conf = Conf;
@@ -60,24 +60,59 @@ angular.module('admin')
                 }
             };
 
-            var selectedArr = Goods.selectedArr;
+            var selectedArr = Goods.selectedArr = [];
 
             self.selected = function (product) {
+                product.selected = !product.selected;
+
                 if (product.selected) {
-                    _.remove(selectedArr, product);
-                    product.selected = false;
-                } else {
-                    if (_.find(selectedArr, {uuid: product.uuid})) return;
                     selectedArr.push(product);
-                    product.selected = true;
+                } else {
+                    _.remove(selectedArr, product);
                 }
             };
 
             self.cancelSelected = function () {
                 _.each(selectedArr, function (prod) {
-                    _.remove(selectedArr, prod);
                     prod.selected = false;
                 });
+                selectedArr = Goods.selectedArr = [];
+            };
+            this.workWithNew = function (type) {
+                var arr = angular.copy(selectedArr);
+                var prods;
+                if (type == 'add') {
+
+                    prods = arr.filter(function (p) {
+                        if (p.groups.indexOf('new') === -1) {
+                            p.groups.push('new');
+                            return p;
+                        }
+                    });
+
+                }
+                if (type == 'remove') {
+                    console.log('remove')
+                    prods = arr.filter(function (p) {
+                        var ind = p.groups.indexOf('new');
+                        if (ind !== -1) {
+                            p.groups.splice(ind, 1);
+                            return p;
+                        }
+                    });
+                }
+
+                if (prods && prods.length !== 0) {
+                    self.gropsProcessing = true;
+                    Goods.updateGroupProduct(prods).then(function (res) {
+                        selectedArr = Goods.selectedArr = [];
+                        self.gropsProcessing = false;
+                        $state.reload();
+                    }, function (err) {
+                        self.gropsProcessing = false;
+                        console.error(err);
+                    });
+                }
             };
 
             var skip = 0;
@@ -90,7 +125,8 @@ angular.module('admin')
             };
 
             this.groups = function(p, g) {
-                return p.groups.indexOf(g) != -1;
+                if (p) return p.groups.indexOf(g) != -1;
+
             }
 
         }]

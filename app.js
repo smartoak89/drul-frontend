@@ -20,6 +20,7 @@ var app = angular.module('app', [
 ]);
 
 app.constant('Conf', {
+
     api_path: 'https://today.net.ua/api',
     site_url: 'https://today.net.ua'
 });

@@ -201,6 +201,12 @@ angular.module('admin')
                 }, function (err) {
                     callback(err);
                 })
+            },
+            updateGroupProduct: function (products) {
+                var promises = products.map(function (p) {
+                   return  HttpResource.put({params1: 'product', params2: p.uuid}, p);
+                });
+                return $q.all(promises);
             }
         }
     }])
@@ -561,11 +567,18 @@ angular.module('admin')
     }])
     .factory('mailService',['HttpResource', function (HttpResource) {
         return {
-            send: function (mail, callback) {
-                HttpResource.save({params1: 'mail'}, mail, function (res) {
+            sendUser: function (mail, callback) {
+                HttpResource.save({params1: 'mail', params2: 'user'}, mail, function (res) {
                     callback(null, res);
                 }, function(err) {
                     callback(err);
+                })
+            },
+            sendStatus: function (id) {
+                HttpResource.save({params1: 'mail', params2: 'status', params3: id}, {}, function (res) {
+
+                }, function(err) {
+                    console.error(err);
                 })
             }
         }

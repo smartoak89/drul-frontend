@@ -21,6 +21,7 @@ angular.module('admin')
 
                 RequestService.getOneOrder(orderID, function (err, res) {
                     if (err) return console.error(err);
+                    res.delivery = res.delivery || {};
                     self.order = res;
                     self.newInfo = {
                         currency: res.currency,
@@ -83,6 +84,9 @@ angular.module('admin')
                         self.newInfo.delivery.flat = null;
                     }
                     HttpResource.put({params1: 'order', params2: self.order.uuid}, self.newInfo, function(res){
+                        if (self.newInfo.status !== self.order.status && self.order.email && self.order.email !== '') {
+                            mailService.sendStatus(self.order.uuid)
+                        }
                         $state.reload();
                     }, function(err){
                     });
@@ -116,7 +120,7 @@ angular.module('admin')
                     if (!self.mail.body) return self.error = 'Укажите текст сообщения';
                     if (!self.mail.email) return self.error = 'Укажите электронный адрес';
                     self.error = null;
-                    mailService.send(self.mail, function (err, res) {
+                    mailService.sendUser(self.mail, function (err, res) {
                         console.log(err);
                         if (err) return self.error = err.json();
                         self.mail.subject = '';
@@ -131,7 +135,7 @@ angular.module('admin')
                 }
 
                 self.checkFree = function(){
-                    if (self.curMethod.free > self.order.price){
+                    if (self.curMethod && self.curMethod.free > self.order.price){
                         self.deliveryCost=true;
                     }else{
                         self.deliveryCost=false;
